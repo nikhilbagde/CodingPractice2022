@@ -9,7 +9,7 @@ import java.util.Queue;
 public class BinaryTree {
     private TreeNode root;
 
-    BinaryTree(){
+    public BinaryTree(){
         root = null;
     }
     BinaryTree(int data){

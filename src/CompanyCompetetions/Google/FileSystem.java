@@ -1,6 +1,10 @@
 package CompanyCompetetions.Google;
 
 
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Stack;
+
 public class FileSystem {
 
     public class Files {
@@ -64,4 +68,127 @@ public class FileSystem {
         System.out.print(s.solution(S));
     }
 
+}
+
+class Paresh{
+    public static int max=0;
+
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+
+        String input="dir1\n"
+
+                + " dir11\n"
+
+                + " dir12\n"
+
+                + "  picture.jpeg\n"
+
+                + "  dir121\n"
+
+                + "  file1.txt\n"
+
+                + "dir2\n"
+
+                + " dir21\n"
+
+                + " dir22\n"
+
+                + "  dir221\n"
+
+                + "   dir22443\n"
+
+                + "    file2.png";
+
+        String[] arr=input.split("\n");
+
+        LinkedList<String> list=new LinkedList<>();
+
+        Stack<String> st=new Stack<>();
+
+        Stack<Integer> stSize=new Stack<>();
+
+        for(int i=0;i<arr.length;i++){
+
+            list.add(arr[i]);
+
+        }
+
+        //new Goog2().recur(list,1,0);
+
+        System.out.println(max);
+
+    }
+
+    private  LinkedList<String> recur(LinkedList<String> list, int prevLength,int currentSpaces) {
+
+        if(list.isEmpty()){
+
+            return list;
+
+        }
+
+        int foldLength=0;
+
+        while(!list.isEmpty()){
+
+
+            String curr=list.poll();
+
+            String temp=curr.replaceAll(" ", "");
+
+//list.remove()
+
+            int spaces=getSpaces(curr);
+
+            int segLength=0;
+
+            if(spaces==currentSpaces){
+
+
+                if(temp.contains(".png") || temp.contains(".jpeg") || temp.contains(".jpg")){
+
+                    if(max<prevLength+temp.length()){
+
+                        max=prevLength-1;//+temp.length();
+
+                    }
+
+                }else {
+
+                    foldLength=prevLength+temp.length()+1;
+
+                }
+
+            }else if(spaces>currentSpaces){
+
+                list.addFirst(curr);
+
+                list=recur(list,foldLength,spaces);
+
+            }else if(spaces<currentSpaces){
+
+                list.addFirst(curr);
+
+                return list;//list=recur(list,prevLength,spaces);
+
+            }
+
+
+        }
+
+        return list;
+
+
+
+
+
+    }
+
+    public static int getSpaces(String s){
+
+        return s.length() - s.replaceAll(" ", "").length();
+
+    }
 }
