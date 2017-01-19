@@ -1,4 +1,4 @@
-package GeeksForGeeks.CodingProblems.Trees.Set2;
+package GeeksForGeeks.CodingProblems.Trees.Set1;
 
 import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;

@@ -1,6 +1,7 @@
-package GeeksForGeeks.CodingProblems.Trees.Set1;
+package GeeksForGeeks.CodingProblems.Trees.Set2;
 
 import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
+import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
 import java.util.LinkedList;
