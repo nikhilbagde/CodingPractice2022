@@ -1,7 +1,9 @@
 package GeeksForGeeks.JavaReview.ArraysInJava;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Nikhil on 1/7/2017 5:56 AM.
@@ -12,7 +14,7 @@ public class ArraysInJava {
     public static void main(String[] args) {
 
         //Primitives type
-        int [] array1= {1,2,3};
+        int [] array1= {1,2,3};     //int[] name = new int[10];     static (Size) int[] namee =new int[20];
         int [] array2= {1,2,3};
 
         if(Arrays.equals(array1, array2)){
@@ -144,6 +146,20 @@ public class ArraysInJava {
 
         int index2 = Arrays.binarySearch(array14, 5,9, 2);
         System.out.println(index2);
+
+        //Static allocation
+        int[] name1 = new int[10];          //fast
+
+        //Dynamic Array
+        List<Integer> list  = new ArrayList<>();  //slow
+        List<Integer> list2 = new ArrayList<>();
+
+        for (int i = 0; i < 11 ; i++) {
+            list.add(i);
+        }
+        System.out.println(list);
+
+
 
     }
 

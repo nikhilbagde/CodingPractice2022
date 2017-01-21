@@ -13,30 +13,30 @@ public class LevelOrderTraversal {
 
     //Method 1 : Using Queue
     private static void levelOrder(TreeNode root, int level){
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
-        Queue<Integer> levelQ = new LinkedList<>();
+        Queue<TreeNode> nodeQueue = new LinkedList<>();                     //Step 1: Create a queue to store nodes.
+        Queue<Integer> levelQ = new LinkedList<>();                         //        & another queue to keep track of nodes<->level position
 
         int currentLevel = 0;
-        nodeQueue.add(root);
+        nodeQueue.add(root);                                                //Step 2: Add root to queue and zero level to another queue.
         levelQ.add(currentLevel);
 
-        while(!nodeQueue.isEmpty()){
+        while(!nodeQueue.isEmpty()){                                        //Step 3: remove root, and its level. Till queue is empty.
             TreeNode currentNode = nodeQueue.poll();
             currentLevel = levelQ.poll();
 
-            if(currentLevel == level){
+            if(currentLevel == level){                                              //process current Node and level
                 System.out.println("level = "+ currentLevel + " Nodes value = " + currentNode.value);
             }
 
            // if(currentNode.left!=null || currentNode.right!=null) {
-                currentLevel++;
-                if (currentNode.left != null) {
+                //currentLevel++;                                             //Step 4: Add its (left | right)-> NodesQ
+                if (currentNode.left != null) {                             //          and corresponding (levels)->LevelQ
                     nodeQueue.add(currentNode.left);
-                    levelQ.add(currentLevel);
+                    levelQ.add(currentLevel+1);
                 }
                 if (currentNode.right != null) {
                     nodeQueue.add(currentNode.right);
-                    levelQ.add(currentLevel);
+                    levelQ.add(currentLevel+1);
                 }
                 //levelQ.add(++currentLevel);
            // }
@@ -79,5 +79,8 @@ public class LevelOrderTraversal {
 
         //Method 2
         printLevelRec(tree_level.getRoot(), 3);
+
+        //
+        levelWise(tree_level.getRoot());
     }
 }
