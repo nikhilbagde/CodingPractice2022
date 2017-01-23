@@ -54,7 +54,7 @@ public class P4_PrimeDigitsSum {
             if(isInDigitSumIsPrime(num, primeList, 3) && isInDigitSumIsPrime(num, primeList, 4) && isInDigitSumIsPrime(num, primeList, 5)){
                 count++;
                 if(count>Math.pow(10,9)){
-                    //count = count % (int) (Math.pow(10,9) + 7);
+                    //count = count % (int) (LeetCode.Math.pow(10,9) + 7);
                     count = count % M;
                 }
             }
@@ -70,7 +70,7 @@ public class P4_PrimeDigitsSum {
             if(isInDigitSumIsPrime(num, primeList, 3) && isInDigitSumIsPrime(num, primeList, 4) && isInDigitSumIsPrime(num, primeList, 5)){
                 count++;
                 if(count>Math.pow(10,9)){
-                    //count = count % (int) (Math.pow(10,9) + 7);
+                    //count = count % (int) (LeetCode.Math.pow(10,9) + 7);
                     count = count % M;
                 }
             }

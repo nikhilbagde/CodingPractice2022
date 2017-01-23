@@ -16,7 +16,7 @@ public class SherlockSqares {
             int max = scanner.nextInt();
             int totalCount=0;
             /*for(int count=min ; count<= max; count++){
-                int sqareRoot = (int) Math.sqrt(count);
+                int sqareRoot = (int) LeetCode.Math.sqrt(count);
                 if(sqareRoot*sqareRoot == count){
                     totalCount+=1;
                 }

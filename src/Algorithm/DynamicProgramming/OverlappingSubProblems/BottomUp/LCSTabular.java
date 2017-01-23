@@ -4,6 +4,7 @@ import java.time.Year;
 
 /**
  * Created by Nikhil on 1/6/2017 10:34 AM.
+ * Find length of longest common subsquence.
  */
 public class LCSTabular {
     public static void main(String[] args) {
@@ -39,7 +40,7 @@ public class LCSTabular {
 
         for (int i = 1; i <=n ; i++) {
             for (int j = 1; j <=m ; j++) {
-                if(X[i-1] == Y[j-1]) {          //instead of checking X[i]==Y[j] check for X[i-1] and Y[i-1]
+                if(X[i-1] == Y[j-1]) {          //instead of checking X[i]==Y[j] check for X[i-1] and Y[i-1] since we are starting iteration with i=1 and j=1
                     lcs[i][j] = lcs[i - 1][j - 1] + 1;  //we found a matching letter, then store lcs as diagonal value + 1
                     path[i][j] = 'D';//which means diagonally value contains all previous lcs count. hence add 1.
                 }

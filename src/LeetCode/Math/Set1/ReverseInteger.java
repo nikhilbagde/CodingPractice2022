@@ -1,4 +1,4 @@
-package Math.Set1;
+package LeetCode.Math.Set1;
 
 /**
  * Created by Nikhil on 1/21/2017 12:57 PM.
@@ -20,7 +20,7 @@ public class ReverseInteger {
         boolean isNegative = false;
         if(number<0){
             isNegative = true;
-            number = 0 - number;            //new way to make number negative without using Math.abs() or * -1
+            number = 0 - number;            //new way to make number negative without using LeetCode.Math.abs() or * -1
         }
 
         int result = 0;

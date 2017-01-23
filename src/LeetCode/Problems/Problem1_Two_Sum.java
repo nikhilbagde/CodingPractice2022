@@ -1,4 +1,4 @@
-package LeetCode;
+package LeetCode.Problems;
 
 /**
  * Created by Nikhi on 11/5/2016.

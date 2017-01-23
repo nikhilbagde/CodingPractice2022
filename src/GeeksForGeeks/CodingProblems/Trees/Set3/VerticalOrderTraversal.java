@@ -11,6 +11,15 @@ import java.util.*;
  */
 public class VerticalOrderTraversal {
 
+    /*
+    Similar Problems:
+    1. Get level of Nodes
+    2. Print Level Order Traversal
+    3. Has path sum equal to given sum.
+    4. Root to leaf sum with given number - DFS would be more efficient.
+    5. Vertical order traversal.
+    6. Minimum path or depth from Root
+     */
 
     private static List<List<Integer>> verticalOrder(TreeNode root){
         if(root==null) return null;

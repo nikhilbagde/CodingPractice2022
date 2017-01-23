@@ -10,7 +10,18 @@ import java.util.Queue;
 
 /**
  * Created by Nikhil on 1/17/2017 8:55 PM.
+ *
+
+ /*
+ Similar Problems:
+ 1. Get level of Nodes
+ 2. Print Level Order Traversal
+ 3. Has path sum equal to given sum.
+ 4. Root to leaf sum with given number - DFS would be more efficient.
+ 5. Vertical order traversal.
+ 6. Minimum path or depth from Root
  */
+
 public class PrintLevelWise {
     private static void printLevelWise(TreeNode node, int level){
         Queue<TreeNode> nodesQ = new LinkedList<>();

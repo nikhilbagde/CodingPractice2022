@@ -1,4 +1,4 @@
-package LeetCode;
+package LeetCode.Problems;
 
 import java.io.BufferedReader;
 import java.io.IOException;

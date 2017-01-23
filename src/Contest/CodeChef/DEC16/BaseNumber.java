@@ -29,8 +29,8 @@ public class BaseNumber {
                 java.math.BigInteger bigInteger = new java.math.BigInteger(sc.next());
                 //if( (bigInteger.compareTo(BigInteger.ZERO)==1
                   //      || bigInteger.compareTo(BigInteger.ZERO)==0)
-                    //    && (bigInteger.compareTo(new BigInteger(Double.toString(Math.pow(10,12)))) == -1
-                      //  || bigInteger.compareTo(new BigInteger(Double.toString(Math.pow(10,12)))) == 0) ) {
+                    //    && (bigInteger.compareTo(new BigInteger(Double.toString(LeetCode.Math.pow(10,12)))) == -1
+                      //  || bigInteger.compareTo(new BigInteger(Double.toString(LeetCode.Math.pow(10,12)))) == 0) ) {
 
                     if (bigInteger.compareTo(new java.math.BigInteger(Integer.toString(Integer.MAX_VALUE))) == 1) {
                         System.out.println("INFINITY");

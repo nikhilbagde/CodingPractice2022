@@ -21,7 +21,7 @@ public class FlippingTheMatrix2 {
             }
             for (int row = 0; row < 2 * n; row++) {
                 for (int col = 0; col < 2 * n; col++) {
-                    //sum += Math.max(Math.max(Math.max(arr[i][j],arr[i][2*n-j-1]),arr[2*n-i-1][j]),arr[2*n-i-1][2*n-j-1]);
+                    //sum += LeetCode.Math.max(LeetCode.Math.max(LeetCode.Math.max(arr[i][j],arr[i][2*n-j-1]),arr[2*n-i-1][j]),arr[2*n-i-1][2*n-j-1]);
                     sum += Math.max(Math.max(Math.max(matrix[row][col], matrix[row][2 * n - col - 1]), matrix[2 * n - row - 1][col]), matrix[2 * n - row - 1][2 * n - col - 1]);
                 }
             }

@@ -13,16 +13,16 @@ public class EditTwoString {
         String one = "sunday";
         String two = "saturday";
 
-        int editCount = editTwoStringCountRecursive(one.toCharArray(), two.toCharArray(), one.length(), two.length());
+        int editCount = editTwoStringCountRec(one.toCharArray(), two.toCharArray(), one.length(), two.length());
         System.out.println(editCount);
     }
-    private static int editTwoStringCountRecursive(char[] X, char[] Y, int m, int n){
+    private static int editTwoStringCountRec(char[] X, char[] Y, int m, int n){
         if(m==0) return n;
         if(n==0) return m;
-        if(X[m-1]==Y[n-1]) return editTwoStringCountRecursive(X,Y,m-1,n-1); //do nothing ignore.
-        return 1 + min( editTwoStringCountRecursive(X,Y,m,n-1),   //insert last char of first String
-                editTwoStringCountRecursive(X,Y,m-1,n),     //remove last char of first String
-                editTwoStringCountRecursive(X,Y,m-1,n-1));  //replace last char of first String
+        if(X[m-1]==Y[n-1]) return editTwoStringCountRec(X,Y,m-1,n-1); //do nothing ignore. decrement both pointers m and n.
+        return 1 + min( editTwoStringCountRec(X,Y,m,n-1),   //insert last char of first String
+                editTwoStringCountRec(X,Y,m-1,n),     //remove last char of first String
+                editTwoStringCountRec(X,Y,m-1,n-1));  //replace last char of first String
     }
     private static int min(int a, int b, int c){
         if(a<b && a<c) return a;

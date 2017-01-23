@@ -19,10 +19,10 @@ public class BaseNumber1 {
     public static void main(String[] args) {
         java.util.Scanner sc = new java.util.Scanner(System.in);
         int testCasesCount = sc.nextInt();
-        /*if(1 <= testCasesCount && testCasesCount <= Math.pow(10,5)){
+        /*if(1 <= testCasesCount && testCasesCount <= LeetCode.Math.pow(10,5)){
             for (int testCount = 0; testCount < testCasesCount ; testCount++) {
                 int number = sc.nextInt();
-                if(0<= number && number<= Math.pow(10,12)){
+                if(0<= number && number<= LeetCode.Math.pow(10,12)){
                     System.out.println(getCountOfOneInDifferentBaseOfNumber(number));
                 }
             }
@@ -33,8 +33,8 @@ public class BaseNumber1 {
                 java.math.BigInteger bigInteger = new java.math.BigInteger(sc.next());
                 //if( (bigInteger.compareTo(BigInteger.ZERO)==1
                 //      || bigInteger.compareTo(BigInteger.ZERO)==0)
-                //    && (bigInteger.compareTo(new BigInteger(Double.toString(Math.pow(10,12)))) == -1
-                //  || bigInteger.compareTo(new BigInteger(Double.toString(Math.pow(10,12)))) == 0) ) {
+                //    && (bigInteger.compareTo(new BigInteger(Double.toString(LeetCode.Math.pow(10,12)))) == -1
+                //  || bigInteger.compareTo(new BigInteger(Double.toString(LeetCode.Math.pow(10,12)))) == 0) ) {
 
                 if (bigInteger.compareTo(new java.math.BigInteger(Integer.toString(Integer.MAX_VALUE))) == 1) {
                     System.out.println("INFINITY");

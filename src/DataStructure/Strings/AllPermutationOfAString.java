@@ -4,16 +4,18 @@ package DataStructure.Strings;
  * Created by Nikhil on 1/15/2017 2:39 PM.
  */
 public class AllPermutationOfAString {
-    private static void permutation(String a){
-        permutationRec("", a);
+    private static void permutation(String input){
+        permutationRec("", input);
     }
-    private static void permutationRec(String pre, String a){
-        int n = a.length();
-        if(n == 0){
+    private static void permutationRec(String pre, String input){
+        int length = input.length();
+        if(length == 0){
             System.out.println(pre);
         }else{
-            for (int i = 0; i < a.length(); i++) {
-                permutationRec(pre + a.charAt(i), a.substring(0,i) + a.substring(i+1));
+            for (int i = 0; i < input.length(); i++) {
+                String firstPart = pre + input.charAt(i);
+                String secondPart = input.substring(0,i) + input.substring(i+1);
+                permutationRec(firstPart, secondPart);
             }
         }
     }

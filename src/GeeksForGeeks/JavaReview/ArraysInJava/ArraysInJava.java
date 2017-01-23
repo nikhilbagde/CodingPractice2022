@@ -1,9 +1,6 @@
 package GeeksForGeeks.JavaReview.ArraysInJava;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Nikhil on 1/7/2017 5:56 AM.
@@ -103,6 +100,7 @@ public class ArraysInJava {
 
         //Printing 2D Array using deepToString
         System.out.println(Arrays.deepToString(array8));
+
 
 
         //Sort Array

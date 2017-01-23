@@ -23,7 +23,7 @@ public class Pairs {
 
             /*for(int i =0; i<N-1 ; i++){  //iterate i from 0 to 3 < [n=4 (N-1)] (1 5 3 4 2 )
                 for(int j = i+1; j<N ; j++){ //iterate J from i to N-1 (means 4)
-                    if(Math.abs(a[i]-a[j])==K){
+                    if(LeetCode.Math.abs(a[i]-a[j])==K){
                         counter++;
                     }
                 }

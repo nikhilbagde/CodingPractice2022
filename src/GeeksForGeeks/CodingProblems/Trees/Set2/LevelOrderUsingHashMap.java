@@ -9,7 +9,15 @@ import java.util.*;
 import java.util.List;
 
 /**
+ *
  * Created by Nikhil on 1/19/2017 9:40 PM.
+ Similar Problems:
+ 1. Get level of Nodes
+ 2. Print Level Order Traversal
+ 3. Has path sum equal to given sum.
+ 4. Root to leaf sum with given number - DFS would be more efficient.
+ 5. Vertical order traversal.
+ 6. Minimum path or depth from Root
  */
 public class LevelOrderUsingHashMap {
     private static HashMap<Integer, List<TreeNode>> levelWiseTraversal(TreeNode root){

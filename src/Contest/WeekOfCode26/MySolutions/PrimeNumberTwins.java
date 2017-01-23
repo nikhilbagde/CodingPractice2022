@@ -42,7 +42,7 @@ public class PrimeNumberTwins {
         /*if(memorisedPrime[isPrime]==1){
             return true;
         }*/
-        //for (int numbers = 2; numbers <= Math.sqrt(isPrime); numbers++) {
+        //for (int numbers = 2; numbers <= LeetCode.Math.sqrt(isPrime); numbers++) {
         for (int numbers = 2; numbers*numbers <= isPrime; numbers++) {
             if(isPrime%numbers == 0){
                 //System.out.println(isPrime + "Not Prime!");

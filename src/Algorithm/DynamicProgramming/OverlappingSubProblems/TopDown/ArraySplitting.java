@@ -14,11 +14,11 @@ public class ArraySplitting {
         int maxScore = 0;
         if(t>=1 && t<=10){
             int size = sc.nextInt();
-            if(size>=1 && size<= (int)Math.pow(2,14) && size%2 == 0){
+            if(size>=1 && size<= (int)LeetCode.Math.pow(2,14) && size%2 == 0){
                 int[] input = new int[size];
                 for(int i=0;i<size;i++) {
                     int temp = sc.nextInt();
-                    if (temp >= 0 && temp <= (int) Math.pow(10, 9)) {
+                    if (temp >= 0 && temp <= (int) LeetCode.Math.pow(10, 9)) {
                         input[i] = sc.nextInt();
                     }
                 }
