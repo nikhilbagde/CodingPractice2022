@@ -4,7 +4,6 @@ import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,11 +33,14 @@ public class VerticalSumRec {
     public static void main(String[] args) {
         BinaryTree tree = ConstructBST.constructBST();
         getVerticalSum(tree.getRoot());
+
+        BinaryTree tree1 = ConstructBST.constructBSTLeftInclined();
+        getVerticalSum(tree1.getRoot());
     }
 }
 
 /*
-/*                              height = 5;
+/*                              height = 3;
 //         6                        0
 //      /     \
 //    3           10                1
@@ -46,8 +48,4 @@ public class VerticalSumRec {
 //  2    4      8    12             2
 // /      \    / \   /  \
 // 1        5  7   9 11  13         3
-//
-//
-//
-//
 */
