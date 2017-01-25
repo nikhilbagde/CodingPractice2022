@@ -29,13 +29,13 @@ public class MaxSumRootToLead {
     private static void maxSumToLeaf(TreeNode root){
         int height = getHeight(root);
         int[] path = new int[(int) Math.pow(2,height) + (int) Math.pow(2, height)];       //height will help me to understand total max possible size of a tree
-        TempNode tempNode = new TempNode(0);
-        maxSumToLeafRec(root, path, 0, tempNode);               // at any level number of nodes = 2^level = 3rd level = 2^3= 8 nodes as leaf. and 8-1 above it as internal nodes
-        System.out.println("Sum = " + tempNode.maxSum);// so total = 2^3 = (2^3 -1) = 8+7=15
+        SumNode sumNode = new SumNode(0);
+        maxSumToLeafRec(root, path, 0, sumNode);               // at any level number of nodes = 2^level = 3rd level = 2^3= 8 nodes as leaf. and 8-1 above it as internal nodes
+        System.out.println("Sum = " + sumNode.maxSum);// so total = 2^3 = (2^3 -1) = 8+7=15
     }
 
 
-    private static void maxSumToLeafRec(TreeNode root, int[] path, int level, TempNode maxSumNode){
+    private static void maxSumToLeafRec(TreeNode root, int[] path, int level, SumNode maxSumNode){
         if(root==null) return;
         path[level++]= root.value;
         if(root.left==null && root.right==null){
@@ -49,10 +49,10 @@ public class MaxSumRootToLead {
             path[level-1]=0;
         }
     }
-    static class TempNode{
+    static class SumNode {
         int maxSum = 0;
 
-        public TempNode(int maxSum) {
+        public SumNode(int maxSum) {
             this.maxSum = maxSum;
         }
     }
