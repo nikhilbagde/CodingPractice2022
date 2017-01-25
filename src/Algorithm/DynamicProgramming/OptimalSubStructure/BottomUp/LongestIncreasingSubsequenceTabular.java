@@ -1,7 +1,8 @@
 package Algorithm.DynamicProgramming.OptimalSubStructure.BottomUp;
 
 /**
- * Created by Nikhil on 1/5/2017 11:32 PM.
+ * Created by Nikhil on 1/5/2017 11:32 PM.4
+ *and LIS is {10, 22, 33, 50, 60, 80}.  = 5
  */
 public class LongestIncreasingSubsequenceTabular {
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class LongestIncreasingSubsequenceTabular {
         for (int next = 1; next < lisTable.length ; next++) {        //for all numbers in array starting from 2nd element
             for (int prev = 0; prev < next; prev++) {                   //consider all values from 1 to each element
                 if(array[prev] < array[next] &&  lisTable[next] < lisTable[prev]+1 ){     //update only when if its less that previously stored count of LIS
-                    lisTable[next] = lisTable[prev] + 1;
+                    lisTable[next] = lisTable[prev] + 1;                                        //plus 1+prev  b/c, default values are 1.
                 }
             }
         }

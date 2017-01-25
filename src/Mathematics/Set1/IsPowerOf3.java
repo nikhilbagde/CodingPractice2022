@@ -1,4 +1,4 @@
-package LeetCode.Math.Set1;
+package Mathematics.Set1;
 
 /**
  * Created by Nikhil on 1/21/2017 3:20 PM.

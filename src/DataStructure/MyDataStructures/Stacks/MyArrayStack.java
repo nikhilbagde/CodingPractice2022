@@ -8,49 +8,49 @@ import java.util.Arrays;
 public class MyArrayStack<E> implements MyStack<E> {
     private static final int CAPACITY = 1000;
     private E[] data;
-    private int t;
+    private int top;
 
     MyArrayStack(){
         this(CAPACITY);
     }
     MyArrayStack(int capacity){
         data = (E[]) new Object[capacity];
-        t = -1;
+        top = -1;
     }
 
     @Override
     public int size() {
-        return (t+1);
+        return (top +1);
     }
 
     @Override
     public boolean empty() {
-        return (t == -1);
+        return (top == -1);
     }
 
     @Override
     public void push(E e) {
         if(size() == data.length) throw new IllegalStateException("MyStack is Full");
-        data[++t] = e;
+        data[++top] = e;
     }
 
     @Override
     public E pop() {
-        if(t == -1) return null;
-        E value = data[t];
-        data[t] = null;
-        t--;
+        if(top == -1) return null;
+        E value = data[top];
+        data[top] = null;
+        top--;
         return value;
     }
 
 
     @Override
     public E peek() {
-        if(t == -1) {
+        if(top == -1) {
             System.out.println("Empty!");
             return null;
         }
-        return data[t];
+        return data[top];
     }
 
     /*
@@ -123,7 +123,7 @@ public class MyArrayStack<E> implements MyStack<E> {
     public String toString() {
         return "MyArrayStack{" +
                 "data=" + Arrays.toString(data) +
-                ", t=" + t +
+                ", top=" + top +
                 '}';
     }
 }

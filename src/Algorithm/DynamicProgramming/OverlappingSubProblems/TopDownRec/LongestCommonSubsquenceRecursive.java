@@ -24,10 +24,10 @@ public class LongestCommonSubsquenceRecursive {
         if(m==0 || n==0){
             return 0;
         }
-        if(X[m-1] == Y[n-1]){
+        if(X[m-1] == Y[n-1]){                                   //compare last element of both string. if equal 1 +..remining string
             return 1 + lcsRecursive(X, Y, m-1, n-1);
-        }else {
-            return Math.max(lcsRecursive(X,Y,m, n-1), lcsRecursive(X,Y,m-1, n));
+        }else {                                                 // if not equal, calculate for 2 subProblem, with 1 reduced element of X
+            return Math.max(lcsRecursive(X,Y,m, n-1), lcsRecursive(X,Y,m-1, n));            //or 1 less element of Y. Get max of that.
         }
     }
 }
