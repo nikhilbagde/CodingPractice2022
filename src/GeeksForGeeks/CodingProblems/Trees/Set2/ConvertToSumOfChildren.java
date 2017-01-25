@@ -17,10 +17,10 @@ public class ConvertToSumOfChildren {
             convertTree(root.left);                 //first convert all left->right->self (PostOrder)
             convertTree(root.right);                //
 
-            int leftV= root.left!=null? root.left.value:0;
-            int rightV= root.right!=null? root.right.value:0;
-            int diff = (leftV+rightV)-root.value;
-
+            int leftV= root.left!=null? root.left.value:0;                  //for unbalanced structure of subtree.
+            int rightV= root.right!=null? root.right.value:0;               //        a
+            int diff = (leftV+rightV)-root.value;                           //       /
+                                                                            //      b
             if(diff>0){         //ROOT < (LEFT+RIGHT)
                 root.value += diff;
             }else if(diff<0){   //Root > (LEFT+RIGHT)

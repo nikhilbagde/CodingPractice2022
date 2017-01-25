@@ -17,5 +17,19 @@ public class SizeOfTree {
         BinaryTree tree = ConstructBST.constructBST();
         int size = sizeOfTree(tree.getRoot());
         System.out.println(size);
+        
+        int size2 = sizeOfTree2(tree.getRoot());
+        System.out.println(size2);
     }
+
+
+
+    private static int sizeOfTree2(TreeNode node){
+        if(node == null) return 0;
+        int leftSubTreeSize  = sizeOfTree2(node.left);
+        int rightSubTreeSize  = sizeOfTree2(node.right);
+        int totalSize = 1 + leftSubTreeSize + rightSubTreeSize;
+        return totalSize;
+    }
+
 }

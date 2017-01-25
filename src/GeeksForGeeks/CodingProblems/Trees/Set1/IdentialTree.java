@@ -9,7 +9,8 @@ import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 public class IdentialTree {
     private static boolean isIdenticalTrees(TreeNode node1, TreeNode node2){
         if(node1 == null && node2 ==null) return true;                                      //what if both are null
-        if(node1 != null && node2 == null || node1 == null && node2 != null ) return false; //what if either is only null
+        //if(node1 != null && node2 == null || node1 == null && node2 != null ) return false; //what if either is only null
+        if(node1 == null || node2 == null ) return false;               //what if either is only null
         return node1.value == node2.value                                                   //otherwise check data and left and right
                 && isIdenticalTrees(node1.left, node2.left)                                         //subtree.
                 && isIdenticalTrees(node1.right, node2.right);

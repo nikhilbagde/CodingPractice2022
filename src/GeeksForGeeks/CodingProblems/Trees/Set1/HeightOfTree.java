@@ -21,6 +21,21 @@ public class HeightOfTree {
         int height = heightOfTree(tree.getRoot());
         System.out.println(height);
 
+        int height2 = heightOfTree2(tree.getRoot());
+        System.out.println(height2);
+
+    }
+
+    private static int heightOfTree2(TreeNode node){
+
+        if(node == null) return 0;
+        if(node.left == null && node.right==null) return 0;
+
+        int leftHeight = heightOfTree(node.left);
+        int rightHeight = heightOfTree(node.right);
+        int currentHeight  = 1;
+
+        return currentHeight + Math.max(leftHeight, rightHeight);
     }
 }
 

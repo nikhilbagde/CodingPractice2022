@@ -9,7 +9,7 @@ import GeeksForGeeks.CodingProblems.Trees.TreeNode;
  */
 public class PrintAllAncestorOfNode {
     private static boolean printAncestors(TreeNode root, int value){            //boolean b/c we will never give root's value. No ancester for root.
-        if(root==null && root.left==null && root.right==null) return true;
+        if(root==null || root.left==null && root.right==null) return true;
         if(root.value == value) return true;
         if(printAncestors(root.left, value) || printAncestors(root.right, value)) {
             System.out.println("root.value = " + root.value);
