@@ -4,9 +4,7 @@ import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
-import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 /**
  *
@@ -70,7 +68,7 @@ public class LevelOrderUsingHashMap {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         levelWiseTraversal(tree.getRoot());
     }
 

@@ -70,7 +70,7 @@ public class VerticalOrderTraversal {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         verticalOrder(tree.getRoot());
     }
 }

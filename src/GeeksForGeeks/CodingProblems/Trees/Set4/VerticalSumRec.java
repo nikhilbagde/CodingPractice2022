@@ -31,10 +31,10 @@ public class VerticalSumRec {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         getVerticalSum(tree.getRoot());
 
-        BinaryTree tree1 = ConstructBST.constructBSTLeftInclined();
+        BinaryTree tree1 = ConstructBST.constructBinaryTree();
         getVerticalSum(tree1.getRoot());
     }
 }

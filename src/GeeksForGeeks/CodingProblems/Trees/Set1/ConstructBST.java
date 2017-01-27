@@ -3,9 +3,6 @@ package GeeksForGeeks.CodingProblems.Trees.Set1;
 import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Nikhil on 1/18/2017 7:47 AM.
  */
@@ -20,7 +17,7 @@ public class ConstructBST {
             // 1        5  7   9 11  13
              */
 
-    public static BinaryTree constructBST(){
+    public static BinaryTree constructBinarySearchTree(){
         BinaryTree tree = new BinaryTree();
         tree.insert(6);
         tree.getRoot().left = new TreeNode(3);
@@ -53,7 +50,7 @@ public class ConstructBST {
             //  /
             // 1                                5
             */
-    public static BinaryTree constructBSTLeftInclined(){
+    public static BinaryTree constructBinaryTree(){
         BinaryTree tree = new BinaryTree();
         tree.insert(6);
         tree.getRoot().left = new TreeNode(3);

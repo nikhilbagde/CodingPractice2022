@@ -5,7 +5,7 @@ import DataStructure.LinkedList.SLLNode;
 /**
  * Created by Nikhil on 1/16/2017 6:04 PM.
  */
-public class Question2KthNodeFromLastSLL {
+public class P2KthNodeFromLastSLL {
     public static void main(String[] args) {
 
     }
@@ -18,12 +18,12 @@ public class Question2KthNodeFromLastSLL {
 
         SLLNode node1 = head;
         SLLNode node2 = head;
-        for (int i = 1; i < K; i++) {       //1,2,3,4,5
+        for (int i = 1; i < K; i++) {       //1,2,3,4,5                 move 1 pointer to k
             assert node2.next!= null;
             node2 = node1.next;
         }
         if(node2 == null) return null;
-        while(node2.next != null){
+        while(node2.next != null){                              //iterate both pointer with same speed.
             node1=node1.next;
             node2=node2.next;
         }
@@ -34,7 +34,7 @@ public class Question2KthNodeFromLastSLL {
                                                                     //Start 2nd Pointer from Kth node to End.
         SLLNode node1 = head;                                          //At same time start 1st pointer from start.
         SLLNode node2 = head;                                          //for 2nd pointer to reach last node (length-k)steps
-        for (int i = 1; i < K; i++) {       //1,2,3,4,5             //Simiarly 1st pointer would b k nodes from last.
+        for (int i = 1; i < K; i++) {       //1,2,3,4,5             //Similarly 1st pointer would b k nodes from last.
             assert node2.next!= null;
             node2 = node1.next;
         }
@@ -44,5 +44,18 @@ public class Question2KthNodeFromLastSLL {
             node2=node2.next;
         }
         return node1;
+    }
+    public class ValueWrap{
+        public int value = 0;
+    }
+    private static SLLNode kthNodeFromEndRecursive(SLLNode head, int k, ValueWrap obj){
+        if(head==null) return null;
+        SLLNode node = kthNodeFromEndRecursive(head.next, k, obj);
+        //start counting from here.
+        obj.value =  obj.value + 1;
+        if(obj.value == k){
+            return head;        //return head node which is current node in stack
+        }
+        return node;        //otherwise, continue with returning prev node.
     }
 }

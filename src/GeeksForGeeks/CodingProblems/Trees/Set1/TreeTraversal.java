@@ -1,6 +1,6 @@
 package GeeksForGeeks.CodingProblems.Trees.Set1;
 
-import GeeksForGeeks.CodingProblems.Trees.*;
+import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
 /**
@@ -47,7 +47,7 @@ public class TreeTraversal {
         System.out.println("Find Max K element from level L");
         tree1.getMaxKAtLevelL(4, 3 );
 
-        BinaryTree tree2 = ConstructBST.constructBST();
+        BinaryTree tree2 = ConstructBST.constructBinarySearchTree();
         tree2.inOrder();
 
     }

@@ -6,7 +6,9 @@ package DataStructure.LinkedList;
 public class SLLNode {
     public int data;
     public SLLNode next;
-    SLLNode(int data){
+    public SLLNode(){
+    }
+    public SLLNode(int data){
         this.data = data;
         next = null;
     }

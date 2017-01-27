@@ -14,7 +14,7 @@ public class SizeOfTree {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         int size = sizeOfTree(tree.getRoot());
         System.out.println(size);
         

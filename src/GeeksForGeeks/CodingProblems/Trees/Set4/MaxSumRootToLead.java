@@ -8,6 +8,8 @@ import java.util.*;
 
 /**
  * Created by Nikhil on 1/25/2017 2:44 PM.
+ * Using BFS is not efficient. Henced changed it to dfs using recursion.
+ * Used exactly same approach of getting path to leaf node.
  */
 public class MaxSumRootToLead {
     // would not be efficient
@@ -64,8 +66,8 @@ public class MaxSumRootToLead {
         return sum;
     }
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBSTLeftInclined();
-        maxSumToLeaf(tree.getRoot());
+        BinaryTree tree = ConstructBST.constructBinaryTree();
+        maxSumToLeaf(tree.getRoot());       //expected 6 + 10 + 12 + 13 = 41 Perfect!
     }
 
 }

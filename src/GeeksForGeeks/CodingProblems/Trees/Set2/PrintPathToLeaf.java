@@ -35,7 +35,7 @@ public class PrintPathToLeaf {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST.constructBST();
+        BinaryTree tree = GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST.constructBinarySearchTree();
         tree.getRoot().left.left.left.right = new TreeNode(3);
         tree.getRoot().left.left.left.right.left = new TreeNode(1);
 

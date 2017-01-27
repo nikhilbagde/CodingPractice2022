@@ -19,8 +19,8 @@ public class IdentialTree {
     }
 
     public static void main(String[] args) {
-        GeeksForGeeks.CodingProblems.Trees.BinaryTree tree1 = ConstructBST.constructBST();
-        GeeksForGeeks.CodingProblems.Trees.BinaryTree tree2 = ConstructBST.constructBST();
+        GeeksForGeeks.CodingProblems.Trees.BinaryTree tree1 = ConstructBST.constructBinarySearchTree();
+        GeeksForGeeks.CodingProblems.Trees.BinaryTree tree2 = ConstructBST.constructBinarySearchTree();
         boolean result = isIdenticalTrees(tree1.getRoot(), tree2.getRoot());
         System.out.println(result);
     }

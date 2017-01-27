@@ -23,7 +23,7 @@ public class PrintAncestorOfGivenNode {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         TreeNode result = printAncestorOfNode(tree.getRoot(), new TreeNode(7));     //Expected : 3->6, 7->8
         System.out.println("result.value = " + result.value);
     }

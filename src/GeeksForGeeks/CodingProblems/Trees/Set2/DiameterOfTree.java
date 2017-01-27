@@ -4,8 +4,6 @@ import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
-import javax.swing.text.Position;
-
 /**
  * Created by Nikhil on 1/18/2017 10:04 PM.
  */
@@ -30,7 +28,7 @@ public class DiameterOfTree {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         int diameter = getDiameter(tree.getRoot());
         System.out.println("diameter = " + diameter);
     }

@@ -4,7 +4,10 @@ import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.TreeMap;
 
 /**
  * Created by Nikhil on 1/25/2017 2:11 PM.
@@ -41,7 +44,7 @@ public class VerticalSumBFS {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBSTLeftInclined();
+        BinaryTree tree = ConstructBST.constructBinaryTree();
         verticalSumBFS(tree.getRoot());
     }
 }

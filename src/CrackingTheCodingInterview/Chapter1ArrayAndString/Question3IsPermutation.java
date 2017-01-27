@@ -14,8 +14,10 @@ public class Question3IsPermutation {
         //boolean result = first.i;
         boolean result = permutation(first, second);
         System.out.println(result);
-
     }
+    /*
+    Using Boolean array[]
+     */
     private static boolean permutation(String first, String second){
         if(first.length() != second.length()){
             return false;
@@ -37,11 +39,14 @@ public class Question3IsPermutation {
         }
         return true;
     }
+    /*
+    Using sort. Then equals.
+     */
     private static boolean permutation2(String a, String b){
         if(a.length()!= b.length()){
             return false;
         }
-        String aa = sort(a);
+        String aa = sort(a);            //N LOG(N)
         String bb = sort(b);
 
         return aa.equals(bb);

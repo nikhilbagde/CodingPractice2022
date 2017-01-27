@@ -1,8 +1,5 @@
 package CrackingTheCodingInterview.Chapter1ArrayAndString;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Nikhil on 1/16/2017 12:38 PM.
  * Assume you have a method isSubstring which checks if one word is a substring
@@ -26,8 +23,8 @@ public class Question8IsSubString {
         return false;
     }
     private static boolean isSubString(String XY, String b, int rotationPoint){
-        for (int i = 0; i < XY.length()/2; i++) {
-            String subString = XY.substring(i, b.length()+i);
+        for (int i = 0; i < XY.length()/2; i++) {               //iterate over longer string.
+            String subString = XY.substring(i, b.length()+i);   //take subString of bigger string of length of smaller one and add iterating element.
             if(subString.equals(b))
                 return true;
         }

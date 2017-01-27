@@ -24,11 +24,11 @@ public class Question1UniqueCharacter {
         int checker = 0;
         for (int i = 0; i < str.length(); i++) {
             int val = str.charAt(i) - 'a'; // Difference with a =  97
-            val = 1 << val;             //SET THE BIT FOR Ith CHARACTER
+            val = 1 << val;     //SET THE BIT FOR Ith CHARACTER | SET 1 TO POSITION TO VALUE AS LEFT SHIFT E.G FOR 4 -> 1000
             System.out.println("Checker = " + Integer.toBinaryString(checker) + " Val = " + Integer.toBinaryString(val));
-            if ((checker & (val)) > 0) return false;        //CHECK IF ITS ALREDY BEEN SET BY ADDING > 0
+            if ((checker & (val)) > 0) return false;        //CHECK IF ITS ALREADY BEEN SET BY ADDING > 0 | 1 & 1 = 1 CHECK IF GREATER THAN 0
             System.out.println("Checker & Val = "  + Integer.toBinaryString(checker & val));
-            checker |= (val); //Its like addition 0011 (3) + 0100 (4) = 0111 (7)    //STORE THAT CHARACTER AS SET INTO CHECKER.
+            checker |= (val);   //MAINTAIN GLOABLE VARIABLE TO TRACK ALL QNIQUE 1'S | ADD VALUE TO CHECKER GLOBLE VARIABLE
             System.out.println("Checker | val = " + Integer.toBinaryString(checker | val));
             System.out.println("Checker = " + Integer.toBinaryString(checker));
         }

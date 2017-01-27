@@ -3,6 +3,7 @@ package GeeksForGeeks.CodingProblems.Trees.Set3;
 import GeeksForGeeks.CodingProblems.Trees.BinaryTree;
 import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
 import GeeksForGeeks.CodingProblems.Trees.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -35,7 +36,7 @@ public class InorderWithoutRecursion {
 
     public static void main(String[] args) {
         //Test 1
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         InorderUsingStack(tree.getRoot());
 
         //Test 2

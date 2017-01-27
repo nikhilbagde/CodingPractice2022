@@ -70,7 +70,7 @@ public class PrintLevelWise {
         test.add(8);        test.add(4);        test.add(9);*/
         //printPriorityQueue(test);
 
-        BinaryTree testLevelWiseTree = ConstructBST.constructBST();
+        BinaryTree testLevelWiseTree = ConstructBST.constructBinarySearchTree();
         printLevelWise(testLevelWiseTree.getRoot(), 2);
     }
 }

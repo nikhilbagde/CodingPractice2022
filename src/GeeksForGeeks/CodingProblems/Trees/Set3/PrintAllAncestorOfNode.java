@@ -19,7 +19,7 @@ public class PrintAllAncestorOfNode {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         if(!printAncestors(tree.getRoot(), 5)){
             System.out.println("Did not found!");
         }

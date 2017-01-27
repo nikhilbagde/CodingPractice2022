@@ -9,7 +9,22 @@ public class Question5CompressString {
         String str = "aabcccccaa";
         compress(str);
     }
-    public static void compress(String str){
+    //aabbbcccccaa
+    //a2b3c5a2
+    private static void compress(String str){
+        StringBuilder stringBuilder = new StringBuilder(); //Better
+
+        for (int i = 0; i < str.length(); i++) {
+            int counter = 1;
+            stringBuilder.append(str.charAt(i)); //Better     1.first Added letter
+            while(i < str.length()-1 && str.charAt(i) ==  str.charAt(i+1)) {    // 2. while i<length and next char is same as previous
+                counter++;
+                i++;
+            }
+            stringBuilder.append(counter); //Better    3. Now append that number
+        }
+    }
+    private static void compressExplained(String str){
         String newstr = ""; // Bad programming
         StringBuilder stringBuilder = new StringBuilder(); //Better
 

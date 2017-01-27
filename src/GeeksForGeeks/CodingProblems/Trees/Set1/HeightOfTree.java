@@ -14,7 +14,7 @@ public class HeightOfTree {
     }
 
     public static void main(String[] args) {
-        BinaryTree tree = ConstructBST.constructBST();
+        BinaryTree tree = ConstructBST.constructBinarySearchTree();
         tree.getRoot().left.left.left.right = new TreeNode(3);
         tree.getRoot().left.left.left.right.left = new TreeNode(1);
 
