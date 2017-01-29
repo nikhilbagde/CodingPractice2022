@@ -26,7 +26,7 @@ public class PrintLevelWise {
     private static void printLevelWise(TreeNode node, int level){
         Queue<TreeNode> nodesQ = new LinkedList<>();
         Queue<Integer> levelQ = new LinkedList<>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o1 > o2 ? -1 : (o2 > o1) ? 1 : 0);
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((o1, o2) -> o1 > o2 ? -1 : (o2 > o1) ? 1 : 0);
 
         nodesQ.offer(node);
         levelQ.offer(0);
@@ -36,7 +36,7 @@ public class PrintLevelWise {
             int currentLevel = levelQ.poll();
 
             if(currentLevel == level){
-                maxHeap.add(node1.value);           //for calculating max in given level.
+                minHeap.add(node1.value);           //for calculating max in given level.
                 System.out.print(node1.value + " ");    //for level wise printing
             }
 
@@ -53,7 +53,7 @@ public class PrintLevelWise {
             }
         }
 
-        printPriorityQueue(maxHeap);
+        printPriorityQueue(minHeap);
     }
     private static void printPriorityQueue(PriorityQueue<Integer> maxHeap){
         int lenght = maxHeap.size();

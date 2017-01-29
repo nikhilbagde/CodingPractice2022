@@ -25,7 +25,7 @@ public class IsFoldable {
 
     private static boolean isFoldableRec(TreeNode left, TreeNode right){
         if(left==null && right==null) return true;          //means both nodes are not present on both sides.
-        if(left==null && right!=null || left!=null&&right==null ) return false;     //one is null and other is not.
+        if(left==null || right==null ) return false;     //one is null and other is not.
         return isFoldableRec(left.left, right.right)
                 && isFoldableRec(left.right, right.left);
     }

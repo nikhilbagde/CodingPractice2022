@@ -39,4 +39,28 @@ public class SantaClauseAndCandies {
         System.out.println(set);
         return set;
     }
+    private static int[] getPrimeNumberListEfficient(int N){
+        boolean [] prime = new boolean[N+1];
+        List<Integer> primeNumbers = new ArrayList<>();
+
+        for (int i = 0; i < N; i++)
+            prime[i] = true;
+
+        for (int i = 2; i*i < N; i++) {
+            if(prime[i]){
+                for (int j = i*2; j <= N; j= j+i) {
+                    prime[j]= false;
+                }
+            }
+        }
+
+        for (int i = 2; i < N; i++) {
+            if(prime[i]) primeNumbers.add(i);
+        }
+        //ArrayList to int[]
+        System.out.println("primeNumbers = " + primeNumbers);
+        Integer[] result  = new Integer[primeNumbers.size()];
+        int [] result2 = Arrays.stream(result).mapToInt(Integer::intValue).toArray();
+        return result2;
+    }
 }
