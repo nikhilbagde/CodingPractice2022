@@ -7,7 +7,12 @@ import java.util.Stack;
 /**
  * Created by Nikhil on 1/27/2017 5:05 AM.
  * Palindrome: Implement a function to check if a linked list is a palindrome.
-    Hints:#5, #13, #29, #61, #101
+ Hints:
+ #5,     =  what if we try to reverse a linkedlist
+ #13,    =  stack can be used
+ #29,    =  Assume length is given | Recursive is one solution.
+ #61,    =  In recursive middle node is the base case.
+ #101    =  In case of returning multiple values, create a new class.
  */
 public class P6Pallindrom {
     private static boolean isPallindromList(SLLNode head, int length){
@@ -20,7 +25,9 @@ public class P6Pallindrom {
     private static boolean isPallindromStack(SLLNode head){
         SLLNode fast = head, slow = head;
         Stack<SLLNode> stack = new Stack<>();
-        while(fast!=null && fast.next!=null){
+
+        //Method to add half elements into a stack.
+        while(fast!=null && fast.next!=null){       //unless we reach end of list or last node.
             stack.push(slow);
             slow = slow.next;
             fast = fast.next.next;

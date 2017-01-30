@@ -4,6 +4,13 @@ import DataStructure.LinkedList.SLLNode;
 
 /**
  * Created by Nikhil on 1/16/2017 6:04 PM.
+ * Return Kth to Last: Implement an algorithm to find the kth to last element of a singly linked list.
+    Hints:
+        #8,     = What if you know linked list size. Kth from last means whatth from start ?
+        #25,    = If linkedList size is not know. Can we calculate it? How much computation ?   - Yes | O(n)
+        #41,    = can be solved recursevly.
+        #67,
+        #126
  */
 public class P2KthNodeFromLastSLL {
     public static void main(String[] args) {
@@ -16,18 +23,18 @@ public class P2KthNodeFromLastSLL {
     private static SLLNode KthNodeFromLastSLL(SLLNode head, int K){
         if(K<=0) return null;
 
-        SLLNode node1 = head;
-        SLLNode node2 = head;
+        SLLNode first = head;
+        SLLNode second = head;
         for (int i = 1; i < K; i++) {       //1,2,3,4,5                 move 1 pointer to k
-            assert node2.next!= null;
-            node2 = node1.next;
+            assert second.next!= null;
+            second = second.next;
         }
-        if(node2 == null) return null;
-        while(node2.next != null){                              //iterate both pointer with same speed.
-            node1=node1.next;
-            node2=node2.next;
+        if(second == null) return null;
+        while(second.next != null){                              //iterate both pointer with same speed.
+            first=first.next;
+            second=second.next;
         }
-        return node1;
+        return first;
     }
     private static SLLNode KthNodeFromLastSLLExplained(SLLNode head, int K){
         if(K<=0) return null;                                       //Use two pointer SLLNode
@@ -56,6 +63,6 @@ public class P2KthNodeFromLastSLL {
         if(obj.value == k){
             return head;        //return head node which is current node in stack
         }
-        return node;        //otherwise, continue with returning prev node.
+        return node;        //otherwise, continue with returning prev node.         returning intermediate node.
     }
 }

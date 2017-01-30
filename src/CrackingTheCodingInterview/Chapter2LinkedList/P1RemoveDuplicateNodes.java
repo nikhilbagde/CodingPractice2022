@@ -18,6 +18,12 @@ import java.util.Map;
      * You could have one pointer pl (the fast pointer) move every two elements for every one move that p2
         makes. When pl hits the end of the linked list, p2 will be at the midpoint. Then, move pl back to the front
         and begin "weaving" the elements. On each iteration, p2 selects an element and inserts it after pl.
+
+        Remove Dups! Write code to remove duplicates from an unsorted linked list.
+        FOLLOW UP
+        How would you solve this problem if a temporary buffer is not allowed?
+        Hints: #9 - Using HashTable - In single cycle can be solved.
+             #40 - for O(n) space it would take O(n2) time, maitain 2 pointers one ahead of current and check for duplicate
  */
 public class P1RemoveDuplicateNodes {
     public static void main(String[] args) {

@@ -15,7 +15,11 @@ import DataStructure.LinkedList.SLLNode;
  * EXAMPLE
  * Input:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
  * Output: 9 - > 1 -> 2. That is, 912.
- * Hints: #7, #30, #71, #95, #109
+ * Hints: #7,   = One way to convert list to integer and add and then back to list.
+ *        #30,  = Other way to use recursive method.
+ *        #71,  = Consider case when size of two linked list is not same
+ *        #95,  = Solve for example
+ *        #109  = If not same length, modify linked list by padding with zero at front of max unit place.
  * Page 105 : SOlt: 250
  */
 public class P5SumLists {
@@ -40,7 +44,7 @@ public class P5SumLists {
         return Integer.parseInt(finalSum.reverse().toString());
 
     }
-    private static int getSumofSingleList(SLLNode head){
+    private static int getSumOfSingleList(SLLNode head){
         int sum = 0;
         SLLNode node = head;
         while(node!=null){
@@ -60,14 +64,17 @@ public class P5SumLists {
 
         int value = (head1!=null ? head1.data : 0) + (head2!=null? head2.data : 0) + carry; // add head 1,2 values  + carry
 
-        SLLNode resultHead = new SLLNode();                                             //store remainder in new node.
-        resultHead.data = value %10;
+        SLLNode resultHead = new SLLNode();                                             //store addition result in new node.
+        resultHead.data = value %10;        //value can be two digit, %10 to get unit digit.
 
         if(head1!=null || head2 !=null){                                                //check null
-            SLLNode nextNode = sumListsWorking(head1==null ? null : head1.next, head2==null ? null: head2.next, value>10? 1:0);  //
+            SLLNode nextNode =
+                    sumListsWorking(head1==null ? null : head1.next,
+                            head2==null ? null: head2.next,
+                            value>10? 1:0);  //
             resultHead.next = nextNode;                                                 //pass their next values and carry | check equation.
         }
-        return resultHead;                 //return head
+        return resultHead;                 //return head        we always return head.
     }
 
     public static void main(String[] args) {
@@ -110,7 +117,8 @@ public class P5SumLists {
         int currentSum = head1.data + head2.data + sumWrapper.carry;
 
         SLLNode currentNewhead = new SLLNode(currentSum);
-        if(sumWrapper.currentSumNode !=null) currentNewhead.next = sumWrapper.currentSumNode;
+        if(sumWrapper.currentSumNode !=null)
+            currentNewhead.next = sumWrapper.currentSumNode;
 
         sumWrapper.currentSumNode = currentNewhead;             //we are returning sumWrapper so store 1.currentSum and 2. carry to it. and return.
         sumWrapper.carry = currentSum/10;
@@ -130,11 +138,11 @@ public class P5SumLists {
     private static SLLNode padZeros(SLLNode head, int zeroCount){
         SLLNode newHead = head;
         for (int i = 1; i <= zeroCount; i++) {
-            newHead = appeandAtFront(newHead, 0);
+            newHead = appendAtFront(newHead, 0);
         }
         return newHead;
     }
-    private static SLLNode appeandAtFront(SLLNode head, int value){
+    private static SLLNode appendAtFront(SLLNode head, int value){
         SLLNode newHead = new SLLNode(value);
         if(head!=null) newHead.next = head;
         return newHead;

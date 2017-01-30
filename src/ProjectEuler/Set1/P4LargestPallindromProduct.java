@@ -14,10 +14,17 @@ public class P4LargestPallindromProduct {
             long result = -1;
             for (int i = 100; i <= 999; i++) {
                 for (int j = 100; j < i; j++) {
-
+                    int mul = i * j;
+                    if(pallindrom(mul)){
+                        result = Math.max(result, mul);
+                    }
                 }
             }
             System.out.println("result = " + result);
         }
+    }
+    private static boolean pallindrom(int n){
+        String temp = String.valueOf(n);
+        return temp.equals(new StringBuilder(temp).reverse().toString());
     }
 }
