@@ -47,7 +47,7 @@ public class P18MaximumPathSumI {
             }
             System.out.println("result = " + result);
             
-            
+            /*
             //Other way without using other array
             for (int row = 1; row < N; row++) {
                 for (int col = 0; col <= row; col++) {
@@ -67,7 +67,7 @@ public class P18MaximumPathSumI {
                 result = Math.max(result, array[N-1][col]);
             }
             System.out.println("result = " + result);
-
+*/
 
         }
     }
