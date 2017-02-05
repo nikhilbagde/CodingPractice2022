@@ -8,7 +8,7 @@ import java.util.Stack;
  */
 public class P14LongestCollatzSequence {
     final static int MAX = 5000000 + 7;
-    static int[] array = new int[MAX];
+    static long[] array = new long[MAX];
     static long[] arrayAnswers = new long[MAX];
 
     public static void main(String[] args) {
@@ -22,8 +22,8 @@ public class P14LongestCollatzSequence {
                 if((temp & 1) == 0) temp = temp/2;
                 else temp = temp * 3 +1;
             }
-
-            int steps = array[temp];
+            System.out.println(temp);
+            int steps = (int) array[temp];
             for (; !stack.isEmpty() ; ++steps) {
                 long value = stack.peek();
                 stack.pop();
@@ -34,7 +34,7 @@ public class P14LongestCollatzSequence {
 
         Scanner scanner = new Scanner(System.in);
         for (int i = 1; i < MAX; i++) {
-            int act = array[i];
+            int act = (int) array[i];
             int givenNumber = (int) arrayAnswers[i-1];
             if(act >= array[givenNumber]){
                 arrayAnswers[i] = i;
