@@ -1,11 +1,11 @@
-package ProjectEuler;
+package ProjectEuler.Set1;
 
 import java.util.Scanner;
 
 /**
  * Created by Nikhi on 10/12/2016.
  */
-public class Problem1 {
+public class P1The5And3Multiples {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int testCases = in.nextInt();

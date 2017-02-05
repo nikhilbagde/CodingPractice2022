@@ -13,7 +13,7 @@ public class P4LargestPallindromProduct {
             int N = scanner.nextInt();
             long result = -1;
             for (int i = 100; i <= 999; i++) {
-                for (int j = 100; j < i; j++) {
+                for (int j = 100; j < i; j++) {         //trick is to start from start number and till that number as it increases in previous loop.
                     int mul = i * j;
                     if(pallindrom(mul)){
                         result = Math.max(result, mul);

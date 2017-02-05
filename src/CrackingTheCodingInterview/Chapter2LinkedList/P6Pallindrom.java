@@ -33,8 +33,8 @@ public class P6Pallindrom {
             fast = fast.next.next;
         }
         //check if length is odd
-        if(fast!=null){     //
-            slow = slow.next; //skipped middle node check for odd case.
+        if(fast!=null){         //
+            slow = slow.next;   //skipped middle node check for odd case.
         }
 
         while(slow!=null){

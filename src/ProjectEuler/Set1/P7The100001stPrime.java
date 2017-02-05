@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * Created by Nikhil on 1/29/2017 4:39 AM.
  */
-public class P7100001stPrime {
+public class P7The100001stPrime {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int T = scanner.nextInt();
