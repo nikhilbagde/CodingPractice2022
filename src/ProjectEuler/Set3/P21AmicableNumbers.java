@@ -30,7 +30,6 @@ public class P21AmicableNumbers {
     public static void main(String[] args) {
         amicable = new long[MAX + 1];
 
-
         amicable[0] = 0;
         for (int i = 1; i < MAX; i++) {
             amicable[i] = -1;             //means not calculated yet.
@@ -61,7 +60,6 @@ public class P21AmicableNumbers {
         while (T-- > 0) {
             int N = scanner.nextInt();
             int result = 0;
-
             /*for (int i = 1; i < N; i++) {
                 if (amicable[i] == amicable[amicable[i]] && i != amicable[i]) {
                     result += amicable[N] + amicable[amicable[N]];
