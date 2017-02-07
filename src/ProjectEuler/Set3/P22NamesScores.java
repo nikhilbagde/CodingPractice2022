@@ -54,12 +54,3 @@ public class P22NamesScores {
     }
 }
 
-class NameValue {
-    String name;
-    int value;
-
-    public NameValue(String name, int value) {
-        this.name = name;
-        this.value = value;
-    }
-}

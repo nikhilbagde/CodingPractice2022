@@ -40,10 +40,25 @@ public class Dummy {
 
         String[] stringArray1 = {"Jane","Tu","Ya","Jane","Na"};
         List<String> listOfString = Arrays.asList(stringArray1);
+
         //ArrayList to int Array
         ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(2);arrayList.add(3);arrayList.add(5);arrayList.add(7);arrayList.add(11);arrayList.add(13);arrayList.add(17);
         int[] intArray2 = arrayListToIntArray(arrayList);
+
+        //2D jagged to 1D
+        int [][] _2dJagged = {{1,2,3},{4,5,6, 5,8},{7,8,9,7}};
+        int totalLenght = 0;
+        for (int [] a2 : _2dJagged)
+            totalLenght+= a2.length;
+        int [] jaggedTo1D = new int[totalLenght];
+        int index1 = 0;
+        for (int row = 0; row < _2dJagged.length; row++) {
+            for (int col = 0; col < _2dJagged[row].length; col++) {
+                jaggedTo1D[index1++] = _2dJagged[row][col];
+            }
+        }
+        System.out.println(Arrays.toString(jaggedTo1D));
 
     }
 }
