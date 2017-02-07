@@ -29,16 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
-import java.sql.BatchUpdateException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Savepoint;
-import java.sql.Statement;
-
+import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -57,6 +50,134 @@ public class CoffeesTable {
     this.dbName = dbNameArg;
     this.dbms = dbmsArg;
 
+  }
+
+  public static void viewTable(Connection con) throws SQLException {
+    Statement stmt = null;
+    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
+    try {
+      stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(query);
+
+      while (rs.next()) {
+        String coffeeName = rs.getString("COF_NAME");
+        int supplierID = rs.getInt("SUP_ID");
+        float price = rs.getFloat("PRICE");
+        int sales = rs.getInt("SALES");
+        int total = rs.getInt("TOTAL");
+        System.out.println(coffeeName + ", " + supplierID + ", " + price +
+                ", " + sales + ", " + total);
+      }
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      if (stmt != null) {
+        stmt.close();
+      }
+    }
+  }
+
+  public static void alternateViewTable(Connection con) throws SQLException {
+    Statement stmt = null;
+    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
+    try {
+      stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(query);
+      while (rs.next()) {
+        String coffeeName = rs.getString(1);
+        int supplierID = rs.getInt(2);
+        float price = rs.getFloat(3);
+        int sales = rs.getInt(4);
+        int total = rs.getInt(5);
+        System.out.println(coffeeName + ", " + supplierID + ", " + price +
+                ", " + sales + ", " + total);
+      }
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      if (stmt != null) {
+        stmt.close();
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+
+      // Java DB does not have an SQL create database command; it does require createDatabase
+//      JDBCTutorialUtilities.createDatabase(myConnection,
+//                                           myJDBCTutorialUtilities.dbName,
+//                                           myJDBCTutorialUtilities.dbms);
+//
+//      JDBCTutorialUtilities.initializeTables(myConnection,
+//                                             myJDBCTutorialUtilities.dbName,
+//                                             myJDBCTutorialUtilities.dbms);
+
+      CoffeesTable myCoffeeTable =
+              new CoffeesTable(myConnection, myJDBCTutorialUtilities.dbName,
+                      myJDBCTutorialUtilities.dbms);
+
+      System.out.println("\nContents of COFFEES table:");
+      CoffeesTable.viewTable(myConnection);
+
+      System.out.println("\nRaising coffee prices by 25%");
+      myCoffeeTable.modifyPrices(1.25f);
+
+      System.out.println("\nInserting a new row:");
+      myCoffeeTable.insertRow("Kona", 150, 10.99f, 0, 0);
+      CoffeesTable.viewTable(myConnection);
+
+      System.out.println("\nUpdating sales of coffee per week:");
+      HashMap<String, Integer> salesCoffeeWeek =
+              new HashMap<String, Integer>();
+      salesCoffeeWeek.put("Colombian", 175);
+      salesCoffeeWeek.put("French_Roast", 150);
+      salesCoffeeWeek.put("Espresso", 60);
+      salesCoffeeWeek.put("Colombian_Decaf", 155);
+      salesCoffeeWeek.put("French_Roast_Decaf", 90);
+      myCoffeeTable.updateCoffeeSales(salesCoffeeWeek);
+      CoffeesTable.viewTable(myConnection);
+
+      System.out.println("\nModifying prices by percentage");
+
+      myCoffeeTable.modifyPricesByPercentage("Colombian", 0.10f, 9.00f);
+
+      System.out.println("\nCOFFEES table after modifying prices by percentage:");
+
+      viewTable(myConnection);
+
+      System.out.println("\nPerforming batch updates; adding new coffees");
+      myCoffeeTable.batchUpdate();
+      viewTable(myConnection);
+
+//      System.out.println("\nDropping Coffee and Suplliers table:");
+//
+//      myCoffeeTable.dropTable();
+//      mySuppliersTable.dropTable();
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
   }
 
   public void createTable() throws SQLException {
@@ -97,7 +218,6 @@ public class CoffeesTable {
       if (stmt != null) { stmt.close(); }
     }
   }
-
 
   public void updateCoffeeSales(HashMap<String, Integer> salesForWeek) throws SQLException {
 
@@ -162,7 +282,6 @@ public class CoffeesTable {
     }
   }
 
-
   public void modifyPricesByPercentage(String coffeeName, float priceModifier,
                                        float maximumPrice) throws SQLException {
     con.setAutoCommit(false);
@@ -214,7 +333,6 @@ public class CoffeesTable {
       con.setAutoCommit(true);
     }
   }
-
 
   public void insertRow(String coffeeName, int supplierID, float price,
                         int sales, int total) throws SQLException {
@@ -271,53 +389,7 @@ public class CoffeesTable {
       this.con.setAutoCommit(true);
     }
   }
-  
-  public static void viewTable(Connection con) throws SQLException {
-    Statement stmt = null;
-    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
-    try {
-      stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(query);
 
-      while (rs.next()) {
-        String coffeeName = rs.getString("COF_NAME");
-        int supplierID = rs.getInt("SUP_ID");
-        float price = rs.getFloat("PRICE");
-        int sales = rs.getInt("SALES");
-        int total = rs.getInt("TOTAL");
-        System.out.println(coffeeName + ", " + supplierID + ", " + price +
-                           ", " + sales + ", " + total);
-      }
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      if (stmt != null) { stmt.close(); }
-    }
-  }
-
-  public static void alternateViewTable(Connection con) throws SQLException {
-    Statement stmt = null;
-    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
-    try {
-      stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(query);
-      while (rs.next()) {
-        String coffeeName = rs.getString(1);
-        int supplierID = rs.getInt(2);
-        float price = rs.getFloat(3);
-        int sales = rs.getInt(4);
-        int total = rs.getInt(5);
-        System.out.println(coffeeName + ", " + supplierID + ", " + price +
-                           ", " + sales + ", " + total);
-      }
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      if (stmt != null) { stmt.close(); }
-    }
-  }
-  
   public Set<String> getKeys() throws SQLException {
     HashSet<String> keys = new HashSet<String>();
     Statement stmt = null;
@@ -334,9 +406,8 @@ public class CoffeesTable {
       if (stmt != null) { stmt.close(); }
     }
     return keys;
-    
-  }
 
+  }
 
   public void dropTable() throws SQLException {
     Statement stmt = null;
@@ -351,84 +422,6 @@ public class CoffeesTable {
       JDBCTutorialUtilities.printSQLException(e);
     } finally {
       if (stmt != null) { stmt.close(); }
-    }
-  }
-
-  public static void main(String[] args) {
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      // Java DB does not have an SQL create database command; it does require createDatabase
-//      JDBCTutorialUtilities.createDatabase(myConnection,
-//                                           myJDBCTutorialUtilities.dbName,
-//                                           myJDBCTutorialUtilities.dbms);
-//
-//      JDBCTutorialUtilities.initializeTables(myConnection,
-//                                             myJDBCTutorialUtilities.dbName,
-//                                             myJDBCTutorialUtilities.dbms);
-
-      CoffeesTable myCoffeeTable =
-        new CoffeesTable(myConnection, myJDBCTutorialUtilities.dbName,
-                         myJDBCTutorialUtilities.dbms);
-
-      System.out.println("\nContents of COFFEES table:");
-      CoffeesTable.viewTable(myConnection);
-
-      System.out.println("\nRaising coffee prices by 25%");
-      myCoffeeTable.modifyPrices(1.25f);
-
-      System.out.println("\nInserting a new row:");
-      myCoffeeTable.insertRow("Kona", 150, 10.99f, 0, 0);
-      CoffeesTable.viewTable(myConnection);
-
-      System.out.println("\nUpdating sales of coffee per week:");
-      HashMap<String, Integer> salesCoffeeWeek =
-        new HashMap<String, Integer>();
-      salesCoffeeWeek.put("Colombian", 175);
-      salesCoffeeWeek.put("French_Roast", 150);
-      salesCoffeeWeek.put("Espresso", 60);
-      salesCoffeeWeek.put("Colombian_Decaf", 155);
-      salesCoffeeWeek.put("French_Roast_Decaf", 90);
-      myCoffeeTable.updateCoffeeSales(salesCoffeeWeek);
-      CoffeesTable.viewTable(myConnection);
-
-      System.out.println("\nModifying prices by percentage");
-
-      myCoffeeTable.modifyPricesByPercentage("Colombian", 0.10f, 9.00f);
-      
-      System.out.println("\nCOFFEES table after modifying prices by percentage:");
-      
-      myCoffeeTable.viewTable(myConnection);
-
-      System.out.println("\nPerforming batch updates; adding new coffees");
-      myCoffeeTable.batchUpdate();
-      myCoffeeTable.viewTable(myConnection);
-
-//      System.out.println("\nDropping Coffee and Suplliers table:");
-//      
-//      myCoffeeTable.dropTable();
-//      mySuppliersTable.dropTable();
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
     }
   }
 }

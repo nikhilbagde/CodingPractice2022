@@ -29,18 +29,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import java.math.BigDecimal;
-
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import java.sql.*;
 
 public class StoredProcedureJavaDBSample {
 
@@ -140,20 +132,65 @@ public class StoredProcedureJavaDBSample {
     rs[0] = stmt.executeQuery(query);
   }
 
+  public static void main(String[] args) {
+
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+      StoredProcedureJavaDBSample mySP =
+              new StoredProcedureJavaDBSample(myConnection,
+                      myJDBCTutorialUtilities.dbName,
+                      myJDBCTutorialUtilities.dbms);
+
+//      JDBCTutorialUtilities.initializeTables(myConnection,
+//                                             myJDBCTutorialUtilities.dbName,
+//                                             myJDBCTutorialUtilities.dbms);
+
+      System.out.println("\nCreating stored procedure:");
+      mySP.createProcedures(myConnection);
+
+//      System.out.println("\nAdding jar file to Java DB class path:");
+//      mySP.registerJarFile(myJDBCTutorialUtilities.jarFile);
+
+      System.out.println("\nRunning all stored procedures:");
+      mySP.runStoredProcedures("Colombian", 0.10f, 19.99f);
+
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
+  }
+  
   public void createProcedures(Connection con) throws SQLException {
 
     Statement stmtCreateShowSuppliers = null;
     Statement stmtCreateGetSupplierOfCoffee = null;
     Statement stmtCreateRaisePrice = null;
-    
+
     Statement stmtDropShowSuppliers = null;
     Statement stmtDropGetSupplierOfCoffee = null;
     Statement stmtDropRaisePrice = null;
-    
+
     String queryDropShowSuppliers = "DROP PROCEDURE SHOW_SUPPLIERS";
     String queryDropGetSupplierOfCoffee = "DROP PROCEDURE GET_SUPPLIER_OF_COFFEE";
     String queryDropRaisePrice = "DROP PROCEDURE RAISE_PRICE";
-    
+
     String queryShowSuppliers =
       "CREATE PROCEDURE SHOW_SUPPLIERS() " +
         "PARAMETER STYLE JAVA " +
@@ -167,7 +204,7 @@ public class StoredProcedureJavaDBSample {
         "LANGUAGE JAVA " +
         "DYNAMIC RESULT SETS 0 " +
         "EXTERNAL NAME 'com.oracle.tutorial.jdbc.StoredProcedureJavaDBSample.getSupplierOfCoffee'";
-    
+
     String queryRaisePrice =
       "CREATE PROCEDURE RAISE_PRICE(IN coffeeName varchar(32), IN maximumPercentage float, INOUT newPrice numeric(10,2)) " +
         "PARAMETER STYLE JAVA " +
@@ -183,13 +220,17 @@ public class StoredProcedureJavaDBSample {
       stmtDropGetSupplierOfCoffee.execute(queryDropGetSupplierOfCoffee);
       stmtDropRaisePrice = con.createStatement();
       stmtDropRaisePrice.execute(queryDropRaisePrice);
-      
+
     } catch (SQLException e) {
       JDBCTutorialUtilities.printSQLException(e);
     } finally {
       if (stmtDropShowSuppliers != null) { stmtDropShowSuppliers.close(); }
-      if (stmtDropGetSupplierOfCoffee != null) { stmtDropGetSupplierOfCoffee.close(); }      
-      if (stmtDropRaisePrice != null) { stmtDropRaisePrice.close(); }      
+      if (stmtDropGetSupplierOfCoffee != null) {
+        stmtDropGetSupplierOfCoffee.close();
+      }
+      if (stmtDropRaisePrice != null) {
+        stmtDropRaisePrice.close();
+      }
     }
     try {
       System.out.println("Calling CREATE PROCEDURE");
@@ -199,15 +240,19 @@ public class StoredProcedureJavaDBSample {
       stmtCreateGetSupplierOfCoffee.execute(queryGetSupplierOfCoffee);
       stmtCreateRaisePrice = con.createStatement();
       stmtCreateRaisePrice.execute(queryRaisePrice);
-      
+
     } catch (SQLException e) {
       JDBCTutorialUtilities.printSQLException(e);
     } finally {
       if (stmtCreateShowSuppliers != null) { stmtCreateShowSuppliers.close(); }
-      if (stmtCreateGetSupplierOfCoffee != null) { stmtCreateGetSupplierOfCoffee.close(); }      
-      if (stmtCreateRaisePrice != null) { stmtCreateRaisePrice.close(); }            
+      if (stmtCreateGetSupplierOfCoffee != null) {
+        stmtCreateGetSupplierOfCoffee.close();
+      }
+      if (stmtCreateRaisePrice != null) {
+        stmtCreateRaisePrice.close();
+      }
     }
-    
+
   }
   
   public void registerJarFile(String jarPathName) throws SQLException {
@@ -250,27 +295,27 @@ public class StoredProcedureJavaDBSample {
     } finally {
       if (cs3 != null) { cs3.close(); }
     }
-    
-  
+
+
   }
-  
+
   public void runStoredProcedures(String coffeeNameArg, double maximumPercentageArg, double newPriceArg) throws SQLException {
     CallableStatement cs = null;
 
     try {
-      
+
       System.out.println("\nCalling the stored procedure GET_SUPPLIER_OF_COFFEE");
       cs = this.con.prepareCall("{call GET_SUPPLIER_OF_COFFEE(?, ?)}");
       cs.setString(1, coffeeNameArg);
       cs.registerOutParameter(2, Types.VARCHAR);
       cs.execute();
-            
+
       String supplierName = cs.getString(2);
-      
+
       if (supplierName != null) {
-        System.out.println("\nSupplier of the coffee " + coffeeNameArg + ": " + supplierName);          
+        System.out.println("\nSupplier of the coffee " + coffeeNameArg + ": " + supplierName);
       } else {
-        System.out.println("\nUnable to find the coffee " + coffeeNameArg);        
+        System.out.println("\nUnable to find the coffee " + coffeeNameArg);
       }
 
       System.out.println("\nCalling the procedure SHOW_SUPPLIERS");
@@ -282,21 +327,21 @@ public class StoredProcedureJavaDBSample {
         String coffee = rs.getString("COF_NAME");
         System.out.println(supplier + ": " + coffee);
       }
-      
+
       System.out.println("\nContents of COFFEES table before calling RAISE_PRICE:");
       CoffeesTable.viewTable(this.con);
-      
+
       System.out.println("\nCalling the procedure RAISE_PRICE");
       cs = this.con.prepareCall("{call RAISE_PRICE(?,?,?)}");
       cs.setString(1, coffeeNameArg);
       cs.setDouble(2, maximumPercentageArg);
       cs.registerOutParameter(3, Types.DOUBLE);
       cs.setDouble(3, newPriceArg);
-      
+
       cs.execute();
-      
+
       System.out.println("\nValue of newPrice after calling RAISE_PRICE: " + cs.getFloat(3));
-      
+
       System.out.println("\nContents of COFFEES table after calling RAISE_PRICE:");
       CoffeesTable.viewTable(this.con);
 
@@ -305,50 +350,5 @@ public class StoredProcedureJavaDBSample {
     } finally {
       if (cs != null) { cs.close(); }
     }
-  }
-
-  public static void main(String[] args) {
-
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-      StoredProcedureJavaDBSample mySP =
-        new StoredProcedureJavaDBSample(myConnection,
-                                        myJDBCTutorialUtilities.dbName,
-                                        myJDBCTutorialUtilities.dbms);
-      
-//      JDBCTutorialUtilities.initializeTables(myConnection,
-//                                             myJDBCTutorialUtilities.dbName,
-//                                             myJDBCTutorialUtilities.dbms);
-
-      System.out.println("\nCreating stored procedure:");
-      mySP.createProcedures(myConnection);
-      
-//      System.out.println("\nAdding jar file to Java DB class path:");
-//      mySP.registerJarFile(myJDBCTutorialUtilities.jarFile);
-
-      System.out.println("\nRunning all stored procedures:");
-      mySP.runStoredProcedures("Colombian", 0.10f, 19.99f);
-
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 }

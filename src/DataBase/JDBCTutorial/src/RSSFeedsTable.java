@@ -29,34 +29,24 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
-import java.io.IOException;
-
-import java.io.StringReader;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLXML;
-import java.sql.Statement;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
+import java.io.IOException;
+import java.io.StringReader;
+import java.sql.*;
 
 public class RSSFeedsTable {
 
@@ -70,6 +60,43 @@ public class RSSFeedsTable {
     this.con = connArg;
     this.dbName = dbNameArg;
     this.dbms = dbmsArg;
+  }
+
+  public static void main(String[] args) {
+
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+
+      RSSFeedsTable myRSSFeedsTable =
+              new RSSFeedsTable(myConnection, myJDBCTutorialUtilities.dbName,
+                      myJDBCTutorialUtilities.dbms);
+
+      myRSSFeedsTable.addRSSFeed("xml/rss-coffee-industry-news.xml");
+      myRSSFeedsTable.addRSSFeed("xml/rss-the-coffee-break-blog.xml");
+      myRSSFeedsTable.viewTable(myConnection);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
   }
 
   public void createTable() throws SQLException {
@@ -118,8 +145,7 @@ public class RSSFeedsTable {
   public void addRSSFeed(String fileName) throws ParserConfigurationException,
                                                  SAXException, IOException,
                                                  XPathExpressionException,
-                                                 TransformerConfigurationException,
-                                                 TransformerException,
+          TransformerException,
                                                  SQLException {
     // Parse the document and retrieve the name of the RSS feed
 
@@ -170,7 +196,7 @@ public class RSSFeedsTable {
         System.out.println("Creating SQLXML object with MySQL");
         rssData = con.createSQLXML();
         System.out.println("Creating DOMResult object");
-        DOMResult dom = (DOMResult)rssData.setResult(DOMResult.class);
+        DOMResult dom = rssData.setResult(DOMResult.class);
         dom.setNode(doc);
 
         insertRow.setSQLXML(2, rssData);
@@ -213,8 +239,7 @@ public class RSSFeedsTable {
   public void viewTable(Connection con) throws SQLException,
                                                ParserConfigurationException,
                                                SAXException, IOException,
-                                               TransformerConfigurationException,
-                                               TransformerException {
+          TransformerException {
     Statement stmt = null;
     try {
       stmt = con.createStatement();
@@ -255,44 +280,6 @@ public class RSSFeedsTable {
     } finally {
       if (stmt != null) { stmt.close(); }
     }
-  }
-
-
-  public static void main(String[] args) {
-
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      RSSFeedsTable myRSSFeedsTable =
-        new RSSFeedsTable(myConnection, myJDBCTutorialUtilities.dbName,
-                          myJDBCTutorialUtilities.dbms);
-
-      myRSSFeedsTable.addRSSFeed("xml/rss-coffee-industry-news.xml");
-      myRSSFeedsTable.addRSSFeed("xml/rss-the-coffee-break-blog.xml");
-      myRSSFeedsTable.viewTable(myConnection);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 
 }

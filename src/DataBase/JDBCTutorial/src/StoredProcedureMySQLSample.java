@@ -29,14 +29,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import java.sql.*;
 
 public class StoredProcedureMySQLSample {
 
@@ -51,9 +46,59 @@ public class StoredProcedureMySQLSample {
     this.dbName = dbName;
     this.dbms = dbmsArg;
   }
+
+  public static void main(String[] args) {
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnectionToDatabase();
+
+      StoredProcedureMySQLSample myStoredProcedureSample =
+              new StoredProcedureMySQLSample(myConnection,
+                      myJDBCTutorialUtilities.dbName,
+                      myJDBCTutorialUtilities.dbms);
+
+//      JDBCTutorialUtilities.initializeTables(myConnection,
+//                                             myJDBCTutorialUtilities.dbName,
+//                                             myJDBCTutorialUtilities.dbms);
+
+
+      System.out.println("\nCreating SHOW_SUPPLIERS stored procedure");
+      myStoredProcedureSample.createProcedureShowSuppliers();
+
+      System.out.println("\nCreating GET_SUPPLIER_OF_COFFEE stored procedure");
+      myStoredProcedureSample.createProcedureGetSupplierOfCoffee();
+
+      System.out.println("\nCreating RAISE_PRICE stored procedure");
+      myStoredProcedureSample.createProcedureRaisePrice();
+
+
+      System.out.println("\nCalling all stored procedures:");
+      myStoredProcedureSample.runStoredProcedures("Colombian", 0.10f, 19.99f);
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
+  }
   
   public void createProcedureRaisePrice() throws SQLException {
-    
+
     String createProcedure = null;
 
     String queryDrop = "DROP PROCEDURE IF EXISTS RAISE_PRICE";
@@ -81,7 +126,7 @@ public class StoredProcedureMySQLSample {
               "select newPrice; " +
             "END main; " +
           "end";
-    
+
     Statement stmt = null;
     Statement stmtDrop = null;
 
@@ -105,9 +150,8 @@ public class StoredProcedureMySQLSample {
       if (stmt != null) { stmt.close(); }
     }
 
-    
+
   }
-  
   
   public void createProcedureGetSupplierOfCoffee() throws SQLException {
 
@@ -147,7 +191,6 @@ public class StoredProcedureMySQLSample {
       if (stmt != null) { stmt.close(); }
     }
   }
-  
 
   public void createProcedureShowSuppliers() throws SQLException {
     String createProcedure = null;
@@ -190,21 +233,21 @@ public class StoredProcedureMySQLSample {
     CallableStatement cs = null;
 
     try {
-      
+
       System.out.println("\nCalling the procedure GET_SUPPLIER_OF_COFFEE");
       cs = this.con.prepareCall("{call GET_SUPPLIER_OF_COFFEE(?, ?)}");
       cs.setString(1, coffeeNameArg);
       cs.registerOutParameter(2, Types.VARCHAR);
       cs.executeQuery();
-            
+
       String supplierName = cs.getString(2);
-      
+
       if (supplierName != null) {
-        System.out.println("\nSupplier of the coffee " + coffeeNameArg + ": " + supplierName);          
+        System.out.println("\nSupplier of the coffee " + coffeeNameArg + ": " + supplierName);
       } else {
-        System.out.println("\nUnable to find the coffee " + coffeeNameArg);        
+        System.out.println("\nUnable to find the coffee " + coffeeNameArg);
       }
-      
+
       System.out.println("\nCalling the procedure SHOW_SUPPLIERS");
       cs = this.con.prepareCall("{call SHOW_SUPPLIERS}");
       ResultSet rs = cs.executeQuery();
@@ -214,24 +257,23 @@ public class StoredProcedureMySQLSample {
         String coffee = rs.getString("COF_NAME");
         System.out.println(supplier + ": " + coffee);
       }
-      
+
       System.out.println("\nContents of COFFEES table before calling RAISE_PRICE:");
       CoffeesTable.viewTable(this.con);
-      
+
       System.out.println("\nCalling the procedure RAISE_PRICE");
       cs = this.con.prepareCall("{call RAISE_PRICE(?,?,?)}");
       cs.setString(1, coffeeNameArg);
       cs.setFloat(2, maximumPercentageArg);
       cs.registerOutParameter(3, Types.NUMERIC);
       cs.setFloat(3, newPriceArg);
-      
+
       cs.execute();
-      
+
       System.out.println("\nValue of newPrice after calling RAISE_PRICE: " + cs.getFloat(3));
-      
+
       System.out.println("\nContents of COFFEES table after calling RAISE_PRICE:");
       CoffeesTable.viewTable(this.con);
-      
 
 
     } catch (SQLException e) {
@@ -239,55 +281,5 @@ public class StoredProcedureMySQLSample {
     } finally {
       if (cs != null) { cs.close(); }
     }
-  }
-
-  public static void main(String[] args) {
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnectionToDatabase();
-
-      StoredProcedureMySQLSample myStoredProcedureSample =
-        new StoredProcedureMySQLSample(myConnection,
-                                       myJDBCTutorialUtilities.dbName,
-                                       myJDBCTutorialUtilities.dbms);
-
-//      JDBCTutorialUtilities.initializeTables(myConnection,
-//                                             myJDBCTutorialUtilities.dbName,
-//                                             myJDBCTutorialUtilities.dbms);
-
-
-      System.out.println("\nCreating SHOW_SUPPLIERS stored procedure");
-      myStoredProcedureSample.createProcedureShowSuppliers();
-      
-      System.out.println("\nCreating GET_SUPPLIER_OF_COFFEE stored procedure");
-      myStoredProcedureSample.createProcedureGetSupplierOfCoffee();
-
-      System.out.println("\nCreating RAISE_PRICE stored procedure");
-      myStoredProcedureSample.createProcedureRaisePrice();
-      
-
-      System.out.println("\nCalling all stored procedures:");
-      myStoredProcedureSample.runStoredProcedures("Colombian", 0.10f, 19.99f);
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 }

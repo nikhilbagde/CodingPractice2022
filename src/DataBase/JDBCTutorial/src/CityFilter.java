@@ -29,12 +29,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
-import java.sql.SQLException;
+package DataBase.JDBCTutorial.src;
 
 import javax.sql.RowSet;
 import javax.sql.rowset.Predicate;
+import java.sql.SQLException;
 
 public class CityFilter implements Predicate {
 

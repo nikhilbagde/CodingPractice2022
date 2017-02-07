@@ -29,13 +29,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
-import java.sql.SQLException;
+package DataBase.JDBCTutorial.src;
 
 import javax.sql.RowSet;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.Predicate;
+import java.sql.SQLException;
 
 public class StateFilter implements Predicate {
 
@@ -61,11 +60,7 @@ public class StateFilter implements Predicate {
     boolean evaluation = true;
     if (columnName.equalsIgnoreCase(this.colName)) {
       int columnValue = ((Integer)value).intValue();
-      if ((columnValue >= this.lo) && (columnValue <= this.hi)) {
-        evaluation = true;
-      } else {
-        evaluation = false;
-      }
+      evaluation = (columnValue >= this.lo) && (columnValue <= this.hi);
     }
     return evaluation;
   }
@@ -75,11 +70,7 @@ public class StateFilter implements Predicate {
     boolean evaluation = true;
     if (this.colNumber == columnNumber) {
       int columnValue = ((Integer)value).intValue();
-      if ((columnValue >= this.lo) && (columnValue <= this.hi)) {
-        evaluation = true;
-      } else {
-        evaluation = false;
-      }
+      evaluation = (columnValue >= this.lo) && (columnValue <= this.hi);
     }
     return evaluation;
   }

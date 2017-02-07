@@ -29,18 +29,22 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import com.sun.rowset.CachedRowSetImpl;
+
 import javax.sql.RowSetEvent;
+import javax.sql.RowSetListener;
+import javax.sql.rowset.CachedRowSet;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.RowSetListener;
-import javax.sql.rowset.CachedRowSet;
 
 public class CoffeesFrame extends JFrame implements RowSetListener {
 
@@ -321,24 +325,6 @@ public class CoffeesFrame extends JFrame implements RowSetListener {
       });
   }
 
-  private void displaySQLExceptionDialog(SQLException e) {
-
-    // Display the SQLException in a dialog box
-    JOptionPane.showMessageDialog(
-      CoffeesFrame.this,
-      new String[] {
-        e.getClass().getName() + ": ",
-        e.getMessage()
-      }
-    );
-  }
-
-  private void createNewTableModel() throws SQLException {
-    myCoffeesTableModel = new CoffeesTableModel(getContentsOfCoffeesTable());
-    myCoffeesTableModel.addEventHandlersToRowSet(this);
-    table.setModel(myCoffeesTableModel);
-  }
-
   public static void main(String[] args) throws Exception {
     JDBCTutorialUtilities myJDBCTutorialUtilities;
     if (args[0] == null) {
@@ -364,6 +350,24 @@ public class CoffeesFrame extends JFrame implements RowSetListener {
       System.out.println("Unexpected exception");
       e.printStackTrace();
     }
+  }
+
+  private void displaySQLExceptionDialog(SQLException e) {
+
+    // Display the SQLException in a dialog box
+    JOptionPane.showMessageDialog(
+            CoffeesFrame.this,
+            new String[]{
+                    e.getClass().getName() + ": ",
+                    e.getMessage()
+            }
+    );
+  }
+
+  private void createNewTableModel() throws SQLException {
+    myCoffeesTableModel = new CoffeesTableModel(getContentsOfCoffeesTable());
+    myCoffeesTableModel.addEventHandlersToRowSet(this);
+    table.setModel(myCoffeesTableModel);
   }
 
   public CachedRowSet getContentsOfCoffeesTable() throws SQLException {

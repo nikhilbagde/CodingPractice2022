@@ -29,27 +29,20 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+package DataBase.JDBCTutorial.src;
 
 import javax.sql.RowSetListener;
 import javax.sql.rowset.CachedRowSet;
-
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class CoffeesTableModel implements TableModel {
 
   CachedRowSet coffeesRowSet; // The ResultSet to interpret
   ResultSetMetaData metadata; // Additional information about the results
   int numcols, numrows; // How many rows and columns in the table
-
-  public CachedRowSet getCoffeesRowSet() {
-    return coffeesRowSet;
-  }
-
 
   public CoffeesTableModel(CachedRowSet rowSetArg) throws SQLException {
 
@@ -64,6 +57,10 @@ public class CoffeesTableModel implements TableModel {
       this.numrows++;
     }
     this.coffeesRowSet.beforeFirst();
+  }
+
+  public CachedRowSet getCoffeesRowSet() {
+    return coffeesRowSet;
   }
 
   public void addEventHandlersToRowSet(RowSetListener listener) {

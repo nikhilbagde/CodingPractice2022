@@ -29,22 +29,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import java.io.BufferedReader;
-
-import java.io.FileNotFoundException;
-
 import java.io.FileReader;
 import java.io.IOException;
-
 import java.io.Writer;
-
-import java.sql.Clob;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ClobSample {
 
@@ -61,7 +52,43 @@ public class ClobSample {
     this.settings = settingsArg;
   }
 
+  public static void main(String[] args) {
 
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+
+      ClobSample myClobSample =
+              new ClobSample(myConnection, myJDBCTutorialUtilities);
+      myClobSample.addRowToCoffeeDescriptions("Colombian",
+              "txt/colombian-description.txt");
+      String description = myClobSample.retrieveExcerpt("Colombian", 10);
+
+      System.out.println(description);
+
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
+  }
 
   public String retrieveExcerpt(String coffeeName,
                                 int numChar) throws SQLException {
@@ -119,8 +146,8 @@ public class ClobSample {
   }
 
   private String readFile(String fileName,
-                          Writer writerArg) throws FileNotFoundException,
-                                                   IOException {
+                          Writer writerArg) throws
+          IOException {
 
     BufferedReader br = new BufferedReader(new FileReader(fileName));
     String nextLine = "";
@@ -135,44 +162,6 @@ public class ClobSample {
 
     // Return the data.
     return clobData;
-  }
-
-  public static void main(String[] args) {
-
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      ClobSample myClobSample =
-        new ClobSample(myConnection, myJDBCTutorialUtilities);
-      myClobSample.addRowToCoffeeDescriptions("Colombian",
-                                              "txt/colombian-description.txt");
-      String description = myClobSample.retrieveExcerpt("Colombian", 10);
-
-      System.out.println(description);
-
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-        JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 
 

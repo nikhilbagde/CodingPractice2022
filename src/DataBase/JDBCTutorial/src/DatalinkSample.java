@@ -29,33 +29,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
+package DataBase.JDBCTutorial.src;
 // Java io imports
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-// Java net imports
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.*;
 
+// Java net imports
 // SQL imports
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatalinkSample {
-   
+
+  private static String proxy = "http://www-proxy.us.oracle.com:80";
   private String dbName;
   private Connection con;
   private String dbms;
   private JDBCTutorialUtilities settings;
-  private static String proxy = "http://www-proxy.us.oracle.com:80";
   
   public DatalinkSample(Connection connArg, JDBCTutorialUtilities settingsArg) {
     super();
@@ -114,29 +109,8 @@ public class DatalinkSample {
     }
   }
   
-  
-  public void addURLRow(String description, String url) throws SQLException {
-    
-    PreparedStatement pstmt = null;
-    
-    try {
-      pstmt = this.con.prepareStatement(
-        "INSERT INTO data_repository(document_name,url) VALUES (?,?)");
-      pstmt.setString(1, description);
-      pstmt.setURL(2,new URL(url));
-      pstmt.execute();    
-    } catch (SQLException sqlex) {
-      JDBCTutorialUtilities.printSQLException(sqlex);
-    } catch (Exception ex) {
-      System.out.println("Unexpected exception");
-      ex.printStackTrace();
-    } finally {
-      if (pstmt != null) { pstmt.close(); }
-    }
-  }
-
   public static void main(String[] args)  {
-    
+
     JDBCTutorialUtilities myJDBCTutorialUtilities;
     Connection myConnection = null;
     Proxy myProxy;
@@ -154,8 +128,7 @@ public class DatalinkSample {
         return;
       }
     }
-    
-    
+
 
     try {
       myConnection = myJDBCTutorialUtilities.getConnection();
@@ -165,7 +138,7 @@ public class DatalinkSample {
 
       // myProxyServer = new InetSocketAddress("www-proxy.example.com", 80);
       // myProxy = new Proxy(Proxy.Type.HTTP, myProxyServer);
-      
+
       DatalinkSample.viewTable(myConnection, Proxy.NO_PROXY);
     } catch (SQLException e) {
       JDBCTutorialUtilities.printSQLException(e);
@@ -175,6 +148,28 @@ public class DatalinkSample {
     }
     finally {
       JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+  }
+
+  public void addURLRow(String description, String url) throws SQLException {
+
+    PreparedStatement pstmt = null;
+
+    try {
+      pstmt = this.con.prepareStatement(
+              "INSERT INTO data_repository(document_name,url) VALUES (?,?)");
+      pstmt.setString(1, description);
+      pstmt.setURL(2, new URL(url));
+      pstmt.execute();
+    } catch (SQLException sqlex) {
+      JDBCTutorialUtilities.printSQLException(sqlex);
+    } catch (Exception ex) {
+      System.out.println("Unexpected exception");
+      ex.printStackTrace();
+    } finally {
+      if (pstmt != null) {
+        pstmt.close();
+      }
     }
   }
 }

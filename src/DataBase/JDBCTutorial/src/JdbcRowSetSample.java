@@ -29,18 +29,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import com.sun.rowset.JdbcRowSetImpl;
 
+import javax.sql.RowSet;
+import javax.sql.rowset.JdbcRowSet;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.Statement;
-
-import javax.sql.RowSet;
-import javax.sql.rowset.JdbcRowSet;
 
 public class JdbcRowSetSample {
 
@@ -58,6 +56,39 @@ public class JdbcRowSetSample {
     this.settings = settingsArg;
   }
 
+  public static void main(String[] args) {
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+
+      JdbcRowSetSample myJdbcRowSetSample =
+              new JdbcRowSetSample(myConnection, myJDBCTutorialUtilities);
+      myJdbcRowSetSample.testJdbcRowSet();
+
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
+  }
+  
   public void testJdbcRowSet() throws SQLException {
 
     JdbcRowSet jdbcRs = null;
@@ -65,26 +96,26 @@ public class JdbcRowSetSample {
     Statement stmt = null;
 
     try {
-      
-        // An alternative way to create a JdbcRowSet object
-      
+
+      // An alternative way to create a JdbcRowSet object
+
 //      stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 //      rs = stmt.executeQuery("select * from COFFEES");
 //      jdbcRs = new JdbcRowSetImpl(rs);
-     
-        // Another way to create a JdbcRowSet object
-       
+
+      // Another way to create a JdbcRowSet object
+
 //      jdbcRs = new JdbcRowSetImpl();
 //      jdbcRs.setCommand("select * from COFFEES");
 //      jdbcRs.setUrl(this.settings.urlString);
 //      jdbcRs.setUsername(this.settings.userName);
 //      jdbcRs.setPassword(this.settings.password);
 //      jdbcRs.execute();
-      
+
       jdbcRs = new JdbcRowSetImpl(con);
       jdbcRs.setCommand("select * from COFFEES");
       jdbcRs.execute();
-      
+
       jdbcRs.absolute(3);
       jdbcRs.updateFloat("PRICE", 10.99f);
       jdbcRs.updateRow();
@@ -127,7 +158,7 @@ public class JdbcRowSetSample {
       this.con.setAutoCommit(false);
     }
   }
-  
+
   private void outputRowSet(RowSet rs) throws SQLException {
     rs.beforeFirst();
     while (rs.next()) {
@@ -138,41 +169,8 @@ public class JdbcRowSetSample {
       int total = rs.getInt(5);
       System.out.println(coffeeName + ", " + supplierID + ", " + price +
                          ", " + sales + ", " + total);
-      
+
     }
-  }
-
-  public static void main(String[] args) {
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      JdbcRowSetSample myJdbcRowSetSample =
-        new JdbcRowSetSample(myConnection, myJDBCTutorialUtilities);
-      myJdbcRowSetSample.testJdbcRowSet();
-
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 
 }

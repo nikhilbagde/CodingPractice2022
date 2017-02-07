@@ -29,27 +29,20 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
-import java.util.*;
-import java.io.*;
-import java.sql.BatchUpdateException;
-import java.sql.DatabaseMetaData;
-import java.sql.RowIdLifetime;
-import java.sql.SQLWarning;
+import org.w3c.dom.Document;
+
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.sql.*;
+import java.util.Properties;
 
 public class JDBCTutorialUtilities {
 
@@ -64,13 +57,19 @@ public class JDBCTutorialUtilities {
   private String serverName;
   private int portNumber;
   private Properties prop;
+
+  public JDBCTutorialUtilities(String propertiesFileName) throws
+          IOException {
+    super();
+    this.setProperties(propertiesFileName);
+  }
   
   public static void initializeTables(Connection con, String dbNameArg, String dbmsArg) throws SQLException {
     SuppliersTable mySuppliersTable =
       new SuppliersTable(con, dbNameArg, dbmsArg);
     CoffeesTable myCoffeeTable =
       new CoffeesTable(con, dbNameArg, dbmsArg);
-    RSSFeedsTable myRSSFeedsTable = 
+    RSSFeedsTable myRSSFeedsTable =
       new RSSFeedsTable(con, dbNameArg, dbmsArg);
     ProductInformationTable myPIT =
       new ProductInformationTable(con, dbNameArg, dbmsArg);
@@ -94,8 +93,8 @@ public class JDBCTutorialUtilities {
     myCoffeeTable.createTable();
     System.out.println("\nPopulating COFFEES table");
     myCoffeeTable.populateTable();
-    
-    System.out.println("\nCreating RSS_FEEDS table...");    
+
+    System.out.println("\nCreating RSS_FEEDS table...");
     myRSSFeedsTable.createTable();
   }
   
@@ -112,15 +111,13 @@ public class JDBCTutorialUtilities {
     case ROWID_VALID_OTHER:
       System.out.println("ROWID has indeterminate lifetime");
       break;
-    case ROWID_VALID_SESSION:  
+      case ROWID_VALID_SESSION:
       System.out.println("ROWID type has lifetime that is valid for at least the containing session");
     break;
     case ROWID_VALID_TRANSACTION:
       System.out.println("ROWID type has lifetime that is valid for at least the containing transaction");
     }
   }
-  
-  
 
   public static void cursorHoldabilitySupport(Connection conn) throws SQLException {
     DatabaseMetaData dbMetaData = conn.getMetaData();
@@ -134,13 +131,6 @@ public class JDBCTutorialUtilities {
                        dbMetaData.supportsResultSetHoldability(ResultSet.HOLD_CURSORS_OVER_COMMIT));
     System.out.println("Supports CLOSE_CURSORS_AT_COMMIT? " +
                        dbMetaData.supportsResultSetHoldability(ResultSet.CLOSE_CURSORS_AT_COMMIT));
-  }
-
-  public JDBCTutorialUtilities(String propertiesFileName) throws FileNotFoundException,
-                                                                 IOException,
-                                                                 InvalidPropertiesFormatException {
-    super();
-    this.setProperties(propertiesFileName);
   }
 
   public static void getWarningsFromResultSet(ResultSet rs) throws SQLException {
@@ -174,9 +164,7 @@ public class JDBCTutorialUtilities {
     if (sqlState.equalsIgnoreCase("X0Y32"))
       return true;
     // 42Y55: Table already exists in schema
-    if (sqlState.equalsIgnoreCase("42Y55"))
-      return true;
-    return false;
+    return sqlState.equalsIgnoreCase("42Y55");
   }
 
   public static void printBatchUpdateException(BatchUpdateException b) {
@@ -223,9 +211,91 @@ public class JDBCTutorialUtilities {
     }
   }
 
-  private void setProperties(String fileName) throws FileNotFoundException,
-                                                     IOException,
-                                                     InvalidPropertiesFormatException {
+  public static void createDatabase(Connection connArg, String dbNameArg,
+                                    String dbmsArg) {
+
+    if (dbmsArg.equals("mysql")) {
+      try {
+        Statement s = connArg.createStatement();
+        String newDatabaseString =
+                "CREATE DATABASE IF NOT EXISTS " + dbNameArg;
+        // String newDatabaseString = "CREATE DATABASE " + dbName;
+        s.executeUpdate(newDatabaseString);
+
+        System.out.println("Created database " + dbNameArg);
+      } catch (SQLException e) {
+        printSQLException(e);
+      }
+    }
+  }
+
+  public static void closeConnection(Connection connArg) {
+    System.out.println("Releasing all open resources ...");
+    try {
+      if (connArg != null) {
+        connArg.close();
+        connArg = null;
+      }
+    } catch (SQLException sqle) {
+      printSQLException(sqle);
+    }
+  }
+
+  public static String convertDocumentToString(Document doc) throws
+          TransformerException {
+    Transformer t = TransformerFactory.newInstance().newTransformer();
+//    t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+    StringWriter sw = new StringWriter();
+    t.transform(new DOMSource(doc), new StreamResult(sw));
+    return sw.toString();
+
+
+  }
+
+  public static void main(String[] args) {
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        System.out.println("Reading properties file " + args[0]);
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+      //      JDBCTutorialUtilities.outputClientInfoProperties(myConnection);
+      // myConnection = myJDBCTutorialUtilities.getConnection("root", "root", "jdbc:mysql://localhost:3306/");
+      //       myConnection = myJDBCTutorialUtilities.
+      //         getConnectionWithDataSource(myJDBCTutorialUtilities.dbName,"derby","", "", "localhost", 3306);
+
+      // Java DB does not have an SQL create database command; it does require createDatabase
+      JDBCTutorialUtilities.createDatabase(myConnection,
+              myJDBCTutorialUtilities.dbName,
+              myJDBCTutorialUtilities.dbms);
+
+      JDBCTutorialUtilities.cursorHoldabilitySupport(myConnection);
+      JDBCTutorialUtilities.rowIdLifetime(myConnection);
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+
+  }
+
+  private void setProperties(String fileName) throws
+          IOException {
     this.prop = new Properties();
     FileInputStream fis = new FileInputStream(fileName);
     prop.loadFromXML(fis);
@@ -280,7 +350,7 @@ public class JDBCTutorialUtilities {
     Properties connectionProps = new Properties();
     connectionProps.put("user", this.userName);
     connectionProps.put("password", this.password);
-    
+
     String currentUrlString = null;
 
     if (this.dbms.equals("mysql")) {
@@ -289,16 +359,16 @@ public class JDBCTutorialUtilities {
       conn =
           DriverManager.getConnection(currentUrlString,
                                       connectionProps);
-      
+
       this.urlString = currentUrlString + this.dbName;
       conn.setCatalog(this.dbName);
     } else if (this.dbms.equals("derby")) {
       this.urlString = "jdbc:" + this.dbms + ":" + this.dbName;
-      
+
       conn =
-          DriverManager.getConnection(this.urlString + 
+              DriverManager.getConnection(this.urlString +
                                       ";create=true", connectionProps);
-      
+
     }
     System.out.println("Connected to database");
     return conn;
@@ -322,89 +392,5 @@ public class JDBCTutorialUtilities {
                                       ";create=true", connectionProps);
     }
     return conn;
-  }
-
-
-  public static void createDatabase(Connection connArg, String dbNameArg,
-                                    String dbmsArg) {
-
-    if (dbmsArg.equals("mysql")) {
-      try {
-        Statement s = connArg.createStatement();
-        String newDatabaseString =
-          "CREATE DATABASE IF NOT EXISTS " + dbNameArg;
-        // String newDatabaseString = "CREATE DATABASE " + dbName;
-        s.executeUpdate(newDatabaseString);
-
-        System.out.println("Created database " + dbNameArg);
-      } catch (SQLException e) {
-        printSQLException(e);
-      }
-    }
-  }
-
-  public static void closeConnection(Connection connArg) {
-    System.out.println("Releasing all open resources ...");
-    try {
-      if (connArg != null) {
-        connArg.close();
-        connArg = null;
-      }
-    } catch (SQLException sqle) {
-      printSQLException(sqle);
-    }
-  }
-  
-  public static String convertDocumentToString(Document doc) throws TransformerConfigurationException,
-                                                                    TransformerException {
-    Transformer t = TransformerFactory.newInstance().newTransformer();
-//    t.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-    StringWriter sw = new StringWriter();
-    t.transform(new DOMSource(doc), new StreamResult(sw));
-    return sw.toString();
-    
-    
-  }
-
-  public static void main(String[] args) {
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        System.out.println("Reading properties file " + args[0]);
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-      //      JDBCTutorialUtilities.outputClientInfoProperties(myConnection);
-      // myConnection = myJDBCTutorialUtilities.getConnection("root", "root", "jdbc:mysql://localhost:3306/");
-      //       myConnection = myJDBCTutorialUtilities.
-      //         getConnectionWithDataSource(myJDBCTutorialUtilities.dbName,"derby","", "", "localhost", 3306);
-
-      // Java DB does not have an SQL create database command; it does require createDatabase
-      JDBCTutorialUtilities.createDatabase(myConnection,
-                                           myJDBCTutorialUtilities.dbName,
-                                           myJDBCTutorialUtilities.dbms);
-
-      JDBCTutorialUtilities.cursorHoldabilitySupport(myConnection);
-      JDBCTutorialUtilities.rowIdLifetime(myConnection);
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } catch (Exception e) {
-      e.printStackTrace(System.err);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
-
   }
 }

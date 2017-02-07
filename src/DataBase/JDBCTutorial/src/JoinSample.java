@@ -29,19 +29,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import com.sun.rowset.CachedRowSetImpl;
-
 import com.sun.rowset.JoinRowSetImpl;
 
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.JoinRowSet;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.JoinRowSet;
 
 public class JoinSample {
   
@@ -74,49 +72,6 @@ public class JoinSample {
       if (stmt != null) { stmt.close(); }
     }
   }
-  
-  public void testJoinRowSet(String supplierName) throws SQLException {
-    
-    CachedRowSet coffees = null;
-    CachedRowSet suppliers = null;
-    JoinRowSet jrs = null;
-    
-    try {
-      coffees = new CachedRowSetImpl();
-      coffees.setCommand("SELECT * FROM COFFEES");
-      coffees.setUsername(settings.userName);
-      coffees.setPassword(settings.password);
-      coffees.setUrl(settings.urlString);
-      coffees.execute();
-      
-      suppliers = new CachedRowSetImpl();
-      suppliers.setCommand("SELECT * FROM SUPPLIERS");
-      suppliers.setUsername(settings.userName);
-      suppliers.setPassword(settings.password);
-      suppliers.setUrl(settings.urlString);
-      suppliers.execute();      
-      
-      jrs = new JoinRowSetImpl();
-      jrs.addRowSet(coffees, "SUP_ID");
-      jrs.addRowSet(suppliers, "SUP_ID");
-      
-      
-      System.out.println("Coffees bought from " + supplierName + ": ");
-      while (jrs.next()) {
-        if (jrs.getString("SUP_NAME").equals(supplierName)) { 
-          String coffeeName = jrs.getString(1);
-          System.out.println("     " + coffeeName);
-        }
-      }
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      if (jrs != null) { jrs.close(); }
-      if (suppliers != null) { suppliers.close(); }
-      if (coffees != null) { coffees.close(); }
-    }
-  }
-
 
   public static void main(String[] args) {
     JDBCTutorialUtilities myJDBCTutorialUtilities;
@@ -150,5 +105,47 @@ public class JoinSample {
       JDBCTutorialUtilities.closeConnection(myConnection);
     }
 
+  }
+
+  public void testJoinRowSet(String supplierName) throws SQLException {
+
+    CachedRowSet coffees = null;
+    CachedRowSet suppliers = null;
+    JoinRowSet jrs = null;
+
+    try {
+      coffees = new CachedRowSetImpl();
+      coffees.setCommand("SELECT * FROM COFFEES");
+      coffees.setUsername(settings.userName);
+      coffees.setPassword(settings.password);
+      coffees.setUrl(settings.urlString);
+      coffees.execute();
+
+      suppliers = new CachedRowSetImpl();
+      suppliers.setCommand("SELECT * FROM SUPPLIERS");
+      suppliers.setUsername(settings.userName);
+      suppliers.setPassword(settings.password);
+      suppliers.setUrl(settings.urlString);
+      suppliers.execute();
+
+      jrs = new JoinRowSetImpl();
+      jrs.addRowSet(coffees, "SUP_ID");
+      jrs.addRowSet(suppliers, "SUP_ID");
+
+
+      System.out.println("Coffees bought from " + supplierName + ": ");
+      while (jrs.next()) {
+        if (jrs.getString("SUP_NAME").equals(supplierName)) {
+          String coffeeName = jrs.getString(1);
+          System.out.println("     " + coffeeName);
+        }
+      }
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      if (jrs != null) { jrs.close(); }
+      if (suppliers != null) { suppliers.close(); }
+      if (coffees != null) { coffees.close(); }
+    }
   }
 }

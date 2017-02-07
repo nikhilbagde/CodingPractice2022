@@ -29,26 +29,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import com.sun.rowset.CachedRowSetImpl;
-
-import java.net.MalformedURLException;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import java.sql.Statement;
-
-import java.sql.Timestamp;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.spi.SyncProviderException;
 import javax.sql.rowset.spi.SyncResolver;
+import java.net.MalformedURLException;
+import java.sql.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class CachedRowSetSample {
@@ -69,7 +60,73 @@ public class CachedRowSetSample {
 
 
   }
-  
+
+    public static void viewTable(Connection con) throws SQLException {
+        Statement stmt = null;
+        String query = "select * from MERCH_INVENTORY";
+        try {
+            stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                System.out.println("Found item " + rs.getInt("ITEM_ID") + ": " +
+                        rs.getString("ITEM_NAME") + " (" +
+                        rs.getInt("QUAN") + ")");
+            }
+
+        } catch (SQLException e) {
+            JDBCTutorialUtilities.printSQLException(e);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        JDBCTutorialUtilities myJDBCTutorialUtilities;
+        Connection myConnection = null;
+
+        if (args[0] == null) {
+            System.err.println("Properties file not specified at command line");
+            return;
+        } else {
+            try {
+                myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+            } catch (Exception e) {
+                System.err.println("Problem reading properties file " + args[0]);
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        try {
+            myConnection = myJDBCTutorialUtilities.getConnection();
+
+            if (myJDBCTutorialUtilities == null) {
+                System.out.println("myJDBCTU is null");
+            }
+
+            if (myConnection == null) {
+                System.out.println("myConnection is null");
+            }
+
+            CachedRowSetSample myCachedRowSetSample =
+                    new CachedRowSetSample(myConnection, myJDBCTutorialUtilities);
+            viewTable(myConnection);
+            myCachedRowSetSample.testPaging();
+
+
+        } catch (SQLException e) {
+            JDBCTutorialUtilities.printSQLException(e);
+        } catch (Exception ex) {
+            System.out.println("Unexpected exception");
+            ex.printStackTrace();
+        } finally {
+            JDBCTutorialUtilities.closeConnection(myConnection);
+        }
+    }
 
   public void testPaging() throws SQLException, MalformedURLException {
 
@@ -143,12 +200,12 @@ public class CachedRowSetSample {
         crs.updateTimestamp("DATE_VAL", new Timestamp(timeStamp.getTimeInMillis()));
         crs.insertRow();
         crs.moveToCurrentRow();
-        
+
         // Syncing the new row back to the database.
         System.out.println("About to add a new row...");
         crs.acceptChanges(con);
         System.out.println("Added a row...");
-        this.viewTable(con);
+          viewTable(con);
       }
     } catch (SyncProviderException spe) {
 
@@ -212,74 +269,6 @@ public class CachedRowSetSample {
     }
     return false;
 
-  }
-
-  public static void viewTable(Connection con) throws SQLException {
-    Statement stmt = null;
-    String query = "select * from MERCH_INVENTORY";
-    try {
-      stmt = con.createStatement();
-
-      ResultSet rs = stmt.executeQuery(query);
-
-      while (rs.next()) {
-        System.out.println("Found item " + rs.getInt("ITEM_ID") + ": " +
-                           rs.getString("ITEM_NAME") + " (" +
-                           rs.getInt("QUAN") + ")");
-      }
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      if (stmt != null) { stmt.close(); }
-    }
-  }
-
-
-  public static void main(String[] args) {
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      if (myJDBCTutorialUtilities == null) {
-        System.out.println("myJDBCTU is null");
-      }
-
-      if (myConnection == null) {
-        System.out.println("myConnection is null");
-      }
-
-      CachedRowSetSample myCachedRowSetSample =
-        new CachedRowSetSample(myConnection, myJDBCTutorialUtilities);
-      myCachedRowSetSample.viewTable(myConnection);
-      myCachedRowSetSample.testPaging();
-
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } catch (Exception ex) {
-      System.out.println("Unexpected exception");
-      ex.printStackTrace();
-    }
-
-    finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
-    }
   }
 }
 

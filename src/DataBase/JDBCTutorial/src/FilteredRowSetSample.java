@@ -29,18 +29,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
+package DataBase.JDBCTutorial.src;
 
 import com.sun.rowset.FilteredRowSetImpl;
 
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.FilteredRowSet;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.sql.Statement;
-
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.FilteredRowSet;
 
 public class FilteredRowSetSample {
   private String dbName;
@@ -56,27 +54,6 @@ public class FilteredRowSetSample {
     this.dbName = settingsArg.dbName;
     this.dbms = settingsArg.dbms;
     this.settings = settingsArg;
-  }
-
-  private void viewFilteredRowSet(FilteredRowSet frs) throws SQLException {
-
-    if (frs == null) {
-      return;
-    }
-
-    CachedRowSet crs = (CachedRowSet)frs;
-
-    while (crs.next()) {
-      if (crs == null) {
-        break;
-      }
-      System.out.println(
-        crs.getInt("STORE_ID") + ", " +
-        crs.getString("CITY") + ", " +
-        crs.getInt("COFFEE") + ", " +
-        crs.getInt("MERCH") + ", " +
-        crs.getInt("TOTAL"));
-    }
   }
 
   public static void viewTable(Connection con) throws SQLException {
@@ -98,41 +75,6 @@ public class FilteredRowSetSample {
       JDBCTutorialUtilities.printSQLException(e);
     } finally {
       if (stmt != null) { stmt.close(); }
-    }
-  }
-
-  public void testFilteredRowSet() {
-    FilteredRowSet frs = null;
-    StateFilter myStateFilter = new StateFilter(10000, 10999, 1);
-    String[] cityArray = { "SF", "LA" };
-
-    CityFilter myCityFilter = new CityFilter(cityArray, 2);
-
-    try {
-      frs = new FilteredRowSetImpl();
-
-      frs.setCommand("SELECT * FROM COFFEE_HOUSES");
-      frs.setUsername(settings.userName);
-      frs.setPassword(settings.password);
-      frs.setUrl(settings.urlString);
-      frs.execute();
-
-      System.out.println("\nBefore filter:");
-      FilteredRowSetSample.viewTable(this.con);
-
-      System.out.println("\nSetting state filter:");
-      frs.beforeFirst();
-      frs.setFilter(myStateFilter);
-      this.viewFilteredRowSet(frs);
-
-      System.out.println("\nSetting city filter:");
-      frs.beforeFirst();
-      frs.setFilter(myCityFilter);
-      this.viewFilteredRowSet(frs);
-
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
     }
   }
 
@@ -167,6 +109,62 @@ public class FilteredRowSetSample {
 
     finally {
       JDBCTutorialUtilities.closeConnection(myConnection);
+    }
+  }
+
+  private void viewFilteredRowSet(FilteredRowSet frs) throws SQLException {
+
+    if (frs == null) {
+      return;
+    }
+
+    CachedRowSet crs = frs;
+
+    while (crs.next()) {
+      if (crs == null) {
+        break;
+      }
+      System.out.println(
+              crs.getInt("STORE_ID") + ", " +
+                      crs.getString("CITY") + ", " +
+                      crs.getInt("COFFEE") + ", " +
+                      crs.getInt("MERCH") + ", " +
+                      crs.getInt("TOTAL"));
+    }
+  }
+
+  public void testFilteredRowSet() {
+    FilteredRowSet frs = null;
+    StateFilter myStateFilter = new StateFilter(10000, 10999, 1);
+    String[] cityArray = {"SF", "LA"};
+
+    CityFilter myCityFilter = new CityFilter(cityArray, 2);
+
+    try {
+      frs = new FilteredRowSetImpl();
+
+      frs.setCommand("SELECT * FROM COFFEE_HOUSES");
+      frs.setUsername(settings.userName);
+      frs.setPassword(settings.password);
+      frs.setUrl(settings.urlString);
+      frs.execute();
+
+      System.out.println("\nBefore filter:");
+      FilteredRowSetSample.viewTable(this.con);
+
+      System.out.println("\nSetting state filter:");
+      frs.beforeFirst();
+      frs.setFilter(myStateFilter);
+      this.viewFilteredRowSet(frs);
+
+      System.out.println("\nSetting city filter:");
+      frs.beforeFirst();
+      frs.setFilter(myCityFilter);
+      this.viewFilteredRowSet(frs);
+
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
     }
   }
 }

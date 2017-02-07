@@ -29,8 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
+package DataBase.JDBCTutorial.src;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,6 +46,72 @@ public class SuppliersTable {
     this.con = connArg;
     this.dbName = dbNameArg;
     this.dbms = dbmsArg;
+  }
+
+  public static void viewTable(Connection con) throws SQLException {
+    Statement stmt = null;
+    String query =
+            "select SUP_ID, SUP_NAME, STREET, CITY, STATE, ZIP from SUPPLIERS";
+    try {
+      stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(query);
+      while (rs.next()) {
+        int supplierID = rs.getInt("SUP_ID");
+        String supplierName = rs.getString("SUP_NAME");
+        String street = rs.getString("STREET");
+        String city = rs.getString("CITY");
+        String state = rs.getString("STATE");
+        String zip = rs.getString("ZIP");
+        System.out.println(supplierName + "(" + supplierID + "): " + street +
+                ", " + city + ", " + state + ", " + zip);
+      }
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      if (stmt != null) {
+        stmt.close();
+      }
+    }
+  }
+
+  public static void main(String[] args) {
+
+    JDBCTutorialUtilities myJDBCTutorialUtilities;
+    Connection myConnection = null;
+
+    if (args[0] == null) {
+      System.err.println("Properties file not specified at command line");
+      return;
+    } else {
+      try {
+        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
+      } catch (Exception e) {
+        System.err.println("Problem reading properties file " + args[0]);
+        e.printStackTrace();
+        return;
+      }
+    }
+    try {
+      myConnection = myJDBCTutorialUtilities.getConnection();
+
+      // Java DB does not have an SQL create database command; it does require createDatabase
+//      JDBCTutorialUtilities.createDatabase(myConnection,
+//                                           myJDBCTutorialUtilities.dbName,
+//                                           myJDBCTutorialUtilities.dbms);
+//
+//      JDBCTutorialUtilities.initializeTables(myConnection,
+//                                             myJDBCTutorialUtilities.dbName,
+//                                             myJDBCTutorialUtilities.dbms);
+
+      System.out.println("\nContents of SUPPLIERS table:");
+
+      SuppliersTable.viewTable(myConnection);
+
+    } catch (SQLException e) {
+      JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+      JDBCTutorialUtilities.closeConnection(myConnection);
+    }
   }
 
   public void createTable() throws SQLException {
@@ -124,71 +189,6 @@ public class SuppliersTable {
       JDBCTutorialUtilities.printSQLException(e);
     } finally {
       if (stmt != null) { stmt.close(); }
-    }
-  }
-
-
-  public static void viewTable(Connection con) throws SQLException {
-    Statement stmt = null;
-    String query =
-      "select SUP_ID, SUP_NAME, STREET, CITY, STATE, ZIP from SUPPLIERS";
-    try {
-      stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery(query);
-      while (rs.next()) {
-        int supplierID = rs.getInt("SUP_ID");
-        String supplierName = rs.getString("SUP_NAME");
-        String street = rs.getString("STREET");
-        String city = rs.getString("CITY");
-        String state = rs.getString("STATE");
-        String zip = rs.getString("ZIP");
-        System.out.println(supplierName + "(" + supplierID + "): " + street +
-                           ", " + city + ", " + state + ", " + zip);
-      }
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      if (stmt != null) { stmt.close(); }
-    }
-  }
-
-  public static void main(String[] args) {
-
-    JDBCTutorialUtilities myJDBCTutorialUtilities;
-    Connection myConnection = null;
-
-    if (args[0] == null) {
-      System.err.println("Properties file not specified at command line");
-      return;
-    } else {
-      try {
-        myJDBCTutorialUtilities = new JDBCTutorialUtilities(args[0]);
-      } catch (Exception e) {
-        System.err.println("Problem reading properties file " + args[0]);
-        e.printStackTrace();
-        return;
-      }
-    }
-    try {
-      myConnection = myJDBCTutorialUtilities.getConnection();
-
-      // Java DB does not have an SQL create database command; it does require createDatabase
-//      JDBCTutorialUtilities.createDatabase(myConnection,
-//                                           myJDBCTutorialUtilities.dbName,
-//                                           myJDBCTutorialUtilities.dbms);
-//
-//      JDBCTutorialUtilities.initializeTables(myConnection,
-//                                             myJDBCTutorialUtilities.dbName,
-//                                             myJDBCTutorialUtilities.dbms);
-      
-      System.out.println("\nContents of SUPPLIERS table:");
-      
-      SuppliersTable.viewTable(myConnection);
-
-    } catch (SQLException e) {
-      JDBCTutorialUtilities.printSQLException(e);
-    } finally {
-      JDBCTutorialUtilities.closeConnection(myConnection);
     }
   }
 }

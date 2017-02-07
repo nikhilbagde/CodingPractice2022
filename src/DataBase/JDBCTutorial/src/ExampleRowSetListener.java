@@ -29,8 +29,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package DataBase.JavaDocs.JDBCBasics.JDBCTutorial.JDBCTutorial.src;
-
+package DataBase.JDBCTutorial.src;
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
 
