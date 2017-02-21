@@ -18,9 +18,10 @@ public class MaxMinSum {
         list.add(d);list.add(e);
         java.util.Collections.sort(list);
         long min = -1, max =-1;
-        for (int i = 0; i < list.size(); i++) {
-            max += i==0? 0: list.get(i);
-            min += i == list.size()-1 ? 0 : list.get(i);
+        for (int index = 0; index < list.size(); index++) {
+            max += index == 0 ? 0 : list.get(index);                //max will add only last 4 values
+            min += index == list.size() - 1 ? 0 : list.get(index);
         }
+        System.out.println(min + " " + max);
     }
 }

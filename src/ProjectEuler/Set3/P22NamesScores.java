@@ -27,7 +27,7 @@ public class P22NamesScores {
         Map<String, Integer> map = new TreeMap<>();
         while (N-- > 0) {
             String name = reader.readLine();
-            map.put(name, getValue(name));
+            map.put(name, getCharSumValue(name));
         }
 
         Map<String, Integer> rankMap = new LinkedHashMap<>();
@@ -44,11 +44,11 @@ public class P22NamesScores {
 
     }
 
-    private static int getValue(String name) {
+    private static int getCharSumValue(String name) {
         int result = 0;
         char[] array = name.toCharArray();
-        for (int i = 0; i < array.length; i++) {
-            result += (array[i] - 'A') + 1;      //A=65
+        for (char ch : array) {
+            result += (ch - 'A') + 1;      //A=65
         }
         return result;
     }

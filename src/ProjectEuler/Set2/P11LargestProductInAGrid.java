@@ -38,7 +38,7 @@ public class P11LargestProductInAGrid {
                 int down = matrix[row][col] * matrix[row][col+1] * matrix[row][col+2] * matrix[row][col+3];
                 int diaRightDown = matrix[row][col] * matrix[row+1][col+1] * matrix[row+2][col+2] * matrix[row+3][col+3];
                 int up = 0, left = 0, diaRightUp = 0, diaLeftDown = 0, diagLeftUp= 0;
-                int diagLU2 = 0, diagLD2 = 0, diagRU2 = 0, diagRD2 = 0;
+                //int diagLU2 = 0, diagLD2 = 0, diagRU2 = 0, diagRD2 = 0;
 
                 if(row>=3 && col >=3){
                     up = matrix[row][col] * matrix[row-1][col] * matrix[row-2][col] * matrix[row-3][col];

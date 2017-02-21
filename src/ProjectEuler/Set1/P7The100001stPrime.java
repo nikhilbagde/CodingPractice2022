@@ -31,7 +31,6 @@ public class P7The100001stPrime {
 
         while(T-- > 0) {
             int N = scanner.nextInt();
-
             System.out.println("result = " + primeList.get(N-1)); //just get ith valued primed so just store it to arrayList
                                                                     // and use get function to computer ith prime number from start.
         }

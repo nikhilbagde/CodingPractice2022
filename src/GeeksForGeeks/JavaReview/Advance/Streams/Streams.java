@@ -1,13 +1,15 @@
 package GeeksForGeeks.JavaReview.Advance.Streams;
 
-import java.util.*;
-import java.util.stream.Collector;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Created by Nikhil on 1/8/2017 3:03 PM.
  */
 public class Streams {
+    //Generic Print
     public static <N> void p(N type){
         System.out.println(type);
     }

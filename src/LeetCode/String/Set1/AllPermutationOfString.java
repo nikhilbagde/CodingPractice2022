@@ -20,4 +20,6 @@ public class AllPermutationOfString {
     public static void main(String[] args) {
         permutation("abcd");
     }
+
+
 }

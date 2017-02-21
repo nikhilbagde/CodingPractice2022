@@ -21,6 +21,6 @@ public class AllPermutationOfAString {
     }
 
     public static void main(String[] args) {
-        permutation("abc");
+        permutation("abcdefghijk");
     }
 }

@@ -18,11 +18,6 @@ public class DSArrays {
         for( int i=length-1;i>=0;i--){
             System.out.print(array[i] + " ");
         }
-
-
-
-
-
     }
 }
 /*
@@ -36,19 +31,15 @@ Input Format
 The first line of input contains N, the number of integers. The next line contains N integers separated by a space.
 
 Constraints
-
 1<=N<=1000
 1<=Ai<=10000, where Ai is the ith integer in the array.
 
 Output Format
-
 Print the N integers of the array in the reverse order on a single line separated by single spaces.
 
 Sample Input
-
 4
 1 4 3 2
 Sample Output
-
 2 3 4 1
- */
+*/
