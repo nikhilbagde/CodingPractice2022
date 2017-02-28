@@ -8,10 +8,13 @@ import java.util.Scanner;
 public class P10SummationOfPrimes {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+
         int t = in.nextInt();
         final int MAX = 1000007;
+
         boolean[] prime = new boolean[MAX];
         long[] primeSummation = new long[MAX];
+
         for(int i=0; i<MAX ;i++) prime[i] = true;        //to cover this loop changed following code
 
         for (int i = 2; i < MAX; i++) {

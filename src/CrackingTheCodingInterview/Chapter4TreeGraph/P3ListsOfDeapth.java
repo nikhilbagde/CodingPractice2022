@@ -1,7 +1,7 @@
 package CrackingTheCodingInterview.Chapter4TreeGraph;
 
-import GeeksForGeeks.CodingProblems.Trees.Set1.ConstructBST;
-import GeeksForGeeks.CodingProblems.Trees.TreeNode;
+import GeeksForGeeks.DataStructure.Trees.Set1.ConstructBST;
+import GeeksForGeeks.DataStructure.Trees.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -72,7 +72,7 @@ public class P3ListsOfDeapth {
     }
 
     public static void main(String[] args) {
-        GeeksForGeeks.CodingProblems.Trees.BinaryTree tree = ConstructBST.constructBinaryTree();
+        GeeksForGeeks.DataStructure.Trees.BinaryTree tree = ConstructBST.constructBinaryTree();
         ArrayList<Queue<TreeNode>> lists = createListsByLevel(tree.getRoot());
         System.out.println("DFS");
         printREsultList(lists);

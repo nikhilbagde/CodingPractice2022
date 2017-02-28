@@ -16,11 +16,13 @@ import java.util.Scanner;
  *  Next T lines will contain integers N (1<N<500)and M(1<N<1000).
  */
 public class P15LatticePaths {
-    final static int MOD = 1000000 + 7;
-    final static int MAX = 10;
-    static int [][] comb = new int[MAX][MAX];
+    private final static int MOD = 1000000 + 7;
+    private final static int MAX = 10;
+    private static int[][] comb = new int[MAX][MAX];
+
     public static void main(String[] args) {
         comb[0][0] = 1;
+
         for (int i = 1; i < MAX; ++i) {
             comb[i][0] = 1;
             for (int j = 1; j <= i; ++j) {
@@ -28,7 +30,9 @@ public class P15LatticePaths {
             }
         }
         System.out.println(Arrays.deepToString(comb));
+
         printPascalTriangle(comb);
+
         Scanner scanner = new Scanner(System.in);
         int T = scanner.nextInt();
         while (T-- > 0) {

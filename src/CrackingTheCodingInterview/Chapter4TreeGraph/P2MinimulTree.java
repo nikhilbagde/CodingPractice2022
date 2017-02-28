@@ -1,6 +1,6 @@
 package CrackingTheCodingInterview.Chapter4TreeGraph;
 
-import GeeksForGeeks.CodingProblems.Trees.TreeNode;
+import GeeksForGeeks.DataStructure.Trees.TreeNode;
 
 /**
  * Created by Nikhil on 2/15/2017 12:35 AM.

@@ -31,4 +31,21 @@ public class AllPrimeNumber {
     public static void main(String[] args) {
         printAllNPrime(50);
     }
+
+    private static void generateAllPrime(int number) {
+        boolean[] primes = new boolean[number + 1];
+
+        for (int i = 0; i < primes.length; ++i) {
+            primes[i] = true;
+        }
+
+        for (int i = 2; i < number; ++i) {
+            if (primes[i]) {
+                for (int j = i + i; j <= number; j = j + i) {
+                    primes[j] = false;
+                }
+            }
+        }
+
+    }
 }
