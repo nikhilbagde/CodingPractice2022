@@ -13,6 +13,7 @@ public class P13LeaderInArray {
         printLeader(array);
     }
 
+    //start from end and use Kanode algorithm, just maxSoFar variable will do.
     private static void printLeader(int[] array) {
         int maxSoFar = 0;
         for (int i = array.length - 1; i >= 0; --i) {
