@@ -1,4 +1,4 @@
-package CompanyCompetetions.WeightWatcher;
+package CompanyCompetetions.weightWatcher;
 
 import java.util.HashMap;
 import java.util.Map;

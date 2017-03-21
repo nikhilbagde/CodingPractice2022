@@ -1,4 +1,4 @@
-package ACM;
+package ACM.Competition1;
 
 import java.util.HashMap;
 import java.util.Map;

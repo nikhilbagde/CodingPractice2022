@@ -14,15 +14,15 @@ public class P9LengthOfLongestValidSubString {
         Stack<Character> stack = new Stack<>();
         Queue<Character> queue = new LinkedList<>();
 
-        for (char bracker : input.toCharArray()) {
-            if (opening.indexOf(bracker) != -1) {
-                stack.push(bracker);
-            } else if (closing.indexOf(bracker) != -1) {
+        for (char bracket : input.toCharArray()) {
+            if (opening.indexOf(bracket) != -1) {
+                stack.push(bracket);
+            } else if (closing.indexOf(bracket) != -1) {
                 if (stack.isEmpty()) return false;
-                char openeingBracker = stack.pop();
-                if (closing.indexOf(bracker) == opening.indexOf(openeingBracker)) {
-                    queue.add(openeingBracker);
-                    queue.add(bracker);
+                char openingBracket = stack.pop();
+                if (closing.indexOf(bracket) == opening.indexOf(openingBracket)) {
+                    queue.add(openingBracket);
+                    queue.add(bracket);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package GeeksForGeeks.DataStructure.Stack.Set1;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * Created by Nikhil on 2/23/2017 8:38 PM.
@@ -11,6 +12,8 @@ public class P1TwoStackUsingArray {
     int top2 = array.length;
 
     public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();           //initial capacity of stack is 10 array.
+
         P1TwoStackUsingArray stackUsingArray = new P1TwoStackUsingArray();
         stackUsingArray.push1(1);
         stackUsingArray.push2(2);

@@ -1,6 +1,8 @@
-package ACM;
+package ACM.Competition1;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Nikhi on 11/7/2016.

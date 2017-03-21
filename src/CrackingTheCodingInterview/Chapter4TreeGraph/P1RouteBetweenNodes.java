@@ -36,7 +36,6 @@ public class P1RouteBetweenNodes {
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             if (node == destionation) return true;
-            node.state = State.visited;
 
             for (Node child : node.adjacencyList) {
                 if (child.state == State.unvisited) { //only if unvisited
@@ -48,6 +47,9 @@ public class P1RouteBetweenNodes {
                     }
                 }
             }
+            //once all children of current node are visited then set current node = visited.
+            node.state = State.visited;
+
         }
         return false;
     }

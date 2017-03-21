@@ -25,7 +25,7 @@ public class P15SortByFrequency {
         int[] result = printQueue(priorityQueue, array.length);
         System.out.println("Arrays.toString(result) = " + Arrays.toString(result));
 
-        //doesnt work
+        //doesn't work
         Object[] arrayN = priorityQueue.toArray();
         /*for (SortNode node: (SortNode[]) arrayN) {
             System.out.println("value = " + node.value + " count = " + node.count);

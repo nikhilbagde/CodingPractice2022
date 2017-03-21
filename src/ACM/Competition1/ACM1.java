@@ -1,9 +1,12 @@
-package Algorithm;
+package ACM.Competition1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Nikhi on 11/9/2016.
