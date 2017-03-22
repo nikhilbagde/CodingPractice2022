@@ -15,7 +15,8 @@ public class MaxMinSum {
         list.add(a);
         list.add(b);
         list.add(c);
-        list.add(d);list.add(e);
+        list.add(d);
+        list.add(e);
         java.util.Collections.sort(list);
         long min = -1, max =-1;
         for (int index = 0; index < list.size(); index++) {

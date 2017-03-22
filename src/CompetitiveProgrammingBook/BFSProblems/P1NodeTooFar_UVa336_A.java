@@ -143,3 +143,30 @@ class Network {
 4 6 7 6 7 8 7 9 8 9 8 6 6 11
 1 1 1 2 3 2 3 3 0 0
  */
+
+
+/*
+Graph:
+1. Create a Adjacency Map data structure: Map : [ Vertex, LinkedList ]
+2. Create a Vertex Map : [ Integer : Vertex ]
+
+
+Construct Graph:
+    1. Get two integers,
+        1. if vertex already present in VertexMap : directly get vertex node for that integer
+        2. else ADD a new Vertex.
+
+            [ADD New Vertex
+            1. create new Vertex
+                    Create New Vertex
+                        1. Node class will have int: value
+            2. Store it in VertexMap : [Integer: Vertex]
+            3. Add Vertex and New LinkedList to "AdjacencyMap"
+            4. Increment total number of edges.
+            5. Return newly created Vertex/Node.]
+
+        3. Check Both newly created or already created u and v nodes are not empty
+        4. If not, Get Access AdjacencyMap and Get LinkedList of First Node/Vertex and Store other vertex to this linkedList
+                    Do same for other vertex and store first vertex to its LinkedList.
+
+ */

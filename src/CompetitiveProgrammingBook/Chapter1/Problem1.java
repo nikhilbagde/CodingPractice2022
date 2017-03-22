@@ -1,13 +1,11 @@
 package CompetitiveProgrammingBook.Chapter1;
 
-import java.math.BigInteger;
-
 /**
  * Created by Nikhi on 12/11/2016 1:54 AM.
  */
 public class Problem1 {
     public static void main(String[] args) {
-        //left shift and right shift pratice.
+        //left shift and right shift practice.
 
         System.out.println(1<<0);   //=1
         System.out.println(1<<1);   //=2         01->10     = 2
@@ -18,8 +16,8 @@ public class Problem1 {
         System.out.println(1<<6);   //64         0001->100 0000 = 64
         //2^3 = 8
         System.out.println(1<<8);    //256       0001->1 0000 0000
-        System.out.println(1<<16);   //64         0001->1000000 = 64
-        System.out.println(1<<62);   //64         0001->1000000 = 64
+        System.out.println(1 << 16);   //‭65536‬         0001->‭ 0001 0000 0000 0000 0000‬= ‭65536‬
+        System.out.println(1 << 62);   //         0001->‭ 0100 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000‬= ‭4,611,686,018,427,387,904‬
         System.out.println(Integer.MAX_VALUE);
         System.out.println(Long.MAX_VALUE);
 

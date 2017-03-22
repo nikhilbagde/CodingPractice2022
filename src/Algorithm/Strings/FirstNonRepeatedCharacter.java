@@ -7,8 +7,8 @@ import java.util.*;
  */
 public class FirstNonRepeatedCharacter {
     public static void main(String[] args) {
-        getFirstNonRepeatedChar("abcdefghija");
-        getFirstNonRepeatedChar2("abcdefghija");
+        System.out.println(getFirstNonRepeatedChar("abcdefghija"));
+        System.out.println(getFirstNonRepeatedChar2("abcdefghija"));
     }
     /*Space Complexity = O (n) , Time : O(n) */
     private static char getFirstNonRepeatedChar(String a){
@@ -24,7 +24,9 @@ public class FirstNonRepeatedCharacter {
         }
         throw new RuntimeException("Didn't find any non repeated Character");
     }
-    /*Reduced space complexity + Time : O(n) */
+
+    /*Reduced space complexity + Time : O(n)
+    * String = abcdefghija */
     private static char getFirstNonRepeatedChar2(String a){
         Set<Character> set = new HashSet<>();
         List<Character> list = new ArrayList<>();
@@ -34,7 +36,8 @@ public class FirstNonRepeatedCharacter {
                 continue;
             }
             if(list.contains(c)){
-                list.remove(c);
+                //list.remove(c);
+                list.remove(new Character(c));
                 set.add(c);
             }else {
                 list.add(c);

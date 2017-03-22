@@ -30,6 +30,7 @@ public class Soduku2 {
             System.out.println("No Solution");
         }
     }
+/*
 
     private static boolean solveSoduku(int[][] grid) {
         int row = 0, col = 0;
@@ -51,6 +52,7 @@ public class Soduku2 {
         return false;
     }
 
+*/
 
     private static boolean solveSoduku2(int[][] grid) {
         int[] temp = findUnassignedColOrRow(grid);

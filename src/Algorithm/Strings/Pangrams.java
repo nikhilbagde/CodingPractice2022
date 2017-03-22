@@ -2,7 +2,6 @@ package Algorithm.Strings;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Created by Nikhi on 9/28/2016.
@@ -11,11 +10,13 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/pangrams
  * Given string check of all letter from ato z are appeared once or not.
  * If yes, print pragram or else not pargram
+ *  #: checker = 0, diff = character - 'a' , diff =  1 << diff (with difference from 'a' character that much time left shirt number 1) ;  checker |= diff.  -> Idea to store all  unique values
+ *  #: checker & 1 ==0 (check LSB & 1 if it is zero meaning one of chacracter was not set),     checker = checker >> 1 (right shift checker for checking all bits.)
  */
 public class Pangrams {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine().toLowerCase().replaceAll("\\s+","");
+        //Scanner sc = new Scanner(System.in);
+        //String input = sc.nextLine().toLowerCase().replaceAll("\\s+","");
 
         Map<Integer,Boolean> map = new HashMap<>();
         /*int v1 = 'a'; //97
@@ -27,7 +28,18 @@ public class Pangrams {
         for (int i = 97; i <  123; i++) {
             map.put(i, false);
         }
-        System.out.println(isPangams(input, map));
+        String input = "We promptly judged antique ivory buckles for the next prize".toLowerCase().replaceAll("\\s+", "");
+        String input2 = "We promptly judged antique ivory buckles for the prize".toLowerCase().replaceAll("\\s+", "");
+
+
+        System.out.println("Method1" + isPangams(input, map));
+        System.out.println("Method1" + isPangams(input2, map));
+
+        //Expected : pragram
+        System.out.println(isPangram2(input) ? "Pragram" : "Not Pargram");
+
+        //Expected: not pragram
+        System.out.println(isPangram2(input2) ? "Pragram" : "Not Pargram");
 
     }
     private static String isPangams(String input, Map<Integer, Boolean> map){
@@ -46,6 +58,37 @@ public class Pangrams {
             }
         }
         return "pangram";
+    }
+
+    /*
+    Checks if given sentence contains all letters from English Alphabets or not.
+       Time: O(n) Space: O(1)
+     */
+    private static boolean isPangram2(String input) {
+        boolean result = false;
+        int checker = 0;
+
+        for (int i = 0; i < input.length(); ++i) {
+            int value = input.charAt(i) - 'a';
+            value = 1 << value;
+            //System.out.println(Integer.toBinaryString(value));
+            //if( (checker & value) > 0) return false;
+            checker = checker | value;
+
+            System.out.println(input.charAt(i) + " " + Integer.toBinaryString(checker));
+        }
+
+        while (checker > 0) {
+            if ((checker & 1) == 0) return false;
+            checker = checker >> 1;
+            System.out.println(Integer.toBinaryString(checker));
+        }
+
+        int i = 1, count = 26;
+        while (count-- > 0) {
+
+        }
+        return true;
     }
 }
 

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by Nikhi on 9/24/2016.
  * https://www.hackerrank.com/challenges/jumping-on-the-clouds
  */
-public class Jumpingontheclouds {
+public class JumpingOnTheClouds {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
@@ -16,7 +16,7 @@ public class Jumpingontheclouds {
         for(int c_i=0; c_i < n; c_i++){
             clouds[c_i] = in.nextInt();
         }
-        if(n>=2 && n<=100){
+        if (2 <= n && n <= 100) {
             int i=0;
             while(i!=n-1){
 

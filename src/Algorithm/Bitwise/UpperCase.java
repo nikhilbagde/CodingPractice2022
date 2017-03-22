@@ -23,9 +23,11 @@ public class UpperCase {
         */
         char z = toggleCase2(x);
         char z1 = toggleCase2(y);
+        char z2 = (char) toggleCase3(y);
 
         System.out.println(z);
         System.out.println(z1);
+        System.out.println(z2);
     }
     private static char toggleCase(char x){
         int y = 32;    // in bits = 00100000
@@ -36,5 +38,9 @@ public class UpperCase {
 
     private static char toggleCase2(char x){
         return (char ) ((int) x ^ 32);
+    }
+
+    private static int toggleCase3(char x) {
+        return x ^ ' ';
     }
 }

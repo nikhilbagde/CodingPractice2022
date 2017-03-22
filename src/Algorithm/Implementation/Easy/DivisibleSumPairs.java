@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by Nikhi on 9/22/2016.
  * https://www.hackerrank.com/challenges/divisible-sum-pairs
  */
-public class Divisiblesumpairs {
+public class DivisibleSumPairs {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
