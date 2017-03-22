@@ -1,6 +1,7 @@
 package Algorithm;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -15,8 +16,7 @@ public class Backtracking
     static int [] sumPrice;
 
     public static void main(String [] args)
-            throws IOException, FileNotFoundException
-    {
+            throws IOException {
         boolean [] max;
         int [] weight, price;
         int n, maxWeight;
@@ -83,8 +83,7 @@ public class Backtracking
             if(current[1] > current[2]) {
                 if(current[2] < 0) {
                     System.out.println("The first possible solution is: " + current[1]);
-                } // end if
-                else {
+                } else {
                     System.out.println(current[1] + " replaces " + current[2]);
                 }
                 // Stores the value of the optimal node
