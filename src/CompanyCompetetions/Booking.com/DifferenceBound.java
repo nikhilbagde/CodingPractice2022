@@ -21,9 +21,10 @@ public class DifferenceBound {
         //input -127 -127 -127 -127 127 127
         ArrayList<Integer> out = new ArrayList<>();
         int prev=-1;
-        for(int i=0;i<arr.length;i++){
+        for (int i = 0; i < arr.length; i++) {
 
             int x=Integer.valueOf(arr[i]);
+
             if(i==0){
                 prev=x;
                 out.add(x);

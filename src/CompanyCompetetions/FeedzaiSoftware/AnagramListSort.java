@@ -30,7 +30,7 @@ public class AnagramListSort {
                 System.out.println(words);
             }
         } catch (Exception e) {
-            System.out.println("Unhandled execption!");
+            System.out.println("Unhandled exception!");
         }
     }
 
@@ -38,32 +38,31 @@ public class AnagramListSort {
     car cheating dale deal lead listen silent teaching
      */
     static String[] friendlyWords(String[] input) {
-        List<String> arrayList = Arrays.asList(input);
         Map<String, Set<String>> map = new TreeMap<>();
 
-        for (String string : arrayList) {
+        for (String string : input) {
             char[] temp = string.toCharArray();
             Arrays.sort(temp);
-            if (map.containsKey(String.valueOf(temp))) continue;
+            String key = String.valueOf(temp);
+
+            if (map.containsKey(key)) continue;
 
             Set<String> set = new TreeSet<>();
-            for (String string2 : arrayList) {
+            for (String string2 : input) {
                 if (!string.equals(string2) && string.length() == string2.length() && isAnagram(string, string2)) {
                     set.add(string);
                     set.add(string2);
                 }
             }
             if (!set.isEmpty()) {
-                char[] temp1 = string.toCharArray();
-                Arrays.sort(temp1);
-                map.put(String.valueOf(temp1), set);
+                map.put(key, set);
             }
             set = null;
         }
         //System.out.println(map);
         //System.out.println(map.values());
-
         //System.out.println("required output");
+
         String[] result = new String[input.length];
         int index = 0;
         for (Set<String> set : map.values()) {
@@ -76,15 +75,6 @@ public class AnagramListSort {
         System.out.println();
 
         return result;
-    }
-
-    private static void sort(List<String> list) {
-        Collections.sort(list, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareToIgnoreCase(o2);
-            }
-        });
     }
 
     public static boolean isAnagram(String first, String second) {

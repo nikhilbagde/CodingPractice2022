@@ -18,6 +18,7 @@ public class NumberOfPair {
         }
         long k = in.nextInt();
         numberOfPairs(a, k);
+        System.out.println(numberOfPairs2(a, k));
 
     }
     static int numberOfPairs(int[] a, long k) {
@@ -34,6 +35,37 @@ public class NumberOfPair {
             }
         }
         return set.size()/2;
+    }
 
+    //O(n)
+    private static int findMax(int[] a) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < a.length; ++i) {
+            max = a[i] > max ? a[i] : max;
+        }
+        return max;
+    }
+
+    private static int numberOfPairs2(int[] a, long k) {
+        boolean[] sum = new boolean[(int) k + 1];
+        int count = 0;
+        for (int i = 0; i < a.length; ++i) {
+            int dif = (int) k - a[i];
+            if (sum[dif]) {
+                count++;
+            }
+            sum[a[i]] = true;
+        }
+        return count;
     }
 }
+/*  6 elements from 1 to 9, k = 47
+6
+1
+3
+46
+1
+3
+9
+47
+ */

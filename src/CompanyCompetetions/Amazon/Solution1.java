@@ -1,4 +1,4 @@
-package Algorithm;
+package CompanyCompetetions.Amazon;
 
 import java.util.Scanner;
 

@@ -1,15 +1,11 @@
-package Algorithm;
-
-import com.sun.org.apache.xpath.internal.SourceTree;
+package CompanyCompetetions.Amazon;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by Nikhi on 9/28/2016.
- *
+ * Created by Nikhil on 9/28/2016.
+ *  Character.isLetter(char a) | Character.isDigit(char a)
  */
 public class Solution {
     public static void main(String[] args) throws IOException {
@@ -18,24 +14,33 @@ public class Solution {
         String res = movePlane(_command);
 
     }
-    public static int [] netDistance(int distance ,String direction, int [] a, int removeLastCommandFlag){
+
+    private static int[] netDistance(int distance, String direction, int[] a, int removeLastCommandFlag) {
         direction = direction.trim();
         switch (direction){
             case "D":
-                if (removeLastCommandFlag == 1) a[1] += distance;
-                else a[1] -= distance;
+                if (removeLastCommandFlag == 1)
+                    a[1] += distance;
+                else
+                    a[1] -= distance;
                 break;
             case "U":
-                if (removeLastCommandFlag == 1) a[1] -= distance;
-                else a[1] += distance;
+                if (removeLastCommandFlag == 1)
+                    a[1] -= distance;
+                else
+                    a[1] += distance;
                 break;
             case "L":   //a[0] = a[0] - distance;
-                if (removeLastCommandFlag == 1) a[0] += distance;
-                else a[0] -= distance;
+                if (removeLastCommandFlag == 1)
+                    a[0] += distance;
+                else
+                    a[0] -= distance;
                 break;
             case "R":   //a[0] = a[0] + distance;
-                if (removeLastCommandFlag == 1) a[0] -= distance;
-                else a[0] += distance;
+                if (removeLastCommandFlag == 1)
+                    a[0] -= distance;
+                else
+                    a[0] += distance;
                 break;
         }
         return a;
@@ -44,13 +49,11 @@ public class Solution {
         if(command.equals("")){
             return "(999,999)";
         }
-        int netX = 0, netY = 0;
+        int netX = 0, netY = 0, removeLastCommandFlag = 0, i = 0, lastDistance = 0;
         int [] a = {netX, netY}; //new int[2];
-        int removeLastCommandFlag = 0;
         char [] _command = command.toCharArray();
-        int i = 0;
         char lastCommand = ' ';
-        int lastDistance = 0;
+
         do{
             int distance= 0;
             String direction = "";

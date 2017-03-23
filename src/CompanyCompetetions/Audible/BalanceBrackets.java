@@ -19,19 +19,24 @@ public class BalanceBrackets {
     }
     //{[}]}
         static String[] braces(String[] values) {
-            String[] result  = new String[values.length];
+            /*String[] result  = new String[values.length];
             for (int i = 0; i < values.length; i++) {
                 if(checkMatchingParenthesis(values[i].toCharArray())){
                     result[i] = "YES";
                 }else {
                     result[i] = "NO";
                 }
+            }*/
+
+            for (String string : values) {
+                checkMatchingParenthesis2(string);
             }
             return values;
 
+
         }
 
-        public static boolean checkMatchingParenthesis(char[] stream){
+    private static boolean checkMatchingParenthesis(char[] stream) {
             Stack<Character> stack = new Stack<>();
             for (char c: stream) {
                 if(checkOpeningBracket(c)){
@@ -63,4 +68,24 @@ public class BalanceBrackets {
                     || left == '{' && right == '}'
                     || left == '[' && right == ']');
         }
+
+    private static boolean checkMatchingParenthesis2(String input) {
+        String opening = "{[(";
+        String closing = "}])";
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            if (opening.indexOf(c) != -1) {
+                stack.push(c);
+            } else if (closing.indexOf(c) == -1) {
+                if (stack.isEmpty())
+                    return false;
+
+                if (opening.indexOf(stack.pop()) != closing.indexOf(c)) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
 }
