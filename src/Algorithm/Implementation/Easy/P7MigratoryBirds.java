@@ -14,15 +14,21 @@ public class P7MigratoryBirds {
             birds[types_i] = in.nextInt();
         }
 
-        int[] type = new int[5];    //fixed type of birds 1,2,3,4,5
+        //fixed type of birds 1,2,3,4,5
+        //created an array with index zero to hold these types frequencies.
+        int[] type = new int[5];
 
         for (int i = 0; i < birds.length; ++i) {
-            type[birds[i] - 1]++;
+            type[birds[i] - 1]++;       //-1 to handle bound so 5th type frequency would be increased and stored in type[4].
         }
-        int max = type[0];
+        int max = type[0];  // to find max, consider 1st to be max.
         for (int i = 0; i < type.length; ++i) {
-            max = Math.max(max, type[i]);
+            max = Math.max(max, type[i]);   //check for max.
         }
+        //we have max,
+        //Now we can iterate through array and when you hit max just print that index+1 which is type number
+        //To handle condition of if two type has same frequency, we are suppose to print max with lower id.
+        // as we have stored in an array. and find first max only condition is handled automatically.
         for (int i = 0; i < type.length; ++i) {
             if (max == type[i]) {
                 System.out.println(i + 1);
