@@ -1,7 +1,7 @@
 package Contest.CodeChef.DEC16;
 
 /**
- * Created by Nikhi on 12/4/2016.
+ * Created by Nikhil on 12/4/2016.
  * //given number is 6
  Algorithm
  1. Loop over 2 to given number
@@ -52,7 +52,7 @@ public class BaseNumber1 {
             if(base<=36) {
                 //This base value works for <36
                 //newBaseValue = Integer.toString(number, base);  //for Radix = 2,3.. number
-                if(Integer.toString(number, base).replaceAll("[a-zA-Z]", "").charAt(0) == '1') {    ;  //for Radix = 2,3.. number
+                if (Integer.toString(number, base).replaceAll("[a-zA-Z]", "").charAt(0) == '1') {    //for Radix = 2,3.. number
                     listBaseNumber.add(base);
                    // continue;
                 }
