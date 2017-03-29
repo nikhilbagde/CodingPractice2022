@@ -12,6 +12,10 @@ public class P10DrawingBook {
         int n = in.nextInt();
         int p = in.nextInt();
         int mid = n / 2;
+        //check from mid if p is less or more,
+        // depending upon that start flipping the pages
+        // from front or end.
+        // handle special case, when p=1 or p=n or p=mid
         if (p < mid) {
             System.out.println(p / 2);
         } else if (p > mid) {
