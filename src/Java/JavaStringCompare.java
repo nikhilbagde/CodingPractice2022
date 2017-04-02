@@ -2,7 +2,6 @@ package Java;
 
 import java.util.Scanner;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
@@ -21,6 +20,7 @@ import java.util.TreeSet;
  */
 public class JavaStringCompare {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
         int k = sc.nextInt();
@@ -34,6 +34,7 @@ public class JavaStringCompare {
         //Just like it appears in a dictionary.
         System.out.println(set.toArray()[0]);
         System.out.println(set.toArray()[set.size()-1]);
+
 
     }
 }
