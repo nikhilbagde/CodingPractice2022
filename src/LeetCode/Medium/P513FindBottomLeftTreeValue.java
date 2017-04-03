@@ -1,4 +1,4 @@
-package LeetCode.Medium.P513;
+package LeetCode.Medium;
 
 import GeeksForGeeks.DataStructure.Trees.BinaryTree;
 import GeeksForGeeks.DataStructure.Trees.Set1.ConstructBST;
@@ -6,7 +6,7 @@ import GeeksForGeeks.DataStructure.Trees.Set1.ConstructBST;
 /**
  * Created by Nikhil on 4/2/2017 7:13 PM.
  */
-public class FindBottomLeftTreeValue {
+public class P513FindBottomLeftTreeValue {
     public static void main(String[] args) {
         BinaryTree tree = ConstructBST.constructBinaryTree();
         System.out.println(findBottomLeftValue(tree.getRoot()));
