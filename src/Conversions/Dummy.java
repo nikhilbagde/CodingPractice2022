@@ -3,6 +3,7 @@ package Conversions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Nikhil on 1/28/2017 5:38 PM.
@@ -60,5 +61,13 @@ public class Dummy {
         }
         System.out.println(Arrays.toString(jaggedTo1D));
 
+        //Array of int to List
+        int[] a = {1, 2, 3, 4};
+        List<Integer> list = java.util.stream.IntStream.of(a).boxed().collect(java.util.stream.Collectors.toList());
+
+        //Array of char to list , char[] to list
+        char[] b = {'a', 'A', 'b', 'c'};
+        String bb = b.toString();
+        List<Character> listC = bb.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
     }
 }
