@@ -19,6 +19,8 @@ public class P496NextGreaterElementI {
         //wrong
         //nextGreaterElementUsingPQ(a, b);
         //stack right
+
+
         nextGreaterElementUsingStack(a, b);
         nextGreaterElementUsingStack(c, d);
     }
@@ -68,11 +70,15 @@ public class P496NextGreaterElementI {
             return new int[0];
         }
         //push first element to stack
+        // int[] a = {4, 1, 2};
+        // int[] b = {1, 3, 4, 2};
         stack.push(nums[0]);
 
         Map<Integer, Integer> nextMaxMap = new HashMap<>();
         //start from second element
         for (int i = 1; i < nums.length; ++i) {
+
+            //check if current num is max than stack top
             while (!stack.isEmpty() && stack.peek() < nums[i]) {
                 nextMaxMap.put(stack.pop(), nums[i]);
             }

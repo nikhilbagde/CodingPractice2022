@@ -68,7 +68,7 @@ public class P476NumberComplement {
 
         Step 3: to get 1111
         10000 - 1 = 1111
-        Hurry!
+        Hurray!
 
         Now we can and it with its compliment to get final value as seen before
                                     (1111 1111 1111 1111 1111 1111 1111 0101)
@@ -78,7 +78,7 @@ public class P476NumberComplement {
         System.out.println(Integer.toBinaryString(num));
         int numberWithHighestOneAllOtherZeros = Integer.highestOneBit(num);
         int temp = (numberWithHighestOneAllOtherZeros << 1);
-        temp = temp - 1;
+        temp = temp - 1;    //10000 - 1 = 1111;
         System.out.println(Integer.toBinaryString(temp));
         System.out.println(Integer.toBinaryString(~num));
 
