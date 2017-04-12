@@ -64,6 +64,7 @@ public class P4MaximumContinuousSum {
         int maxTillHere = 0, maxSoFar = 0;
         int[] dual = new int[2];
 
+        double a = 1.5 / 0.0;
         for (int i = 0; i < array.length; ++i) {
             maxTillHere = maxTillHere + array[i];
             if (maxTillHere < 0) maxTillHere = 0;

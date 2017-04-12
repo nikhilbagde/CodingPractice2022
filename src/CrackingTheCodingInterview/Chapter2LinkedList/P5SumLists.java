@@ -25,7 +25,7 @@ import DataStructure.LinkedList.SLLNode;
 public class P5SumLists {
 
     //Approach 1
-    // 617  = 7->1->6       length 3        can add zero at head to make it equal length.
+    //  617 = 7->1->6       length 3        can add zero at head to make it equal length.
     // 1912 = 2->1->9->1    length 4
     // 2529
     private static int sumLists(SLLNode head1, SLLNode head2){
@@ -101,10 +101,7 @@ public class P5SumLists {
             return carryNode;
         }
     }
-    static class SumWrapper{                //b/c we wanted to store sum and carry also hence encapsulate both in a class.
-        public SLLNode currentSumNode = null;
-        public int carry = 0;
-    }
+
     private static SumWrapper addListsRec(SLLNode head1, SLLNode head2){
         //go till top of stack when both last node next are found null then create SumWrapper Object and return it doing anything.
         if(head1==null && head2 ==null){        //b/c both are of same size now.
@@ -125,6 +122,7 @@ public class P5SumLists {
         return sumWrapper;
 
     }
+
     private static int length(SLLNode head){
         if(head ==null) return 0;
         SLLNode node = head;
@@ -135,6 +133,7 @@ public class P5SumLists {
         }
         return legnth;
     }
+
     private static SLLNode padZeros(SLLNode head, int zeroCount){
         SLLNode newHead = head;
         for (int i = 1; i <= zeroCount; i++) {
@@ -142,9 +141,15 @@ public class P5SumLists {
         }
         return newHead;
     }
+
     private static SLLNode appendAtFront(SLLNode head, int value){
         SLLNode newHead = new SLLNode(value);
         if(head!=null) newHead.next = head;
         return newHead;
+    }
+
+    static class SumWrapper {                //b/c we wanted to store sum and carry also hence encapsulate both in a class.
+        public SLLNode currentSumNode = null;
+        public int carry = 0;
     }
 }

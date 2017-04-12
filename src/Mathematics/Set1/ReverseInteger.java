@@ -32,11 +32,11 @@ public class ReverseInteger {
         return isNegative? 0-result: result;
     }
 
-    private static int reverseInteger3(int number){
+    private static int reverseInteger3(int number) { //123->12->1
         int result = 0;
         while(number!=0){
-            result = result * 10 + number%10;
-            number/= 10;
+            result = result * 10 + number % 10;       //3 -> 2+30=32 -> 320+1=321
+            number /= 10;                            //12 -> 1 ->0
         }
         return result;
     }
