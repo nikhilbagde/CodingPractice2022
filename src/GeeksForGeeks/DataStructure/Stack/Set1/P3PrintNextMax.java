@@ -54,5 +54,52 @@ public class P3PrintNextMax {
 
         System.out.println("Second way");
         printNextMaxUsingStack(array);
+        int[] input = {8,11,6,9,5};
+        check(input);
+    }
+
+    private static void check(int[] input){
+        int current = 0, index=0;
+        boolean noNextMax = false;
+        int[] result = new int[input.length+1];
+        while(!noNextMax && current < input.length-1){        //8      11 6 9
+            int next = current+1;
+            while(!noNextMax && next<input.length){   //11  6
+                if(input[current]<input[next]){                               //True
+                    System.out.println(input[current]);                        //8
+                    result[index++]= input[current];
+                    current=next;                                       //current=1
+                    //System.out.println("Debug1");
+                    break;
+                }
+                if(next == input.length-2){//9true
+                    noNextMax = true;
+                }
+                next++;                  //9
+            }
+            //System.out.println("Debug2");
+            //current++;
+        }
+        System.out.println("Left to Right");
+
+        int last = input.length-1;
+        boolean noPrevMax = false;
+        while(!noPrevMax && last >= 0){
+            int prev = last-1;
+            while(!noPrevMax && prev >= 0){
+                if(input[last]<input[prev]){
+                    System.out.println(input[last]);
+                    result[index++]= input[last];
+                    last=prev;    //
+                    break;
+                }
+                if(prev==1){
+                    noPrevMax = true;
+                }
+                prev--;
+            }
+            //last--; BUG
+        }
+
     }
 }

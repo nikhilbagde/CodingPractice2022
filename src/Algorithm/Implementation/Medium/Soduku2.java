@@ -70,7 +70,8 @@ public class Soduku2 {
                     grid[row][col] = 0;
                 }
             }
-        } else return true;
+        } else
+            return true;
 
         return false;
     }
