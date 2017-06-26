@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jdsl-2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jdsl-2.1.jar/jdsl-2.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib/jdsl-2.1.jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/jdsl-2.1.jar" recursive="false" />
+  </library>
+</component>

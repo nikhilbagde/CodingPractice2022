@@ -1,5 +1,6 @@
 package CompanyCompetetions.Audible;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -7,16 +8,6 @@ import java.util.Stack;
  * Created by Nikhi on 12/1/2016.
  */
 public class BalanceBrackets {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        String[] array = new String[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = sc.next();
-
-        }
-        braces(array);
-    }
     //{[}]}
         static String[] braces(String[] values) {
             /*String[] result  = new String[values.length];
@@ -35,7 +26,6 @@ public class BalanceBrackets {
 
 
         }
-
     private static boolean checkMatchingParenthesis(char[] stream) {
             Stack<Character> stack = new Stack<>();
             for (char c: stream) {
@@ -57,18 +47,18 @@ public class BalanceBrackets {
             }
             return true;
         }
-        public static boolean checkOpeningBracket(char c){
+
+    public static boolean checkOpeningBracket(char c){
             return (c == '{' || c == '[' || c == '(');
         }
-        public static boolean checkClosingBracket(char c){
+    public static boolean checkClosingBracket(char c){
             return (c == '}' || c == ']' || c == ')');
         }
-        public static boolean checkPair(char left, char right){
+    public static boolean checkPair(char left, char right){
             return (left == '(' && right == ')'
                     || left == '{' && right == '}'
                     || left == '[' && right == ']');
         }
-
     private static boolean checkMatchingParenthesis2(String input) {
         String opening = "{[(";
         String closing = "}])";
@@ -77,7 +67,7 @@ public class BalanceBrackets {
         for (char c : input.toCharArray()) {
             if (opening.indexOf(c) != -1) {
                 stack.push(c);
-            } else if (closing.indexOf(c) == -1) {
+            } else if (closing.indexOf(c) != -1) {
                 if (stack.isEmpty())
                     return false;
 
@@ -87,5 +77,25 @@ public class BalanceBrackets {
             }
         }
         return stack.isEmpty();
+    }
+
+    private static String[] checkMatchingParenthesis2(String[] values) {
+            String [] result = new String[values.length];
+            int index =0;
+        for (String input: values) {
+            result[index++] = checkMatchingParenthesis2(input) ? "YES" : "NO";
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        String[] array = new String[n];
+        for (int i = 0; i < n; i++) {
+            array[i] = sc.next();
+
+        }
+        System.out.println(Arrays.toString(checkMatchingParenthesis2(array)));
     }
 }
