@@ -1,6 +1,5 @@
 package ProjectEuler.Set3;
 
-import org.jetbrains.annotations.Contract;
 
 import java.util.Scanner;
 
@@ -77,7 +76,7 @@ public class P21AmicableNumbers {
         }
     }
 
-    @Contract(pure = true)
+    //@Contract(pure = true)
     private static int sumOfAllFactors(int n) {
         int sum = 1;        //System.out.println(n);
         for (int i = 2; i * i < n; i++) {             //go till square root of n and, divide it once and add divisor and divison result also.
