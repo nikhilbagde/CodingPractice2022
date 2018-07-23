@@ -1,4 +1,4 @@
-package CompanyCompetetions.Amazon;
+package CompanyCompetetions.Amazon.InterviewQuestions;
 
 /**
  * Created by Nikhil on 4/11/2017 3:00 PM.

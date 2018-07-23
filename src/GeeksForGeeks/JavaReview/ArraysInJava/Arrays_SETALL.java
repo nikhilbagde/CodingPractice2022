@@ -16,7 +16,7 @@ public class Arrays_SETALL {
         Arrays.setAll(input2, i -> i == 0 ? 0 : (i == 1 ? 1 : (i - 1) + (i - 2)));
         System.out.println("Arrays.toString(input) = " + Arrays.toString(input));
         System.out.println("Arrays.toString(input) = " + Arrays.toString(input1));
-        System.out.println("Arrays.toString(input) = " + Arrays.toString(input2));
+        System.out.println("Arrays.toString(input) = " + Arrays.toString(input2));      //Fibonnaci Series
 
         //
         OptionalInt sum = Arrays.stream(input)

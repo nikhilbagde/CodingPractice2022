@@ -1,4 +1,4 @@
-package CompanyCompetetions.Amazon;
+package CompanyCompetetions.Amazon.InterviewQuestions;
 
 import java.io.IOException;
 import java.util.Scanner;
