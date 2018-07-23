@@ -3,9 +3,10 @@ package CompanyCompetetions.Amazon;
 import java.util.Scanner;
 
 /**
- * Created by Nikhi on 9/30/2016.
+ * Created by Nikhil on 9/30/2016.
+ * Find number of 1's in bit version of given number
  */
-public class Solution3 {
+public class FindCountOf1sBitInGivenLongNumber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long a = sc.nextLong();
@@ -18,6 +19,7 @@ public class Solution3 {
             if( (a&1)!= 0){
                 count++;
             }
+            System.out.println(Long.toBinaryString(a));
             a>>=1;
         }
         return count;

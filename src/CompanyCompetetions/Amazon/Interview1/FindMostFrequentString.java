@@ -9,7 +9,7 @@ import java.util.TreeMap;
  */
 public class FindMostFrequentString {
     public static void main(String[] args) {
-        String[] a = {"Nikhil", "Vandana", "Bagde", "Vijay", "Nikhil", "Vandana", "Vandana"};
+        String[] a = {"Nikhil", "Vandana", "Bagde", "Vijay", "Nikhil", "Ankana", "Vandana", "Vandana", "Ankana"};
         System.out.println(getMostFrequentString(a));
     }
 

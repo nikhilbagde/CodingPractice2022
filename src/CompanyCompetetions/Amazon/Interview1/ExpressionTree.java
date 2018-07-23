@@ -20,10 +20,8 @@ public class ExpressionTree {
                 stack.push(new Node(postFix[i]));
             } else {
                 Node t = new Node(postFix[i]);
-
                 t.left = stack.pop();
                 t.right = stack.pop();
-
                 stack.push(t);
             }
         }
