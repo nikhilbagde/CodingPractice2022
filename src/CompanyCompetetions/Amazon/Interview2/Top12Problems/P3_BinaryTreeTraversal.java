@@ -176,6 +176,16 @@ public class P3_BinaryTreeTraversal {
         }
     }
 
+    // Levelwise Traversal with given level find max n numbers.
+    //                       5
+    //           /                       \
+    //          2                       7
+    //      /        \              /       \
+    //    1          3           6         8
+    // Level Order :  level 3 and max =3 / min=3
+    //                      min = 1 3 6
+    //                      max = 8 6 3
+
     private void levelWiseMaxNAtKlevel(TreeNode node, int maxN, int levelK){
         Queue<TreeNode> queue = new LinkedList<>();
         Queue<Integer>  level = new LinkedList<>();
@@ -210,9 +220,33 @@ public class P3_BinaryTreeTraversal {
 
     }
 
+
     static void printHeap(PriorityQueue<TreeNode> heap, int count){
         while(!heap.isEmpty() && count-- >0){
             System.out.print( " " + heap.poll().value + " ");
+        }
+    }
+
+    /**
+     *      Check for Children Sum Property in a Binary Tree
+     *     Given a binary tree, write a function that returns true if the tree satisfies below property.
+     *     For every node, data value must be equal to sum of data values in left and right children.
+     *     Consider data value as 0 for NULL children. Below tree is an example
+     */
+
+    private boolean isSumProperty(TreeNode node){
+        if(node==null || (node.left ==null && node.right==null)) {
+            return false;
+        }else {
+            int leftValue = node.left != null ? node.left.value : 0;
+            int rightValue = node.right != null ? node.right.value : 0;
+
+            if(node.value == (leftValue+rightValue)
+            && isSumProperty(node.left)
+            && isSumProperty(node.right)){
+                return true;
+            }
+            return false;
         }
     }
 
@@ -250,13 +284,9 @@ public class P3_BinaryTreeTraversal {
 
         display("Find Max n at level k");
         binaryTree.levelWiseMaxNAtKlevel(binaryTree.getRoot(), 3, 3);
+
+        display("Children Sum Property");
+        boolean result = binaryTree.isSumProperty(binaryTree.getRoot());
+        System.out.println(result);
     }
-
-
-
-
-
-
-
-
 }
