@@ -1,6 +1,9 @@
 package CompanyCompetetions.Amazon.Interview2.Top12Problems;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -173,6 +176,46 @@ public class P3_BinaryTreeTraversal {
         }
     }
 
+    private void levelWiseMaxNAtKlevel(TreeNode node, int maxN, int levelK){
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer>  level = new LinkedList<>();
+
+        queue.offer(node);
+        level.offer(1);
+
+        PriorityQueue<TreeNode> minHeap = new PriorityQueue<>( (o1,o2) ->  o1.value >o2.value? 1 :( o1.value < o2.value? -1:0));
+        PriorityQueue<TreeNode> maxHeap = new PriorityQueue<>( (o1,o2) ->  o1.value >o2.value? -1 :( o1.value < o2.value? 1:0));
+        while(!queue.isEmpty()){
+            TreeNode currentNode = queue.poll();
+            int currentLevel = level.poll();
+
+            if(currentLevel == levelK){
+                minHeap.offer(currentNode);
+                maxHeap.offer(currentNode);
+            }
+
+            if(currentNode.left!=null){
+                queue.offer(currentNode.left);
+                level.offer(currentLevel+1);
+            }
+            if(currentNode.right!=null){
+                queue.offer(currentNode.right);
+                level.offer(currentLevel+1);
+            }
+        }
+        System.out.println("\nMinHeap: " );
+        printHeap(minHeap, maxN);
+        System.out.println("\nMaxHeap: " );
+        printHeap(maxHeap, maxN);
+
+    }
+
+    static void printHeap(PriorityQueue<TreeNode> heap, int count){
+        while(!heap.isEmpty() && count-- >0){
+            System.out.print( " " + heap.poll().value + " ");
+        }
+    }
+
     static void display(String a){
         System.out.println();
         System.out.println(a);
@@ -204,6 +247,9 @@ public class P3_BinaryTreeTraversal {
 
         display("Level Order Traversal");
         binaryTree.levelOrder(binaryTree.getRoot());
+
+        display("Find Max n at level k");
+        binaryTree.levelWiseMaxNAtKlevel(binaryTree.getRoot(), 3, 3);
     }
 
 
