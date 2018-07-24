@@ -1,5 +1,8 @@
 package CompanyCompetetions.Amazon.Interview2.Top12Problems;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by nbagde on 7/23/2018.
  */
@@ -67,7 +70,7 @@ public class P3_BinaryTreeTraversal {
             goLeft(root.left);
         }
         //Then print root
-        System.out.println(root.value);
+        System.out.print(root.value + " ");
         //Then keep printing Right first then move to right most node.
         if(root.right!=null){
             goRight(root.right);
@@ -77,13 +80,102 @@ public class P3_BinaryTreeTraversal {
         if(node.left!=null)
             goLeft(node.left);
         //when Node.left == null meaning left most
-        System.out.println(node.value);
+        System.out.print(node.value + " ");
     }
     private void goRight(TreeNode node){
         //first print then go deep
-        System.out.println(node.value);
+        System.out.print(node.value + " ");
         if(node.right!=null)
             goRight(node.right);
+    }
+
+    //Post Order Traversal
+    //                       5
+    //           /                       \
+    //          2                       7
+    //      /        \              /       \
+    //    1          3           6         8
+    // OUTPUT: 1 3 2 6 8 7 5
+    private void postOrder(TreeNode node){
+        if(node!=null){
+            postOrder(node.left);
+            postOrder(node.right);
+            System.out.print(node.value + " ");
+        }
+    }
+    //Pre Order Traversal
+    //                       5
+    //           /                       \
+    //          2                       7
+    //      /        \              /       \
+    //    1          3           6         8
+    // OUTPUT: 1 2 3 5 6 7 8
+    private void preOrder(TreeNode node){
+        if(node!=null){
+            preOrder(node.left);
+            System.out.print(node.value + " ");
+            preOrder(node.right);
+        }
+    }
+
+    //In Order Traversal
+    //                       5
+    //           /                       \
+    //          2                       7
+    //      /        \              /       \
+    //    1          3           6         8
+    // OUTPUT: 1 2 3 5 6 7 8
+    private void inOrder(TreeNode node){
+        if(node!=null){
+            System.out.print(node.value + " ");
+            inOrder(node.left);
+            inOrder(node.right);
+        }
+    }
+    //In Order Traversal
+    //                       5                                      Depth 0                     1
+    //           /                       \
+    //          2                       7                          Depth 1                     2
+    //      /        \              /       \
+    //    1          3           6         8                     Depth 2                     3
+    //Height of tree  height = 3.
+    private int height(TreeNode node){
+        if(node==null){
+            return -1;
+        }else{
+            return 1+ Math.max(height(node.left), height(node.right));
+        }
+    }
+
+    //In Order Traversal
+    //                       5
+    //           /                       \
+    //          2                       7
+    //      /        \              /       \
+    //    1          3           6         8
+    // Level Order : 5
+    //                       2 7
+    //                      1 3 6 8
+    private void levelOrder(TreeNode node){
+        Queue<TreeNode> queue= new LinkedList<>();
+        queue.add(node);
+
+        while(!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+            System.out.println(currentNode.value);
+
+            if (currentNode.left != null) {
+                queue.offer(currentNode.left);
+            }
+            if (currentNode.right != null) {
+                queue.offer(currentNode.right);
+            }
+        }
+    }
+
+    static void display(String a){
+        System.out.println();
+        System.out.println(a);
     }
 
     public static void main(String[] args) {
@@ -92,7 +184,26 @@ public class P3_BinaryTreeTraversal {
         for (Integer  i: a ) {
             binaryTree.insert(i);
         }
+
+        // TOP VIEW
+        display("Top View");
         binaryTree.topView(binaryTree.getRoot());
+
+        display("Post Order");
+        binaryTree.postOrder(binaryTree.getRoot());
+
+        display("Pre Order");
+        binaryTree.preOrder(binaryTree.getRoot());
+
+        display("In Order");
+        binaryTree.inOrder(binaryTree.getRoot());
+
+        display("Height");
+        int height = binaryTree.height(binaryTree.getRoot());
+        System.out.println(++height);
+
+        display("Level Order Traversal");
+        binaryTree.levelOrder(binaryTree.getRoot());
     }
 
 
