@@ -115,8 +115,8 @@ public class P3_BinaryTreeTraversal {
     // OUTPUT: 1 2 3 5 6 7 8
     private void preOrder(TreeNode node){
         if(node!=null){
-            preOrder(node.left);
             System.out.print(node.value + " ");
+            preOrder(node.left);
             preOrder(node.right);
         }
     }
@@ -130,8 +130,8 @@ public class P3_BinaryTreeTraversal {
     // OUTPUT: 1 2 3 5 6 7 8
     private void inOrder(TreeNode node){
         if(node!=null){
-            System.out.print(node.value + " ");
             inOrder(node.left);
+            System.out.print(node.value + " ");
             inOrder(node.right);
         }
     }
@@ -250,6 +250,20 @@ public class P3_BinaryTreeTraversal {
         }
     }
 
+    /* Constructing below tree
+               5
+             /   \
+            3     6
+           / \     \
+          1   4     8
+         / \       / \
+        0   2     7   9
+   */
+
+    private TreeNode binaryToDLL(TreeNode node){
+
+    }
+
     static void display(String a){
         System.out.println();
         System.out.println(a);
@@ -288,5 +302,9 @@ public class P3_BinaryTreeTraversal {
         display("Children Sum Property");
         boolean result = binaryTree.isSumProperty(binaryTree.getRoot());
         System.out.println(result);
+
+        display("Convert Binary Tree to DLL");
+        binaryTree.binaryToDLL(binaryTree.getRoot());
+
     }
 }
