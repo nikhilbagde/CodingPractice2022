@@ -15,6 +15,17 @@ public class PrintPathToLeaf {
         printPathToLeafRec(node, path, length);
     }
 
+    /**
+     *
+     * @param node
+     * @param path
+     * @param length
+     * @Algorithm
+     * 1. add node to an array
+     * 2. if its leaf node then print an array.
+     * 3. if its not a leaf node, call recursevly its left and right
+     * 4. Once done with left mode and then right most before leaving method set array[length-1] = 0 / list.remove(list.length-1) to clear array before going up.
+     */
     private static void printPathToLeafRec(TreeNode node, int[] path, int length) {
         if (node == null) return;
 
@@ -26,7 +37,7 @@ public class PrintPathToLeaf {
             printPathToLeafRec(node.left, path, length);
             printPathToLeafRec(node.right, path, length);
             path[length-1]=0;                               //same with each level while going down the stack put length-1 element position to zero or null
-                                                            // length -1 b/c we increament once we add element.
+                                                            // length -1 b/c we increment once we add element.
         }
     }
 
@@ -47,17 +58,17 @@ public class PrintPathToLeaf {
 }
 
 /*
-/*                              height = 5;
-//         6                        0
-//      /     \
-//    3           10                1
-//   / \         /   \
-//  2    4      8    12             2
-// /      \    / \   /  \
-// 1        5  7   9 11  13         3
-//  \
-//   3                              4
+/*                                         height = 5;
+//                  6                        0
+//              /     \
+//          3           10                 1
+//        / \         /   \
+//      2    4      8    12              2
+//   /  \  / \    /  \    / \
+// 1        5  7   9  11  13         3
+//   \
+//    3                                     4
 //  /
-// 1                                5
+// 1                                        5
 */
 

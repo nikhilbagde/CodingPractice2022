@@ -1,10 +1,10 @@
 package CompanyCompetetions.Amazon.Interview2.Top12Problems;
 
+import GeeksForGeeks.DataStructure.Trees.BinaryTree;
+import GeeksForGeeks.DataStructure.Trees.Set1.ConstructBST;
 import sun.reflect.generics.tree.Tree;
 
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by nbagde on 7/23/2018.
@@ -14,10 +14,10 @@ public class P3_BinaryTreeTraversal {
     //Inner static class
     public static class TreeNode{
         public int value;
-        public TreeNode left, right, parent;
+        public TreeNode left, right;
         TreeNode(int value){
             this.value = value;
-            left = right = parent = null;
+            left = right  = null;
         }
     }
 
@@ -261,7 +261,47 @@ public class P3_BinaryTreeTraversal {
    */
 
     private TreeNode binaryToDLL(TreeNode node){
+        return null;
+    }
 
+    private TreeNode findLowestCommenAncestor(int a, int b, TreeNode node){
+        TreeNode currentNode = node;
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        //stack = findPathtoNode(stack, node, a);
+        printStack(stack);
+        //stack2 = findPathtoNode(stack2, node, b);
+        printStack(stack2);
+
+        return currentNode;
+    }
+
+    private void printPathToNode(TreeNode node){
+        List<Integer> list = new LinkedList<>();
+        printPathToNodeRec(list, node);
+    }
+    private void printPathToNodeRec(List<Integer> list, TreeNode node){
+        if(node==null)
+            return;
+
+            list.add(node.value);
+
+            if(node.left == null && node.right == null){
+                Object[] array = list.toArray();
+                System.out.println(Arrays.toString(array));
+                list.remove(list.size()-1);
+            }else{
+                printPathToNodeRec(list, node.left);
+                printPathToNodeRec(list, node.right);
+                list.remove(list.size()-1);
+            }
+    }
+
+    private static void printStack(Stack<TreeNode> stack){
+        while(!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            System.out.print(node.value + " ");
+        }
     }
 
     static void display(String a){
@@ -272,6 +312,7 @@ public class P3_BinaryTreeTraversal {
     public static void main(String[] args) {
         int [] a = {5,2,7,1,3,6,8};
         P3_BinaryTreeTraversal binaryTree = new P3_BinaryTreeTraversal();
+
         for (Integer  i: a ) {
             binaryTree.insert(i);
         }
@@ -306,5 +347,10 @@ public class P3_BinaryTreeTraversal {
         display("Convert Binary Tree to DLL");
         binaryTree.binaryToDLL(binaryTree.getRoot());
 
+        display("Find Lowest Common Ancester");
+        binaryTree.findLowestCommenAncestor(1, 3, binaryTree.getRoot());
+
+        display("PrintPathToNode");
+        binaryTree.printPathToNode(binaryTree.getRoot());
     }
 }
