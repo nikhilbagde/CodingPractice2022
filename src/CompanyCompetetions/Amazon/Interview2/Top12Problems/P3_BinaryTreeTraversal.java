@@ -1,7 +1,5 @@
 package CompanyCompetetions.Amazon.Interview2.Top12Problems;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -11,6 +9,7 @@ import java.util.Queue;
  */
 public class P3_BinaryTreeTraversal {
 
+    static TreeNode head;
     //Inner static class
     public static class TreeNode{
         public int value;
@@ -250,6 +249,54 @@ public class P3_BinaryTreeTraversal {
         }
     }
 
+    /**
+     *                        5
+     *                /                 \
+     *               2                   7
+     *           /        \          /       \
+     *         1          3        6         8
+     * @param node
+     */
+
+    private static void convertTreeToDLLRec(TreeNode node){
+        /*
+        To convert tree to linked list we traver through tree in Reverse InOrder
+        Meaning first right then root and then left.
+        and keep forming linked list from right most node and setting that node as HEAD
+        and keep moving head and changing pointers of right most nodes.
+
+                            a
+                           /\
+                         b  c
+                       / \  /\
+                     d e f g
+
+                                    head
+                                        \
+                     g.Right =  null
+                     head.left = g
+                     head = node.
+
+         */
+        if(node==null) return ;
+
+        convertTreeToDLLRec(node.right);
+        node.right = head;
+        if(head!=null)
+            head.left = node;
+        head = node;
+        convertTreeToDLLRec(node.left);
+
+    }
+
+    private static void printList(TreeNode head){
+        while(head!=null){
+            System.out.print(head.value + " <-> ");
+            head = head.right;
+        }
+        System.out.println("null");
+    }
+
     static void display(String a){
         System.out.println();
         System.out.println(a);
@@ -288,5 +335,10 @@ public class P3_BinaryTreeTraversal {
         display("Children Sum Property");
         boolean result = binaryTree.isSumProperty(binaryTree.getRoot());
         System.out.println(result);
+
+        display("Convert Binary to DDL");
+        convertTreeToDLLRec(binaryTree.getRoot());
+        printList(head);
+
     }
 }
