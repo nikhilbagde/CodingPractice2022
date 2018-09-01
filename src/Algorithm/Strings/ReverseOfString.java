@@ -9,7 +9,7 @@ public class ReverseOfString {
     public static void main(String[] args) {
         reverseLibrary("Nikhil");
         reverseIteration("Nikihl");
-        reverseRecursion("Nikhil");
+
     }
     private static String reverseLibrary(String a){
         System.out.println(new StringBuilder(a).reverse().toString());
