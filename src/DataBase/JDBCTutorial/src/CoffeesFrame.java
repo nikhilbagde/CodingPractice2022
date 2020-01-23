@@ -31,7 +31,7 @@
 
 package DataBase.JDBCTutorial.src;
 
-import com.sun.rowset.CachedRowSetImpl;
+/*mport com.sun.rowset.CachedRowSetImpl;*/
 
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
@@ -374,7 +374,7 @@ public class CoffeesFrame extends JFrame implements RowSetListener {
     CachedRowSet crs = null;
     try {
       connection = settings.getConnection();
-      crs = new CachedRowSetImpl();
+      crs = null; //new CachedRowSetImpl();
       crs.setType(ResultSet.TYPE_SCROLL_INSENSITIVE);
       crs.setConcurrency(ResultSet.CONCUR_UPDATABLE);
       crs.setUsername(settings.userName);

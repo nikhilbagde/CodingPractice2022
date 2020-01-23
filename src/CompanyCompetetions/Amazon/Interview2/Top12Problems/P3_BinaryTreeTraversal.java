@@ -1,8 +1,6 @@
 package CompanyCompetetions.Amazon.Interview2.Top12Problems;
 
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by nbagde on 7/23/2018.
@@ -297,6 +295,24 @@ public class P3_BinaryTreeTraversal {
         System.out.println("null");
     }
 
+    private static void findLowestCommonAncestor(TreeNode node, int a, int b){
+        List<Integer> list =  new LinkedList<>();
+        /*HashSet<Integer>*/
+        rootToNodePath(node, list);
+    }
+    private static void rootToNodePath(TreeNode node, List<Integer> list){
+        if(node == null)return;
+        list.add(node.value);
+
+        if(node.left == null && node.right==null){
+
+        }
+        if(node.left!=null){
+            rootToNodePath(node.left, list);
+        }
+
+    }
+
     static void display(String a){
         System.out.println();
         System.out.println(a);
@@ -340,5 +356,8 @@ public class P3_BinaryTreeTraversal {
         convertTreeToDLLRec(binaryTree.getRoot());
         printList(head);
 
+        display("Find lowest common Ancestor");
+        findLowestCommonAncestor(binaryTree.getRoot(), 1, 3);
+        findLowestCommonAncestor(binaryTree.getRoot(), 6, 8);
     }
 }

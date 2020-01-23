@@ -1,5 +1,8 @@
 package LeetCode.Easy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 You are given two non-empty linked lists representing two non-negative integers.
 The digits are stored in reverse order and each of their nodes contain a single digit.
@@ -36,6 +39,11 @@ public class P2AddTwpoNumbers {
         ListNode result = new ListNode(0);
         ListNode temp = result;
         int carry = 0;
+        List<Integer> list = new ArrayList<>();
+        list.add(0,0);
+        list.add(1,0);
+
+
         while (aa != null || bb != null) {
 
             int sum = (aa == null ? 0 : aa.value) + (bb == null ? 0 : bb.value) + carry;

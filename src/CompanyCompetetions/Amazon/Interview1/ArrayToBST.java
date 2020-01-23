@@ -1,6 +1,5 @@
 package CompanyCompetetions.Amazon.Interview1;
 
-import sun.reflect.generics.tree.Tree;
 
 import java.util.Arrays;
 

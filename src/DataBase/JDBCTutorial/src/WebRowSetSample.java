@@ -31,7 +31,7 @@
 
 package DataBase.JDBCTutorial.src;
 
-import com.sun.rowset.WebRowSetImpl;
+/*import com.sun.rowset.WebRowSetImpl;*/
 
 import javax.sql.rowset.WebRowSet;
 import java.io.FileReader;
@@ -98,7 +98,7 @@ public class WebRowSetSample {
       FileWriter fWriter = null;
       String priceListFileName = "pricelist.xml";
     int [] keyCols = {1};
-    WebRowSet priceList = new WebRowSetImpl();
+    WebRowSet priceList = null; //  WebRowSetImpl();
 
     priceList.setUsername(settings.userName);
     priceList.setPassword(settings.password);
@@ -147,7 +147,7 @@ public class WebRowSetSample {
     fWriter.close();
 
     // Create the receiving WebRowSet object
-    WebRowSet receiver = new WebRowSetImpl();
+    WebRowSet receiver = null; // new WebRowSetImpl();
     receiver.setUrl(settings.urlString);
     receiver.setUsername(settings.userName);
     receiver.setPassword(settings.password);
