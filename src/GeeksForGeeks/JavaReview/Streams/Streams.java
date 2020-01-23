@@ -1,4 +1,4 @@
-package GeeksForGeeks.JavaReview.Advance.Streams;
+package GeeksForGeeks.JavaReview.Streams;
 
 import javax.swing.text.html.Option;
 import java.util.*;
