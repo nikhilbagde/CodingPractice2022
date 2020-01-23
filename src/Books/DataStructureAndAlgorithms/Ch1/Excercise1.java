@@ -2,10 +2,16 @@ package Books.DataStructureAndAlgorithms.Ch1;
 
 import java.util.Scanner;
 
+/*
+Write a short Java method, inputAllBaseTypes, that inputs a different value of
+each base type from the standard input device and prints it back to the standard
+output device.
+ */
 public class Excercise1 {
     public static void main(String[] args) {
         inputAllBaseTypes();
     }
+
     public static void inputAllBaseTypes(){
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext()){
