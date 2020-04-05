@@ -26,12 +26,12 @@ public class Excercise8 {
                 .collect(Collectors.toList());
         System.out.println(characterList);
 
-        int vowelsCouunt = (int) characterList
+        int vowelsCount = (int) characterList
                 .stream()
                 .filter(o -> (o == 'a' || o == 'e' || o == 'i' || o == 'o' || o == 'u'
                         || o == 'A' || o == 'E' || o == 'I' || o == 'O' || o == 'U'))
                 .count();
-        System.out.println("Count of vowel in given string are " + vowelsCouunt);
+        System.out.println("Count of vowel in given string are " + vowelsCount);
     }
 
     private static List<Character> StringToCharacterList1(String inputString) {
