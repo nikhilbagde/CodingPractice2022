@@ -22,10 +22,12 @@ public class ExcerciseC_15 {
 
         // How to convert from Array to Stream.
         // How to find max element from an array using streams.
+        // https://howtodoinjava.com/java8/java-stream-max/
         OptionalInt optinalMax = Arrays.stream(array).max();
         OptionalInt optinalMin = Arrays.stream(array).min();
 
-        // How to print optionalInt value.
+        // How to print optionalInt value. - getAsInt();
+        // https://docs.oracle.com/javase/8/docs/api/java/util/OptionalInt.html
         System.out.println("Max = " + (optinalMax.isPresent() ? optinalMax.getAsInt() : ""));
         System.out.println("Min = " + (optinalMin.isPresent() ? optinalMin.getAsInt() : ""));
 
