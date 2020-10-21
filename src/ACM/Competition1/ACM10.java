@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Nikhi on 11/9/2016.
  */
-public class ACM1 {
+public class ACM10 {
     public static void main(String[] args) throws IOException {
         //Scanner sc = new Scanner(System.in);
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
