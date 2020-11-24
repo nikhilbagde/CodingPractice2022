@@ -187,6 +187,22 @@ public class PrimitiveTypes {
         System.out.println("result = " + result);
 
         //Approach: 2 : Improvement on best and average case O(k) - k no of 1st. (5)
+        /*Approach2 :
+         * given a number
+         * E.g. 1000101101
+         * we are planning to iterate only no of k times where K is no of occurrence of 1 no.
+         * So for no: 1000101101
+         * if we negate 1 from this no.
+         * 1000101101
+         * -        1
+         *=1000101100 ( - 1)
+         * &            &
+         * 1000101101 (original no)
+         *=1000101100 ( we can remove lease significant bit with value 1)
+         *
+         * 100-1=
+         * 011  This flips all the bits. If we & it, it will vanish.
+         * 100 & 011 = 0 */
         long x1 = 556; // 64 bit long number  Test: 0 , 1 , 11, -11, 556, -556
 
         System.out.println(Long.toBinaryString(x1));
@@ -196,6 +212,38 @@ public class PrimitiveTypes {
             x1 = x1 & (x1 - 1);
         }
         System.out.println("result = " + result1);
+
+        //Approach 3: log(n) where n is the size of the number
+        /**
+         * We know that XOR bitwise is commutative and associative
+         * 0 ^ 0 ^ 1 = (0 ^ 0) ^ (1) also = (0^1) ^ 0 =1
+         * We can use existing number to compute the parity:
+         * E.g. 8 Bit number: 11010111 - Divide it into 2 4 bits set
+         * 1101 ^ 0111 = 1010 and store it in LSB of same word.
+         * So original number would be now: from 11010111 -> 11011010 (Only last 4 digits are changed)
+         * Now, we move forward with last 4 bits, - Divide it into two separate 2 bits.
+         * 1010 -> 10 ^ 10 = 00
+         * Store it in same number: 11011000 ( only last 2 bits update)
+         * 00 - divide it in 0 ^ 0 = 0
+         * 11011000 - updated last bit to same 0.
+         *
+         * Now last digit is the answer. Extract it with bitwise-AND (00000001) & 11011000 = 0.
+         *
+         * WE don't care of MSB one we got working LSB.
+         */
+        long x2 = 256; // 64 bit long number  Test: 0 , 1 , 11, -11, 556, -556,  Long.MAX_VALUE-1
+
+        System.out.println(Long.toBinaryString(x2));
+        x2 = x2 ^ x2 >>> 32; //100000000
+        x2 = x2 ^ x2 >>> 16; //100000000
+        x2 = x2 ^ x2 >>> 8; //100000000
+        x2 = x2 ^ x2 >>> 4; //100000001
+        x2 = x2 ^ x2 >>> 2; //100010001
+        x2 = x2 ^ x2 >>> 1; //101010101
+
+        short result2 = (short) (x2 & 1L);
+        System.out.println("result2 = " + result2);
+
     }
     /**
      * Note: while going through all digits, initially it result is zero
@@ -223,22 +271,7 @@ public class PrimitiveTypes {
      * result = 1
      *
      *
-     * Approach2 :
-     * given a number
-     * E.g. 1000101101
-     * we are planning to iterate only no of k times where K is no of occurrence of 1 no.
-     * So for no: 1000101101
-     * if we negate 1 from this no.
-     * 1000101101
-     * -        1
-     *=1000101100 ( - 1)
-     * &            &
-     * 1000101101 (original no)
-     *=1000101100 ( we can remove lease significant bit with value 1)
      *
-     * 100-1=
-     * 011  This flips all the bits. If we & it, it will vanish.
-     * 100 & 011 = 0
      */
 
 }
