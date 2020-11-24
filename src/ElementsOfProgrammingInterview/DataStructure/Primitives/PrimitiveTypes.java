@@ -173,6 +173,7 @@ public class PrimitiveTypes {
      * it is 0. For example, the parity of 1011 is 1, and the parity of 10001000 is 0.
      */
     private static void P2_ComputeParityOfAWord() {
+        //Approach: 1 : O(n)  : n no of bits (64)
         long x = 556; // 64 bit long number  Test: 0 , 1 , 11, -11, 556, -556
 
         System.out.println(Long.toBinaryString(x));
@@ -184,6 +185,60 @@ public class PrimitiveTypes {
             System.out.println(Long.toBinaryString(x) + " Result" + result);
         }
         System.out.println("result = " + result);
+
+        //Approach: 2 : Improvement on best and average case O(k) - k no of 1st. (5)
+        long x1 = 556; // 64 bit long number  Test: 0 , 1 , 11, -11, 556, -556
+
+        System.out.println(Long.toBinaryString(x1));
+        short result1 = 0;
+        while (x1 != 0) {
+            result1 = (short) (result1 ^ 1);
+            x1 = x1 & (x1 - 1);
+        }
+        System.out.println("result = " + result1);
     }
+    /**
+     * Note: while going through all digits, initially it result is zero
+     * Whenever we encounter 1, we exOR.
+     * Now exOr is set to 1 when one of the digit is 1.
+     * So when we encounter next 1, we change result from 0 to 1.
+     * Now when duplicate next 1 is found then result 1 is clears as 1 ^ 1 = 0.
+     * Initially result was 0
+     * when 1st 1 was found we set it to 1.
+     * before finding next 1, if we even encounter zeros in between, 1 ^ 0 = 1, keep the count of one alive.
+     * Unless next one is found. 1 ^ 1 = 0.
+     * And for 0 ^ 0 = always 0.
+     * DEBUG:
+     * 1000101101 Result = 0.   0 ^ 1&1 => 1
+     * 100010110 Result = 1.    1 ^ 0&1 => 1
+     * 10001011 Result = 1.     1 ^ 1&1 => 0
+     * 1000101 Result = 0
+     * 100010 Result = 1
+     * 10001 Result = 1
+     * 1000 Result = 0
+     * 100 Result = 0
+     * 10 Result = 0
+     * 1 Result = 0
+     * 0 Result = 1
+     * result = 1
+     *
+     *
+     * Approach2 :
+     * given a number
+     * E.g. 1000101101
+     * we are planning to iterate only no of k times where K is no of occurrence of 1 no.
+     * So for no: 1000101101
+     * if we negate 1 from this no.
+     * 1000101101
+     * -        1
+     *=1000101100 ( - 1)
+     * &            &
+     * 1000101101 (original no)
+     *=1000101100 ( we can remove lease significant bit with value 1)
+     *
+     * 100-1=
+     * 011  This flips all the bits. If we & it, it will vanish.
+     * 100 & 011 = 0
+     */
 
 }
