@@ -1,5 +1,7 @@
 package ElementsOfProgrammingInterview.DataStructure.Primitives;
 
+import java.util.Random;
+
 public class PrimitiveTypes {
     public static void main(String[] args) {
         char a = 'a';
@@ -70,6 +72,34 @@ public class PrimitiveTypes {
         double mathValue_6 = Math.max(2, -3);
         double mathValue_7 = Math.pow(2.71, 3.14);
         double mathValue_8 = Math.sqrt(255);
+
+        //Limit of autoboxing
+        // Character[] C = new char[]{'a','b'};
+        int charValue = Character.getNumericValue('x');
+
+        //Random
+        Random r = new Random();
+        int nextInt_1 = r.nextInt();
+        int nextInt_21 = r.nextInt();
+        int nextInt_31 = r.nextInt();
+        int nextInt_51 = r.nextInt();
+        int nextInt_41 = r.nextInt();
+        int nextInt_2 = r.nextInt(16);
+        int nextInt_3 = r.nextInt(16);
+        int nextInt_4 = r.nextInt(16);
+        int nextInt_5 = r.nextInt(16);
+        int nextInt_6 = r.nextInt(16);
+        int nextInt_7 = r.nextInt(16);
+
+        double nextDDouble_1 = r.nextDouble();
+        double nextDDouble_2 = r.nextDouble();
+        double nextDDouble_3 = r.nextDouble();
+        double nextDDouble_4 = r.nextDouble();
+        double nextDDouble_5 = r.nextDouble();
+        double nextDDouble_6 = r.nextDouble();
+        double nextDDouble_7 = r.nextDouble(); //nextDouble.. return values between [0,1)
+
+        P2_ComputeParityOfAWord();
     }
 
     /**
@@ -124,6 +154,7 @@ public class PrimitiveTypes {
         }
 
         System.out.println("numBits = " + numBits);
+
     }
     /**
      * Note: The Bitwise examples above use 4-bit unsigned examples,
@@ -137,5 +168,22 @@ public class PrimitiveTypes {
      * 00000000000000000000000000001001 >> 1 will return 00000000000000000000000000000100
      */
 
+    /**
+     * The parity of a binary word is 1 if the number of Is in the word is odd; otherwise,
+     * it is 0. For example, the parity of 1011 is 1, and the parity of 10001000 is 0.
+     */
+    private static void P2_ComputeParityOfAWord() {
+        long x = 556; // 64 bit long number  Test: 0 , 1 , 11, -11, 556, -556
+
+        System.out.println(Long.toBinaryString(x));
+        short result = 0;
+        while (x != 0) {
+
+            result = (short) (result ^ (short) (x & 1));
+            x >>>= 1;
+            System.out.println(Long.toBinaryString(x) + " Result" + result);
+        }
+        System.out.println("result = " + result);
+    }
 
 }
