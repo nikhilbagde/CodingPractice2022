@@ -49,6 +49,27 @@ public class PrimitiveTypes {
         boolean	    false
 
          */
+
+        P1_CountNumberOfBitsSetTo1();
+
+        //Box Types Factories
+        Double doubleValue = Double.valueOf("1.24");
+        Boolean booleanValue = Boolean.valueOf(true);
+        Integer intValue = Integer.parseInt("42");
+        String floatValue = Float.toString(-1.24f);
+
+        //Comparing values
+        Boolean results_d = Double.compare(doubleValue, 1.24) == 0;
+
+        //Maths Key methods
+        double mathValue_1 = Math.abs(-34.5);
+        double mathValue_2 = Math.abs(-34);
+        double mathValue_3 = Math.ceil(-34.5);
+        double mathValue_4 = Math.floor(-34.5);
+        double mathValue_5 = Math.min(2, -3);
+        double mathValue_6 = Math.max(2, -3);
+        double mathValue_7 = Math.pow(2.71, 3.14);
+        double mathValue_8 = Math.sqrt(255);
     }
 
     /**
@@ -115,4 +136,6 @@ public class PrimitiveTypes {
      * In Java, 9 >> 1 will not return 12. It will return 4.
      * 00000000000000000000000000001001 >> 1 will return 00000000000000000000000000000100
      */
+
+
 }
