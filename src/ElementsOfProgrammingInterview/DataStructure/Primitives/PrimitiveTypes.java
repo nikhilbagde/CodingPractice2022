@@ -5,23 +5,33 @@ public class PrimitiveTypes {
         char a = 'a';
         byte byte_max = Byte.MAX_VALUE;     //8 Bit number   2 ^8= 256    256/2= 128   (-128 to 127]
         byte byte_min = Byte.MIN_VALUE;
+        byte byte_size = Byte.SIZE;
+
         short short_min = Short.MIN_VALUE;  //16 bit number  2 ^16= 65536  65536/2= 32,768 (-32768 to 32767]
         short short_max = Short.MAX_VALUE;
+        short short_size = Short.SIZE;
+
         int int_max = Integer.MAX_VALUE;    //32 bit number  2 ^32= 4,294,967,296 /2=  (-2^31 to 2^31-1]
         int int_min = Integer.MIN_VALUE;
+        int int_size = Integer.SIZE;
+
         long long_min = Long.MIN_VALUE;     // 64 but number: 2^63  (-2^63 to 2^63-1]
         long long_max = Long.MAX_VALUE;
+        long long_size = Long.SIZE;
+
         float float_min = Float.MIN_VALUE;
         float float_max = Float.MAX_VALUE;
+        float float_size = Float.SIZE;
+
         double double_min = Double.MIN_VALUE;
         double double_max = Double.MAX_VALUE;
+        double double_size = Double.SIZE;
+
         boolean bool_true = Boolean.TRUE;
         boolean bool_false = Boolean.FALSE;
+
         char char_min = Character.MIN_VALUE; // 16 bit Unicode character min: '\u0000' = 0 and max: '\uffff' = 65,535
         char char_max = Character.MAX_VALUE;
-
-        System.out.println("byte_min = " + byte_min);
-        System.out.println("byte_max = " + byte_max);
 
         /*
                 Default values:
@@ -94,4 +104,15 @@ public class PrimitiveTypes {
 
         System.out.println("numBits = " + numBits);
     }
+    /**
+     * Note: The Bitwise examples above use 4-bit unsigned examples,
+     * but Java uses 32-bit signed integers and 64-bit signed long integers.
+     * Because of this,
+     * in Java, ~5 will not return 10.
+     * It will return -6. ~00000000000000000000000000000101
+     * will return 11111111111111111111111111111010
+     *
+     * In Java, 9 >> 1 will not return 12. It will return 4.
+     * 00000000000000000000000000001001 >> 1 will return 00000000000000000000000000000100
+     */
 }
