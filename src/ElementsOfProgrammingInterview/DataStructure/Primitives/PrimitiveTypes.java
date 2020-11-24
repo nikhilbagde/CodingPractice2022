@@ -100,7 +100,34 @@ public class PrimitiveTypes {
         double nextDDouble_7 = r.nextDouble(); //nextDouble.. return values between [0,1)
 
         P2_ComputeParityOfAWord();
+
+        // Swap Bits
+        /**
+         * A 64-bit integer can be viewed as an array of 64 bits, with the bit at index 0 corre¬
+         * sponding to the least significant bit (LSB), and the bit at index 63 corresponding to
+         * the most significant bit (MSB). Implement code that takes as input a 64-bit integer
+         * and swaps the bits at indices i and y. Figure 5.1 illustrates bit swapping for an 8-bit
+         * integer.
+         *
+         * //Ideas to accelerate bit manipulation
+         *         // E.g x & ( x - 1 ) clears the lowest set but in x
+         *         // and x & ~ ( x - 1) extracts the lowest set but of x
+         *         //  101101 x
+         *         //  101100 x - 1
+         *         //&=101100 cleared lowest set bit.
+         *         //  101100 y
+         *         //  101011 y-1
+         *         //&=101000
+         *  Similarly extraction
+         *  1. 101101 & ~(101101-1) = 101101 & ~(101100) = 101101 & 010011 = 000001
+         *  2. 101110 & ~(101110-1) = 101110 & ~(101101) = 101110 & 010010 = 000010
+         *
+         *
+         */
+        P3_swapBitsInANumber();
+
     }
+
 
     /**
      * P1: Writing a program to count the number of bits that are set to 1 in an integer
@@ -273,5 +300,30 @@ public class PrimitiveTypes {
      *
      *
      */
+    private static void P3_swapBitsInANumber() {
+    /*PROBLEM: A 64-bit integer can be viewed as an array of 64 bits, with the bit at index 0 corre¬
+    sponding to the least significant bit (LSB), and the bit at index 63 corresponding to
+    the most significant bit (MSB). Implement code that takes as input a 64-bit integer
+    and swaps the bits at indices i and y. Figure 5.1 illustrates bit swapping for an 8-bit
+    integer.*/
 
+        long x3 = 73;
+        int i = 6, j = 1;
+
+        // if bit as ith and jth are same then it does not make sense to swap it. Directly return the same number:
+        long result;
+        if (((x3 >>> i) & 1) != ((x3 >>> j) & 1)) {
+            // i-th and j-th bits differ. We will swap them by flipping their values.
+            // Select the bits to flip with bitMask.
+            // Since x^ l = 0 when x = 1 and 1 when x = 0,
+            // we can perform the flip XOR .
+            long bitMask = (1L << i) | (1L << j);
+            result = x3 ^ bitMask;
+        } else {
+            result = x3; // same number
+        }
+        System.out.println("result = " + result);
+    }
+
+    // Time complexity : O(1)
 }
