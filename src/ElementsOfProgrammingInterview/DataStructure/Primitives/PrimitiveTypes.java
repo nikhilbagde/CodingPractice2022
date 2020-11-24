@@ -64,8 +64,8 @@ public class PrimitiveTypes {
         //Maths Key methods
         double mathValue_1 = Math.abs(-34.5);
         double mathValue_2 = Math.abs(-34);
-        double mathValue_3 = Math.ceil(-34.5);
-        double mathValue_4 = Math.floor(-34.5);
+        double mathValue_3 = Math.ceil(2.17);
+        double mathValue_4 = Math.floor(3.14);
         double mathValue_5 = Math.min(2, -3);
         double mathValue_6 = Math.max(2, -3);
         double mathValue_7 = Math.pow(2.71, 3.14);
