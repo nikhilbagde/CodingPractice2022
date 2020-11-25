@@ -103,6 +103,8 @@ public class Ch_2_Arrays {
 
         P3_multiplyTwoArbitaryPreciousIntegers();
 
+        P4_advancingThroudhAnArray();
+
 
     }
 
@@ -230,4 +232,50 @@ public class Ch_2_Arrays {
         System.out.println("result = " + Arrays.toString(result.toArray()));
     }
     //Time complexity O(mn) where m and n are length of the arrays.
+
+    /**
+     * In a particular board game, a player has to try to advance through a sequence of
+     * positions. Each position has a nonnegative integer associated with it, representing
+     * the maximum you can advance from that position in one move. You begin at the first
+     * position, and win by getting to the last position
+     * <p>
+     * For example, let A = (3,3,1,0, 2, 0,1}
+     * represent the board game, i.e., the ith entry in A is the maximum we can advance
+     * from i. Then the game can be won by the following sequence of advances through
+     * A: take 1 step from A[0] to A[1], then 3 steps from A[l] to A[4], then 2 steps from
+     * A[4] to A[6], which is the last position. Note that A[0] = 3 > 1, A[l] = 3 > 3, and
+     * A[4] = 2 > 2, so all moves are valid.
+     * If A instead was (3, 2, 0,0, 2, 0,1), it would not
+     * possible to advance past position 3, so the game cannot be won.
+     * <p>
+     * A = [3 3 1 0 2 0 1]
+     * 0 1 2 3 4 5 6
+     * <p>
+     * So to win we need to be on position 6th.
+     * ith element value is maximum jumps I can take from ith position
+     * e.g. A[0] =  3:, so means I can take 1/2/3 jumps from 0th position.
+     * So that I can move to 1 2 or 3rd position of A (A[1]/A[2]/A[3]).
+     */
+    private static void P4_advancingThroudhAnArray() {
+        //int A[] = {3,3,1,0, 2, 0,1};
+        int[] A = {3, 2, 0, 0, 2, 0, 1};
+
+        int j = A.length - 1;
+        int i = j - 1;
+
+        while (j >= 0 && i >= 0) {
+            if (A[i] >= j - i) {
+                j = i;
+                i = j - 1;
+            } else {
+                i--;
+            }
+        }
+        System.out.println(j == 0 ? "Winning is possible" : "Winning is not possible");
+
+    }
+    /**
+     * Variant: Write a program to compute the minimum number of steps needed to ad¬
+     * vance to the last location
+     */
 }
