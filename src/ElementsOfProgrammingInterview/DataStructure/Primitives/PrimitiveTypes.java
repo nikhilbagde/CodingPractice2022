@@ -300,14 +300,18 @@ public class PrimitiveTypes {
      *
      *
      */
-    private static void P3_swapBitsInANumber() {
-    /*PROBLEM: A 64-bit integer can be viewed as an array of 64 bits, with the bit at index 0 corre¬
-    sponding to the least significant bit (LSB), and the bit at index 63 corresponding to
-    the most significant bit (MSB). Implement code that takes as input a 64-bit integer
-    and swaps the bits at indices i and y. Figure 5.1 illustrates bit swapping for an 8-bit
-    integer.*/
 
-        long x3 = 73;
+    /**
+     * PROBLEM: A 64-bit integer can be viewed as an array of 64 bits, with the bit at index 0 corre¬
+     * sponding to the least significant bit (LSB), and the bit at index 63 corresponding to
+     * the most significant bit (MSB). Implement code that takes as input a 64-bit integer
+     * and swaps the bits at indices i and y. Figure 5.1 illustrates bit swapping for an 8-bit
+     * integer.
+     */
+    private static void P3_swapBitsInANumber() {
+
+
+        long x3 = 73;  //1001001
         int i = 6, j = 1;
 
         // if bit as ith and jth are same then it does not make sense to swap it. Directly return the same number:
@@ -326,4 +330,63 @@ public class PrimitiveTypes {
     }
 
     // Time complexity : O(1)
+
+    /**
+     * PROBLEM : COMPUTE X X y WITHOUT ARITHMETICAL OPERATORS
+     * Write a program that multiplies two non-negative integers. The only operators you
+     * are allowed to use are
+     * • assignment,
+     * • the bitwise operators », «, |, &, “ and
+     * • equality checks and Boolean combinations thereof.
+     */
+
+    public static long multiply(long x, long y) {
+        long sum = 0;
+        while (x != 0) {
+            // Examines each bit of x.
+            if ((x & 1) != 0) {
+                sum = add(sum, y);
+            }
+            x >>>= 1;
+            y <<= 1;
+        }
+        return sum;
+    }
+
+    private static long add(long a, long b) {
+        long sum = 0, carryin = 0, k = 1, tempA = a, tempB = b;
+        while (tempA != 0 || tempB != 0) {
+            long ak = a & k, bk = b & k;
+            long carryout = (ak & bk) | (ak & carryin) | (bk & carryin);
+            sum |= (ak ^ bk ^ carryin);
+            carryin = carryout << 1;
+            k <<= 1;
+            tempA >>>= 1;
+            tempB >>>= 1;
+        }
+        return sum | carryin;
+    }
+    /** Explanation
+     * The algorithm taught in grade-school for decimal multiplication does not use
+     * repeated addition—it uses shift and add to achieve a much better time complexity.
+     * We can do the same with binary numbers—to multiply x and y we initialize the result
+     * to 0 and iterate through the bits of x,adding 2ky to the result if the fcth bit of x is 1.
+     * The value 2ky can be computed by left-shifting y by k. Since we cannot use add
+     * directly, we must implement it. We apply the grade-school algorithm for addition to
+     * the binary case, i.e., compute the sum bit-by-bit, and "rippling" the carry along.
+     * As an example, we show how to multiply 13 = (1101)2 and 9 = (1001)2 using the
+     * algorithm described above. In the first iteration, since the LSB of 13 is 1, we set the
+     * result to (1001)2. The second bit of (1101)2 is 0, so we move on to the third bit.
+     *
+     * bit is 1, so we shift (1001)2 to the left by 2 to obtain (100100)2/ which we add to (1001)2
+     * to get (101101)2. The fourth and final bit of (1101)2 is 1, so we shift (1001)2 to the left
+     * by 3 to obtain (1001000)2, which we add to (101101)2 to get (1110101)2 = 117.
+     * Each addition is itself performed bit-by-bit. For example, when adding (101101)2
+     * and (1001000)2, the LSB of the result is 1 (since exactly one of the two LSBs of the
+     * operands is 1). The next bit is 0 (since both the next bits of the operands are 0). The
+     * next bit is 1 (since exactly one of the next bits of the operands is 1). The next bit is
+     * 0 (since both the next bits of the operands are 1). We also "carry" a 1 to the next
+     * position. The next bit is1(since the carry-in is1and both the next bits of the operands
+     * are 0). The remaining bits are assigned similarly.
+     */
 }
