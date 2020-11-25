@@ -2,6 +2,7 @@ package ElementsOfProgrammingInterview.DataStructure.Arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -100,6 +101,8 @@ public class Ch_2_Arrays {
         P2_increamentAnAbritaryPrecisionInteger();
         P2_increamentAnAbritaryPrecisionInteger_variany();
 
+        P3_multiplyTwoArbitaryPreciousIntegers();
+
 
     }
 
@@ -190,6 +193,41 @@ public class Ch_2_Arrays {
     }
 
     private static void P3_multiplyTwoArbitaryPreciousIntegers() {
+        List<Integer> num1 = Arrays.asList(1, 9, 3, 7, 0, 7, 7, 2, 1);
+        List<Integer> num2 = Arrays.asList(-7, 6, 1, 8, 3, 8, 2, 5, 7, 2, 8, 7);
 
+        final int sign = num1.get(0) < 0 ^ num2.get(0) < 0 ? -1 : 1;    //both + or both -, 00, 11 -> 0  1-, then 1 EXOR
+
+        //Now we got the sign, set absolute values back to num1 and num2
+        num1.set(0, Math.abs(num1.get(0)));
+        num2.set(0, Math.abs(num2.get(0)));
+
+        List<Integer> result =
+                new ArrayList<>(Collections.nCopies(num1.size() + num2.size(), 0));
+
+        for (int i = num1.size() - 1; i >= 0; --i) {
+            for (int j = num2.size() - 1; j >= 0; --j) {
+                result.set(i + j + 1, result.get(i + j + 1) + num1.get(i) * num2.get(j)); // set multiplication first
+                result.set(i + j, result.get(i + j) + result.get(i + j + 1) / 10);      //set carry-in
+                result.set(i + j + 1, result.get(i + j + 1) % 10);      //set back reminder
+
+            }
+        }
+
+        //Remove leading zeros
+        int first_non_zero = 0;
+        while (first_non_zero < result.size() && result.get(first_non_zero) == 0) {
+            ++first_non_zero;
+        }
+
+        result = result.subList(first_non_zero, result.size());
+
+        if (result.isEmpty()) {
+            System.out.println(Arrays.asList(0));
+        }
+        result.set(0, result.get(0) * sign);
+
+        System.out.println("result = " + Arrays.toString(result.toArray()));
     }
+    //Time complexity O(mn) where m and n are length of the arrays.
 }
