@@ -1,4 +1,4 @@
-package ElementsOfProgrammingInterview.DataStructure.Primitives;
+package Books.ElementsOfProgrammingInterview.DataStructure.Primitives;
 
 import java.util.Random;
 

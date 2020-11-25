@@ -1,4 +1,4 @@
-package ElementsOfProgrammingInterview.DataStructure.Arrays;
+package Books.ElementsOfProgrammingInterview.DataStructure.Arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -104,6 +104,8 @@ public class Ch_2_Arrays {
         P3_multiplyTwoArbitaryPreciousIntegers();
 
         P4_advancingThroudhAnArray();
+
+        P5_deleteDuplicatesFromSortedArray();
 
 
     }
@@ -278,4 +280,16 @@ public class Ch_2_Arrays {
      * Variant: Write a program to compute the minimum number of steps needed to ad¬
      * vance to the last location
      */
+
+    /**
+     * This problem is concerned with deleting repeated elements from a sorted array.
+     * For example, for the array (2,3,5,5,7,11,11,11,13), then after deletion, the array is
+     * (2,3,5,7,11,13,0,0,0).
+     */
+
+    private static void P5_deleteDuplicatesFromSortedArray() {
+        int[] A = new int[]{2, 3, 5, 5, 7, 11, 11, 11, 13};
+
+
+    }
 }
