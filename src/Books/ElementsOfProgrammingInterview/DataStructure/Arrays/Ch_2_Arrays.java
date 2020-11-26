@@ -306,20 +306,63 @@ public class Ch_2_Arrays {
      * stock.
      */
 
-    private static double P6_computeMaxProfite() {
+    private static void P6_computeMaxProfite() {
         List<Double> prices = Arrays.asList(310.00, 315.00, 275.00, 295.00, 260.00, 270.00, 290.00, 230.00, 255.00, 250.00);
 
+        //Approach 1: two pointer method
         double maxProfile = 0.0;
         int i = 0;
         while (i < prices.size() - 1) {
             int j = i + 1;
-            while (prices.get(j) > prices.get(j - 1) && prices.get(j) > prices.get(i)) {
+            while (prices.get(j) > prices.get(j - 1) && prices.get(j) > prices.get(i)) { //check with previous and original value  e.g. 310, 315, 314 scenario
                 maxProfile = Math.max(maxProfile, prices.get(j) - prices.get(i));
                 j++;
             }
             i = j;
         }
         System.out.println("maxProfile = " + maxProfile);
-        return maxProfile;
+
+        //Time: O(n^2) Space O(1)
+
+        //Approach 2: Adding another array with low value
+        List<Double> prices_2 = Arrays.asList(310.00, 315.00, 275.00, 295.00, 260.00, 270.00, 290.00, 230.00, 255.00, 250.00);
+        List<Double> prices_3 = new ArrayList<>();      //Bug fix : Cant clone it. = prices_2.clone()
+        // or new ArrayList<>(prices_2.size()) does not take size argurmanet
+
+        prices_3.add(prices_2.get(0));                  //BUG fix: prices_3.set changed to add, cant set in non initialize list.
+        double rememberValue = prices_2.get(0);
+
+        for (int j = 1; j < prices_2.size(); j++) {
+            if (rememberValue < prices_2.get(j)) {
+                prices_3.add(rememberValue);
+            } else {
+                rememberValue = prices_2.get(j);
+                prices_3.add(rememberValue);        //Bug fix: remembered value was missed to add to price_3 when initially found
+            }
+        }
+        System.out.println(Arrays.toString(prices_3.toArray()));
+
+        maxProfile = 0.0;
+        List<Double> profit = new ArrayList<>();
+        for (int j = 0; j < prices_2.size(); j++) {
+            profit.add(prices_2.get(j) - prices_3.get(j));
+            maxProfile = Math.max(maxProfile, profit.get(j));
+        }
+        System.out.println("maxProfile = " + maxProfile);
+        //Time: O(N), Space: O(n^2)
+
+        //Approach 3:
+        List<Double> prices_4 = Arrays.asList(310.00, 315.00, 275.00, 295.00, 260.00, 270.00, 290.00, 230.00, 255.00, 250.00);
+        double minPrice = Double.MAX_VALUE, maxProfit = 0.0;
+        for (Double price : prices_4) {
+            maxProfit = Math.max(maxProfit, price - minPrice);
+            minPrice = Math.min(minPrice, price);
+        }
+        //Time: O(n) Space: O(1)
     }
+
+
+
+
+
 }
