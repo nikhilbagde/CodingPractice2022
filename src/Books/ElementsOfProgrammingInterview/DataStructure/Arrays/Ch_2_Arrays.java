@@ -106,6 +106,7 @@ public class Ch_2_Arrays {
         P4_advancingThroudhAnArray();
 
         P5_deleteDuplicatesFromSortedArray();
+        P6_computeMaxProfite();
 
 
     }
@@ -291,5 +292,34 @@ public class Ch_2_Arrays {
         int[] A = new int[]{2, 3, 5, 5, 7, 11, 11, 11, 13};
 
 
+    }
+
+    /**
+     * This problem is concerned with the problem of optimally buying and selling a stock
+     * once, as described on Page 2. As an example, consider the following sequence of
+     * stock prices: (310,315, 275, 295, 260, 270, 290, 230, 255, 250). The maximum profit that
+     * can be made with one buy and one sell is 30—buy at 260 and sell at 290. Note that
+     * 260 is not the lowest price, nor 290 the highest price.
+     * <p>
+     * PROBLEM: Write a program that takes an array denoting the daily stock price, and returns the
+     * maximum profit that could be made by buying and then selling one share of that
+     * stock.
+     */
+
+    private static double P6_computeMaxProfite() {
+        List<Double> prices = Arrays.asList(310.00, 315.00, 275.00, 295.00, 260.00, 270.00, 290.00, 230.00, 255.00, 250.00);
+
+        double maxProfile = 0.0;
+        int i = 0;
+        while (i < prices.size() - 1) {
+            int j = i + 1;
+            while (prices.get(j) > prices.get(j - 1) && prices.get(j) > prices.get(i)) {
+                maxProfile = Math.max(maxProfile, prices.get(j) - prices.get(i));
+                j++;
+            }
+            i = j;
+        }
+        System.out.println("maxProfile = " + maxProfile);
+        return maxProfile;
     }
 }
