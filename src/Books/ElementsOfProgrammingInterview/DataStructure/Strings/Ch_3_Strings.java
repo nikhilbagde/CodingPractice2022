@@ -74,6 +74,7 @@ public class Ch_3_Strings {
          */
 
         P2_intToString();
+        P8_reverseWords();
     }
 
     private static void P1_isPalindromic() {
@@ -173,18 +174,18 @@ public class Ch_3_Strings {
         }
 
         //backward iteration replace 'a' with 'dd' starting from end.
-        int front = i - 1; // -1 because after last iteration above i++ will take 1 value next.
+        int mid = i - 1; // -1 because after last iteration above i++ will take 1 value next.
         // now for filling 'dd' with a, we just have to have new size of array twice to count of a.
-        int back = countA + (i - 1);      //count A + new index after deleting b would be new size.
+        int end = mid + countA;      //count A + new index after deleting b would be new size.
 
-        while (front > 0) {
-            if (a[front] == 'a') {
-                a[back--] = 'd';
-                a[back--] = 'd';
+        while (mid > 0) {
+            if (a[mid] == 'a') {
+                a[end--] = 'd';
+                a[end--] = 'd';
             } else {
-                a[back--] = a[front];
+                a[end--] = a[mid];
             }
-            front--;
+            mid--;
         }
 
         System.out.println(Arrays.toString(a));
@@ -225,4 +226,92 @@ public class Ch_3_Strings {
         System.out.println(" Is it Palindrome");
     }
     // Time: O(n) and Space: O(1)
+
+    /**
+     * Given a string containing a set of words separated by whitespace, we would like to
+     * transform it to a string in which the words appear in the reverse order. For example,
+     * "Alice likes Bob" transforms to "Bob likes Alice". We do not need to keep the original
+     * string.
+     * Implement a function for reversing the words in a string s.
+     * Hint: It's difficult to solve this with one pass.
+     */
+
+    private static void P8_reverseWords() {
+        String input = "Alice likes Bob";
+
+        /*
+            Approach 1: split the string using String.split() into array of strings.
+            Run the reverse() using, StringBuilder for each string
+            join all Strings back adding space between strings to form a final string.
+            e.g. "Alice likes Bob"
+            "Alice", "likes", "Bob"
+            //"ecilA sekil boB"  --  Then reverse the whole string
+            Expected: "Bob likes Alice"
+
+            TimeComplexity of all the methods in String/StringBuilder and StringBuffer:
+            https://github.com/nikhilbagde/TimeComplexityOfPredefinedMethodsInJava/blob/master/String%2C%20StringBuilder%20and%20StringBuffer%20class%20methods
+         */
+        String[] inputSplit = input.split("\\s+");
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < inputSplit.length; i++) {
+            StringBuilder sb = new StringBuilder(inputSplit[i]);
+            //sb.reverse();
+            //if(i!= inputSplit.length-1) {
+            result.insert(0, sb.toString());         //Approach changed: directly append at zero without reversing.
+            result.insert(0, " ");              // Append space to keep space in between words.
+            //}
+        }
+        System.out.println(result.replace(0, 1, "").toString());
+        //result.reverse();
+
+        /*
+            StringBuilder.insert() uses System.copy() - which takes O(N) n is length of the string.
+            Hence for each string it will take O(N) hence combined complexity is O(N)
+            Time: O(N)
+            Space: O(N)
+         */
+
+        // follow up how to eliminate Space O(n)
+        /* Approach 2:
+            1. Reverse whole string first - write method to reverse a string with start and end index. And do it in n/2 iteration cycle.
+                E.g. "Alice likes Bob" -> "boB sekil ecilA"
+            2. then Reverse each word - using same reverse method based on index start and end.
+                e.g. "boB sekil ecilA" -> "Bob likes Alice"
+         */
+
+        char[] inputArr = input.toCharArray();
+        reverse(inputArr, 0, inputArr.length);
+
+        int start = 0, end;
+        while ((end = find(inputArr, ' ', start)) != -1) {
+            //Reverse each word in the string
+            reverse(inputArr, start, end);
+            start = end + 1;
+        }
+
+        //reverse the last word.
+        reverse(inputArr, start, inputArr.length);
+
+    }
+
+    private static int find(char[] input, char space, int start) {
+        for (int i = start; i < input.length; i++) {
+            if (input[i] == space) return i;
+        }
+        return -1;
+    }
+
+    private static void reverse(char[] input, int start, int end) {
+        if (start >= end) return;
+
+        for (int i = start; i < start + (end - start) / 2; i++) {          //start + (end-start)/2 b/c for each string start position would be diff.
+            char temp = input[i];
+            input[i] = input[end - 1 + start];
+            input[end - 1 + start] = temp;
+        }
+    }
+
+    //Time: O(n) space: O(1)
+
+
 }
