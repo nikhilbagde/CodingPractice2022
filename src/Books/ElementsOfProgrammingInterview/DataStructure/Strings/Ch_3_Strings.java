@@ -1,81 +1,11 @@
 package Books.ElementsOfProgrammingInterview.DataStructure.Strings;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ch_3_Strings {
-    public static void main(String[] args) {
-
-        String s = "String if what";
-        char charAtString = s.charAt(0);
-
-        int compareString = s.compareTo("string");
-
-        String concatedString = s.concat(" is amazing");
-
-        boolean containsResult = s.contains("ri");
-        boolean containsResult2 = s.contains("rig");
-        boolean containsResult3 = s.startsWith("St");
-        boolean containsResult4 = s.startsWith("S");
-        boolean endsWithString = s.endsWith("ring");
-        boolean endsWithString2 = s.endsWith("ng");
-        int indexOfResult = s.indexOf("ng");
-        int indexOfResult2 = s.indexOf("n");
-        int indexOfResult3 = s.indexOf("g");
-        int indexOfResult4 = s.indexOf("g", 5);
-        int indexOfResult5 = s.indexOf("g", 2);
-        int indexOfResult6 = concatedString.lastIndexOf("g");
-        int lengthOfString = s.length();
-        s = s.replace("a", "A");
-
-        String s1 = "foo::bar::abc";
-        String[] splitResult = s1.split("::");
-
-        String subString1 = concatedString.substring(1);
-        String subString2 = concatedString.substring(1, 5);
-        char[] charArray = concatedString.toCharArray();
-
-        //StringBuilder
-        StringBuilder sb = new StringBuilder();
-        sb.append("Appending");
-        char aa = sb.charAt(1);
-        aa = sb.charAt(2);
-        sb.delete(2, 4);
-        sb.deleteCharAt(2);
-        sb.insert(0, 1);
-        sb.insert(0, 'd');
-        sb.insert(0, "as");
-        sb.replace(2, 4, "replaced");
-        String ss = sb.toString();
-
-
-        P1_isPalindromic();
-
-        //unicode characters
-        char zero = '0';
-        char one = '1';
-        int sum = zero + one;
-        System.out.println("sum = " + sum);
-        System.out.println("sum = (char) " + (char) sum);
-
-        /**
-         * Unicode Character map:
-         *
-         *      0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
-         *      0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
-         *      -----------------------------------------------------------------
-         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (0 to 15)
-         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (16 to 31)
-         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (32 to 47)
-         *      0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?   (48 to 63)
-         *      @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   (64 to 79)
-         *      P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _   (80 to 95)
-         *      `   a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   (96 to 101)
-         *      p   q   r   s   t   u   v   w   x   y   z   {   |   }   ~   ␡  (102 to 127)
-         */
-
-        P2_intToString();
-        P8_reverseWords();
-    }
+    private static final String[] MAPPING = {"0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
 
     private static void P1_isPalindromic() {
         String input = "aabbssssbbaa";
@@ -301,17 +231,129 @@ public class Ch_3_Strings {
         return -1;
     }
 
-    private static void reverse(char[] input, int start, int end) {
-        if (start >= end) return;
+    public static void main(String[] args) {
 
-        for (int i = start; i < start + (end - start) / 2; i++) {          //start + (end-start)/2 b/c for each string start position would be diff.
-            char temp = input[i];
-            input[i] = input[end - 1 + start];
-            input[end - 1 + start] = temp;
-        }
+        String s = "String if what";
+        char charAtString = s.charAt(0);
+
+        int compareString = s.compareTo("string");
+
+        String concatedString = s.concat(" is amazing");
+
+        boolean containsResult = s.contains("ri");
+        boolean containsResult2 = s.contains("rig");
+        boolean containsResult3 = s.startsWith("St");
+        boolean containsResult4 = s.startsWith("S");
+        boolean endsWithString = s.endsWith("ring");
+        boolean endsWithString2 = s.endsWith("ng");
+        int indexOfResult = s.indexOf("ng");
+        int indexOfResult2 = s.indexOf("n");
+        int indexOfResult3 = s.indexOf("g");
+        int indexOfResult4 = s.indexOf("g", 5);
+        int indexOfResult5 = s.indexOf("g", 2);
+        int indexOfResult6 = concatedString.lastIndexOf("g");
+        int lengthOfString = s.length();
+        s = s.replace("a", "A");
+
+        String s1 = "foo::bar::abc";
+        String[] splitResult = s1.split("::");
+
+        String subString1 = concatedString.substring(1);
+        String subString2 = concatedString.substring(1, 5);
+        char[] charArray = concatedString.toCharArray();
+
+        //StringBuilder
+        StringBuilder sb = new StringBuilder();
+        sb.append("Appending");
+        char aa = sb.charAt(1);
+        aa = sb.charAt(2);
+        sb.delete(2, 4);
+        sb.deleteCharAt(2);
+        sb.insert(0, 1);
+        sb.insert(0, 'd');
+        sb.insert(0, "as");
+        sb.replace(2, 4, "replaced");
+        String ss = sb.toString();
+
+
+        P1_isPalindromic();
+
+        //unicode characters
+        char zero = '0';
+        char one = '1';
+        int sum = zero + one;
+        System.out.println("sum = " + sum);
+        System.out.println("sum = (char) " + (char) sum);
+
+        /**
+         * Unicode Character map:
+         *
+         *      0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+         *      0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
+         *      -----------------------------------------------------------------
+         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (0 to 15)
+         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (16 to 31)
+         *      *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   (32 to 47)
+         *      0   1   2   3   4   5   6   7   8   9   :   ;   <   =   >   ?   (48 to 63)
+         *      @   A   B   C   D   E   F   G   H   I   J   K   L   M   N   O   (64 to 79)
+         *      P   Q   R   S   T   U   V   W   X   Y   Z   [   \   ]   ^   _   (80 to 95)
+         *      `   a   b   c   d   e   f   g   h   i   j   k   l   m   n   o   (96 to 101)
+         *      p   q   r   s   t   u   v   w   x   y   z   {   |   }   ~   ␡  (102 to 127)
+         */
+
+        P2_intToString();
+        // P8_reverseWords();
+        P9_phoneMnemonic();
     }
 
     //Time: O(n) space: O(1)
 
+    private static void reverse(char[] input, int start, int end) {
+        if (start >= end) return;
 
+        end = end - 1;
+        for (int i = start; i <= start + (end - start) / 2; i++) {          //start + (end-start)/2 b/c for each string start position would be diff.
+            char temp = input[i];
+            input[i] = input[end - i + start];
+            input[end - 1 + start] = temp;
+        }
+    }
+
+    /**
+     * Each digit, apart from 0 and 1, in a phone keypad corresponds to one of three or four
+     * letters of the alphabet, as shown in Figure 7.1 on the next page. Since words are easier
+     * to remember than numbers, it is natural to ask if a 7 or 10-digit phone number can
+     * be represented by a word. For example, "2276696" corresponds to "ACRONYM" as
+     * well as "ABPOMZN".
+     * Write a program which takes as input a phone number, specified as a string of digits,
+     * and returns all possible character sequences that correspond to the phone number.
+     * The cell phone keypad is specified by a mapping that takes a digit and returns the
+     * corresponding set of characters. The character sequences do not have to be legal
+     * words or phrases.
+     */
+
+
+    private static void P9_phoneMnemonic() {
+        String phoneNumber = "2276696";
+        char[] partialMnemonics = new char[phoneNumber.length()];
+        List<String> mnemonics = new ArrayList<>();
+
+        recursiveFunction(phoneNumber, 0, partialMnemonics, mnemonics);
+
+        System.out.println(mnemonics);
+    }
+
+    private static void recursiveFunction(String phoneNumber, int digit, char[] partialMnemonics, List<String> mnemonics) {
+        if (digit == phoneNumber.length()) {
+            mnemonics.add(new String(partialMnemonics));
+        } else {
+            for (int i = 0; i < MAPPING[(phoneNumber.charAt(digit) - '0')].length(); ++i) {
+                char c = MAPPING[phoneNumber.charAt(digit) - '0'].charAt(i);
+                partialMnemonics[digit] = c;
+                recursiveFunction(phoneNumber, digit + 1, partialMnemonics, mnemonics);
+            }
+        }
+    }
+
+    //Time: O(4 ^n)
 }
