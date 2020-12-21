@@ -1,4 +1,4 @@
-package Books.ElementsOfProgrammingInterview.DataStructure.Strings;
+package Books.ElementsOfProgrammingInterview.DataStructure.Ch_02_Strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;

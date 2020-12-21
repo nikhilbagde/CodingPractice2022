@@ -1,4 +1,4 @@
-package Books.ElementsOfProgrammingInterview.DataStructure.Primitives;
+package Books.ElementsOfProgrammingInterview.DataStructure.Ch_0_Primitives;
 
 import java.util.Random;
 
@@ -196,7 +196,7 @@ public class PrimitiveTypes {
      */
 
     /**
-     * The parity of a binary word is 1 if the number of Is in the word is odd; otherwise,
+     * The parity of a binary word is 1 if the number of 1's in the word is odd; otherwise,
      * it is 0. For example, the parity of 1011 is 1, and the parity of 10001000 is 0.
      */
     private static void P2_ComputeParityOfAWord() {

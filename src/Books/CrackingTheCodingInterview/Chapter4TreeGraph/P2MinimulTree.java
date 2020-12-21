@@ -1,7 +1,5 @@
 package Books.CrackingTheCodingInterview.Chapter4TreeGraph;
 
-import GeeksForGeeks.DataStructure.Trees.TreeNode;
-
 /**
  * Created by Nikhil on 2/15/2017 12:35 AM.
  * Given a sorted (increasing order) array with unique integer elements, write an algorithm
@@ -23,5 +21,16 @@ public class P2MinimulTree {
         root.left = minimumTree(array, start, mid - 1);
         root.right = minimumTree(array, mid + 1, end);
         return root;
+    }
+}
+
+class TreeNode {
+    public int value;
+    public TreeNode left;
+    public TreeNode right;
+
+    public TreeNode(int valueIn) {
+        value = valueIn;
+        left = right = null;
     }
 }

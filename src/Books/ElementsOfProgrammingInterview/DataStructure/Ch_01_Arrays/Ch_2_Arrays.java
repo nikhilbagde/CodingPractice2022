@@ -1,4 +1,4 @@
-package Books.ElementsOfProgrammingInterview.DataStructure.Arrays;
+package Books.ElementsOfProgrammingInterview.DataStructure.Ch_01_Arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,6 +107,12 @@ public class Ch_2_Arrays {
 
         P5_deleteDuplicatesFromSortedArray();
         P6_computeMaxProfite();
+
+
+        //http://mrcodeswildride.com/challenges/algorithms
+        P1_reverseAString();
+        P2_kidsWithCandies();
+        P3_findMaxConsecutiveOnes();
 
 
     }
@@ -365,5 +371,73 @@ public class Ch_2_Arrays {
      * longest subarray all of whose entries are equal.
      */
 
+
+    /**
+     * http://mrcodeswildride.com/challenges/algorithms
+     * Arrays: P1: reverse a String
+     */
+    private static void P1_reverseAString() {
+        String s = "nikhil";
+        for (int i = 0; i < s.length() / 2; i++) {
+            char c = s.charAt(i);
+            //s.charAt(i) = s.charAt(s.length()/2 -i);          //BUG: String is immutable we do not have set or put function for String.
+            // Idea to convert it to CharArray
+        }
+        char[] arr = s.toCharArray();
+        for (int i = 0; i < (arr.length >> 1); i++) {
+            char c = arr[i];
+            arr[i] = arr[(arr.length - 1) - i];
+            arr[arr.length - 1 - i] = c;
+        }
+        System.out.println(Arrays.toString(arr));
+
+        //Approach 2
+        StringBuilder sb = new StringBuilder(s);
+        System.out.println("sb = " + sb.reverse().toString());
+
+    }
+
+    /**
+     * https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/
+     * Input: candies = [2,3,5,1,3], extraCandies = 3
+     * Output: [true,true,true,false,true]
+     * Explanation:
+     * Kid 1 has 2 candies and if he or she receives all extra candies (3) will have 5 candies --- the greatest number of candies among the kids.
+     * Kid 2 has 3 candies and if he or she receives at least 2 extra candies will have the greatest number of candies among the kids.
+     * Kid 3 has 5 candies and this is already the greatest number of candies among the kids.
+     * Kid 4 has 1 candy and even if he or she receives all extra candies will only have 4 candies.
+     * Kid 5 has 3 candies and if he or she receives at least 2 extra candies will have the greatest number of candies among the kids.
+     */
+    private static void P2_kidsWithCandies() {
+        //input: int[] array and int
+        int[] array = {2, 3, 5, 1, 3};     //Expected: [true,true,true,false,true]
+        int extraCandies = 3;
+        List<Boolean> result = new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            max = Math.max(max, array[i]);
+        }
+        for (int i = 0; i < array.length; i++) {
+            result.add(array[i] + extraCandies >= max);
+        }
+        System.out.println("result = " + Arrays.toString(result.toArray()));
+    }
+
+    /**
+     * https://leetcode.com/problems/max-consecutive-ones/
+     */
+    private static void P3_findMaxConsecutiveOnes() {
+        int[] nums = {1, 1, 0, 1, 1};  // Output: Output: 3
+        int count = 0, maxCount = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                ++count;
+                maxCount = Math.max(maxCount, count);
+            } else {
+                count = 0;
+            }
+        }
+        System.out.println(maxCount);
+    }
 
 }
