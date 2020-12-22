@@ -16,7 +16,7 @@ import java.util.Queue;
  * #123, - Array or hashMap from level number > Node at that level might be helpful
  * #135 - Write both DFS and BFS algorithm for this.
  */
-public class P3ListsOfDeapth {
+public class P3ListsOfDepths {
     public static ArrayList<Queue<TreeNode>> createListsByLevel(TreeNode root) {
         ArrayList<Queue<TreeNode>> list = new ArrayList<>();
         createListsByLevel(root, list, 0);
@@ -47,10 +47,10 @@ public class P3ListsOfDeapth {
         }
         while (!queue.isEmpty()) {
             resultList.add(queue);
-            Queue<TreeNode> parentLevel = queue;
-            queue = new LinkedList<>();
+            Queue<TreeNode> parentLevel = queue;    //use current queue as auxiliary queue
+            queue = new LinkedList<>();             //make it a new queue to flush our parent level nodes
 
-            for (TreeNode node : parentLevel) {
+            for (TreeNode node : parentLevel) {     //notice for loop, we need to add all nodes of the level
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -62,7 +62,7 @@ public class P3ListsOfDeapth {
         return resultList;
     }
 
-    public static void printREsultList(ArrayList<Queue<TreeNode>> lists) {
+    public static void printResultList(ArrayList<Queue<TreeNode>> lists) {
         for (Queue<TreeNode> list : lists) {
             for (TreeNode root : list) {
                 System.out.print(root.value + " ");
@@ -75,12 +75,14 @@ public class P3ListsOfDeapth {
         GeeksForGeeks.DataStructure.Trees.BinaryTree tree = ConstructBST.constructBinaryTree();
         ArrayList<Queue<TreeNode>> lists = createListsByLevel(tree.getRoot());
         System.out.println("DFS");
-        printREsultList(lists);
+        printResultList(lists);
 
         System.out.println("BFS");
-        printREsultList(listbylevel(tree.getRoot()));
+        printResultList(listbylevel(tree.getRoot()));
 
     }
 
 
 }
+
+

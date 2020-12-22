@@ -10,11 +10,16 @@ package Books.CrackingTheCodingInterview.Chapter4TreeGraph;
  * #116 - Writing base case is actually entire function
  */
 public class P2MinimulTree {
-    public TreeNode minimumTree(int[] array) {
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
+        TreeNode root = minimumTree(array);
+    }
+
+    public static TreeNode minimumTree(int[] array) {
         return minimumTree(array, 0, array.length - 1);
     }
 
-    private TreeNode minimumTree(int[] array, int start, int end) {
+    private static TreeNode minimumTree(int[] array, int start, int end) {
         if (start > end) return null;
         int mid = (start + end) / 2;
         TreeNode root = new TreeNode(array[mid]);
@@ -23,6 +28,7 @@ public class P2MinimulTree {
         return root;
     }
 }
+
 
 class TreeNode {
     public int value;

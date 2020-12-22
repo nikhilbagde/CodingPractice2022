@@ -8,18 +8,18 @@ import GeeksForGeeks.DataStructure.Trees.TreeNode;
  * For the purposes of  this question, a balanced tree is defined to be a tree
  * such that the heights of the two subtrees of any  node never differ by more than one.
  * Hints:
- * #21,  - Think about condiiton of balance tree, can you check it for single node, and then for every node?
+ * #21,  - Think about condition of balance tree, can you check it for single node, and then for every node?
  * #33, - Brute force, if you are computing height for every level it would be inefficient.
  * #49, - What if we modify node class to store height of its subTree
- * #105, - YOu dont need to have field in Node class, instead can you try recursevly to calcualte height of subtree and
+ * #105, - You don't need to have field in Node class, instead can you try recursively to calculate height of subtree and
  * also if its balanced and try returning two values?
- * #124 - Instead you can only have checkHeighBalance fundtion to computer both and have integer value as result.
+ * #124 - Instead you can only have checkHeightBalance function to compute both and have integer value as result.
  */
 public class P4CheckBalance {
 
     public static int getHeight(TreeNode root) {
         if (root == null) return -1;
-        return 1 + Math.max(getHeight(root.left), getHeight(root.right));
+        return 1 + Math.max(getHeight(root.left), getHeight(root.right));       // Notice max of left or right
     }
 
     //O (N log N)
