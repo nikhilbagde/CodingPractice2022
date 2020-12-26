@@ -36,6 +36,31 @@ public class P6Successor {
         return node;
     }
 
+    /**
+     * Time: O(h) space: O(h)
+     *
+     * @param node
+     * @return
+     */
+    TreeNodeWithP inorderSuccessor(TreeNodeWithP node) {
+        if (node == null) return null;
+
+        //if current node has a right subtree
+        // then next node in Inorder is the left most node in the right subtree.
+        TreeNodeWithP iter = node;
+
+        if (iter.right != null) {
+            return leftMostNode(iter);
+        } else {
+            //This is the case when we dont have right subtree.
+            // THen we go up till we find that current node is right child of a parent.
+            while (iter.parent != null && iter.parent.right == iter) {
+                iter = iter.parent;
+            }
+        }
+        return iter.parent;
+    }
+
 }
 
 class TreeNodeWithP {

@@ -16,7 +16,7 @@ package Books.CrackingTheCodingInterview.Chapter4TreeGraph;
  * #47, - Look at graph is there any node we can build first.
  * #60, - First add node with no dependencies meaning no incoming edge.
  * #85, - One you build it, you can delete outgoing edge of that node and build rest of graph
- * #125, - Another Approach to try DFS and what is realtion of DFS and build order?
+ * #125, - Another Approach to try DFS and what is relation of DFS and build order?
  * #133 - When used DFS, go till last node, once we reach last node, we know that this node was one which was build last,
  * what does it means to node before this node.?
  */
