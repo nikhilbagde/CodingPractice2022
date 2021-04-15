@@ -1,0 +1,7 @@
+    String[] words = new String[] {
+                "wrt",
+                "wrf",
+                "er",
+                "ett",
+                "rftt"
+        };
