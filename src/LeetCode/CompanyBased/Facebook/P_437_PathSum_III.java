@@ -1,5 +1,8 @@
 package LeetCode.CompanyBased.Facebook;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Nikhil Bagde
  * @package LeetCode.CompanyBased.Facebook
@@ -26,12 +29,30 @@ public class P_437_PathSum_III {
 
         root.right.right.left = new TreeNode(5);
         root.right.right.right = new TreeNode(1);
+                /*
+                           5                            22
+                      ____________
+                     |           |
+                     4           8
+                 _________   _________
+                 |       |  |         |
+                11     null 13        4
+            ________               ________
+            |       |             |       |
+            7       2             5       1
+        */
 
-        pathSum(root, 22);
+        //brute force
+        count = pathSum(root, 22);
+        System.out.println("count = " + count);
+
+        //optimized
+        count = pathSumHashMap(root, 22);
+        System.out.println("count = " + count);
     }
 
     public static int pathSum(TreeNode root, int sum){
-        target = sum;
+        target = sum; //just defining globle variable so that I dont need to pass it to the recursive method,
         outerDFS(root);
         return count;
     }
@@ -54,6 +75,47 @@ public class P_437_PathSum_III {
             innerDFS(root.right, currentSum);
         }
     }
+
+    public static int pathSumHashMap(TreeNode root, int k){
+        int count = 0;
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(0,1);
+
+        count = helper(root, k, 0, map);
+        return count;
+    }
+
+            /*
+                           5                            22
+                      ____________
+                     |           |
+                     4           8
+                 _________   _________
+                 |       |  |         |
+                11     null 13        4
+            ________               ________
+            |       |             |       |
+            7       2             5       1
+        */
+    public static int helper(TreeNode root, int k, int currentSum, Map<Integer,Integer> map){
+        if(root==null) return 0;
+
+        currentSum = currentSum + root.val;
+        int count = map.getOrDefault(currentSum- k , 0);
+
+        //add to the map before calling children
+        map.put(currentSum, map.getOrDefault(currentSum,0)+1);
+
+        count = count
+                + helper(root.left, k, currentSum, map)
+                + helper(root.right, k, currentSum, map);
+
+        //remove before going to parents another child
+        map.put(currentSum, map.get(currentSum)-1);         //no need to use get or Default as we already added it in previous steps. SO we know its there.
+
+        return count;
+    }
+
 
     private static  class TreeNode {
         int val;
