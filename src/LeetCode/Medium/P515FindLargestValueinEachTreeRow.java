@@ -1,16 +1,21 @@
 package LeetCode.Medium;
 
+
+
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Nikhil on 4/3/2017 12:21 PM.
  */
 public class P515FindLargestValueinEachTreeRow {
     public static void main(String[] args) {
-
+        TreeNode root = prepareATree(new TreeNode(3));
+        List<Integer> list = largestValues(root);
+        System.out.println("list = " + list);
     }
 
-    public java.util.List<Integer> largestValues(TreeNode root) {
+    public static java.util.List<Integer> largestValues(TreeNode root) {
         java.util.Queue<TreeNode> nodes = new java.util.LinkedList<>();
         java.util.Queue<Integer> level = new java.util.LinkedList<>();
         java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
@@ -47,7 +52,7 @@ public class P515FindLargestValueinEachTreeRow {
         return list;
     }
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -55,5 +60,14 @@ public class P515FindLargestValueinEachTreeRow {
         TreeNode(int x) {
             val = x;
         }
+    }
+
+    public static TreeNode prepareATree(TreeNode root){
+
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left=  new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        return root;
     }
 }

@@ -1,10 +1,7 @@
 package LeetCode.Patterns.BFS;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 class TreeNode {
  int val;
@@ -31,7 +28,7 @@ public class LC_107_Binary_Tree_Level_Order_Traversal_II {
 
    while(queue.size()!=0){
        List<Integer> levelList = new ArrayList<>();
-       int nodeCount = queue.size();
+       int nodeCount = queue.size(); //its important to store the initial size here as later when we add element, queue size will increase
 
        while(nodeCount>0){
            TreeNode  currentNode = queue.poll();
@@ -47,7 +44,7 @@ public class LC_107_Binary_Tree_Level_Order_Traversal_II {
        }
 
        //result.add(levelList);
-       result.add(0, levelList);
+       result.add(0, levelList);            //because its asked to print level order from bottom
    }
    return result;
   }
@@ -65,5 +62,13 @@ public class LC_107_Binary_Tree_Level_Order_Traversal_II {
         TreeNode root = prepareATree(new TreeNode());
         List<List<Integer>> result = levelOrderBottom(root);
         System.out.println(result);
+
+        StringBuilder sb= new StringBuilder("Nikhil");
+        System.out.println(sb.toString());
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        System.out.println("stack = " + stack);
+        stack.clear();
+        System.out.println("stack = " + stack);
     }
 }

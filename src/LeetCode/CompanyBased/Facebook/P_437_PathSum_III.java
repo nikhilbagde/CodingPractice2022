@@ -51,6 +51,7 @@ public class P_437_PathSum_III {
         System.out.println("count = " + count);
     }
 
+    //Brute Force Time O(n)^2 Space log(n)
     public static int pathSum(TreeNode root, int sum){
         target = sum; //just defining globle variable so that I dont need to pass it to the recursive method,
         outerDFS(root);
@@ -76,6 +77,7 @@ public class P_437_PathSum_III {
         }
     }
 
+    //Optimized Time O(n) Space O(n)
     public static int pathSumHashMap(TreeNode root, int k){
         int count = 0;
         Map<Integer,Integer> map = new HashMap<>();
