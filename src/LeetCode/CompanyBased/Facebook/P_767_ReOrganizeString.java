@@ -7,11 +7,14 @@ import java.util.PriorityQueue;
 
 public class P_767_ReOrganizeString {
     public static void main(String[] args) {
-        String result = reorganizeString("aab");
+        //String result = reorganizeString("aab");          // 7% behind
+        String result = reorganizeString2("aabbccda");  // 100% ahead
         System.out.println("result = " + result);
     }
 
     public static String reorganizeString2(String S) {
+
+        //store the frequency in int array
         int[] arr = new int[26];
 
         for (char c : S.toCharArray()) {
@@ -19,8 +22,43 @@ public class P_767_ReOrganizeString {
         }
         System.out.println(Arrays.toString(arr));
 
+        //find max character
+        int max = 0;
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+                index = i;
+            }
+        }
+        System.out.println("Max =" + max + " at index = " + index);
 
-        return "";
+        //check if most frequent is more than half size of the input, meaning we cant reorganize
+        if (max > (S.length() + 1) / 2) return "";
+
+
+        //create new array of same as input length and put most frequent at even location
+        char[] result = new char[S.length()];
+        int idx = 0;
+        while (arr[index] > 0) {
+            result[idx] = (char) (index + 'a');
+            idx += 2;
+            arr[index]--;
+        }
+
+
+        //for all characters in arr do same, handle boundary condition when idx goes greater or equal to result.length
+        for (int i = 0; i < arr.length; i++) {
+            while (arr[i] > 0) {
+                if (idx >= result.length) {
+                    idx = 1;
+                }
+                result[idx] = (char) (i + 'a');
+                idx += 2;
+                arr[i]--;
+            }
+        }
+        return String.valueOf(result);
     }
 
     /**

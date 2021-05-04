@@ -194,4 +194,7 @@ public class P_000_Java_Data_Structure {
     }
 
     //Sorting of Map keys and Values -------------------------------------END----------------------------------------------------
+
+
+    BitSet one = new BitSet();
 }
