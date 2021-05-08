@@ -10,7 +10,7 @@ package LeetCode.CompanyBased.Facebook;
 public class P_67_AddBinary {
     public static void main(String[] args) {
 
-        addBinary("11","1");
+        addBinary("11", "1");
 
     }
 
