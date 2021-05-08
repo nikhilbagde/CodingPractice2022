@@ -7,7 +7,7 @@ package LeetCode.CompanyBased.Facebook;
  * @date 4/23/2021- 12:20 AM
  * @project HackerRank2017
  **/
-public class P67_AddBinary {
+public class P_67_AddBinary {
     public static void main(String[] args) {
 
         addBinary("11","1");
