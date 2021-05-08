@@ -64,6 +64,40 @@ public class P_000_Java_Data_Structure {
 
         System.out.println("Sorting by values: Reversed");
         map1.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing(Address::getAddressLine1).reversed())).forEach(System.out::println);
+
+
+
+        //Set
+        System.out.println("------SET------");
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+        set.add(1);
+        System.out.println(set); //123
+
+        boolean removed = set.remove(1);
+        System.out.println("removed = " + removed);
+        System.out.println("set = " + set);
+
+
+        //Map
+        System.out.println("-------MAP---------");
+        Map<Integer,Integer> map2 = new HashMap<>();
+
+        System.out.println("MAP -REMOVE with key and value");
+        map2.put(1,3);
+        map2.put(2,3);
+        map2.put(4,1);
+        map2.put(6,5);
+        map2.put(7,0);
+        map2.remove(6,5); //// This will remove key 6 having value 5.
+        //normally used in when we need to remove the key whose count is zero after some logic for decrementing
+
+        System.out.println("---MAP: getOrDefualt");
+        map2.put(6, map2.getOrDefault(6, 0)+1); ///increment the frequency.
+
+
     }
 
     private static class Employee {
