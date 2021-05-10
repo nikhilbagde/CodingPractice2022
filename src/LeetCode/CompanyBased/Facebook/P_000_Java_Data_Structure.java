@@ -27,6 +27,8 @@ public class P_000_Java_Data_Structure {
         map.put(2, "Vandana");
         map.put(4, "Bagde");
 
+        
+
         //Primitive
         System.out.println("Primitive keys and values");
         //Sort by keys
