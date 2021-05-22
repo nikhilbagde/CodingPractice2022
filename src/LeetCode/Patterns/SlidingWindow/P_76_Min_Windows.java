@@ -62,7 +62,7 @@ public class P_76_Min_Windows {
         for(int end =0; end< s.length(); end++){
 
 
-            //mapS.put(s.charAt(end), mapS.getOrDefault(s.charAt(end)+1)); ---> get will give Integer value. Compilation error. Need to either convert to int or use intVal()
+            //mapS.put(s.charAt(end), mapS.getOrDefault(s.charAt(end)+1)); --->
             mapS.put(s.charAt(end), mapS.getOrDefault( s.charAt(end), 0)+1);
 
             //check if current character is in T map
