@@ -116,23 +116,7 @@ public class Main {
         Two Pointers
         */
 
-        /**
-         * 1	Introduction
-         * 2	Pair with Target Sum (easy)
-         * 3	Remove Duplicates (easy)
-         * 4	Squaring a Sorted Array (easy)
-         * 5	Triplet Sum to Zero (medium)
-         * 6	Triplet Sum Close to Target (medium)
-         * 7	Triplets with Smaller Sum (medium)
-         * 8	Sub-arrays with Product Less than a Target (medium)
-         * 9	Dutch National Flag Problem (medium)
-         * 10 Problem Challenge 1
-         * 11 Solution Review: Problem Challenge 1
-         * 12 Problem Challenge 2
-         * 13 Solution Review: Problem Challenge 2
-         * 14 Problem Challenge 3
-         * 15 Solution Review: Problem Challenge 3
-         */
+
         //Pair in Array
         //Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
         //Write a function to return the indices of the two numbers (i.e. the pair) such that they add up to the given target.
