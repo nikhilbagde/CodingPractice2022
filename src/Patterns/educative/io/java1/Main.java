@@ -3,7 +3,7 @@ package Patterns.educative.io.java1;
 public class Main {
     public static void main(String[] args) {
         /*
-        A_SlidingWindow
+        ------------------------------------ A_SlidingWindow ------------------------------------
        */
         /*
         PROBLEMS
@@ -125,7 +125,7 @@ public class Main {
         System.out.println(A_SlidingWindow.subarrayProductLessThanKAccepted(new int[] {10, 5, 2, 6}, 100) );  //two pointers + sliding windows both applies here.
 
         /*
-        Two Pointers
+        ------------------------------------ B Two Pointers------------------------------------
         */
 
 
@@ -198,6 +198,21 @@ public class Main {
         //        Input: nums = [1]
         //        Output: [1]
         System.out.println(B_TwoPointers.dutchFlagSortColors(new int[] {2,0,2,1,1,0}) );
+
+
+        /*
+        Given an array  of integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+        nums[a] + nums[b] + nums[c] + nums[d] == target
+        Example 1:
+        Input: nums = [1,0,-1,0,-2,2], target = 0
+        Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+        Example 2:
+        Input: nums = [2,2,2,2,2], target = 8
+        Output: [[2,2,2,2]]
+         */
+        System.out.println(B_TwoPointers.searchQuadruplets(new int[] {1,0,-1,0,-2,2}, 0) );
+
     }
 
 
