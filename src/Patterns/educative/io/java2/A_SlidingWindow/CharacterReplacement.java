@@ -1,5 +1,8 @@
 package Patterns.educative.io.java2.A_SlidingWindow;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class CharacterReplacement {
     public static int findLength(String str, int k) {
         // TODO: Write your code here

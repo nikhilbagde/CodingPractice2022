@@ -1,6 +1,6 @@
 package Patterns.educative.io.java2.GrokkingDP;
 
-class LCS {
+class LCS3 {
 
     public int findLCSLength(String s1, String s2) {
         int[][] dp = new int[s1.length()+1][s2.length()+1];
@@ -17,8 +17,8 @@ class LCS {
     }
 
     public static void main(String[] args) {
-        LCS lcs = new LCS();
-        System.out.println(lcs.findLCSLength("abcd", "abcaabcd"));
+        LCS1 lcs1 = new LCS1();
+        System.out.println(lcs1.findLCSLength("abcd", "abcaabcd"));
     }
 }
 

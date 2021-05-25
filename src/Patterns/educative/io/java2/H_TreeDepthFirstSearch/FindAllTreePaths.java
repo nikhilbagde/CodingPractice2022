@@ -2,18 +2,18 @@ package Patterns.educative.io.java2.H_TreeDepthFirstSearch;
 
 import java.util.*;
 
-class TreeNode {
+class TreeNode2 {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode1 left;
+    TreeNode1 right;
 
-    TreeNode(int x) {
+    TreeNode2(int x) {
         val = x;
     }
 };
 
 class FindAllTreePaths {
-    public static List<List<Integer>> findPaths(TreeNode root, int sum) {
+    public static List<List<Integer>> findPaths(TreeNode1 root, int sum) {
         List<List<Integer>> allPaths = new ArrayList<>();
         // TODO: Write your code here
         if (root == null) return allPaths;
@@ -21,7 +21,7 @@ class FindAllTreePaths {
         return allPaths;
     }
 
-    private static void dfs(TreeNode root, int sum, List<Integer> list, int currSum, List<List<Integer>> res) {
+    private static void dfs(TreeNode1 root, int sum, List<Integer> list, int currSum, List<List<Integer>> res) {
         if (root == null) return;
         currSum += root.val;
         list.add(root.val);
@@ -40,12 +40,12 @@ class FindAllTreePaths {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(12);
-        root.left = new TreeNode(7);
-        root.right = new TreeNode(1);
-        root.left.left = new TreeNode(4);
-        root.right.left = new TreeNode(10);
-        root.right.right = new TreeNode(5);
+        TreeNode1 root = new TreeNode1(12);
+        root.left = new TreeNode1(7);
+        root.right = new TreeNode1(1);
+        root.left.left = new TreeNode1(4);
+        root.right.left = new TreeNode1(10);
+        root.right.right = new TreeNode1(5);
         int sum = 23;
         List<List<Integer>> result = FindAllTreePaths.findPaths(root, sum);
         System.out.println("Tree paths with sum " + sum + ": " + result);

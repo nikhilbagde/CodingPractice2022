@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.Fast
+package Patterns.educative.io.java2.C_FastAndSlowPointers;
 
 class HappyNumber {
 

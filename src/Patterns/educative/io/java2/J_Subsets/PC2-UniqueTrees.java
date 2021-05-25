@@ -4,8 +4,8 @@ import java.util.*;
 
 class TreeNode {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode2 left;
+    TreeNode2 right;
 
     TreeNode(int x) {
         val = x;
@@ -13,24 +13,24 @@ class TreeNode {
 };
 
 class UniqueTrees {
-    public static List<TreeNode> findUniqueTrees(int n) {
-        List<TreeNode> result = new ArrayList<>();
+    public static List<TreeNode2> findUniqueTrees(int n) {
+        List<TreeNode2> result = new ArrayList<>();
         // TODO: Write your code here
         return generate(1,n);
     }
 
-    private static List<TreeNode> generate(int start, int end) {
-        List<TreeNode> result = new ArrayList<>();
+    private static List<TreeNode2> generate(int start, int end) {
+        List<TreeNode2> result = new ArrayList<>();
         if (start > end) {
             result.add(null);
             return result;
         }
         for (int i = start; i <= end; i++) {
-            List<TreeNode> left = new ArrayList<>(generate(start, i-1));
-            List<TreeNode> right = new ArrayList<>(generate(i+1, end));
-            for (TreeNode l: left) {
-                for (TreeNode r: right) {
-                    TreeNode temp = new TreeNode(i);
+            List<TreeNode2> left = new ArrayList<>(generate(start, i-1));
+            List<TreeNode2> right = new ArrayList<>(generate(i+1, end));
+            for (TreeNode2 l: left) {
+                for (TreeNode2 r: right) {
+                    TreeNode2 temp = new TreeNode2(i);
                     temp.left = l;
                     temp.right = r;
                     result.add(temp);
@@ -41,7 +41,7 @@ class UniqueTrees {
     }
 
     public static void main(String[] args) {
-        List<TreeNode> result = UniqueTrees.findUniqueTrees(2);
+        List<TreeNode2> result = UniqueTrees.findUniqueTrees(2);
         System.out.print("Total trees: " + result.size());
     }
 }

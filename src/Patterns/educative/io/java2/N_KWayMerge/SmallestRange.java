@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.K
+package Patterns.educative.io.java2.N_KWayMerge;
 
 import java.util.*;
 

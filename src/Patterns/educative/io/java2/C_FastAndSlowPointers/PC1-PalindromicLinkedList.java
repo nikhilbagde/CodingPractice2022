@@ -1,27 +1,27 @@
-package Patterns.educative.io.java2.Fast
+package Patterns.educative.io.java2.C_FastAndSlowPointers;
 
-class ListNode {
+class ListNode3 {
     int value = 0;
-    ListNode next;
+    ListNode3 next;
 
-    ListNode(int value) {
+    ListNode3(int value) {
         this.value = value;
     }
 }
 
 class PalindromicLinkedList {
 
-    public static boolean isPalindrome(ListNode head) {
+    public static boolean isPalindrome(ListNode3 head) {
         // TODO: Write your code here
         if (head == null || head.next == null) return true;
-        ListNode fast = head, slow = head;
+        ListNode3 fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
 
-        ListNode reverseHalf = reverse(slow);
-        ListNode copy = reverseHalf;
+        ListNode3 reverseHalf = reverse(slow);
+        ListNode3 copy = reverseHalf;
         while (copy != null) {
             if (copy.value != head.value) break;
             copy = copy.next;
@@ -33,11 +33,11 @@ class PalindromicLinkedList {
         return true;
     }
 
-    private static ListNode reverse(ListNode head) {
-        ListNode curr = head;
-        ListNode prev = null;
+    private static ListNode3 reverse(ListNode3 head) {
+        ListNode3 curr = head;
+        ListNode3 prev = null;
         while (curr != null) {
-            ListNode next = curr.next;
+            ListNode3 next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
@@ -46,14 +46,14 @@ class PalindromicLinkedList {
     }
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(2);
-        head.next = new ListNode(4);
-        head.next.next = new ListNode(6);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(2);
+        ListNode3 head = new ListNode3(2);
+        head.next = new ListNode3(4);
+        head.next.next = new ListNode3(6);
+        head.next.next.next = new ListNode3(4);
+        head.next.next.next.next = new ListNode3(2);
         System.out.println("Is palindrome: " + PalindromicLinkedList.isPalindrome(head));
 
-        head.next.next.next.next.next = new ListNode(2);
+        head.next.next.next.next.next = new ListNode3(2);
         System.out.println("Is palindrome: " + PalindromicLinkedList.isPalindrome(head));
     }
 }

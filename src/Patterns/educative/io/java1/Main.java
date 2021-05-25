@@ -112,6 +112,18 @@ public class Main {
         //Explanation: The two substring containing both the words are "catfox" & "foxcat".
         System.out.println(A_SlidingWindow.wordsConcatenation("catcatfoxfox", new String[] {"cat", "fox"}));
 
+
+
+        // 8. Sub-arrays with Product Less than a Target (medium)
+        // Given an array of positive integers nums. Count and print the number of (contiguous) subarrays
+        // where the product of all the elements in the subarray is less than target.
+        //        Input: nums = [10, 5, 2, 6], k = 100
+        //        Output: 8
+        //        Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
+        //        Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+        //        [[10], [10, 5], [5], [5, 2], [5, 2, 6], [2], [2, 6], [6]]
+        System.out.println(A_SlidingWindow.subarrayProductLessThanKAccepted(new int[] {10, 5, 2, 6}, 100) );  //two pointers + sliding windows both applies here.
+
         /*
         Two Pointers
         */
@@ -149,8 +161,8 @@ public class Main {
         System.out.println(B_TwoPointers.tripletSumCloseToTarget(new int[] {-1,2,1,-4}, 1) );
 
 
-        //  7	Triplets with Smaller Sum (medium)
-        // Given an array of unsorted integers. find three numbers in array s/t sum is smaller to target.
+        // 7. Triplets with Smaller Sum (medium)
+        // Given an array of unsorted integers. find three numbers indices [i,j,k] in array s/t sum is smaller to target.
         //        Input: nums = [-2,0,1,3], and target = 2
         //        Output: 2
         //        Explanation: Because there are two triplets which sums are less than 2:
@@ -165,7 +177,9 @@ public class Main {
         //        Output: 8
         //        Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
         //        Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
-        System.out.println(B_TwoPointers.subarrayProductLessThanK(new int[] {10, 5, 2, 6}, 100) );
+        //        [[10], [10, 5], [5], [5, 2], [5, 2, 6], [2], [2, 6], [6]]
+        System.out.println(B_TwoPointers.subarrayProductLessThanK(new int[] {10, 5, 2, 6}, 100) );  // Time limit
+
 
         //        9	Dutch National Flag Problem (medium)
         //        Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent,
@@ -183,7 +197,7 @@ public class Main {
         //        Example 4:        //
         //        Input: nums = [1]
         //        Output: [1]
-        System.out.println(B_TwoPointers.dutchFlag(new int[] {2,0,2,1,1,0}) );
+        System.out.println(B_TwoPointers.dutchFlagSortColors(new int[] {2,0,2,1,1,0}) );
     }
 
 

@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.O_KnapsnackDP
+package Patterns.educative.io.java2.O_KnapsnackDP;
 
 class PartitionSet {
 
@@ -26,7 +26,7 @@ class PartitionSet {
     }
 
     public static void main(String[] args) {
-        PartitionSet ps = new PartitionSet();
+        PartitionSet1 ps = new PartitionSet1();
         int[] num = {1, 2, 3, 9};
         System.out.println(ps.canPartition(num));
         num = new int[]{1, 2, 7, 1, 5};

@@ -1,22 +1,20 @@
-package Patterns.educative.io.java2.In
+package Patterns.educative.io.java2.F_InPlaceReversalOfALinkedList;
 
-import java.util.*;
-
-class ListNode {
+class ListNode1 {
     int value = 0;
-    ListNode next;
+    ListNode2 next;
 
-    ListNode(int value) {
+    ListNode1(int value) {
         this.value = value;
     }
 }
 
 class RotateList {
 
-    public static ListNode rotate(ListNode head, int rotations) {
+    public static ListNode2 rotate(ListNode2 head, int rotations) {
         // TODO: Write your code here
         if (head == null || rotations == 0) return head;
-        ListNode prev = null, curr = head, start = head;
+        ListNode2 prev = null, curr = head, start = head;
         int len = 1;
         while (head.next != null) {
             head = head.next;
@@ -35,14 +33,14 @@ class RotateList {
     }
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
-        head.next.next.next.next.next = new ListNode(6);
+        ListNode2 head = new ListNode2(1);
+        head.next = new ListNode2(2);
+        head.next.next = new ListNode2(3);
+        head.next.next.next = new ListNode2(4);
+        head.next.next.next.next = new ListNode2(5);
+        head.next.next.next.next.next = new ListNode2(6);
 
-        ListNode result = RotateList.rotate(head, 3);
+        ListNode2 result = RotateList.rotate(head, 3);
         System.out.print("Nodes of the reversed LinkedList are: ");
         while (result != null) {
             System.out.print(result.value + " ");

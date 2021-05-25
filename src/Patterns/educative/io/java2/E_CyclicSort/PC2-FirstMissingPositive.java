@@ -1,10 +1,13 @@
 package Patterns.educative.io.java2.E_CyclicSort;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 class FirstMissingPositive {
 
     public static int findNumber(int[] nums) {
         // TODO: Write your code here
-        Queue<Integer> queue = new PriorityQueue<>((a,b) -> a-b);
+        Queue<Integer> queue = new PriorityQueue<>((a, b) -> a-b);
         for (int i = 0; i < nums.length+1; i++) {
             queue.add(i+1);
         }

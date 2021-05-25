@@ -2,29 +2,29 @@ package Patterns.educative.io.java2.G_TreeBreadthFirstSearch;
 
 import java.util.*;
 
-class TreeNode {
+class TreeNode5 {
     int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode next;
+    TreeNode5 left;
+    TreeNode5 right;
+    TreeNode5 next;
 
-    TreeNode(int x) {
+    TreeNode5(int x) {
         val = x;
         left = right = next = null;
     }
-};
+}
 
 class ConnectAllSiblings {
-    public static void connect(TreeNode root) {
+    public static void connect(TreeNode5 root) {
         // TODO: Write your code here
         if (root == null) return;
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode5> queue = new LinkedList<>();
         queue.add(root);
-        TreeNode curr = null;
+        TreeNode5 curr = null;
         while (queue.size() > 0) {
             int size = queue.size();
             while (size > 0) {
-                TreeNode node = queue.poll();
+                TreeNode5 node = queue.poll();
                 if (curr != null) curr.next = node;
                 curr = node;
                 if (node.left != null) queue.add(node.left);
@@ -35,16 +35,16 @@ class ConnectAllSiblings {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(12);
-        root.left = new TreeNode(7);
-        root.right = new TreeNode(1);
-        root.left.left = new TreeNode(9);
-        root.right.left = new TreeNode(10);
-        root.right.right = new TreeNode(5);
+        TreeNode5 root = new TreeNode5(12);
+        root.left = new TreeNode5(7);
+        root.right = new TreeNode5(1);
+        root.left.left = new TreeNode5(9);
+        root.right.left = new TreeNode5(10);
+        root.right.right = new TreeNode5(5);
         ConnectAllSiblings.connect(root);
 
         // level order traversal using 'next' pointer
-        TreeNode current = root;
+        TreeNode5 current = root;
         System.out.println("Traversal using 'next' pointer: ");
         while (current != null) {
             System.out.print(current.val + " ");

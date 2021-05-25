@@ -1,6 +1,6 @@
 package Patterns.educative.io.java2.GrokkingDP;
 
-class LRS {
+class LRS1 {
 
     public int findLRSLength(String str) {
         Integer[][] dp = new Integer[str.length()][str.length()];
@@ -25,7 +25,7 @@ class LRS {
     }
 
     public static void main(String[] args) {
-        LRS lrs = new LRS();
+        LRS1 lrs = new LRS1();
         System.out.println(lrs.findLRSLength("tomorrow"));
         System.out.println(lrs.findLRSLength("aabdbcec"));
         System.out.println(lrs.findLRSLength("fmff"));
@@ -52,7 +52,7 @@ class LRS {
     }
 
     public static void main(String[] args) {
-        LRS lrs = new LRS();
+        LRS1 lrs = new LRS1();
         System.out.println(lrs.findLRSLength("tomorrow"));
         System.out.println(lrs.findLRSLength("aabdbcec"));
         System.out.println(lrs.findLRSLength("fmff"));

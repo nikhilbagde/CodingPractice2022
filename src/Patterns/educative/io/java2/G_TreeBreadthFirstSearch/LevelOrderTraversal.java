@@ -2,28 +2,28 @@ package Patterns.educative.io.java2.G_TreeBreadthFirstSearch;
 
 import java.util.*;
 
-class TreeNode {
+class TreeNode3 {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode1 left;
+    TreeNode1 right;
 
-    TreeNode(int x) {
+    TreeNode3(int x) {
         val = x;
     }
 };
 
 class LevelOrderTraversal {
-    public static List<List<Integer>> traverse(TreeNode root) {
+    public static List<List<Integer>> traverse(TreeNode1 root) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         // TODO: Write your code here
         if (root == null) return result;
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode1> queue = new LinkedList<>();
         queue.add(root);
         while (queue.size() > 0) {
             int num = queue.size();
             List<Integer> traversal = new ArrayList<>();
             while (num > 0) {
-                TreeNode currRoot = queue.poll();
+                TreeNode1 currRoot = queue.poll();
                 traversal.add(currRoot.val);
                 if (currRoot.left != null) queue.add(currRoot.left);
                 if (currRoot.right != null) queue.add(currRoot.right);
@@ -35,12 +35,12 @@ class LevelOrderTraversal {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(12);
-        root.left = new TreeNode(7);
-        root.right = new TreeNode(1);
-        root.left.left = new TreeNode(9);
-        root.right.left = new TreeNode(10);
-        root.right.right = new TreeNode(5);
+        TreeNode1 root = new TreeNode1(12);
+        root.left = new TreeNode1(7);
+        root.right = new TreeNode1(1);
+        root.left.left = new TreeNode1(9);
+        root.right.left = new TreeNode1(10);
+        root.right.right = new TreeNode1(5);
         List<List<Integer>> result = LevelOrderTraversal.traverse(root);
         System.out.println("Level order traversal: " + result);
     }

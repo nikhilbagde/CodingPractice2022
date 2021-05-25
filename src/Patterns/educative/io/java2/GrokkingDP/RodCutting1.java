@@ -1,6 +1,6 @@
 package Patterns.educative.io.java2.GrokkingDP;
 
-class RodCutting {
+class RodCutting1 {
 
     public int solveRodCutting(int[] lengths, int[] prices, int n) {
         if (n <= 0 || prices.length == 0 || prices.length != lengths.length) return 0;
@@ -19,7 +19,7 @@ class RodCutting {
     }
 
     public static void main(String[] args) {
-        RodCutting rc = new RodCutting();
+        RodCutting1 rc = new RodCutting1();
         int[] lengths = {1, 2, 3, 4, 5};
         int[] prices = {2, 6, 7, 10, 13};
         int maxProfit = rc.solveRodCutting(lengths, prices, 5);
@@ -43,7 +43,7 @@ class RodCutting {
     }
 
     public static void main(String[] args) {
-        RodCutting rc = new RodCutting();
+        RodCutting1 rc = new RodCutting1();
         int[] lengths = {1, 2, 3, 4, 5};
         int[] prices = {2, 6, 7, 10, 13};
         int maxProfit = rc.solveRodCutting(lengths, prices, 5);

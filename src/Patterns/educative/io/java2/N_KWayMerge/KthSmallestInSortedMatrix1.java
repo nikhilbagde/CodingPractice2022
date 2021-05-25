@@ -1,8 +1,8 @@
-package Patterns.educative.io.java2.K
+package Patterns.educative.io.java2.N_KWayMerge;
 
 import java.util.*;
 
-class KthSmallestInSortedMatrix {
+class KthSmallestInSortedMatrix1 {
 
     public static int findKthSmallest(int[][] matrix, int k) {
         // TODO: Write your code here
@@ -23,13 +23,12 @@ class KthSmallestInSortedMatrix {
 
     public static void main(String[] args) {
         int matrix[][] = { { 2, 6, 8 }, { 3, 7, 10 }, { 5, 8, 11 } };
-        int result = KthSmallestInSortedMatrix.findKthSmallest(matrix, 5);
+        int result = KthSmallestInSortedMatrix1.findKthSmallest(matrix, 5);
         System.out.print("Kth smallest number is: " + result);
     }
 }
 
 // binary search
-import java.util.*;
 
 class KthSmallestInSortedMatrix {
 
@@ -67,7 +66,7 @@ class KthSmallestInSortedMatrix {
 
     public static void main(String[] args) {
         int matrix[][] = { { 2, 6, 8 }, { 3, 7, 10 }, { 5, 8, 11 } };
-        int result = KthSmallestInSortedMatrix.findKthSmallest(matrix, 5);
+        int result = KthSmallestInSortedMatrix1.findKthSmallest(matrix, 5);
         System.out.print("Kth smallest number is: " + result);
     }
 }

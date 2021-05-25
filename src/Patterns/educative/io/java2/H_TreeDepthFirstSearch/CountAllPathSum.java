@@ -1,21 +1,21 @@
 package Patterns.educative.io.java2.H_TreeDepthFirstSearch;
 
-class TreeNode {
+class TreeNode1 {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode1 left;
+    TreeNode1 right;
 
-    TreeNode(int x) {
+    TreeNode1(int x) {
         val = x;
     }
 };
 
 class CountAllPathSum {
-    public static int countPaths(TreeNode root, int S) {
+    public static int countPaths(TreeNode1 root, int S) {
         return dfs(root, S, 0, false);
     }
 
-    private static int dfs(TreeNode root, int S, int count, boolean next) {
+    private static int dfs(TreeNode1 root, int S, int count, boolean next) {
         if (root == null) return count;
         if (root.val == S) count++;
         if (root.left == null && root.right == null) return count;
@@ -32,12 +32,12 @@ class CountAllPathSum {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(12);
-        root.left = new TreeNode(7);
-        root.right = new TreeNode(1);
-        root.left.left = new TreeNode(4);
-        root.right.left = new TreeNode(10);
-        root.right.right = new TreeNode(5);
+        TreeNode1 root = new TreeNode1(12);
+        root.left = new TreeNode1(7);
+        root.right = new TreeNode1(1);
+        root.left.left = new TreeNode1(4);
+        root.right.left = new TreeNode1(10);
+        root.right.right = new TreeNode1(5);
         System.out.println("Tree has path: " + CountAllPathSum.countPaths(root, 11));
     }
 }

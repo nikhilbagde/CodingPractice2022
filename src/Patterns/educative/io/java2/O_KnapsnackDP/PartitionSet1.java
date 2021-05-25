@@ -1,6 +1,6 @@
-package Patterns.educative.io.java2.O_KnapsnackDP
+package Patterns.educative.io.java2.O_KnapsnackDP;
 
-class PartitionSet {
+class PartitionSet1 {
 
     static boolean canPartition(int[] num) {
         //TODO: Write - Your - Code

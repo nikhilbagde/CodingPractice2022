@@ -169,20 +169,37 @@ public class B_TwoPointers {
         return count;
     }
 
+    /**
+     *
+     * @param arr
+     * @param target
+     * @return
+     */
     public static List<List<Integer>> subarrayProductLessThanK(int[] arr, int target) {
         List<List<Integer>> subarrays = new ArrayList<>();
-        // TODO: Write your code here
+
         if (arr.length == 0) return subarrays;
-        for (int i = 0; i < arr.length; i++) {
-            int end = i+1;
-            int prod = arr[i];
+        //Keep a left pointer
+        //for each left pointer create a right pointer = left + 1 and keep adding its multiplication to temp product.
+        for (int left = 0; left < arr.length; left++) {
+            int right = left+1;
+
+            //accumulator for a product.
+            int prod = arr[left];
+
             List<Integer> temp = new ArrayList<>();
-            temp.add(arr[i]);
-            while (prod < target) {
+            temp.add(arr[left]);
+
+            //Accumulative product will be check for each left element.
+            while (prod < target) {             //while prod started from left pointer and keep added from right pointer is less than targer
+                // first add current elements as List
                 subarrays.add(new ArrayList<>(temp));
-                if (end < arr.length) {
-                    temp.add(arr[end]);
-                    prod *= arr[end++];
+                // Now before adding right pointer element check index
+                if (right < arr.length) {
+                    //Add right element to temp List
+                    temp.add(arr[right]);
+                    // accumulate the product to check it in while loop
+                    prod *= arr[right++];
                 }
                 else break;
             }
@@ -190,8 +207,19 @@ public class B_TwoPointers {
         return subarrays;
     }
 
-    public static int[] dutchFlag(int[] arr) {
-        // TODO: Write your code here
+    public static int subarrayProductLessThanKAccepted(int[] nums, int k) {
+        if (k <= 1) return 0;
+        int prod = 1, ans = 0, left = 0;
+        for (int right = 0; right < nums.length; right++) {
+            prod *= nums[right];
+            while (prod >= k) prod /= nums[left++];
+            ans += right - left + 1;
+        }
+        return ans;
+    }
+
+    public static int[] dutchFlagSortColors(int[] arr) {
+
         for (int i = 0; i < arr.length; i++) {
             int j = 0;
             while (j < arr.length-1-i) {

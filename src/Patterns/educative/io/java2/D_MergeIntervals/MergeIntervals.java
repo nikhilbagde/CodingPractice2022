@@ -2,11 +2,11 @@ package Patterns.educative.io.java2.D_MergeIntervals;
 
 import java.util.*;
 
-class Interval {
+class Interval3 {
     int start;
     int end;
 
-    public Interval(int start, int end) {
+    public Interval3(int start, int end) {
         this.start = start;
         this.end = end;
     }
@@ -14,49 +14,49 @@ class Interval {
 
 class MergeIntervals {
 
-    public static List<Interval> merge(List<Interval> intervals) {
-        List<Interval> mergedIntervals = new LinkedList<Interval>();
+    public static List<Interval1> merge(List<Interval1> interval1s) {
+        List<Interval1> mergedInterval1s = new LinkedList<Interval1>();
         // TODO: Write your code here
-        if (intervals.size() <= 1) return intervals;
-        Collections.sort(intervals, (a,b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
-        int left = intervals.get(0).start, right = intervals.get(0).end;
-        for (Interval i: intervals) {
+        if (interval1s.size() <= 1) return interval1s;
+        Collections.sort(interval1s, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
+        int left = interval1s.get(0).start, right = interval1s.get(0).end;
+        for (Interval1 i: interval1s) {
             if (i.start > right) {
-                mergedIntervals.add(new Interval(left, right));
+                mergedInterval1s.add(new Interval1(left, right));
                 left = i.start;
                 right = i.end;
             } else right = Math.max(right, i.end);
         }
-        mergedIntervals.add(new Interval(left, right));
-        return mergedIntervals;
+        mergedInterval1s.add(new Interval1(left, right));
+        return mergedInterval1s;
     }
 
     public static void main(String[] args) {
-        List<Interval> input = new ArrayList<Interval>();
-        input.add(new Interval(1, 4));
-        input.add(new Interval(2, 5));
-        input.add(new Interval(7, 9));
+        List<Interval1> input = new ArrayList<Interval1>();
+        input.add(new Interval1(1, 4));
+        input.add(new Interval1(2, 5));
+        input.add(new Interval1(7, 9));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
-            System.out.print("[" + interval.start + "," + interval.end + "] ");
+        for (Interval1 interval1 : MergeIntervals.merge(input))
+            System.out.print("[" + interval1.start + "," + interval1.end + "] ");
         System.out.println();
 
-        input = new ArrayList<Interval>();
-        input.add(new Interval(6, 7));
-        input.add(new Interval(2, 4));
-        input.add(new Interval(5, 9));
+        input = new ArrayList<Interval1>();
+        input.add(new Interval1(6, 7));
+        input.add(new Interval1(2, 4));
+        input.add(new Interval1(5, 9));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
-            System.out.print("[" + interval.start + "," + interval.end + "] ");
+        for (Interval1 interval1 : MergeIntervals.merge(input))
+            System.out.print("[" + interval1.start + "," + interval1.end + "] ");
         System.out.println();
 
-        input = new ArrayList<Interval>();
-        input.add(new Interval(1, 4));
-        input.add(new Interval(2, 6));
-        input.add(new Interval(3, 5));
+        input = new ArrayList<Interval1>();
+        input.add(new Interval1(1, 4));
+        input.add(new Interval1(2, 6));
+        input.add(new Interval1(3, 5));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
-            System.out.print("[" + interval.start + "," + interval.end + "] ");
+        for (Interval1 interval1 : MergeIntervals.merge(input))
+            System.out.print("[" + interval1.start + "," + interval1.end + "] ");
         System.out.println();
     }
 }

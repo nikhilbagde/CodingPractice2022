@@ -14,25 +14,25 @@ class Interval {
 
 class ConflictingAppointments {
 
-    public static boolean canAttendAllAppointments(Interval[] intervals) {
+    public static boolean canAttendAllAppointments(Interval1[] interval1s) {
         // TODO: Write your code here
-        Arrays.sort(intervals, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
-        for (int i = 0; i < intervals.length-1; i++) {
-            if (intervals[i].end > intervals[i+1].start) return false;
+        Arrays.sort(interval1s, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
+        for (int i = 0; i < interval1s.length-1; i++) {
+            if (interval1s[i].end > interval1s[i+1].start) return false;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        Interval[] intervals = { new Interval(1, 4), new Interval(2, 5), new Interval(7, 9) };
-        boolean result = ConflictingAppointments.canAttendAllAppointments(intervals);
+        Interval1[] interval1s = { new Interval1(1, 4), new Interval1(2, 5), new Interval1(7, 9) };
+        boolean result = ConflictingAppointments.canAttendAllAppointments(interval1s);
         System.out.println("Can attend all appointments: " + result);
 
-        Interval[] intervals1 = { new Interval(6, 7), new Interval(2, 4), new Interval(8, 12) };
+        Interval1[] intervals1 = { new Interval1(6, 7), new Interval1(2, 4), new Interval1(8, 12) };
         result = ConflictingAppointments.canAttendAllAppointments(intervals1);
         System.out.println("Can attend all appointments: " + result);
 
-        Interval[] intervals2 = { new Interval(4, 5), new Interval(2, 3), new Interval(3, 6) };
+        Interval1[] intervals2 = { new Interval1(4, 5), new Interval1(2, 3), new Interval1(3, 6) };
         result = ConflictingAppointments.canAttendAllAppointments(intervals2);
         System.out.println("Can attend all appointments: " + result);
     }

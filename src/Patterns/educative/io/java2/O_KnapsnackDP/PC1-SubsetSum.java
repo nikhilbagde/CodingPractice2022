@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.O_KnapsnackDP
+package Patterns.educative.io.java2.O_KnapsnackDP;
 
 class SubsetSum {
     static int countSubsets(int[] num, int sum) {
@@ -20,7 +20,7 @@ class SubsetSum {
     }
 
     public static void main(String[] args) {
-        SubsetSum_1 ss = new SubsetSum_1();
+        SubsetSum ss = new SubsetSum();
         int[] num = { 1, 1, 2, 3 };
         System.out.println(ss.countSubsets(num, 4));
         num = new int[] { 1, 2, 7, 1, 5 };

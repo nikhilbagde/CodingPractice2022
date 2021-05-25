@@ -2,12 +2,12 @@ package Patterns.educative.io.java2.J_Subsets;
 
 import java.util.*;
 
-class TreeNode {
+class TreeNode2 {
     int val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode2 left;
+    TreeNode2 right;
 
-    TreeNode(int x) {
+    TreeNode2(int x) {
         val = x;
     }
 };

@@ -1,7 +1,7 @@
 package Patterns.educative.io.java2.J_Subsets;// dfs
 import java.util.*;
 
-class Permutations {
+class Permutations1 {
 
     public static List<List<Integer>> findPermutations(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -26,13 +26,12 @@ class Permutations {
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> result = Permutations.findPermutations(new int[] { 1, 3, 5 });
+        List<List<Integer>> result = Permutations1.findPermutations(new int[] { 1, 3, 5 });
         System.out.print("Here are all the permutations: " + result);
     }
 }
 
 // bfs
-import java.util.*;
 
 class Permutations {
 
@@ -59,7 +58,7 @@ class Permutations {
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> result = Permutations.findPermutations(new int[] { 1, 3, 5 });
+        List<List<Integer>> result = Permutations1.findPermutations(new int[] { 1, 3, 5 });
         System.out.print("Here are all the permutations: " + result);
     }
 }

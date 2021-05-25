@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.O_KnapsnackDP
+package Patterns.educative.io.java2.O_KnapsnackDP;
 
 class TargetSum {
 
