@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.C_FastAndSlowPointers;
 class HappyNumber {
 
     public static boolean find(int num) {
-        // // TODO: Write your code here
         int fast = num, slow = num;
         do {
             fast = getNext(getNext(fast));

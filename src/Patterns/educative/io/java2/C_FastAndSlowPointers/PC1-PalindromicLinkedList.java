@@ -12,7 +12,6 @@ class ListNode3 {
 class PalindromicLinkedList {
 
     public static boolean isPalindrome(ListNode3 head) {
-        // TODO: Write your code here
         if (head == null || head.next == null) return true;
         ListNode3 fast = head, slow = head;
         while (fast != null && fast.next != null) {

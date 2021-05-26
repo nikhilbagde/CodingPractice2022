@@ -213,6 +213,52 @@ public class Main {
          */
         System.out.println(B_TwoPointers.searchQuadruplets(new int[] {1,0,-1,0,-2,2}, 0) );
 
+        /**
+         * --------------------------------------Pattern: Fast & Slow pointers (7)--------------------------------------
+         * LinkedList Cycle (easy): LC 141
+         * Start of LinkedList Cycle (medium): LC 142
+         * Happy Number (medium): LC 202
+         * Middle of the LinkedList (easy): LC 876
+         * Problem Challenge 1: LC 234
+         * Problem Challenge 2: LC 143
+         * Problem Challenge 3: LC 457
+         */
+
+        /*
+        LinkedList Cycle (easy): LC 141
+        Given head,  determine if the linked list has a cycle in it.
+        There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer.
+        Internally, 'pos' is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+        Return true if there is a cycle in the linked list. Otherwise, return false.
+         */
+        System.out.println(C_FastAndSlowPointers.hasCycle(null ));
+
+        /*
+         Start of LinkedList Cycle (medium): LC 142
+         Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+         */
+        System.out.println(C_FastAndSlowPointers.findCycleStart(null ));
+
+        /*
+         Happy Number (medium): LC 202
+        Write an algorithm to determine if a number n is happy. A happy number is a number defined by the following process:
+        Starting with any positive integer, replace the number by the sum of the squares of its digits.
+        Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+        Those numbers for which this process ends in 1 are happy.
+        Return true if n is a happy number, and false if not.
+         */
+        System.out.println(C_FastAndSlowPointers.happyNumber(23));
+        System.out.println(C_FastAndSlowPointers.happyNumber(12));
+
+        /*
+        Middle of the LinkedList (easy): LC 876
+         */
+        System.out.println(C_FastAndSlowPointers.findMiddle(null));
+
+        /*
+         Check if SLL is palindrome or not
+         */
+        System.out.println(C_FastAndSlowPointers.findMiddle(null));
     }
 
 

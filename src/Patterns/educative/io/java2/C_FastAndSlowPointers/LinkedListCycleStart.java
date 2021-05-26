@@ -12,7 +12,6 @@ package Patterns.educative.io.java2.C_FastAndSlowPointers;
 class LinkedListCycleStart {
 
     public static ListNode1 findCycleStart(ListNode1 head) {
-        // TODO: Write your code here
         ListNode1 fast = head, slow = head;
         boolean flag = false;
         while (fast != null && fast.next != null) {
