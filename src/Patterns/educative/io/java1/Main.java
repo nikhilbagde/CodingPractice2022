@@ -256,9 +256,22 @@ public class Main {
         System.out.println(C_FastAndSlowPointers.findMiddle(null));
 
         /*
-         Check if SLL is palindrome or not
+        Problem Challenge 1: Check if SLL is palindrome or not
          */
-        System.out.println(C_FastAndSlowPointers.findMiddle(null));
+        System.out.println(C_FastAndSlowPointers.isPalindrome2(null));
+
+        /*
+        Problem Challenge 2: LC 143
+        given a list, 1 ->2 ->3 ->4 ->5 ->6 -> null
+        print it as 1 ->6 ->2 ->5 ->3 ->4-> null
+         */
+        System.out.println(C_FastAndSlowPointers.reorderList(null));
+        C_FastAndSlowPointers.reorderList2Fastest(null);
+
+        /*
+        Problem Challenge 3: LC 457
+         */
+
     }
 
 

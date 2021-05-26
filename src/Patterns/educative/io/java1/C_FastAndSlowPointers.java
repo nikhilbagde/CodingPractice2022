@@ -259,4 +259,89 @@ public class C_FastAndSlowPointers {
         System.out.println(" NULL ");
 
     }
+
+    public static ListNode reorderList(ListNode head) {
+        if(head == null || head.next==null) return head;   //when list has only one node then prev will fail.
+
+        // Adding logic of prev since we need to separate out the lists.
+        // Hence having prev pointer, take the next node. And put next of prev to null.
+        ListNode fast = head, slow = head, prev = null;
+
+        while(fast!=null && fast.next!=null){
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+
+        // Adding logic of prev since we need to separate out the lists.
+        // Hence having prev pointer, take the next node. And put next of prev to null.
+        ListNode mid = prev.next; /// CRITICAL  before nulling out the prev.next store it, as prev.next = slow.
+        // if that step is carried before slow will be null and list will be lost.
+        // Hence storing it in mid, and then nulling it out. we still have mid pointers, which is same as slow.
+        prev.next = null;//separating out the two lists.
+        ListNode rightHeadOriginal = reverse(mid);
+
+        printList(rightHeadOriginal);
+        printList(head);
+
+        ListNode right = rightHeadOriginal;
+        ListNode left = head;
+
+        ListNode newHead = new ListNode(-1);
+        ListNode curr = newHead;
+
+        boolean flag = true;
+
+        while(right!=null && left!=null){
+            if(flag){
+                curr.next = left;
+                curr = curr.next;
+                left = left.next;
+                flag = !flag;
+            } else if(!flag) {
+                curr.next = right;
+                curr = curr.next;
+                right = right.next;
+                flag = !flag;
+            }
+            //curr.next=(left==null)?right:left;          ///I don't know why this.
+        }
+         if(right!=null){
+             curr.next = right;
+             curr = curr.next;
+             right = right.next;
+         }
+          if(left!=null){
+             curr.next = left;
+             curr = curr.next;
+             left = left.next;
+         }
+
+        head = newHead.next;
+        return head;
+
+    }
+
+    public static  void reorderList2Fastest(ListNode head) {
+        reorderRecursive(head, head);
+    }
+    private static ListNode reorderRecursive(ListNode left, ListNode right) {
+        if(right == null) {				//even node
+            return left;
+        }else if(right.next == null) {	//odd node
+            ListNode tmp = left.next;
+            left.next = null;
+            return tmp;
+        }
+        ListNode lead = reorderRecursive(left.next, right.next.next);
+        ListNode tmp = lead.next;
+        if(left.next == lead) {		//even node
+            lead.next = null;
+        }else {						//odd node
+            tmp = lead.next;
+            lead.next = left.next;
+            left.next = lead;
+        }
+        return tmp;
+    }
 }
