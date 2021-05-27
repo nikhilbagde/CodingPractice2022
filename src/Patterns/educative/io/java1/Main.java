@@ -1,5 +1,9 @@
 package Patterns.educative.io.java1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -130,7 +134,7 @@ public class Main {
         System.out.println("Pair with target sum: [" + result[0] + ", " + result[1] + "]");
 
         //Squaring Sorting
-        //Given a sorted array, create a new array containing squares of all the number of the input array in the sorted order.
+        //Given a sorted array, create a new array containing squares of all the number of the inputEmp array in the sorted order.
         //Input: [-2, -1, 0, 2, 3]
         //Output: [0, 1, 4, 4, 9]
         int[] result2 = B_TwoPointers.squaringSorted(new int[] {-3, -1, 0, 1, 2});
@@ -276,16 +280,61 @@ public class Main {
         Problem Challenge 3: LC 759
          */
 
-        /*Merge Intervals : Given an array of intervals merge all overlapping intervals : INPUT: [[1,3],[2,6],[8,10],[15,18]] OUTPUT: [[1,6],[8,10],[15,18]]
-         */
+        /*Merge Intervals : Given an array of intervals merge all overlapping intervals : INPUT: [[1,3],[2,6],[8,10],[15,18]] OUTPUT: [[1,6],[8,10],[15,18]] */
+        List<Interval> intervals = new ArrayList<>();
+        intervals.add(new Interval(1,3));
+        intervals.add(new Interval(2,6));
+        intervals.add(new Interval(8,10));
+        intervals.add(new Interval(15,18));
 
-        /* Insert Interval :Given an non-overlapping intervals, insert a interval, merge if necessary : INPUT: [[1,3],[6,9]] & [2,5] OUTPUT: [[1,5],[6,9]]
+        System.out.println(D_MergeIntervals.mergeIntervals(intervals));
+
+        /* Insert Interval : Given an non-overlapping intervals, insert a interval, merge if necessary : INPUT: [[1,3],[6,9]] & [2,5] OUTPUT: [[1,5],[6,9]]
         INPUT: [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8] OUTPUT: [[1,2],[3,10],[12,16]]
          */
+        System.out.println(D_MergeIntervals.insertInterval(intervals, new Interval(5, 9)));
 
         /* Intervals Intersection: Given two sorted interval lists which are disjoint return thr intersection of two lists
-
+        Input: firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]] | Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
          */
+        Interval[] input1 = new Interval[] { new Interval(1, 3), new Interval(5, 6), new Interval(7, 9) };
+        Interval[] input2 = new Interval[] { new Interval(2, 3), new Interval(5, 7) };
+        System.out.println(Arrays.toString(D_MergeIntervals.intervalIntersection(input1, input2)));
+
+        /*   Problem Challenge 1:  Meeting Root, Conflicting Appointments:  Given meeting intervals, find if person can attend all meetings [[0, 30],[5, 10],[15, 20]],     O: FALSE    */
+        Interval[] meetingIntervals = { new Interval(1, 4), new Interval(2, 5), new Interval(7, 9) };
+        System.out.println(D_MergeIntervals.canAttendMeetings(meetingIntervals));
+
+        /* Meeting Root II : Given intervals for meeting, find minimum no of conference required */
+        System.out.println(D_MergeIntervals.findMinimumMeetingRooms1(intervals));
+        System.out.println(D_MergeIntervals.findMinimumMeetingRooms2(input1));
+        System.out.println(D_MergeIntervals.findMinimumMeetingRooms3(input1));
+
+        /*  Problem Challenge 2: Find Max Bandwidth
+        * For n tv channels, given show start time, end time & bandwidth needed for each channels, find the maximum bandwidth required at peak.
+        * a show represented as [1,30,2] meaning [show-start-time, show-end-time, bandwidth-needed].
+        * e.g. n =3 channels,
+        [[1,30, 2],[31,60, 4],[61,120, 3],
+        [1,20,2],[21,40,4],[41,60,5],[61,120,3],
+        [1,60,4],[61,120,4]]
+        Ans: 13, for time slot between 41-60 each channel need 4,5,4 bandwidth respectively. 13 is highest (peek/max) bandwidth.
+        Note: Min-size-of-show = 2 (min) |  Max-duration-for-show = 720 (min) same as 24hours | Max-bandwidth-per-show = 100 (mbps) | n<1000
+        Some channels can decide not to broadcast any show for given time-slot, which mean there will be 0 bandwidth required for that channel for given time-slo*/
+        List<Job> input = new ArrayList<>(Arrays.asList(new Job(1, 4, 3), new Job(2, 5, 4), new Job(7, 9, 6)));
+        System.out.println("Maximum Bandwidth load at any time: " + D_MergeIntervals.findMaxCPUOrBandwidthLoad(input));
+
+        /*Problem Challenge 3: Employee Free Time : given intervals of all employee return common positive-length free time for all employee
+        * Input: schedule = [[[1,2],[5,6]],[[1,3]],[[4,10]]]  | Output: [[3,4]] |
+        * Explanation: There are a total of three employees, and all common free time intervals would be [-inf, 1], [3, 4], [10, inf].
+        We discard any intervals that contain inf as they aren’t finite.
+        Example 2: Input: schedule = [[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]] | Output: [[5,6],[7,9]]*/
+        List<List<Interval>> inputEmp = new ArrayList<>();
+        inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(1, 3), new Interval(5, 6))));
+        inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(2, 3), new Interval(6, 8))));
+        System.out.println( D_MergeIntervals.findEmployeeFreeTime(inputEmp));
+
+
+
     }
 
 

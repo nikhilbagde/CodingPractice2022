@@ -15,7 +15,6 @@ class Interval {
 class ConflictingAppointments {
 
     public static boolean canAttendAllAppointments(Interval1[] interval1s) {
-        // TODO: Write your code here
         Arrays.sort(interval1s, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
         for (int i = 0; i < interval1s.length-1; i++) {
             if (interval1s[i].end > interval1s[i+1].start) return false;

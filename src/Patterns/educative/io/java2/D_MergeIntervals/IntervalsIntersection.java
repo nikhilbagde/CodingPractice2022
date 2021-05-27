@@ -14,9 +14,8 @@ class Interval2 {
 
 class IntervalsIntersection {
 
-    public static Interval1[] merge(Interval1[] arr1, Interval1[] arr2) {
-        List<Interval1> intervalsIntersection = new ArrayList<Interval1>();
-        // TODO: Write your code here
+    public static Interval1[] intervalIntersection(Interval1[] arr1, Interval1[] arr2) {
+        List<Interval1> intervalsIntersection = new ArrayList<>();
         int i = 0, j = 0;
         while (i < arr1.length && j < arr2.length) {
             if ((arr1[i].start <= arr2[j].start && arr2[j].start <= arr1[i].end) ||
@@ -32,7 +31,7 @@ class IntervalsIntersection {
     public static void main(String[] args) {
         Interval1[] input1 = new Interval1[] { new Interval1(1, 3), new Interval1(5, 6), new Interval1(7, 9) };
         Interval1[] input2 = new Interval1[] { new Interval1(2, 3), new Interval1(5, 7) };
-        Interval1[] result = IntervalsIntersection.merge(input1, input2);
+        Interval1[] result = IntervalsIntersection.intervalIntersection(input1, input2);
         System.out.print("Intervals Intersection: ");
         for (Interval1 interval1 : result)
             System.out.print("[" + interval1.start + "," + interval1.end + "] ");
@@ -40,7 +39,7 @@ class IntervalsIntersection {
 
         input1 = new Interval1[] { new Interval1(1, 3), new Interval1(5, 7), new Interval1(9, 12) };
         input2 = new Interval1[] { new Interval1(5, 10) };
-        result = IntervalsIntersection.merge(input1, input2);
+        result = IntervalsIntersection.intervalIntersection(input1, input2);
         System.out.print("Intervals Intersection: ");
         for (Interval1 interval1 : result)
             System.out.print("[" + interval1.start + "," + interval1.end + "] ");

@@ -14,13 +14,12 @@ class Interval3 {
 
 class MergeIntervals {
 
-    public static List<Interval1> merge(List<Interval1> interval1s) {
-        List<Interval1> mergedInterval1s = new LinkedList<Interval1>();
-        // TODO: Write your code here
-        if (interval1s.size() <= 1) return interval1s;
-        Collections.sort(interval1s, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
-        int left = interval1s.get(0).start, right = interval1s.get(0).end;
-        for (Interval1 i: interval1s) {
+    public static List<Interval1> merge(List<Interval1> intervals) {
+        List<Interval1> mergedInterval1s = new LinkedList<>();
+        if (intervals.size() <= 1) return intervals;
+        Collections.sort(intervals, (a, b) -> {return a.start == b.start ? a.end-b.end : a.start-b.start;});
+        int left = intervals.get(0).start, right = intervals.get(0).end;
+        for (Interval1 i: intervals) {
             if (i.start > right) {
                 mergedInterval1s.add(new Interval1(left, right));
                 left = i.start;
