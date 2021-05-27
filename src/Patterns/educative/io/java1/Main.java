@@ -36,28 +36,30 @@ public class Main {
         //Given a string, find the length of the longest substring in it with no more than K distinct characters.
         //Input: String="araaci", K=2
         //output 4
-        System.out.println(A_SlidingWindow.LongestSubstringKDistinct("cbbebi", 3));
+        System.out.println(A_SlidingWindow.longestSubstringKDistinct("cbbebi", 3));
+        System.out.println(A_SlidingWindow.longestSubstringKDistinctBookSolution("cbbebi", 3));
 
         //fruits in a basket: Write a function to return the maximum number of fruits in both the baskets.
-        //Input:  Fruit=['A', 'B', 'C', 'A', 'C']
-        //Output: 3
+        //Input:  Fruit=['A', 'B', 'C', 'A', 'C']  Output: 3
         //Explanation: We can put 2 'C' in one basket and one 'A' in the other from the subarray ['C', 'A', 'C']
         System.out.println(A_SlidingWindow.maxFruitsIn2Baskets(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
+        System.out.println(A_SlidingWindow.maxFruitsIn2BasketsBookSolution(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
 
         //No-repeat Substring
         //Given a string, find the length of the longest substring which has no repeating characters.
         //Input: String="aabccbb"
         //Output: 3
         //Explanation: The longest substring without any repeating characters is "abc".
-        System.out.println(A_SlidingWindow.NoRepeatSubstringProblem("abccde"));
+        System.out.println(A_SlidingWindow.noRepeatSubstringProblem("abccde"));
+        System.out.println(A_SlidingWindow.noRepeatSubstringProblemBookSolution("abccde"));
 
         //Longest SubString
         //Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter,
         // find the length of the longest substring having the same letters after replacement.
-        //Input: String="aabccbb", k=2
-        //Output: 5
+        //Input: String="aabccbb", k=2 Output: 5
         //Explanation: Replace the two 'c' with 'b' to have a longest repeating substring "bbbbb".
         System.out.println(A_SlidingWindow.longestSubStringAfterReplacement("abccde", 1));
+        System.out.println(A_SlidingWindow.longestSubStringAfterReplacementBookSolution("abccde", 1));
 
         //Longest SubArray with Ones After Replacement
         //Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s,
@@ -70,45 +72,34 @@ public class Main {
         //Challenge1 String Permutations
         //Given a string and a pattern, find out if the string contains any permutation of the pattern.
         //Permutation is defined as the re-arranging of the characters of the string. For example, “abc” has the following six permutations:
-        //abc
-        //acb
-        //bac
-        //bca
-        //cab
-        //cba
+        //abc, acb, bac, bca, cab, cba
         // a string has ‘n’ distinct characters it will have n!n!n! permutations.
         //Input: String="oidbcaf", Pattern="abc"
         //Output: true
         //Explanation: The string contains "bca" which is a permutation of the given pattern.
         System.out.println(A_SlidingWindow.stringPermutationOfAPattern("bcdxabcdy", "bcdyabcdx"));
+        System.out.println(A_SlidingWindow.stringPermutationOfAPatternBookSolution("bcdxabcdy", "bcdyabcdx"));
 
         //Challenge2 String Anagrams
         //Given a string and a pattern, find all anagrams of the pattern in the given string.
         //Anagram is actually a Permutation of a string. For example, “abc” has the following six anagrams:
-        //abc
-        //acb
-        //bac
-        //bca
-        //cab
-        //cba
-        //Input: String="abbcabc", Pattern="abc"
-        //Output: [2, 3, 4]
+        //abc, acb, bac, bca, cab, cba
+        //Input: String="abbcabc", Pattern="abc"  Output: [2, 3, 4]
         //Explanation: The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
         System.out.println(A_SlidingWindow.stringAnagramsOfAPattern("abbcabc", "abc"));
+        System.out.println(A_SlidingWindow.stringAnagramsOfAPatternBookSolution("abbcabc", "abc"));
 
-        //Challenge3 Smallest Window containing Substring
+        //Challenge 3 Smallest Window containing Substring
         //Given a string and a pattern, find the smallest substring in the given string which has all the characters of the given pattern.
-        //Input: String="aabdec", Pattern="abc"
-        //Output: "abdec"
+        //Input: String="aabdec", Pattern="abc" | Output: "abdec"
         //Explanation: The smallest substring having all characters of the pattern is "abdec"
-        System.out.println(A_SlidingWindow.smallesSubtringWithPattern("abdabca", "abc"));
+        System.out.println(A_SlidingWindow.smallestSubtringWithPattern("abdabca", "abc"));
 
-        //Challenge4 Word Concatenation
+        //Challenge 4 Word Concatenation
         //Given a string and a list of words, find all the starting indices of substrings in the given string that are a
         // concatenation of all the given words exactly once without any overlapping of words.
         // It is given that all words are of the same length.
-        //Input: String="catfoxcat", Words=["cat", "fox"]
-        //Output: [0, 3]
+        //Input: String="catfoxcat", Words=["cat", "fox"] | Output: [0, 3]
         //Explanation: The two substring containing both the words are "catfox" & "foxcat".
         System.out.println(A_SlidingWindow.wordsConcatenation("catcatfoxfox", new String[] {"cat", "fox"}));
 
@@ -272,6 +263,29 @@ public class Main {
         Problem Challenge 3: LC 457
          */
 
+
+        //-----------------------------------Merge Intervals-----------------------------------
+        /*
+        Pattern: Merge Intervals (7)
+        Merge Intervals (medium): LC 56
+        Insert Interval (medium): LC 57
+        Intervals Intersection (medium): LC 986
+        Conflicting Appointments (medium): LC 252
+        Problem Challenge 1: LC 253
+        Problem Challenge 2: new ( link )
+        Problem Challenge 3: LC 759
+         */
+
+        /*Merge Intervals : Given an array of intervals merge all overlapping intervals : INPUT: [[1,3],[2,6],[8,10],[15,18]] OUTPUT: [[1,6],[8,10],[15,18]]
+         */
+
+        /* Insert Interval :Given an non-overlapping intervals, insert a interval, merge if necessary : INPUT: [[1,3],[6,9]] & [2,5] OUTPUT: [[1,5],[6,9]]
+        INPUT: [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8] OUTPUT: [[1,2],[3,10],[12,16]]
+         */
+
+        /* Intervals Intersection: Given two sorted interval lists which are disjoint return thr intersection of two lists
+
+         */
     }
 
 

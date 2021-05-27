@@ -106,7 +106,7 @@ public class A_SlidingWindow {
         return minLength == Integer.MAX_VALUE ? 0 : minLength;
     }
 
-    static int LongestSubstringKDistinct(String str, int k) {
+    static int longestSubstringKDistinct(String str, int k) {
         //Time complexity O(n)
         //Space complexity O(k)
         HashMap<Character, Integer> charFrequencyMap = new HashMap<>();
@@ -143,7 +143,7 @@ public class A_SlidingWindow {
         return longestSubStr;
     }
 
-    static int LongestSubstringKDistinctBookSolution(String str, int k) {
+    static int longestSubstringKDistinctBookSolution(String str, int k) {
         if (str == null || str.length() == 0 || str.length() < k)
             throw new IllegalArgumentException();
 
@@ -171,78 +171,76 @@ public class A_SlidingWindow {
         //Time complexity O(n)
         //Space complexity O(1)
         int baskets = 2;
-        int windowStart = 0;
+        int start = 0;
         int maxFruit = 0;
         int tempMaxFruit = 0;
         HashMap<Character, Integer> fruitFrequencyMap = new HashMap<>();
 
-        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            fruitFrequencyMap.put(arr[windowEnd], fruitFrequencyMap.getOrDefault(arr[windowEnd], 0) + 1);
+        for (int end = 0; end < arr.length; end++) {
+            fruitFrequencyMap.put(arr[end], fruitFrequencyMap.getOrDefault(arr[end], 0) + 1);
 
             if (fruitFrequencyMap.size() > baskets) {
-                char fruitTypeToRemove = arr[windowStart];
-                while (arr[windowStart] == fruitTypeToRemove) windowStart++;
+                char fruitTypeToRemove = arr[start];
+                while (arr[start] == fruitTypeToRemove) start++;
                 fruitFrequencyMap.remove(fruitTypeToRemove);
             }
 
-            tempMaxFruit = windowEnd - windowStart + 1;
+            tempMaxFruit = end - start + 1;
             maxFruit = Math.max(maxFruit, tempMaxFruit);
         }
         return maxFruit;
     }
 
     static int maxFruitsIn2BasketsBookSolution(char[] arr) {
-        int windowStart = 0, maxFruit = 0;
-        HashMap<Character, Integer> fruitFrequencyMap = new HashMap<>();
-        // try to extend the range [windowStart, windowEnd]
-        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            fruitFrequencyMap.put(arr[windowEnd], fruitFrequencyMap.getOrDefault(arr[windowEnd], 0) + 1);
+        int start = 0, maxFruit = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        // try to extend the range [start, windowEnd]
+        for (int end = 0; end < arr.length; end++) {
+            map.put(arr[end], map.getOrDefault(arr[end], 0) + 1);
             // shrink the sliding window, until we are left with '2' fruits in the frequency map
-            while (fruitFrequencyMap.size() > 2) {
-                fruitFrequencyMap.put(arr[windowStart], fruitFrequencyMap.get(arr[windowStart]) - 1);
-                if (fruitFrequencyMap.get(arr[windowStart]) == 0) {
-                    fruitFrequencyMap.remove(arr[windowStart]);
+            while (map.size() > 2) {
+                map.put(arr[start], map.get(arr[start]) - 1);
+                if (map.get(arr[start]) == 0) {
+                    map.remove(arr[start]);
                 }
-                windowStart++; // shrink the window
+                start++; // shrink the window
             }
-            maxFruit = Math.max(maxFruit, windowEnd - windowStart + 1);
+            maxFruit = Math.max(maxFruit, end - start + 1);
         }
         return maxFruit;
     }
 
-    static int NoRepeatSubstringProblem(String str) {
-        int windowStart = 0, subStrLength = 0, tempSubStrLength = 0;
+    static int noRepeatSubstringProblem(String str) {
+        int start = 0, subStrLength = 0, tempSubStrLength = 0;
         HashMap<Character, Integer> charIndexMap = new HashMap<>();
 
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-
-            if (charIndexMap.containsKey(str.charAt(windowEnd))) {
+        for (int end = 0; end < str.length(); end++) {
+            if (charIndexMap.containsKey(str.charAt(end))) {
                 charIndexMap.clear();
-                tempSubStrLength = windowEnd - windowStart;
-                windowStart = windowEnd;
+                tempSubStrLength = end - start;         // reason why there is no plus+1 since, this window is 1 step more that required windows. (We are in contains if block)
+                start = end;
             }
-
-            charIndexMap.put(str.charAt(windowEnd), 1);
+            charIndexMap.put(str.charAt(end), 1);
             subStrLength = Math.max(tempSubStrLength, subStrLength);
         }
         return subStrLength;
     }
 
-    static int NoRepeatSubstringProblemBookSolution(String str) {
-        int windowStart = 0, maxLength = 0;
-        HashMap<Character, Integer> charIndexMap = new HashMap<>();
-        // try to extend the range [windowStart, windowEnd]
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char rightChar = str.charAt(windowEnd);
+    static int noRepeatSubstringProblemBookSolution(String str) {
+        int start = 0, maxLength = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        // try to extend the range [start, windowEnd]
+        for (int end = 0; end < str.length(); end++) {
+            char rightChar = str.charAt(end);
             // if the map already contains the 'rightChar', shrink the window from the beginning so that
             // we have only one occurrence of 'rightChar'
-            if (charIndexMap.containsKey(rightChar)) {
+            if (map.containsKey(rightChar)) {
                 // this is tricky; in the current window, we will not have any 'rightChar' after its previous index
-                // and if 'windowStart' is already ahead of the last index of 'rightChar', we'll keep 'windowStart'
-                windowStart = Math.max(windowStart, charIndexMap.get(rightChar) + 1);
+                // and if 'start' is already ahead of the last index of 'rightChar', we'll keep 'start'
+                start = Math.max(start, map.get(rightChar) + 1);
             }
-            charIndexMap.put(rightChar, windowEnd); // insert the 'rightChar' into the map
-            maxLength = Math.max(maxLength, windowEnd - windowStart + 1); // remember the maximum length so far
+            map.put(rightChar, end); // insert the 'rightChar' into the map
+            maxLength = Math.max(maxLength, end - start + 1); // remember the maximum length so far
         }
 
         return maxLength;
@@ -276,20 +274,20 @@ public class A_SlidingWindow {
     static int longestSubStringAfterReplacement(String str, int k) {
         //Time complexity O(n)
         //Space complexity O(1)
-        int longestSubStr = 0, windowStart = 0, replacements = 0;
-        HashMap<Character, Integer> letterFrequencyMap = new HashMap<>();
+        int longestSubStr = 0, start = 0, replacements = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
 
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char rightChar = str.charAt(windowEnd);
-            letterFrequencyMap.put(rightChar, letterFrequencyMap.getOrDefault(rightChar, 0) + 1);
-            replacements = letterFrequencyMap.get(rightChar);
+        for (int end = 0; end < str.length(); end++) {
+            char rightChar = str.charAt(end);
+            map.put(rightChar, map.getOrDefault(rightChar, 0) + 1);
+            replacements = map.get(rightChar);
 
-            while (windowEnd - windowStart + 1 - replacements > k) {
-                char leftChar = str.charAt(windowStart);
-                letterFrequencyMap.put(leftChar, letterFrequencyMap.get(leftChar) - 1);
-                windowStart++;
+            while (end - start + 1 - replacements > k) {        //Tricky
+                char leftChar = str.charAt(start);
+                map.put(leftChar, map.get(leftChar) - 1);
+                start++;
             }
-            longestSubStr = Math.max(windowEnd - windowStart + 1, longestSubStr);
+            longestSubStr = Math.max(end - start + 1, longestSubStr);
         }
         return longestSubStr;
     }
@@ -297,25 +295,25 @@ public class A_SlidingWindow {
     static int longestSubStringAfterReplacementBookSolution(String str, int k) {
         //Time complexity O(n)
         //Space complexity O(1)
-        int windowStart = 0, longestSubStr = 0, maxRepeatLetterCount = 0;
-        HashMap<Character, Integer> letterFrequencyMap = new HashMap<>();
-        // try to extend the range [windowStart, windowEnd]
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char rightChar = str.charAt(windowEnd);
-            letterFrequencyMap.put(rightChar, letterFrequencyMap.getOrDefault(rightChar, 0) + 1);
-            maxRepeatLetterCount = Math.max(maxRepeatLetterCount, letterFrequencyMap.get(rightChar));
+        int start = 0, longestSubStr = 0, maxRepeatLetterCount = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        // try to extend the range [start, windowEnd]
+        for (int end = 0; end < str.length(); end++) {
+            char rightChar = str.charAt(end);
+            map.put(rightChar, map.getOrDefault(rightChar, 0) + 1);
+            maxRepeatLetterCount = Math.max(maxRepeatLetterCount, map.get(rightChar));          // is this correct to take max?
 
-            // current window size is from windowStart to windowEnd, overall we have a letter which is
+            // current window size is from start to end, overall we have a letter which is
             // repeating 'maxRepeatLetterCount' times, this means we can have a window which has one letter
             // repeating 'maxRepeatLetterCount' times and the remaining letters we should replace.
             // if the remaining letters are more than 'k', it is the time to shrink the window as we
             // are not allowed to replace more than 'k' letters
-            if (windowEnd - windowStart + 1 - maxRepeatLetterCount > k) {
-                char leftChar = str.charAt(windowStart);
-                letterFrequencyMap.put(leftChar, letterFrequencyMap.get(leftChar) - 1);
-                windowStart++;
+            if (end - start + 1 - maxRepeatLetterCount > k) {
+                char leftChar = str.charAt(start);
+                map.put(leftChar, map.get(leftChar) - 1);
+                start++;
             }
-            longestSubStr = Math.max(longestSubStr, windowEnd - windowStart + 1);
+            longestSubStr = Math.max(longestSubStr, end - start + 1);
         }
         return longestSubStr;
     }
@@ -323,18 +321,15 @@ public class A_SlidingWindow {
     static int longestSubArrayAfterReplacement(int[] arr, int k) {
         //Time complexity O(n)
         //Space complexity O(1)
-        int windowStart = 0, lengthSubArr = 0, onesRepetitions = 0;
-
-        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            if (arr[windowEnd] == 1) onesRepetitions++;
-
-            int totalReplacements = windowEnd - windowStart + 1 - onesRepetitions;
+        int start = 0, lengthSubArr = 0, onesRepetitions = 0;
+        for (int end = 0; end < arr.length; end++) {
+            if (arr[end] == 1) onesRepetitions++;
+            int totalReplacements = end - start + 1 - onesRepetitions;
             if (totalReplacements > k) {
-                if (arr[windowStart] == 1) onesRepetitions--;
-                windowStart++;
+                if (arr[start] == 1) onesRepetitions--;
+                start++;
             }
-
-            lengthSubArr = Math.max(windowEnd - windowStart + 1, lengthSubArr);
+            lengthSubArr = Math.max(end - start + 1, lengthSubArr);
         }
         return lengthSubArr;
     }
@@ -352,8 +347,8 @@ CHALLENGE #1
             patternMap.put(chr, patternMap.getOrDefault(chr, 0) + 1);
 
         //loop through the string
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char letterInString = str.charAt(windowEnd);
+        for (int end = 0; end < str.length(); end++) {
+            char letterInString = str.charAt(end);
             //checks for letters in the pattern
             if (patternMap.containsKey(letterInString) && patternMap.get(letterInString) > 0) {
                 matchingLetters++;
@@ -370,33 +365,41 @@ CHALLENGE #1
     }
 
     static boolean stringPermutationOfAPatternBookSolution(String str, String pattern) {
-        int windowStart = 0, matchingLetters = 0;
-        HashMap<Character, Integer> charFrequencyMap = new HashMap<>();
+        int start = 0, matchingLetters = 0;
+        HashMap<Character, Integer> patternMap = new HashMap<>();
 
         for (char chr : pattern.toCharArray())
-            charFrequencyMap.put(chr, charFrequencyMap.getOrDefault(chr, 0) + 1);
+            patternMap.put(chr, patternMap.getOrDefault(chr, 0) + 1);
 
-        // our goal is to match all the characters from the 'charFrequencyMap' with the current window
-        // try to extend the range [windowStart, windowEnd]
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char rightChar = str.charAt(windowEnd);
-            if (charFrequencyMap.containsKey(rightChar)) {
+        // our goal is to match all the characters from the 'patternMap' with the current window
+        // try to extend the range [start, windowEnd]
+        for (int end = 0; end < str.length(); end++) {
+            char rightChar = str.charAt(end);
+
+            //If current character is in pattern match, we will decrement from our original map.
+            // It frequency reaches to zero. Increment matching letters.
+            if (patternMap.containsKey(rightChar)) {
                 // decrement the frequency of the matched character
-                charFrequencyMap.put(rightChar, charFrequencyMap.get(rightChar) - 1);
-                if (charFrequencyMap.get(rightChar) == 0) // character is completely matched
+                patternMap.put(rightChar, patternMap.get(rightChar) - 1);
+                if (patternMap.get(rightChar) == 0) // character is completely matched. Notice we don't remove character from the map, hence original size is always preserved.
                     matchingLetters++;
             }
 
-            if (matchingLetters == charFrequencyMap.size())
+            //If matching letters == pattern map size. We found the match.
+            if (matchingLetters == patternMap.size())
                 return true;
 
-            if (windowEnd >= pattern.length() - 1) { // shrink the window by one character
-                char leftChar = str.charAt(windowStart++);
-                if (charFrequencyMap.containsKey(leftChar)) {
-                    if (charFrequencyMap.get(leftChar) == 0)
+            // when end reaches at last character of pattern string.
+            //Before shrinking, we need to check starting character was in pattern map. &&  frequency was zero.
+            // Then we are going to increment back original frequency which was decremented to check the rest of the string.
+            // We need to decrement the matching letters too.
+            if (end >= pattern.length() - 1) { // shrink the window by one character
+                char leftChar = str.charAt(start++);
+                if (patternMap.containsKey(leftChar)) {
+                    if (patternMap.get(leftChar) == 0)
                         matchingLetters--; // before putting the character back, decrement the matched count
                     // put the character back for matching
-                    charFrequencyMap.put(leftChar, charFrequencyMap.get(leftChar) + 1);
+                    patternMap.put(leftChar, patternMap.get(leftChar) + 1);
                 }
             }
         }
@@ -434,32 +437,32 @@ CHALLENGE #2
     }
 
     static ArrayList stringAnagramsOfAPatternBookSolution(String str, String pattern) {
-        int windowStart = 0, matched = 0;
-        HashMap<Character, Integer> charFrequencyMap = new HashMap<>();
+        int start = 0, matched = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
         for (char chr : pattern.toCharArray())
-            charFrequencyMap.put(chr, charFrequencyMap.getOrDefault(chr, 0) + 1);
+            map.put(chr, map.getOrDefault(chr, 0) + 1);
 
-        ArrayList<Integer> resultIndices = new ArrayList<Integer>();
+        ArrayList<Integer> resultIndices = new ArrayList<>();
         // our goal is to match all the characters from the map with the current window
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
-            char rightChar = str.charAt(windowEnd);
+        for (int end = 0; end < str.length(); end++) {
+            char rightChar = str.charAt(end);
             // decrement the frequency of the matched character
-            if (charFrequencyMap.containsKey(rightChar)) {
-                charFrequencyMap.put(rightChar, charFrequencyMap.get(rightChar) - 1);
-                if (charFrequencyMap.get(rightChar) == 0)
+            if (map.containsKey(rightChar)) {
+                map.put(rightChar, map.get(rightChar) - 1);
+                if (map.get(rightChar) == 0)
                     matched++;
             }
 
-            if (matched == charFrequencyMap.size()) // have we found an anagram?
-                resultIndices.add(windowStart);
+            if (matched == map.size()) // have we found an anagram, note the starting index
+                resultIndices.add(start);
 
-            if (windowEnd >= pattern.length() - 1) { // shrink the window
-                char leftChar = str.charAt(windowStart++);
-                if (charFrequencyMap.containsKey(leftChar)) {
-                    if (charFrequencyMap.get(leftChar) == 0)
+            if (end >= pattern.length() - 1) { // shrink the window
+                char leftChar = str.charAt(start++);
+                if (map.containsKey(leftChar)) {
+                    if (map.get(leftChar) == 0)
                         matched--; // before putting the character back, decrement the matched count
                     // put the character back
-                    charFrequencyMap.put(leftChar, charFrequencyMap.get(leftChar) + 1);
+                    map.put(leftChar, map.get(leftChar) + 1);
                 }
             }
         }
@@ -469,7 +472,7 @@ CHALLENGE #2
 /*
 CHALLENGE #3
  */
-    static String smallesSubtringWithPattern(String str, String pattern) {
+    static String smallestSubtringWithPattern(String str, String pattern) {
         String smallestSubStr = "";
         int windowStart = 0, startIndex = 0, endIndex = 0, smallestLength = Integer.MAX_VALUE;
         HashMap<Character, Integer> patternLetterFreq = new HashMap<>();
