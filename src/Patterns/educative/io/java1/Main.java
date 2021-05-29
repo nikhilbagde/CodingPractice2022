@@ -135,31 +135,27 @@ public class Main {
 
         //Squaring Sorting
         //Given a sorted array, create a new array containing squares of all the number of the inputEmp array in the sorted order.
-        //Input: [-2, -1, 0, 2, 3]
-        //Output: [0, 1, 4, 4, 9]
+        //Input: [-2, -1, 0, 2, 3] | Output: [0, 1, 4, 4, 9]
         int[] result2 = B_TwoPointers.squaringSorted(new int[] {-3, -1, 0, 1, 2});
         System.out.println("[" + result2[0] + "," + result2[1] + "," + result2[2] + "," + result2[3]+ "," + result2[4] + "]");
 
         //Triplet Sum to Zero
         //Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
-        //Input: [-3, 0, 1, 2, -1, 1, -2]
-        //Output: [-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
+        //Input: [-3, 0, 1, 2, -1, 1, -2] | Output: [-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
         //Explanation: There are four unique triplets whose sum is equal to zero.
         System.out.println(B_TwoPointers.tripletSumToZero(new int[] {-3, 0, 1, 2, -1, 1, -2}));
         System.out.println(B_TwoPointers.tripletSumToZeroBook(new int[] {-3, 0, 1, 2, -1, 1, -2}));
 
         // 6. Triplet Sum Close to Target (medium)
         // Given an array of unsorted integers. find three numbers in array s/t sum is closest to target.
-        //Input: [-1,2,1,-4], target = 1
-        //Output: 2
+        //Input: [-1,2,1,-4], target = 1 |  Output: 2
         //Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
         System.out.println(B_TwoPointers.tripletSumCloseToTarget(new int[] {-1,2,1,-4}, 1) );
 
 
         // 7. Triplets with Smaller Sum (medium)
         // Given an array of unsorted integers. find three numbers indices [i,j,k] in array s/t sum is smaller to target.
-        //        Input: nums = [-2,0,1,3], and target = 2
-        //        Output: 2
+        //        Input: nums = [-2,0,1,3], and target = 2 | Output: 2
         //        Explanation: Because there are two triplets which sums are less than 2:
         //             [-2,0,1]
         //             [-2,0,3]
@@ -168,8 +164,7 @@ public class Main {
         // 8. Sub-arrays with Product Less than a Target (medium)
         // Given an array of positive integers nums. Count and print the number of (contiguous) subarrays
         // where the product of all the elements in the subarray is less than target.
-        //        Input: nums = [10, 5, 2, 6], k = 100
-        //        Output: 8
+        //        Input: nums = [10, 5, 2, 6], k = 100  | Output: 8
         //        Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
         //        Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
         //        [[10], [10, 5], [5], [5, 2], [5, 2, 6], [2], [2, 6], [6]]
@@ -180,32 +175,17 @@ public class Main {
         //        Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent,
         //        with the colors in the order red, white, and blue. Integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
         //         You must solve this problem without using the library's sort function.
-        //        Example 1:        //
-        //        Input: nums = [2,0,2,1,1,0]
-        //        Output: [0,0,1,1,2,2]
-        //        Example 2:        //
-        //        Input: nums = [2,0,1]
-        //        Output: [0,1,2]
-        //        Example 3:        //
-        //        Input: nums = [0]
-        //        Output: [0]
-        //        Example 4:        //
-        //        Input: nums = [1]
-        //        Output: [1]
+        //        Example 1: Input: nums = [2,0,2,1,1,0] | Output: [0,0,1,1,2,2]
+        //        Example 2: Input: nums = [2,0,1] | Output: [0,1,2]
+        //        Example 3: Input: nums = [0] | Output: [0]
+        //        Example 4: Input: nums = [1] | Output: [1]
         System.out.println(B_TwoPointers.dutchFlagSortColors(new int[] {2,0,2,1,1,0}) );
 
 
-        /*
-        Given an array  of integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+        /* Given an array  of integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
         nums[a] + nums[b] + nums[c] + nums[d] == target
-        Example 1:
-        Input: nums = [1,0,-1,0,-2,2], target = 0
-        Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-
-        Example 2:
-        Input: nums = [2,2,2,2,2], target = 8
-        Output: [[2,2,2,2]]
-         */
+        Example 1: Input: nums = [1,0,-1,0,-2,2], target = 0 | Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+        Example 2: Input: nums = [2,2,2,2,2], target = 8 | Output: [[2,2,2,2]] */
         System.out.println(B_TwoPointers.searchQuadruplets(new int[] {1,0,-1,0,-2,2}, 0) );
 
         /**
@@ -228,44 +208,32 @@ public class Main {
          */
         System.out.println(C_FastAndSlowPointers.hasCycle(null ));
 
-        /*
-         Start of LinkedList Cycle (medium): LC 142
-         Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
-         */
+        /* Start of LinkedList Cycle (medium): LC 142
+         Given a linked list, return the node where the cycle begins. If there is no cycle, return null. */
         System.out.println(C_FastAndSlowPointers.findCycleStart(null ));
 
-        /*
-         Happy Number (medium): LC 202
+        /*Happy Number (medium): LC 202
         Write an algorithm to determine if a number n is happy. A happy number is a number defined by the following process:
         Starting with any positive integer, replace the number by the sum of the squares of its digits.
         Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
         Those numbers for which this process ends in 1 are happy.
-        Return true if n is a happy number, and false if not.
-         */
+        Return true if n is a happy number, and false if not. */
         System.out.println(C_FastAndSlowPointers.happyNumber(23));
         System.out.println(C_FastAndSlowPointers.happyNumber(12));
 
-        /*
-        Middle of the LinkedList (easy): LC 876
-         */
+        /*Middle of the LinkedList (easy): LC 876 */
         System.out.println(C_FastAndSlowPointers.findMiddle(null));
 
-        /*
-        Problem Challenge 1: Check if SLL is palindrome or not
-         */
+        /* Problem Challenge 1: Check if SLL is palindrome or not */
         System.out.println(C_FastAndSlowPointers.isPalindrome2(null));
 
-        /*
-        Problem Challenge 2: LC 143
+        /* Problem Challenge 2: LC 143
         given a list, 1 ->2 ->3 ->4 ->5 ->6 -> null
-        print it as 1 ->6 ->2 ->5 ->3 ->4-> null
-         */
+        print it as 1 ->6 ->2 ->5 ->3 ->4-> null */
         System.out.println(C_FastAndSlowPointers.reorderList(null));
         C_FastAndSlowPointers.reorderList2Fastest(null);
 
-        /*
-        Problem Challenge 3: LC 457
-         */
+        /* Problem Challenge 3: LC 457 */
 
 
         //-----------------------------------Merge Intervals-----------------------------------
@@ -334,7 +302,192 @@ public class Main {
         System.out.println( D_MergeIntervals.findEmployeeFreeTime(inputEmp));
 
 
+        //------------------------------------------------------Cyclic Sort ---------------------------------------------------------
+        /*
+        1. Cyclic Sort (easy): new ( link )
+        2. Find the Missing Number (easy): LC 268
+        3. Find all Missing Numbers (easy): LC 448
+        4. Find the Duplicate Number (easy): LC 287
+        5. Find all Duplicate Numbers (easy): LC 442
+        6. Problem Challenge 1: LC 645
+        7. Problem Challenge 2: LC 41
+        8. Problem Challenge 3: new ( link )
+         */
+        /* 1. Cyclic Sort (easy): new ( link ):  */
 
+
+        /* 2. Find the Missing Number (easy) | Array with distinct numbers from 0 to n | Return only number missing
+        * Input: nums = [3,0,1] | Output: 2 | Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.*/
+        System.out.println(E_CyclicSort.missingNumber2(new int[] {3,0,1}));
+        System.out.println(E_CyclicSort.missingNumber3(new int[] {3,0,1}));
+
+        /* 3. Find all Missing Numbers | Input: nums = [4,3,2,7,8,2,3,1] | Output: [5,6] */
+        System.out.println(E_CyclicSort.findDisappearedNumbers( new int[]{4,3,2,7,8,2,3,1}));
+        System.out.println(E_CyclicSort.findDisappearedNumbers2( new int[]{4,3,2,7,8,2,3,1}));
+        System.out.println(E_CyclicSort.findDisappearedNumbers3( new int[]{4,3,2,7,8,2,3,1}));
+
+        /* 4. Find the Duplicate Number | */
+        System.out.println(E_CyclicSort.findDuplicate(new int[]{1,3,4,2,2}));
+
+
+        //-----------------------In Place reversal of Linked List --------------------------
+        /**
+         * Pattern: In-place Reversal of a LinkedList (5)
+         * 1. Reverse a LinkedList (easy): LC 206
+         * 2. Reverse a Sub-list (medium): LC 92
+         * 3. Reverse every K-element Sub-list (medium): LC 25
+         * 4. Problem Challenge 1: new ( link )
+         * 5. Problem Challenge 2: LC 61
+         */
+        /* 1. Reverse a linked list*/
+        System.out.println(F_InPlaceReversalLinkedList.reverseList(null));
+
+        /* Reverse Of linked list given two middle nodes index */
+        System.out.println(F_InPlaceReversalLinkedList.reverseBetweenTwoMiddleNodes(null, 2,4));
+
+        /* 3. Reverse every K nodes in the list, and leave out rest.*/
+        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 2));
+        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 3));
+
+        /* 4. Reverse alternate K nodes in a Singly Linked List */
+        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKAlternateNodes(null, 3));
+
+        /* 5. Rotate List to right by k nodes */
+        System.out.println(F_InPlaceReversalLinkedList.rotateListToRightByKNodes(null, 3));
+
+
+        //-----------------------------Tree BFS ----------------------------
+        /**
+         * Pattern: Tree Breadth First Search (9)
+         * 1. Binary Tree Level Order Traversal (easy): LC 102
+         * 2. Reverse Level Order Traversal (easy): LC 107
+         * 3. Zigzag Traversal (medium): LC 103
+         * 4. Level Averages in a Binary Tree (easy): LC 637
+         * 5. Minimum Depth of a Binary Tree (easy): LC 111, LC 104
+         * 6. Level Order Successor (easy): new ( link )
+         * 7. Connect Level Order Siblings (medium): LC 117
+         * 8. Problem Challenge 1: new ( link )
+         * 9. Problem Challenge 2: LC 199
+         */
+
+
+        //-----------------------------Tree DFS ----------------------------
+
+        /**
+         * Pattern: Tree Depth First Search (7)
+         * 1. Binary Tree Path Sum (easy): LC 112
+         * 2. All Paths for a Sum (medium): LC 113, LC 257, new ( link )
+         * 3. Sum of Path Numbers (medium): LC 129
+         * 4. Path With Given Sequence (medium): LC 1430
+         * 5. Count Paths for a Sum (medium): LC 437
+         * 6. Problem Challenge 1: LC 543
+         * 7. Problem Challenge 2: LC 124
+         */
+
+        //-----------------------------Two Heaps ----------------------------
+
+        /**
+         * Pattern: Two Heaps (4)
+         * 1. Find the Median of a Number Stream (medium): LC 295
+         * 2. Sliding Window Median (hard): LC 480
+         * 3. Maximize Capital (hard): LC 502
+         * 4. Problem Challenge 1: LC 436
+         */
+
+        //-----------------------------Subsets ----------------------------
+        /**
+         * Pattern: Subsets (9)
+         * 1. Subsets (easy): LC 78
+         * 2. Subsets With Duplicates (easy): LC 90
+         * 3. Permutations (medium): LC 46
+         * 4. String Permutations by changing case (medium): LC 784
+         * 5. Balanced Parentheses (hard): LC 22
+         * 6. Unique Generalized Abbreviations (hard): LC 320
+         * 7. Problem Challenge 1: LC 241
+         * 8. Problem Challenge 2: LC 95
+         * 9. Problem Challenge 3: LC 96
+         /
+
+
+         //-----------------------------Modified Binary Search ----------------------------
+
+         /**
+         * Pattern: Modified Binary Search (10)
+         * Order-agnostic Binary Search (easy): new (Approach 1 in link )
+         * Ceiling of a Number (medium): new ( link )
+         * Next Letter (medium): LC 744
+         * Number Range (medium): LC 34
+         * Search in a Sorted Infinite Array (medium): LC 702
+         * Minimum Difference Element (medium): LC 658 (k == 1)
+         * Bitonic Array Maximum (easy): new ( link )
+         * Problem Challenge 1: new ( link )
+         * Problem Challenge 2: LC 33, LC 81
+         * Problem Challenge 3: LC 153, LC 154
+         */
+
+
+        //----------------------------- Bitwise XOR ----------------------------
+
+        /**
+         * Pattern: Bitwise XOR (4)
+         * Single Number (easy): LC 136
+         * Two Single Numbers (medium): LC 260
+         * Complement of Base 10 Number (medium): LC 476
+         * Problem Challenge 1: LC 832
+         */
+
+
+        //----------------------------- Top 'K' Elements  ----------------------------
+        /**
+         * Pattern: Top 'K' Elements (14)
+         * Top 'K' Numbers (easy): new ( link )
+         * Kth Smallest Number (easy): LC 215 (smallest instead of largest)
+         * K' Closest Points to the Origin (easy): LC 973
+         * Connect Ropes (easy): LC 1167
+         * Top 'K' Frequent Numbers (medium): LC 347
+         * Frequency Sort (medium): LC 451
+         * Kth Largest Number in a Stream (medium): LC 703
+         * K' Closest Numbers (medium): LC 658
+         * Maximum Distinct Elements (medium): new ( link )
+         * Sum of Elements (medium): new ( link )
+         * Rearrange String (hard): LC 767
+         * Problem Challenge 1: LC 358
+         * Problem Challenge 2: LC 621
+         * Problem Challenge 3: LC 895
+         */
+
+
+        //----------------------------- K-way merge----------------------------
+        /**
+         * Pattern: K-way merge (5)
+         * Merge K Sorted Lists (medium): LC 23
+         * Kth Smallest Number in M Sorted Lists (Medium): new ( link )
+         * Kth Smallest Number in a Sorted Matrix (Hard): LC 378
+         * Smallest Number Range (Hard): LC 632
+         * Problem Challenge 1: LC 373 (largest sum instead of smallest sum)
+         * Pattern : 0/1 Knapsack (Dynamic Programming) (6)
+         * 0/1 Knapsack (medium): new ( link )
+         * Equal Subset Sum Partition (medium): LC 416
+         * Subset Sum (medium): new ( link )
+         * Minimum Subset Sum Difference (hard): new ( link )
+         * Problem Challenge 1: new ( link )
+         * Problem Challenge 2: LC 494
+         */
+
+        //----------------------------- Topological Sort (Graph) ----------------------------
+
+        /**
+         * Pattern: Topological Sort (Graph) (7)
+         * Topological Sort (medium): new ( link )
+         * Tasks Scheduling (medium): LC 207
+         * Tasks Scheduling Order (medium): LC 210
+         * All Tasks Scheduling Orders (hard): LC 210 (output all possible solutions)
+         * Alien Dictionary (hard): LC 269
+         * Problem Challenge 1: LC 444
+         * Problem Challenge 2: LC 310
+         * Miscellaneous (1)
+         * Kth Smallest Number (hard): LC 215 (smallest instead of largest)
+         */
     }
 
 

@@ -26,10 +26,10 @@ class ReverseSubList {
         ListNode4 end = curr;
         prev = null;
         for (i = 0; curr != null & i < q-p+1; i++) {
-            ListNode4 temp = curr.next;
+            ListNode4 next = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = temp;
+            curr = next;
         }
         if (start != null) start.next = prev;
         else headCopy = prev;

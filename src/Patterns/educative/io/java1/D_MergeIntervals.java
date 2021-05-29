@@ -68,9 +68,9 @@ public class D_MergeIntervals {
         List<Interval> intervalsIntersection = new ArrayList<>();
         int i = 0, j = 0;
         while (i < arr1.length && j < arr2.length) {
-            if ((arr1[i].start <= arr2[j].start && arr2[j].start <= arr1[i].end) ||
-                    (arr2[j].start <= arr1[i].start && arr1[i].start <= arr2[j].end)) {
-                intervalsIntersection.add(new Interval(Math.max(arr1[i].start, arr2[j].start), Math.min(arr1[i].end, arr2[j].end)));
+            if ((arr1[i].start <= arr2[j].start && arr2[j].start <= arr1[i].end) ||             //arr2 [j].start  is between arr1[i].start and arr1[i].end
+                    (arr2[j].start <= arr1[i].start && arr1[i].start <= arr2[j].end)) {         //arr1 [i].start  is between arr2[i].start and arr2[i].end
+                intervalsIntersection.add(new Interval(Math.max(arr1[i].start, arr2[j].start), Math.min(arr1[i].end, arr2[j].end)));    //take max of start and min of end
             }
             if (arr1[i].end < arr2[j].end) i++;
             else j++;
@@ -102,12 +102,13 @@ public class D_MergeIntervals {
         intervalList.sort((a,b) -> a.start==b.start? a.end-b.end: a.start-b.start);
 
         /*
-        Heap First sort all the time intervals according to the starting time, and then create a new minimum heap.
-        Start traversing the time interval. If the heap is not empty and the first element is less than or equal to the start time of the current interval,
-        remove the first element from the heap and push the end time of the current interval into the heap.
-        Since the smallest heap is at the front, if the first element is less than or equal to the start time,
-        it means that the previous meeting has ended and the meeting room can be used to start the next meeting,
-        so there is no need to allocate a new meeting room. After the traversal is completed, the heap The number of elements is the number of meeting rooms needed.
+            Heap First sort all the time intervals according to the starting time, and then create a new minimum heap.
+            Start traversing the time interval.
+                If the heap is not empty and the first element is less than or equal to the start time of the current interval,
+            remove the first element from the heap and push the end time of the current interval into the heap.
+            Since the smallest heap is at the front, if the first element is less than or equal to the start time,
+            it means that the previous meeting has ended and the meeting room can be used to start the next meeting,
+            so there is no need to allocate a new meeting room. After the traversal is completed, the heap The number of elements is the number of meeting rooms needed.
          */
         Queue<Integer> queue = new PriorityQueue<>();
         queue.add(intervalList.get(0).end);
@@ -170,6 +171,58 @@ public class D_MergeIntervals {
             result = Math.max(result, active);
         }
         return result;
+    }
+
+    public static int findMinimumMeetingRooms4(Interval[] intervals) {
+
+        if(intervals==null || intervals.length<=1) return 1;
+
+        /*
+         we need to find total numbers of meeting room
+         e.g. [0,30], [5,10], [15,20]
+          first we need to sort meeting based on start time, so that we can have a ordered sequence to decide.
+
+          Now once its sorted on start time, we know which meeting starts earliest. We need to start from there.
+          next we can check, end time, in the sense that we need to find out minimum end time interval till now,
+          so that we can compare all next interval with it, as
+            if current interval start time is GREATER OR EQUAL to interval  previously min end time captured,
+                    then which means there is no overlap, hence we can assume that this meeting can take place in same room
+                    and we just need to merge and change the ending time of interval from min captured to current end time.
+            for else case, meaning current start is less that min previous end time, there is a overlap,
+                    meaning we will have to arrange new meeting room, hence simply add it to min heap.
+
+             whatever min interval we had removed from min Heap we need to add it back to the heap to compare
+             remaining intervals.
+
+             This is how we are having meeting sorted with start time,
+             and using Priority queue meetings stored in min end time at top.
+                comparing both we need to take decision.
+
+            PQ will always keep interval which has minimum end time, which ends earliest.
+            we need to take advantage of it to compare and decide for remaining intervals.
+         */
+        Arrays.sort(intervals, (a,b) -> a.start-b.start);
+
+        PriorityQueue<Interval> pq = new PriorityQueue<>( (a,b) -> b.end-a.end);
+        pq.offer(intervals[0]);
+
+        //we are going to iterate over all intervals one by one starting from 2nd element (1st index)
+        for (int i = 1; i < intervals.length ; i++) {
+            Interval current  = intervals[i];
+            Interval previous = pq.poll();      // remove it for comparison only
+
+            if(current.start >= previous.end){       //no overlap, merge the intervals      | GREATER THAN EQUAL TO meting end at 2.00 pm we can start next meeting at 2.00pm
+                previous.end = current.end;
+            } else {
+                pq.offer(current);
+            }
+
+            //adding removed interval back to queue
+            pq.offer(previous);
+        }
+        return pq.size();       //as we are merging and adding. finally intervals
+                                        // which we couldn't add and could add, makes
+                                        // no of minimum meeting rooms required.
     }
 
     /**
