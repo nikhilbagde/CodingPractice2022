@@ -309,6 +309,40 @@ public class D_MergeIntervals {
         }
         return result;
     }
+    public static List<Interval> findEmployeeFreeTime2(List<List<Interval>> schedule) {
+        List<Interval> flatSchedule = new ArrayList<>();
+        for(List<Interval> intervals : schedule){
+            flatSchedule.addAll(intervals);
+        }
+        flatSchedule.sort( (a,b) -> a.start==b.start? a.end-b.end : a.start-b.start);
+
+        int prevLeft = flatSchedule.get(0).start;
+        int prevRight = flatSchedule.get(0).end;
+
+        List<Interval> mergedInterval = new ArrayList<>();
+        for (int i = 1; i < flatSchedule.size() ; i++) {
+            Interval current = flatSchedule.get(i);
+            if(current.start > prevRight){  // no overlap
+                mergedInterval.add( new Interval(prevLeft, prevRight));
+                prevLeft = current.start;
+                prevRight = current.end;
+            } else { //overlap
+                prevRight = Math.max(prevLeft, current.end);
+            }
+        }
+        mergedInterval.add(new Interval(prevLeft, prevRight)); // for last element
+
+        //now we have flattened, merged, non-overlapping interval list,
+        if(mergedInterval.size()<=1) return Collections.emptyList();
+
+        List<Interval> freeTimeList = new ArrayList<>();
+        for (int i = 0; i < mergedInterval.size()-1; i++) {
+            Interval nonIntersectingInterval
+                    = new Interval(mergedInterval.get(i).end, mergedInterval.get(i+1).start);
+            freeTimeList.add(nonIntersectingInterval);
+        }
+        return freeTimeList;
+    }
     public static void main(String[] args) {
         List<Interval> input = new ArrayList<>();
         input.add(new Interval(1, 4));

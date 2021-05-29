@@ -277,6 +277,7 @@ public class Main {
         System.out.println(D_MergeIntervals.findMinimumMeetingRooms1(intervals));
         System.out.println(D_MergeIntervals.findMinimumMeetingRooms2(input1));
         System.out.println(D_MergeIntervals.findMinimumMeetingRooms3(input1));
+        System.out.println(D_MergeIntervals.findMinimumMeetingRooms4(input1));      // best explanation
 
         /*  Problem Challenge 2: Find Max Bandwidth
         * For n tv channels, given show start time, end time & bandwidth needed for each channels, find the maximum bandwidth required at peak.
