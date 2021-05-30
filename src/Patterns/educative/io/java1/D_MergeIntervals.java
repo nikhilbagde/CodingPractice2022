@@ -327,7 +327,7 @@ public class D_MergeIntervals {
                 prevLeft = current.start;
                 prevRight = current.end;
             } else { //overlap
-                prevRight = Math.max(prevLeft, current.end);
+                prevRight = Math.max(prevRight, current.end);
             }
         }
         mergedInterval.add(new Interval(prevLeft, prevRight)); // for last element

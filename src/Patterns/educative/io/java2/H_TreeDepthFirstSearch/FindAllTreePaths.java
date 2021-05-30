@@ -26,7 +26,7 @@ class FindAllTreePaths {
         currSum += root.val;
         list.add(root.val);
         if (root.left == null && root.right == null) {
-            if (currSum == sum) res.add(new ArrayList<Integer>(list));
+            if (currSum == sum) res.add(new ArrayList<>(list));         //its a new ArrayList
             return;
         }
         if (root.left != null) {

@@ -12,7 +12,7 @@ class MedianOfAStream {
     public void insertNum(int num) {
         // TODO: Write your code here
         list.add(num);
-        Collections.sort(list);
+        Collections.sort(list);     //n log n
     }
 
     public double findMedian() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main {
+public class a_Main {
     public static void main(String[] args) {
         /*
         ------------------------------------ A_SlidingWindow ------------------------------------
@@ -300,7 +300,8 @@ public class Main {
         List<List<Interval>> inputEmp = new ArrayList<>();
         inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(1, 3), new Interval(5, 6))));
         inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(2, 3), new Interval(6, 8))));
-        System.out.println( D_MergeIntervals.findEmployeeFreeTime(inputEmp));
+        System.out.println( D_MergeIntervals.findEmployeeFreeTime(inputEmp));  //using PQ
+        System.out.println( D_MergeIntervals.findEmployeeFreeTime2(inputEmp)); //using merge all intervals, and simply find not intersecting intervals.
 
 
         //------------------------------------------------------Cyclic Sort ---------------------------------------------------------
@@ -371,8 +372,35 @@ public class Main {
          * 9. Problem Challenge 2: LC 199
          */
 
+        /* 1. Binary Tree Level Order Traversal  */
+        System.out.println(G_TreeBreathFirstSearch.levelOrderTraversal(null));
+
+        /* 2. Reverse Level Order Traversal */
+        System.out.println(G_TreeBreathFirstSearch.reversalLevelOrderTraversal(null));
+
+        /* 3. Zigzag Traversal  */
+        System.out.println(G_TreeBreathFirstSearch.zigZagLevelOrderTraversal(null));
+
+        /* 4. Level Averages in a Binary Tree */
+        System.out.println(G_TreeBreathFirstSearch.levelOrderAverage(null));
+
+        /* 5. Minimum Depth of a Binary Tree */
+        System.out.println(G_TreeBreathFirstSearch.minDepthOfBinaryTree(null));
+
+        /* 6. Level Order Successor  */
+        System.out.println(G_TreeBreathFirstSearch.levelOrderSuccessor(null, 5));
+
+        /* 7. Connect Level Order Siblings  */
+        System.out.println(G_TreeBreathFirstSearch.connectLevelOrderSiblings(null));
+
+        /* 8. Connect all siblings */
+        System.out.println(G_TreeBreathFirstSearch.connectAllSiblings(null));
+
+        /* 9. Binary Tree Right Side View */
+        System.out.println(G_TreeBreathFirstSearch.rightSideView(null));
 
         //-----------------------------Tree DFS ----------------------------
+
 
         /**
          * Pattern: Tree Depth First Search (7)
@@ -385,6 +413,33 @@ public class Main {
          * 7. Problem Challenge 2: LC 124
          */
 
+        /* 1. Binary Tree Path Sum | given target sum, return TRUE if there is path from ROOT to LEAF */
+        System.out.println(H_TreeDepthFirstSearch.pathSumRootToLeaf(null, 23));
+
+        /*2. All Paths for a Sum */
+        System.out.println(H_TreeDepthFirstSearch.allPathSum1(null, 23));
+        System.out.println(H_TreeDepthFirstSearch.rootToLeafPaths(null));
+
+        /* 3. Sum of Path Numbers | nodes have all single digit number  | root to leaf represents final no. e.g 1->2_3 = 123*/
+        System.out.println(H_TreeDepthFirstSearch.rootToLeafSumOfPaths(null));
+
+        /* 4. Path With Given Sequence |  given array of sequence check of path from root to leaf exactly exists */
+        System.out.println(H_TreeDepthFirstSearch.findPathWithGivenSequence(null, new int[] {0,1,0,1}));
+
+        /* 5. Count Paths for a Sum */
+        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode(null, 23));
+        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode2(null, 23));
+        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
+
+        /* 6. Diameter of a binary Tree */
+        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
+
+        /* 7. Tree Diameter */
+        System.out.println(H_TreeDepthFirstSearch.diameterOfBinaryTree(null));
+
+        /* 8. Binary Tree Maximum Path Sum */
+        System.out.println(H_TreeDepthFirstSearch.maxPathSum2(null));
+        System.out.println(H_TreeDepthFirstSearch.maxPathSum(null));  //better
         //-----------------------------Two Heaps ----------------------------
 
         /**
@@ -489,6 +544,18 @@ public class Main {
          * Miscellaneous (1)
          * Kth Smallest Number (hard): LC 215 (smallest instead of largest)
          */
+
+        //----------------------------- DP ----------------------------
+        /**
+         * Pattern : 0/1 Knapsack (Dynamic Programming) (6)
+         * 0/1 Knapsack (medium): new ( link )
+         * Equal Subset Sum Partition (medium): LC 416
+         * Subset Sum (medium): new ( link )
+         * Minimum Subset Sum Difference (hard): new ( link )
+         * Problem Challenge 1: new ( link )
+         * Problem Challenge 2: LC 494
+         */
+
     }
 
 

@@ -1,4 +1,4 @@
-package Patterns.educative.io.java2.GrokkingDP;
+package Patterns.educative.io.java2.Q_DP;
 
 class SubsetSumCount {
     static int countSubsets(int[] num, int sum) {

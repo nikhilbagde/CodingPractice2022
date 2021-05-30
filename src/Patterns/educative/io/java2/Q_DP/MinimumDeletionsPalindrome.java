@@ -1,11 +1,10 @@
-package Patterns.educative.io.java2.GrokkingDP;
+package Patterns.educative.io.java2.Q_DP;
 
-class LPS {
+class MDSP {
 
-    public int findLPSLength(String st) {
+    public int findMinimumDeletions(String st) {
         int[][] dp = new int[st.length()][st.length()];
         for (int i = 0; i < st.length(); i++) dp[i][i] = 1;
-
         for (int startIndex = st.length() - 1; startIndex >= 0; startIndex--) {
             for (int endIndex = startIndex + 1; endIndex < st.length(); endIndex++) {
                 if (st.charAt(startIndex) == st.charAt(endIndex)) {
@@ -15,13 +14,13 @@ class LPS {
                 }
             }
         }
-        return dp[0][st.length() - 1];
+        return st.length() - dp[0][st.length() - 1];
     }
 
     public static void main(String[] args) {
-        LPS lps = new LPS();
-        System.out.println(lps.findLPSLength("abdbca"));
-        System.out.println(lps.findLPSLength("cddpd"));
-        System.out.println(lps.findLPSLength("pqr"));
+        MDSP mdsp = new MDSP();
+        System.out.println(mdsp.findMinimumDeletions("abdbca"));
+        System.out.println(mdsp.findMinimumDeletions("cddpd"));
+        System.out.println(mdsp.findMinimumDeletions("pqr"));
     }
 }

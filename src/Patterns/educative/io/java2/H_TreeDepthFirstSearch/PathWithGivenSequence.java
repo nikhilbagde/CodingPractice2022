@@ -12,18 +12,20 @@ class TreeNode3 {
 
 class PathWithGivenSequence {
     public static boolean findPath(TreeNode1 root, int[] sequence) {
-        // TODO: Write your code here
         if (root == null) return sequence.length == 0;
         return dfs(root, sequence, 0);
     }
 
     private static boolean dfs(TreeNode1 root, int[] sequence, int index) {
         if (root == null) return false;
+        //check if index is out of bound  or if current val is not equal of index of sequence value. Return false.
         if (index >= sequence.length || root.val != sequence[index]) return false;
+        // not check for leaf node condition, and also check for index condition if its sequence.length-1 then only return true. or false.
         if (root.left == null && root.right == null) {
             if (index == sequence.length-1) return true;
             return false;
         }
+        //as we need to access any one the path either from left or right, we are going to use OR condition.
         return dfs(root.left, sequence, index+1) || dfs(root.right, sequence, index+1);
     }
 

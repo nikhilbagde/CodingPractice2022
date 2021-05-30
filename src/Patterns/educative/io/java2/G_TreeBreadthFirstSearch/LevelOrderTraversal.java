@@ -14,12 +14,11 @@ class TreeNode3 {
 
 class LevelOrderTraversal {
     public static List<List<Integer>> traverse(TreeNode1 root) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        // TODO: Write your code here
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) return result;
         Queue<TreeNode1> queue = new LinkedList<>();
         queue.add(root);
-        while (queue.size() > 0) {
+        while (!queue.isEmpty()) {
             int num = queue.size();
             List<Integer> traversal = new ArrayList<>();
             while (num > 0) {
