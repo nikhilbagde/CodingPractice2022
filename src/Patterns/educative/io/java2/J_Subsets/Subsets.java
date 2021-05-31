@@ -20,7 +20,7 @@ class Subsets {
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> result = Subsets.findSubsets(new int[] { 1, 3 });
+        List<List<Integer>> result = Subsets.findSubsets(new int[] { 1, 2, 3 });
         System.out.println("Here is the list of subsets: " + result);
 
         result = Subsets.findSubsets(new int[] { 1, 5, 3 });

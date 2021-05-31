@@ -462,9 +462,20 @@ public class a_Main {
          * 7. Problem Challenge 1: LC 241
          * 8. Problem Challenge 2: LC 95
          * 9. Problem Challenge 3: LC 96
-         /
 
+         /* 1. Subset - return list of a power set. No duplicate sets. E.g.  1,2,3 -> ([], [1],[2],[3], [1,2],[1,3], [2,3], [1,2,3])  |    [2,1] not allowed */
+        System.out.println(J_SubSets.findSubsets(new int [] {1,2,3}));
+        System.out.println(J_SubSets.findSubsets2(new int [] {1,2,3}));
+        System.out.println(J_SubSets.findSubsets3(new int [] {5,2,1}));
 
+        /* 2. Subsets With Duplicates - print combination but now numbers are repeating */
+        System.out.println(J_SubSets.subsetsWithDupMultipleRecBranch(new int [] {5,5,1}));
+        System.out.println(J_SubSets.subsetsWithDup2RecBranch(new int [] {5,5,1}));
+        System.out.println(J_SubSets.subsetsWithDup2(new int [] {5,5,1}));
+        System.out.println(J_SubSets.subsetsWithDup3(new int [] {5,5,1}));
+
+        /* 3. Permutations - order matters | Input: nums = [1,2,3] | Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] */
+        /*
          //-----------------------------Modified Binary Search ----------------------------
 
          /**

@@ -4,7 +4,6 @@ import java.util.*;
 
 class MaximizeCapital {
     public static int findMaximumCapital(int[] capital, int[] profits, int numberOfProjects, int initialCapital) {
-        // TODO: Write your code here
         PriorityQueue<Integer> minCapital = new PriorityQueue<>((i,j) -> capital[i]-capital[j]);
         PriorityQueue<Integer> maxProfit = new PriorityQueue<>((i,j) -> profits[j]-profits[i]);
         int curr = initialCapital;
