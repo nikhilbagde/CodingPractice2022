@@ -5,7 +5,6 @@ import java.util.*;
 class TwoSingleNumbers {
 
     public static int[] findSingleNumbers(int[] nums) {
-        // TODO: Write your code here
         int[] res = new int[2];
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {

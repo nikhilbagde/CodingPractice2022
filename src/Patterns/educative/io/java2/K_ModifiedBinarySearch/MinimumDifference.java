@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.K_ModifiedBinarySearch;
 class MinimumDifference {
 
     public static int searchMinDiffElement(int[] arr, int key) {
-        // TODO: Write your code here
         if (arr[0] >= key) return arr[0];
         if (arr[arr.length-1] <= key) return arr[arr.length-1];
         int start = 0, end = arr.length-1;

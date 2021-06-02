@@ -5,7 +5,6 @@ import java.util.*;
 class FrequencySort {
 
     public static String sortCharacterByFrequency(String str) {
-        // TODO: Write your code here
         Map<Character, Integer> map = new HashMap<>();
         Queue<Map.Entry<Character, Integer>> queue = new PriorityQueue<>((a,b)-> b.getValue()-a.getValue());
         for (char c: str.toCharArray()) {
@@ -17,10 +16,10 @@ class FrequencySort {
         String res = "";
         while (!queue.isEmpty()) {
             Map.Entry<Character, Integer> entry = queue.poll();
-            int size = entry.getValue();
+            int size = entry.getValue();            // getValue()
             while (size > 0) {
                 size --;
-                res += entry.getKey();
+                res += entry.getKey();          //getKey()
             }
         }
         return res;

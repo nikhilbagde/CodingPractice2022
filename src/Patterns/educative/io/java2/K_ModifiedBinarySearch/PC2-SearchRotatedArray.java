@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.K_ModifiedBinarySearch;
 class SearchRotatedArray {
 
     public static int search(int[] arr, int key) {
-        // TODO: Write your code here
         if (arr.length == 0) return -1;
         if (arr.length == 1) return arr[0] == key ? 0 : -1;
         int start = 0, end = arr.length-1, mid = 0;

@@ -11,12 +11,10 @@ public class I_TwoHeaps {
         list = new ArrayList<>();
     }
     public void insertNum(int num) {
-        // TODO: Write your code here
         list.add(num);
         Collections.sort(list);     //n log n
     }
     public double findMedian() {
-        // TODO: Write your code here
         int size = list.size();
         if (size % 2 == 1) return (double) list.get(size/2);
         else return (double) (list.get(size/2) + list.get(size/2-1))/2;

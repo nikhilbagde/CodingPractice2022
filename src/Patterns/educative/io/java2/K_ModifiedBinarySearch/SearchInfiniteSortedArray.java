@@ -17,7 +17,6 @@ class ArrayReader {
 class SearchInfiniteSortedArray {
 
     public static int search(ArrayReader reader, int key) {
-        // TODO: Write your code here
         int start = 0, end = 1;
         while (reader.get(end) < key) end *= 2;
         while (start <= end) {

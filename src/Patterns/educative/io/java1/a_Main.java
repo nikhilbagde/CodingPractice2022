@@ -304,6 +304,7 @@ public class a_Main {
         System.out.println( D_MergeIntervals.findEmployeeFreeTime2(inputEmp)); //using merge all intervals, and simply find not intersecting intervals.
 
 
+
         //------------------------------------------------------Cyclic Sort ---------------------------------------------------------
         /*
         1. Cyclic Sort (easy): new ( link )
@@ -332,6 +333,8 @@ public class a_Main {
         System.out.println(E_CyclicSort.findDuplicate(new int[]{1,3,4,2,2}));
 
 
+
+
         //-----------------------In Place reversal of Linked List --------------------------
         /**
          * Pattern: In-place Reversal of a LinkedList (5)
@@ -356,6 +359,7 @@ public class a_Main {
 
         /* 5. Rotate List to right by k nodes */
         System.out.println(F_InPlaceReversalLinkedList.rotateListToRightByKNodes(null, 3));
+
 
 
         //-----------------------------Tree BFS ----------------------------
@@ -399,9 +403,9 @@ public class a_Main {
         /* 9. Binary Tree Right Side View */
         System.out.println(G_TreeBreathFirstSearch.rightSideView(null));
 
+
+
         //-----------------------------Tree DFS ----------------------------
-
-
         /**
          * Pattern: Tree Depth First Search (7)
          * 1. Binary Tree Path Sum (easy): LC 112
@@ -440,6 +444,9 @@ public class a_Main {
         /* 8. Binary Tree Maximum Path Sum */
         System.out.println(H_TreeDepthFirstSearch.maxPathSum2(null));
         System.out.println(H_TreeDepthFirstSearch.maxPathSum(null));  //better
+
+
+
         //-----------------------------Two Heaps ----------------------------
 
         /**
@@ -450,6 +457,11 @@ public class a_Main {
          * 4. Problem Challenge 1: LC 436
          */
 
+        /* 1. Find the median of a Number Stream */
+        I_TwoHeaps.medianFinder2(); I_TwoHeaps.addNum2(5); I_TwoHeaps.addNum2(2); I_TwoHeaps.addNum2(3);
+        System.out.println(I_TwoHeaps.findMedian2());
+
+        
         //-----------------------------Subsets ----------------------------
         /**
          * Pattern: Subsets (9)
@@ -469,59 +481,205 @@ public class a_Main {
         System.out.println(J_SubSets.findSubsets3(new int [] {5,2,1}));
 
         /* 2. Subsets With Duplicates - print combination but now numbers are repeating */
-        System.out.println(J_SubSets.subsetsWithDupMultipleRecBranch(new int [] {5,5,1}));
+        System.out.println(J_SubSets.subsetsWithDupDfs(new int [] {5,5,1}));      // using DFS
+        System.out.println(J_SubSets.subsetsWithDupBitMaks(new int [] {5,5,1}));      // using bitmask
+        //extra solutions
         System.out.println(J_SubSets.subsetsWithDup2RecBranch(new int [] {5,5,1}));
-        System.out.println(J_SubSets.subsetsWithDup2(new int [] {5,5,1}));
-        System.out.println(J_SubSets.subsetsWithDup3(new int [] {5,5,1}));
+        System.out.println(J_SubSets.subsetsWithDupIterative(new int [] {5,5,1}));
 
         /* 3. Permutations - order matters | Input: nums = [1,2,3] | Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] */
-        /*
+        System.out.println(J_SubSets.findPermutationsDFS(new int [] {5,5,1}));      //with boolean used[]       FASTER
+        System.out.println(J_SubSets.findPermutationsDFS2(new int [] {5,5,1}));     //without boolean used[]   SLOWER uses contains.
+        //extra
+        System.out.println(J_SubSets.findPermutationsBFS(new int [] {5,5,1}));
+
+        /* 4. String Permutations by changing case | Input: s = "a1b2" |  Output: ["a1b2","a1B2","A1b2","A1B2"]*/
+        System.out.println(J_SubSets.findLetterCaseStringPermutationsDFS("a1b2"));
+        System.out.println(J_SubSets.findLetterCaseStringPermutationsDFSFastest("a1b2"));                   //fastest.
+
+        /* 5. Balanced Parentheses */
+        System.out.println(J_SubSets.generateValidParentheses1(5));   //fastest using String builder
+        System.out.println(J_SubSets.generateValidParentheses2(5)); // using String
+
+
+        //pending
+        /*  6. Unique Generalized Abbreviations */
+        System.out.println(J_SubSets.generateGeneralizedAbbreviation("BAT"));
+
+        /* 7. Problem Challenge 1 -  Evaluate expression */
+        System.out.println(J_SubSets.diffWaysToEvaluateExpression("2*3-4-5"));
+
+        /*  8. Problem Challenge 2 - Unique Trees */
+        System.out.println(J_SubSets.findUniqueTrees(2));
+
+        /*  9. Problem Challenge 3 - Count Unique Trees */
+        System.out.println(J_SubSets.countTrees(2));
+        System.out.println(J_SubSets.numTrees(2));
+
+
+        /* other */
+        // 1. subsets
+        System.out.println(J_SubSets.subsets(new int [] {5,5,1}));
+        // 2. subset II (contains duplicates)
+        System.out.println(J_SubSets.subsetsWithDup(new int [] {5,5,1}));
+        // 3. Permutation
+        System.out.println(J_SubSets.permute(new int [] {5,5,1}));
+        // 4. Permutation II (contains duplicates)
+        System.out.println(J_SubSets.permuteUnique(new int [] {5,5,1}));
+        // 5. Combination Sum
+        System.out.println(J_SubSets.combinationSum(new int [] {5,5,1}, 23));
+        // 6. Combination Sum II (can't reuse same element)
+        System.out.println(J_SubSets.combinationSum2(new int [] {5,5,1}, 23));
+        // 7. Palindrome Partitioning
+        System.out.println(J_SubSets.partition("string"));
+
          //-----------------------------Modified Binary Search ----------------------------
 
          /**
          * Pattern: Modified Binary Search (10)
-         * Order-agnostic Binary Search (easy): new (Approach 1 in link )
-         * Ceiling of a Number (medium): new ( link )
-         * Next Letter (medium): LC 744
-         * Number Range (medium): LC 34
-         * Search in a Sorted Infinite Array (medium): LC 702
-         * Minimum Difference Element (medium): LC 658 (k == 1)
-         * Bitonic Array Maximum (easy): new ( link )
-         * Problem Challenge 1: new ( link )
-         * Problem Challenge 2: LC 33, LC 81
-         * Problem Challenge 3: LC 153, LC 154
+          *
+         * 1. Order-agnostic Binary Search (easy): new (Approach 1 in link )
+         * 2. Ceiling of a Number (medium): new ( link )
+         * 3. Next Letter (medium): LC 744
+         * 4. Number Range (medium): LC 34
+         * 5. Search in a Sorted Infinite Array (medium): LC 702
+         * 6. Minimum Difference Element (medium): LC 658 (k == 1)
+         * 7. Bitonic Array Maximum (easy): new ( link )
+         * 8. Problem Challenge 1: new ( link )
+         * 9. Problem Challenge 2: LC 33, LC 81
+         * 10. Problem Challenge 3: LC 153, LC 154
          */
+
+         /* 1. Order-agnostic Binary Search | given array not sure if its ascending or descending */
+        System.out.println(K_ModifiedBinarySearch.search(new int[] {1,2,3}, 3));
+
+        /* 2. Ceiling of a Number | in sorted Array */
+        System.out.println(K_ModifiedBinarySearch.searchCeilingOfANumber(new int[] {1,2,3}, 3));
+        System.out.println(K_ModifiedBinarySearch.searchCeilingOfANumber2(new int[] {1,2,3}, 3));
+
+        /* 3. Next Letter */
+        System.out.println(K_ModifiedBinarySearch.searchNextLetter(new char[] {'a','c','d'}, 'l'));
+
+        /* 4. Number Range */
+        System.out.println(Arrays.toString(K_ModifiedBinarySearch.searchRange1(new int[] {1,2,3,4,8,8,9}, 8)));
+        System.out.println(Arrays.toString(K_ModifiedBinarySearch.searchRange2(new int[] {1,2,3,4,8,8,9}, 8)));
+
+        /* 5. Search in a Sorted Infinite Array  */
+        System.out.println(K_ModifiedBinarySearch.searchInSortedInfiniteArray(null, 8));
+
+        /* 6. Minimum Difference Element */
+        System.out.println(K_ModifiedBinarySearch.findClosestElements(new int[] {1,2,3,4,8,8,9}, 8, 3));
+
+        /*  7. Bitonic Array Maximum */
+        System.out.println(K_ModifiedBinarySearch.findMaxInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }));
+
+        /* 8. Problem Challenge 1: Search Bitonic Array |  increasing abd then decreasing*/
+        System.out.println(K_ModifiedBinarySearch.searchInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+
+        /* 9. Problem Challenge 2 | search in rotated array*/
+        System.out.println(K_ModifiedBinarySearch.searchInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+        System.out.println(K_ModifiedBinarySearch.searchInRotatedArrayWithDuplicates(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+
+        /* 10. Problem Challenge 3 */
+        System.out.println(K_ModifiedBinarySearch.findMinInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }));
 
 
         //----------------------------- Bitwise XOR ----------------------------
 
         /**
          * Pattern: Bitwise XOR (4)
-         * Single Number (easy): LC 136
-         * Two Single Numbers (medium): LC 260
-         * Complement of Base 10 Number (medium): LC 476
-         * Problem Challenge 1: LC 832
+         * 1. Single Number (easy): LC 136
+         * 2. Two Single Numbers (medium): LC 260
+         * 3. Complement of Base 10 Number (medium): LC 476
+         * 4. Problem Challenge 1: LC 832
          */
+        /* 1. Single Number */
+        System.out.println(L_BitwiseXOR.findSingleNumber(new int[] { 1, 3, 1, 3, 4, 2, 2}));
 
+        /* 2. Two Single Numbers */
+        System.out.println(Arrays.toString(L_BitwiseXOR.findTwoNumberAppearingOnces(new int[] { 1, 3, 1, 3, 4, 2, 2})));
+
+        /* 3. Complement of Base 10 Number  */
+        System.out.println(L_BitwiseXOR.findComplement(5));
+        System.out.println(L_BitwiseXOR.findComplement2(2));
+
+        /* 4. Problem Challenge 1*/
 
         //----------------------------- Top 'K' Elements  ----------------------------
         /**
          * Pattern: Top 'K' Elements (14)
-         * Top 'K' Numbers (easy): new ( link )
-         * Kth Smallest Number (easy): LC 215 (smallest instead of largest)
-         * K' Closest Points to the Origin (easy): LC 973
-         * Connect Ropes (easy): LC 1167
-         * Top 'K' Frequent Numbers (medium): LC 347
-         * Frequency Sort (medium): LC 451
-         * Kth Largest Number in a Stream (medium): LC 703
-         * K' Closest Numbers (medium): LC 658
-         * Maximum Distinct Elements (medium): new ( link )
-         * Sum of Elements (medium): new ( link )
-         * Rearrange String (hard): LC 767
-         * Problem Challenge 1: LC 358
-         * Problem Challenge 2: LC 621
-         * Problem Challenge 3: LC 895
+         *
+         * 1. Top 'K' Numbers (easy): new ( link )
+         * 2. Kth Smallest Number (easy): LC 215 (smallest instead of largest)
+         * 3. K' Closest Points to the Origin (easy): LC 973
+         * 4. Connect Ropes (easy): LC 1167
+         *
+         * 5. Top 'K' Frequent Numbers (medium): LC 347
+         * 6. Frequency Sort (medium): LC 451
+         * 7. Kth Largest Number in a Stream (medium): LC 703
+         * 8. K' Closest Numbers (medium): LC 658
+         *
+         * 9. Maximum Distinct Elements (medium): new ( link )
+         * 10. Sum of Elements (medium): new ( link )
+         * 11. Rearrange String (hard): LC 767
+         *
+         * 12. Problem Challenge 1: LC 358
+         * 13. Problem Challenge 2: LC 621
+         * 14. Problem Challenge 3: LC 895
          */
+
+        /* 1. Top 'K' Numbers */
+
+        /* 2. Kth Smallest Number */
+        System.out.println(M_TopKElements.findKthSmallestNumber(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
+        System.out.println(M_TopKElements.findKthLargest(new int[] { 1, 5, 12, 2, 11, 5 }, 3));     //O(n)
+
+        /* 3. K' Closest Points to the Origin */
+        System.out.println(M_TopKElements.findKClosestPoints(null, 3));     //O(n) log(k)
+
+        /* 4. Connect Ropes */
+        System.out.println(M_TopKElements.minimumCostToConnectRopes(new int[] { 1, 5, 12, 2, 11, 5 }));     //O(n) log(k)
+
+        /* 5. Top 'K' Frequent Numbers */
+        System.out.println(M_TopKElements.findTopKFrequentNumbers(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
+
+        /* 6. Frequency Sort */
+        System.out.println(M_TopKElements.sortCharacterByFrequency("tree"));
+
+        /* 7. Kth Largest Number in a Stream */
+        System.out.println(new M_TopKElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3));
+        System.out.println(M_TopKElements.add(3));
+
+        /* 8. K' Closest Numbers */
+        System.out.println(M_TopKElements.findClosestElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+
+        /* 9. Maximum Distinct Elements */
+        System.out.println(M_TopKElements.maxDistinctNum(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+
+        /* 10. Sum of Elements | Sum of all elements between k1’th and k2’th smallest elements */
+        System.out.println(M_TopKElements.findSumOfElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+
+        /* 11. Rearrange String */
+        System.out.println(M_TopKElements.reorganizeString("tree"));
+        System.out.println(M_TopKElements.reorganizeString2("tree"));
+        System.out.println(M_TopKElements.reorganizeString3("tree"));
+
+        /* 12. Problem Challenge 1: Reorganize String K distance apart */
+        System.out.println(M_TopKElements.reorganizeStringKDistanceApart("Programming", 3));
+
+        /* 13. Problem Challenge 2: Task Scheduler | Char c = task name, n period cool off needed between same task.
+        * Find least no of unit time for CPU to finish time*/
+        System.out.println(M_TopKElements.scheduleTasksKDistanceApart(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
+        System.out.println(M_TopKElements.scheduleTasksKDistanceApart2(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
+        System.out.println(M_TopKElements.scheduleTasksKDistanceApart3(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));  // <-- slow but working | added comments.
+
+        /* 14. Problem Challenge 3: Frequency Stack | Map + PriorityQueue*/
+        System.out.println(M_TopKElements.initializeFreqStack());
+        System.out.println(M_TopKElements.push(2));
+        System.out.println(M_TopKElements.push(2));
+        System.out.println(M_TopKElements.push(2));
+        System.out.println(M_TopKElements.push(2));
+        System.out.println(M_TopKElements.pop());
 
 
         //----------------------------- K-way merge----------------------------

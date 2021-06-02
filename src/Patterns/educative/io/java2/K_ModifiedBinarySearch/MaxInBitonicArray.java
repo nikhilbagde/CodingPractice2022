@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.K_ModifiedBinarySearch;
 class MaxInBitonicArray {
 
     public static int findMax(int[] arr) {
-        // TODO: Write your code here
         if (arr.length == 0) return -1;
         int start = 0, end = arr.length-1;
         while (start < end) {

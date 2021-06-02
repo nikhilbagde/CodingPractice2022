@@ -5,7 +5,6 @@ import java.util.*;
 class MaximumDistinctElements {
 
     public static int findMaximumDistinctElements(int[] nums, int k) {
-        // TODO: Write your code here
         Map<Integer, Integer> map = new HashMap<>();
         for (int num: nums) {
             map.put(num, map.getOrDefault(num, -1)+1);

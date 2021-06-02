@@ -27,13 +27,11 @@ class FrequencyStack {
     Map<Integer, Integer> map = new HashMap<>();
 
     public void push(int num) {
-        // TODO: Write your code here
         map.put(num, map.getOrDefault(num, 0)+1);
         queue.add(new Element(num, map.get(num), sequence++));
     }
 
     public int pop() {
-        // TODO: Write your code here
         int num = queue.poll().num;
         if (map.get(num) > 1) map.put(num, map.get(num)-1);
         else map.remove(num);

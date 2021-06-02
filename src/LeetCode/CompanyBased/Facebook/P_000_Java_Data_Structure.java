@@ -195,7 +195,7 @@ public class P_000_Java_Data_Structure {
 
 
 
-        //Set
+        //----------------------------------------------Set----------------------------------------------
         System.out.println("------SET------");
         Set<Integer> set = new HashSet<>();
         set.add(1);
@@ -209,7 +209,7 @@ public class P_000_Java_Data_Structure {
         System.out.println("set = " + set);
 
 
-        //Map
+        //---------------------------------------------Map----------------------------------
         System.out.println("-------MAP---------");
         Map<Integer,Integer> map2 = new HashMap<>();
 
@@ -225,8 +225,25 @@ public class P_000_Java_Data_Structure {
         System.out.println("---MAP: getOrDefualt");
         map2.put(6, map2.getOrDefault(6, 0)+1); ///increment the frequency.
 
+        String s = "tree";
+        Map<Character, Integer> map22 = new HashMap<>();
+        for(char c: s.toCharArray()){
+            map22.put(c, map22.getOrDefault(c,0)+1);
+        }
 
-        //Priority Queue
+        //Map
+        Queue<Map.Entry<Character, Integer>> maxHeap1 = new PriorityQueue<>((aaa,b) -> b.getValue()- aaa.getValue());
+
+        java.util.Map<Character, Integer> sortedMap = new java.util.LinkedHashMap<>();
+        maxHeap1.addAll(map22.entrySet());
+        //Sort Map by Value
+        map22.entrySet().stream()
+                .sorted(Map.Entry.<Character, Integer> comparingByValue().reversed())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+        System.out.println(map);
+
+        //--------------------------------Priority Queue----------------------------------
         //PriorityQueue<Integer> minHeap = new PriorityQueue<>();     //define min Heap by default WORKS!!
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();     //define min Heap by default
         minHeap.offer(1);
@@ -279,6 +296,11 @@ public class P_000_Java_Data_Structure {
         while(!maxHeap3.isEmpty()){
             System.out.println("Remove top " + maxHeap3.poll());
         }
+
+
+        //---- String Builder
+        StringBuilder cur = new StringBuilder();
+        cur.deleteCharAt(cur.length() - 1);     //deleteCharAt(index)
 
     }
 

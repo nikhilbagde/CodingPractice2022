@@ -5,9 +5,8 @@ import java.util.*;
 class SumOfElements {
 
     public static int findSumOfElements(int[] nums, int k1, int k2) {
-        // TODO: Write your code here
         Queue<Integer> queue = new PriorityQueue<>();
-        for (int num: nums) queue.add(num);
+        for (int num: nums) queue.add(num);     //n log n
         int sum = 0;
         for (int i = 0; i < k1; i++) queue.poll();
         for (int i = 0; i < k2-k1-1; i++) sum += queue.poll();

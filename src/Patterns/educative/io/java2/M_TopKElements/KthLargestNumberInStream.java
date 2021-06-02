@@ -7,7 +7,6 @@ class KthLargestNumberInStream {
     int k;
 
     public KthLargestNumberInStream(int[] nums, int k) {
-        // TODO: Write your code here
         this.k = k;
         for (int i = 0; i < nums.length; i++) {
             queue.add(nums[i]);
@@ -15,7 +14,6 @@ class KthLargestNumberInStream {
     }
 
     public int add(int num) {
-        // TODO: Write your code here
         queue.add(num);
         while (queue.size() > this.k) queue.poll();
         return queue.peek();

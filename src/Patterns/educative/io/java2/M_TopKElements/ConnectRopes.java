@@ -5,7 +5,6 @@ import java.util.*;
 class ConnectRopes {
 
     public static int minimumCostToConnectRopes(int[] ropeLengths) {
-        // TODO: Write your code here
         Queue<Integer> queue = new PriorityQueue<>();
         for (int i = 0; i < ropeLengths.length; i++) queue.add(ropeLengths[i]);
         int res = 0;

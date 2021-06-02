@@ -5,7 +5,6 @@ import java.util.*;
 class RearrangeStringKDistanceApart {
 
     public static String reorganizeString(String str, int k) {
-        // TODO: Write your code here
         if (k == 0) return str;
         Map<Character, Integer> map = new HashMap<>();
         for (char c: str.toCharArray()) {
@@ -16,11 +15,13 @@ class RearrangeStringKDistanceApart {
         StringBuilder res = new StringBuilder();
         Queue<Map.Entry<Character, Integer>> kQueue = new LinkedList<>();
         while (!queue.isEmpty()) {
-            Map.Entry<Character, Integer> curr = queue.poll();
+            Map.Entry<Character, Integer> curr = queue.poll();      //remove , append, decrease count, add to K queue, don't
             res.append(curr.getKey());
             curr.setValue(curr.getValue()-1);
-            kQueue.add(curr);
-            if (kQueue.size() == k) {
+
+            kQueue.add(curr);           // Add it to another LinkedList Queue. in same order. keep adding till size becomes K
+
+            if (kQueue.size() == k) {   //when size is k then only add back that one entry which was added 1st. FIFO to the original PQ
                 Map.Entry<Character, Integer> temp = kQueue.poll();
                 if (temp.getValue() > 0) queue.add(temp);
             }

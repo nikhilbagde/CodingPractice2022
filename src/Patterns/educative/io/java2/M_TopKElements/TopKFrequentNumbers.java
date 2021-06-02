@@ -6,7 +6,6 @@ class TopKFrequentNumbers {
 
     public static List<Integer> findTopKFrequentNumbers(int[] nums, int k) {
         List<Integer> topNumbers = new ArrayList<>(k);
-        // TODO: Write your code here
         Map<Integer, Integer> map = new HashMap<>();
         Queue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>((a,b) -> a.getValue()-b.getValue());
         for (int i = 0; i < nums.length; i++) {

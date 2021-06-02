@@ -5,7 +5,6 @@ import java.util.*;
 class RearrangeString {
 
     public static String rearrangeString(String str) {
-        // TODO: Write your code here
         Map<Character, Integer> map = new HashMap<>();
         for (char c: str.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0)+1);

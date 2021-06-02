@@ -28,17 +28,14 @@ public class E_CyclicSort {
     =(4∧4)∧(0∧0)∧(1∧1)∧(3∧3)∧2
     =0∧0∧0∧0∧2
     =2
-
      */
 
     public static List<Integer> findDisappearedNumbers(int[] nums) {
         List<Integer> result = new ArrayList<>();
-
         for(int i =0; i< nums.length; i++){
             int temp = Math.abs(nums[i]);
             if(nums[temp-1]>0) nums[temp-1] *= -1;
         }
-
         for(int i =0; i< nums.length; i++){
             if(nums[i]>0) result.add(i+1);
         }
@@ -46,7 +43,6 @@ public class E_CyclicSort {
     }
 
     public static List<Integer> findDisappearedNumbers2(int[] nums) {
-
         for (int i : nums) {
             int index = Math.abs(i);
             if (nums[index - 1] > 0) {

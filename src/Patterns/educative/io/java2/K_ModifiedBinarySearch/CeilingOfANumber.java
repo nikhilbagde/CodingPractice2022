@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.K_ModifiedBinarySearch;
 class CeilingOfANumber {
 
     public static int searchCeilingOfANumber(int[] arr, int key) {
-        // TODO: Write your code here
         if (arr.length == 0 || arr[arr.length-1] < key) return -1;
         int start = 0, end = arr.length-1, mid = 0;
         while (start <= end) {

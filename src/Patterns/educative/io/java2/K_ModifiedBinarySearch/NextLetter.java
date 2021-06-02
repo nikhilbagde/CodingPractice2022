@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.K_ModifiedBinarySearch;
 class NextLetter {
 
     public static char searchNextLetter(char[] letters, char key) {
-        // TODO: Write your code here
         if (letters[0] > key || letters[letters.length-1] < key || letters[letters.length-1] == key)
             return letters[0];
         int start = 0, end = letters.length, mid = 0;
