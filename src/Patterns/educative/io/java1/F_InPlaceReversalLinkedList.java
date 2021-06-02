@@ -54,9 +54,24 @@ public class F_InPlaceReversalLinkedList {
 
         end.next = curr;        //didn't get this part.
         return headCopy;
+
+        /*
+          1->2->3->4->5->6->null   p=3 q=5
+initially : prev = 2 , curr = 3
+                start = 2, end = 3
+
+                Notice after we reverse the linked-list we need to first reverse inner sublist: 3->4->5 ->6 (q-p"+1")   to 5->4->3->
+                                                                                                                                                prev = 5
+                                                                                                                                                curr = 6
+                we need to short circuit it with original list.                                                                   ^
+                1] 2-> (Start) -> should be 5      1->2->5->                                                                    |
+                hence start.next = prev                                                                                                    |
+                2]  for the next part we want, 5->4->3->   three to point to 6                                    |
+                we had stored 3 as end pointers -> next of this would be current pointer 6           |
+                Hence end.next = curr;
+         */
     }
     public static ListNode1 reverseEveryKNodes(ListNode1 head, int k) {
-        // TODO: Write your code here
         if (head == null || k <= 1) return head;
         ListNode1 prev = null, curr = head;
         ListNode1 start = prev, end = curr;
@@ -80,7 +95,6 @@ public class F_InPlaceReversalLinkedList {
     }
 
     public static ListNode1 reverseEveryKAlternateNodes(ListNode1 head, int k) {
-        // TODO: Write your code here
         if (head == null || k <= 1) return head;
         ListNode1 prev = null, curr = head;
         ListNode1 start = prev, end = curr;
@@ -118,7 +132,6 @@ public class F_InPlaceReversalLinkedList {
     }
 
     public static ListNode1 rotateListToRightByKNodes(ListNode1 head, int rotations) {
-        // TODO: Write your code here
         if (head == null || rotations == 0) return head;
         ListNode1 prev = null, curr = head, start = head;
         int len = 1;

@@ -2,16 +2,17 @@ package Patterns.educative.io.java1;
 
 import java.util.*;
 
-class TreeNode2 {
-    int val;
-    TreeNode2 left;
-    TreeNode2 right;
 
-    TreeNode2(int x) {
-        val = x;
-    }
-};
 public class J_SubSets {
+    static class TreeNode2 {
+        int val;
+        TreeNode2 left;
+        TreeNode2 right;
+
+        TreeNode2(int x) {
+            val = x;
+        }
+    }
 
     public static void main(String[] args) {
         List<List<Integer>> result = J_SubSets.findSubsets(new int[] { 1, 2, 3 });

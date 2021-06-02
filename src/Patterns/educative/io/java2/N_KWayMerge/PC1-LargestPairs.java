@@ -6,7 +6,6 @@ class LargestPairs {
 
     public static List<int[]> findKLargestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> result = new ArrayList<>();
-        // TODO: Write your code here
         k = Math.min(k, nums1.length*nums2.length);
         if (k == 0) return result;
         Queue<int[]> queue = new PriorityQueue<>((a,b) -> nums1[b[0]]+nums2[b[1]]-nums1[a[0]]-nums2[a[1]]);

@@ -3,7 +3,6 @@ package Patterns.educative.io.java2.O_KnapsnackDP;
 class TargetSum {
 
     public int findTargetSubsets(int[] num, int s) {
-        // TODO: Write your code here
         int sum = 0;
         for (int i: num) sum += i;
         if (sum < s) return 0;

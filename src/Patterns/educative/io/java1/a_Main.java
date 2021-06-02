@@ -685,18 +685,33 @@ public class a_Main {
         //----------------------------- K-way merge----------------------------
         /**
          * Pattern: K-way merge (5)
-         * Merge K Sorted Lists (medium): LC 23
-         * Kth Smallest Number in M Sorted Lists (Medium): new ( link )
-         * Kth Smallest Number in a Sorted Matrix (Hard): LC 378
-         * Smallest Number Range (Hard): LC 632
-         * Problem Challenge 1: LC 373 (largest sum instead of smallest sum)
-         * Pattern : 0/1 Knapsack (Dynamic Programming) (6)
-         * 0/1 Knapsack (medium): new ( link )
-         * Equal Subset Sum Partition (medium): LC 416
-         * Subset Sum (medium): new ( link )
-         * Minimum Subset Sum Difference (hard): new ( link )
-         * Problem Challenge 1: new ( link )
-         * Problem Challenge 2: LC 494
+         *
+         * 1. Merge K Sorted Lists (medium): LC 23
+         * 2. Kth Smallest Number in M Sorted Lists (Medium): new ( link )
+         * 3. Kth Smallest Number in a Sorted Matrix (Hard): LC 378
+         * 4. Smallest Number Range (Hard): LC 632
+         * 5. Problem Challenge 1: LC 373 (largest sum instead of smallest sum)
+         */
+
+        /*1. Merge K Sorted Lists */
+        System.out.println(N_KwayMerge.mergeKListsIntoOneInAscendingOrder(null));
+
+        /* 2. Kth Smallest Number in M Sorted Lists  */
+        System.out.println(N_KwayMerge.findKthSmallest(null,3));
+        System.out.println(N_KwayMerge.findKthSmallest2(null,3));
+
+        /* 3. Kth Smallest Number in a Sorted Matrix */
+        System.out.println(N_KwayMerge.findKthSmallestInSortedMatrix(null,3));
+
+        /* 4. Smallest Number Range  */
+
+        /*Pattern : 0/1 Knapsack (Dynamic Programming) (6)
+         * 1.  0/1 Knapsack (medium): new ( link )
+         * 2. Equal Subset Sum Partition (medium): LC 416
+         * 3. Subset Sum (medium): new ( link )
+         * 4. Minimum Subset Sum Difference (hard): new ( link )
+         * 5. Problem Challenge 1: new ( link )
+         * 6. Problem Challenge 2: LC 494
          */
 
         //----------------------------- Topological Sort (Graph) ----------------------------

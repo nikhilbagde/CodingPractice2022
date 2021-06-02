@@ -33,13 +33,16 @@ class KthSmallestInSortedMatrix1 {
 class KthSmallestInSortedMatrix {
 
     public static int findKthSmallest(int[][] matrix, int k) {
-        // TODO: Write your code here
         int n = matrix.length;
         int start = matrix[0][0], end = matrix[n-1][n-1];
-        while (start < end) {
+        while (start < end) {       //start and end are not indexes but actual values in the matrix.
             int mid = start+(end-start)/2;
             int[] pair = new int[]{start, end};
+
+            //we are finding how many elements are in the matrix which are less than mid.
             int count = count(matrix, mid, pair);
+
+            //based on count, we change the search space.
             if (count == k) return pair[0];
             if (count < k) start = pair[1];
             else end = pair[0];
@@ -52,12 +55,13 @@ class KthSmallestInSortedMatrix {
         int col = 0;
         int count = 0;
         while (row >= 0 && col < matrix.length) {
-            if (matrix[row][col] <= mid) {
-                pair[0] = Math.max(matrix[row][col], pair[0]);
-                count += (row+1);
+            int curr = matrix[row][col];
+            if (curr <= mid) {      // checking matrix values
+                pair[0] = Math.max(curr, pair[0]);      //moving start to max of start and current
+                count += (row+1);                               // count is increased here only. As we are trying to find kth largest
                 col++;
             } else {
-                pair[1] = Math.min(matrix[row][col], pair[1]);
+                pair[1] = Math.min(curr, pair[1]);
                 row--;
             }
         }

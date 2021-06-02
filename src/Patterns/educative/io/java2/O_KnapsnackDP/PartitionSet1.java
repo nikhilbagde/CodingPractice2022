@@ -3,10 +3,10 @@ package Patterns.educative.io.java2.O_KnapsnackDP;
 class PartitionSet1 {
 
     static boolean canPartition(int[] num) {
-        //TODO: Write - Your - Code
         int sum = 0;
         for (int i = 0; i < num.length; i++) sum += num[i];
         if ( sum%2 != 0 || num.length <=1) return false;
+
         sum /= 2;
         boolean[][] dp = new boolean[num.length][sum+1];
         if (num[0] <= sum) dp[0][num[0]] = true;

@@ -31,16 +31,16 @@ public class G_TreeBreathFirstSearch {
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            int num = queue.size();
-            List<Integer> traversal = new ArrayList<>();
-            while (num > 0) {       //or for loop
+            int size = queue.size();
+            List<Integer> levelList = new ArrayList<>();
+            while (size > 0) {       //or for loop
                 TreeNode currRoot = queue.poll();
-                traversal.add(currRoot.val);
+                levelList.add(currRoot.val);
                 if (currRoot.left != null) queue.add(currRoot.left);
                 if (currRoot.right != null) queue.add(currRoot.right);
-                num--;
+                size--;
             }
-            result.add(traversal);
+            result.add(levelList);
         }
         return result;
     }
@@ -53,16 +53,16 @@ public class G_TreeBreathFirstSearch {
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            int num = queue.size();
-            List<Integer> traversal = new ArrayList<>();
-            while (num > 0) {       //or for loop
+            int size = queue.size();
+            List<Integer> levelList = new ArrayList<>();
+            while (size > 0) {       //or for loop
                 TreeNode currRoot = queue.poll();
-                traversal.add(currRoot.val);
+                levelList.add(currRoot.val);
                 if (currRoot.left != null) queue.add(currRoot.left);
                 if (currRoot.right != null) queue.add(currRoot.right);
-                num--;
+                size--;
             }
-            result.add(0, traversal);
+            result.add(0, levelList);
         }
         return result;
     }
@@ -249,6 +249,51 @@ public class G_TreeBreathFirstSearch {
                 if(current.right!=null) q.offer(current.right);
             }
             result.add(current.val);
+        }
+        return result;
+    }
+    private static List<List<Integer>> verticalOrder(TreeNode root){
+        if(root==null) return null;
+
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> verticalLevel = new LinkedList<>();
+
+        queue.add(root);
+        verticalLevel.add(0);
+
+        int min=0, max=0;       // to later write for loop from min to max.
+
+        while(!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            int l = verticalLevel.poll();
+
+            min = Math.min(min, l);
+            max = Math.max(max, l);
+
+            if(map.containsKey(l)){
+                map.get(l).add(node.val);
+            }else{
+                List<Integer> list = new ArrayList<>();
+                list.add(node.val);
+                map.put(l, list);
+            }
+
+            if(node.left!=null){
+                queue.add(node.left);
+                verticalLevel.offer(l-1);                   // for left node add verticalLevel-1
+            }
+            if(node.right!=null){
+                queue.add(node.right);
+                verticalLevel.offer(l+1);                   // for right node add verticalLevel+1
+            }
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = min; i <= max ; i++) {
+            if(map.containsKey(i)){
+                System.out.println("Level = " + i + "Value" + map.get(i) + " ");
+                result.add(map.get(i));
+            }
         }
         return result;
     }

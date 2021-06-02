@@ -13,7 +13,7 @@ class AlienDictionary {
         for (String s: words) {
             for (char c: s.toCharArray()) {
                 map.put(c, 0);
-                orderMap.put(c, new ArrayList<Character>());
+                orderMap.put(c, new ArrayList<>());
             }
         }
         for (int i = 0; i < words.length-1; i++) {

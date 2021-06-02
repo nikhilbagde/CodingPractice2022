@@ -5,12 +5,11 @@ import java.util.*;
 class TopologicalSort {
     public static List<Integer> sort(int vertices, int[][] edges) {
         List<Integer> sortedOrder = new ArrayList<>();
-        // TODO: Write your code here
         Map<Integer, Integer> map = new HashMap<>();
         Map<Integer, List<Integer>> edgeMap = new HashMap();
         for (int i = 0; i < vertices; i++) {
             map.put(i, 0);
-            edgeMap.put(i, new ArrayList<Integer>());
+            edgeMap.put(i, new ArrayList<>());
         }
         for (int[] edge: edges) {
             map.put(edge[1], map.get(edge[1])+1);
