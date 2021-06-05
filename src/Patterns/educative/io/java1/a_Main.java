@@ -25,45 +25,51 @@ public class a_Main {
         Problem Challenge 4 - Words Concatenation (hard)
         */
 
+        //------------------------------------------------------- SET I ---------------------------------------------------------------------//
+
         //Max Sum SubArray of SizeK
         //Explanation: Subarray with maximum sum is [5, 1, 3].
         //Max Sum = 9
-        System.out.println(A_SlidingWindow.findMaxSumSubArray(3, new int[] {2, 1, 5, 1, 3, 2}));
-        //System.out.println(A_SlidingWindow.findMaxSumSubArrayBookSolution(3, new int[] {2, 1, 5, 1, 3, 2}));
+        p(A_SlidingWindow.findMaxSumSubArray(3, new int[] {2, 1, 5, 1, 3, 2}));
+        p(A_SlidingWindow.findMaxSumSubArrayBookSolution1(3, new int[] {2, 1, 5, 1, 3, 2}));
+        p(A_SlidingWindow.findMaxSumSubArrayBookSolution2(3, new int[] {2, 1, 5, 1, 3, 2}));  // <--
 
         //Smallest SubArray
         //Explanation: Given an array of positive numbers and a positive number ‘S’, find the length of the
         // smallest contiguous subarray whose sum is greater than or equal to ‘S’. Return 0, if no such subarray exists.
-        System.out.println(A_SlidingWindow.findMinSubArray(7, new int[] {2, 1, 5, 2, 8}));
+        p(A_SlidingWindow.findMinSubArray(7, new int[] {2, 1, 5, 2, 8}));
+        p(A_SlidingWindow.findMinSubArrayBookSolution(7, new int[] {2, 1, 5, 2, 8}));  // <--
 
         //Longest Substring
         //Given a string, find the length of the longest substring in it with no more than K distinct characters.
         //Input: String="araaci", K=2
         //output 4
-        System.out.println(A_SlidingWindow.longestSubstringKDistinct("cbbebi", 3));
-        System.out.println(A_SlidingWindow.longestSubstringKDistinctBookSolution("cbbebi", 3));
+        p(A_SlidingWindow.longestSubstringKDistinct("cbbebi", 3));
+        p(A_SlidingWindow.longestSubstringKDistinctBookSolution("cbbebi", 3));
 
         //fruits in a basket: Write a function to return the maximum number of fruits in both the baskets.
         //Input:  Fruit=['A', 'B', 'C', 'A', 'C']  Output: 3
         //Explanation: We can put 2 'C' in one basket and one 'A' in the other from the subarray ['C', 'A', 'C']
-        System.out.println(A_SlidingWindow.maxFruitsIn2Baskets(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
-        System.out.println(A_SlidingWindow.maxFruitsIn2BasketsBookSolution(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
+        p(A_SlidingWindow.maxFruitsIn2Baskets(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
+        p(A_SlidingWindow.maxFruitsIn2BasketsBookSolution(new char[]{'A', 'B', 'C', 'B', 'B', 'C'}));
 
         //No-repeat Substring
         //Given a string, find the length of the longest substring which has no repeating characters.
         //Input: String="aabccbb"
         //Output: 3
         //Explanation: The longest substring without any repeating characters is "abc".
-        System.out.println(A_SlidingWindow.noRepeatSubstringProblem("abccde"));
-        System.out.println(A_SlidingWindow.noRepeatSubstringProblemBookSolution("abccde"));
+        p(A_SlidingWindow.noRepeatSubstringProblem("abccde"));
+        p(A_SlidingWindow.noRepeatSubstringProblemBookSolution("abccde"));
+
+        //------------------------------------------------------- SET II ---------------------------------------------------------------------//
 
         //Longest SubString
         //Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter,
         // find the length of the longest substring having the same letters after replacement.
         //Input: String="aabccbb", k=2 Output: 5
         //Explanation: Replace the two 'c' with 'b' to have a longest repeating substring "bbbbb".
-        System.out.println(A_SlidingWindow.longestSubStringAfterReplacement("abccde", 1));
-        System.out.println(A_SlidingWindow.longestSubStringAfterReplacementBookSolution("abccde", 1));
+        p(A_SlidingWindow.longestSubStringAfterReplacement("abccde", 1));
+        p(A_SlidingWindow.longestSubStringAfterReplacementBookSolution("abccde", 1));
 
         //Longest SubArray with Ones After Replacement
         //Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s,
@@ -71,7 +77,7 @@ public class a_Main {
         //Input: Array=[0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], k=2
         //Output: 6
         //Explanation: Replace the '0' at index 5 and 8 to have the longest contiguous subarray of 1s having length 6.
-        System.out.println(A_SlidingWindow.longestSubArrayAfterReplacement(new int[]{ 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1 }, 2));
+        p(A_SlidingWindow.longestSubArrayAfterReplacement(new int[]{ 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1 }, 2));
 
         //Challenge1 String Permutations
         //Given a string and a pattern, find out if the string contains any permutation of the pattern.
@@ -81,8 +87,8 @@ public class a_Main {
         //Input: String="oidbcaf", Pattern="abc"
         //Output: true
         //Explanation: The string contains "bca" which is a permutation of the given pattern.
-        System.out.println(A_SlidingWindow.stringPermutationOfAPattern("bcdxabcdy", "bcdyabcdx"));
-        System.out.println(A_SlidingWindow.stringPermutationOfAPatternBookSolution("bcdxabcdy", "bcdyabcdx"));
+        p(A_SlidingWindow.stringPermutationOfAPattern("bcdxabcdy", "bcdyabcdx"));
+        p(A_SlidingWindow.stringPermutationOfAPatternBookSolution("bcdxabcdy", "bcdyabcdx"));
 
         //Challenge2 String Anagrams
         //Given a string and a pattern, find all anagrams of the pattern in the given string.
@@ -90,14 +96,15 @@ public class a_Main {
         //abc, acb, bac, bca, cab, cba
         //Input: String="abbcabc", Pattern="abc"  Output: [2, 3, 4]
         //Explanation: The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
-        System.out.println(A_SlidingWindow.stringAnagramsOfAPattern("abbcabc", "abc"));
-        System.out.println(A_SlidingWindow.stringAnagramsOfAPatternBookSolution("abbcabc", "abc"));
+        p(A_SlidingWindow.stringAnagramsOfAPattern("abbcabc", "abc"));
+        p(A_SlidingWindow.stringAnagramsOfAPatternBookSolution("abbcabc", "abc"));
 
         //Challenge 3 Smallest Window containing Substring
         //Given a string and a pattern, find the smallest substring in the given string which has all the characters of the given pattern.
         //Input: String="aabdec", Pattern="abc" | Output: "abdec"
         //Explanation: The smallest substring having all characters of the pattern is "abdec"
-        System.out.println(A_SlidingWindow.smallestSubtringWithPattern("abdabca", "abc"));
+        p(A_SlidingWindow.smallestSubtringWithPattern("abdabca", "abc"));
+        p(A_SlidingWindow.smallesSubtringWithPatternBookSolution("abdabca", "abc"));
 
         //Challenge 4 Word Concatenation
         //Given a string and a list of words, find all the starting indices of substrings in the given string that are a
@@ -105,7 +112,7 @@ public class a_Main {
         // It is given that all words are of the same length.
         //Input: String="catfoxcat", Words=["cat", "fox"] | Output: [0, 3]
         //Explanation: The two substring containing both the words are "catfox" & "foxcat".
-        System.out.println(A_SlidingWindow.wordsConcatenation("catcatfoxfox", new String[] {"cat", "fox"}));
+        p(A_SlidingWindow.wordsConcatenation("catcatfoxfox", new String[] {"cat", "fox"}));
 
 
 
@@ -117,7 +124,7 @@ public class a_Main {
         //        Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
         //        Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
         //        [[10], [10, 5], [5], [5, 2], [5, 2, 6], [2], [2, 6], [6]]
-        System.out.println(A_SlidingWindow.subarrayProductLessThanKAccepted(new int[] {10, 5, 2, 6}, 100) );  //two pointers + sliding windows both applies here.
+        p(A_SlidingWindow.subarrayProductLessThanKAccepted(new int[] {10, 5, 2, 6}, 100) );  //two pointers + sliding windows both applies here.
 
         /*
         ------------------------------------ B Two Pointers------------------------------------
@@ -131,26 +138,26 @@ public class a_Main {
         //Output: [1, 3]
         //Explanation: The numbers at index 1 and 3 add up to 6: 2+4=6
         int[] result = B_TwoPointers.pairInArray(new int[] { 1, 2, 3, 4, 6 }, 6);
-        System.out.println("Pair with target sum: [" + result[0] + ", " + result[1] + "]");
+        p("Pair with target sum: [" + result[0] + ", " + result[1] + "]");
 
         //Squaring Sorting
         //Given a sorted array, create a new array containing squares of all the number of the inputEmp array in the sorted order.
         //Input: [-2, -1, 0, 2, 3] | Output: [0, 1, 4, 4, 9]
         int[] result2 = B_TwoPointers.squaringSorted(new int[] {-3, -1, 0, 1, 2});
-        System.out.println("[" + result2[0] + "," + result2[1] + "," + result2[2] + "," + result2[3]+ "," + result2[4] + "]");
+        p("[" + result2[0] + "," + result2[1] + "," + result2[2] + "," + result2[3]+ "," + result2[4] + "]");
 
         //Triplet Sum to Zero
         //Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
         //Input: [-3, 0, 1, 2, -1, 1, -2] | Output: [-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
         //Explanation: There are four unique triplets whose sum is equal to zero.
-        System.out.println(B_TwoPointers.tripletSumToZero(new int[] {-3, 0, 1, 2, -1, 1, -2}));
-        System.out.println(B_TwoPointers.tripletSumToZeroBook(new int[] {-3, 0, 1, 2, -1, 1, -2}));
+        p(B_TwoPointers.tripletSumToZero(new int[] {-3, 0, 1, 2, -1, 1, -2}));
+        p(B_TwoPointers.tripletSumToZeroBook(new int[] {-3, 0, 1, 2, -1, 1, -2}));
 
         // 6. Triplet Sum Close to Target (medium)
         // Given an array of unsorted integers. find three numbers in array s/t sum is closest to target.
         //Input: [-1,2,1,-4], target = 1 |  Output: 2
         //Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
-        System.out.println(B_TwoPointers.tripletSumCloseToTarget(new int[] {-1,2,1,-4}, 1) );
+        p(B_TwoPointers.tripletSumCloseToTarget(new int[] {-1,2,1,-4}, 1) );
 
 
         // 7. Triplets with Smaller Sum (medium)
@@ -159,7 +166,7 @@ public class a_Main {
         //        Explanation: Because there are two triplets which sums are less than 2:
         //             [-2,0,1]
         //             [-2,0,3]
-        System.out.println(B_TwoPointers.tripletWithSmallerSum(new int[] {-2,0,1,3}, 2) );
+        p(B_TwoPointers.tripletWithSmallerSum(new int[] {-2,0,1,3}, 2) );
 
         // 8. Sub-arrays with Product Less than a Target (medium)
         // Given an array of positive integers nums. Count and print the number of (contiguous) subarrays
@@ -168,7 +175,8 @@ public class a_Main {
         //        Explanation: The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
         //        Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
         //        [[10], [10, 5], [5], [5, 2], [5, 2, 6], [2], [2, 6], [6]]
-        System.out.println(B_TwoPointers.subarrayProductLessThanK(new int[] {10, 5, 2, 6}, 100) );  // Time limit
+        p(B_TwoPointers.subarrayProductLessThanK(new int[] {10, 5, 2, 6}, 100) );  // Time limit
+        p(B_TwoPointers.subarrayProductLessThanKAccepted(new int[] {10, 5, 2, 6}, 100) );
 
 
         //        9	Dutch National Flag Problem (medium)
@@ -179,14 +187,14 @@ public class a_Main {
         //        Example 2: Input: nums = [2,0,1] | Output: [0,1,2]
         //        Example 3: Input: nums = [0] | Output: [0]
         //        Example 4: Input: nums = [1] | Output: [1]
-        System.out.println(B_TwoPointers.dutchFlagSortColors(new int[] {2,0,2,1,1,0}) );
+        p(B_TwoPointers.dutchFlagSortColors(new int[] {2,0,2,1,1,0}) );
 
 
         /* Given an array  of integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
         nums[a] + nums[b] + nums[c] + nums[d] == target
         Example 1: Input: nums = [1,0,-1,0,-2,2], target = 0 | Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
         Example 2: Input: nums = [2,2,2,2,2], target = 8 | Output: [[2,2,2,2]] */
-        System.out.println(B_TwoPointers.searchQuadruplets(new int[] {1,0,-1,0,-2,2}, 0) );
+        p(B_TwoPointers.searchQuadruplets(new int[] {1,0,-1,0,-2,2}, 0) );
 
         /**
          * --------------------------------------Pattern: Fast & Slow pointers (7)--------------------------------------
@@ -206,11 +214,11 @@ public class a_Main {
         Internally, 'pos' is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
         Return true if there is a cycle in the linked list. Otherwise, return false.
          */
-        System.out.println(C_FastAndSlowPointers.hasCycle(null ));
+        p(C_FastAndSlowPointers.hasCycle(null ));
 
         /* Start of LinkedList Cycle (medium): LC 142
          Given a linked list, return the node where the cycle begins. If there is no cycle, return null. */
-        System.out.println(C_FastAndSlowPointers.findCycleStart(null ));
+        p(C_FastAndSlowPointers.findCycleStart(null ));
 
         /*Happy Number (medium): LC 202
         Write an algorithm to determine if a number n is happy. A happy number is a number defined by the following process:
@@ -218,19 +226,19 @@ public class a_Main {
         Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
         Those numbers for which this process ends in 1 are happy.
         Return true if n is a happy number, and false if not. */
-        System.out.println(C_FastAndSlowPointers.happyNumber(23));
-        System.out.println(C_FastAndSlowPointers.happyNumber(12));
+        p(C_FastAndSlowPointers.happyNumber(23));
+        p(C_FastAndSlowPointers.happyNumber(12));
 
         /*Middle of the LinkedList (easy): LC 876 */
-        System.out.println(C_FastAndSlowPointers.findMiddle(null));
+        p(C_FastAndSlowPointers.findMiddle(null));
 
         /* Problem Challenge 1: Check if SLL is palindrome or not */
-        System.out.println(C_FastAndSlowPointers.isPalindrome2(null));
+        p(C_FastAndSlowPointers.isPalindrome2(null));
 
         /* Problem Challenge 2: LC 143
         given a list, 1 ->2 ->3 ->4 ->5 ->6 -> null
         print it as 1 ->6 ->2 ->5 ->3 ->4-> null */
-        System.out.println(C_FastAndSlowPointers.reorderList(null));
+        p(C_FastAndSlowPointers.reorderList(null));
         C_FastAndSlowPointers.reorderList2Fastest(null);
 
         /* Problem Challenge 3: LC 457 */
@@ -248,6 +256,7 @@ public class a_Main {
         Problem Challenge 3: LC 759
          */
 
+
         /*Merge Intervals : Given an array of intervals merge all overlapping intervals : INPUT: [[1,3],[2,6],[8,10],[15,18]] OUTPUT: [[1,6],[8,10],[15,18]] */
         List<Interval> intervals = new ArrayList<>();
         intervals.add(new Interval(1,3));
@@ -255,29 +264,29 @@ public class a_Main {
         intervals.add(new Interval(8,10));
         intervals.add(new Interval(15,18));
 
-        System.out.println(D_MergeIntervals.mergeIntervals(intervals));
+        p(D_MergeIntervals.mergeIntervals(intervals));
 
         /* Insert Interval : Given an non-overlapping intervals, insert a interval, merge if necessary : INPUT: [[1,3],[6,9]] & [2,5] OUTPUT: [[1,5],[6,9]]
         INPUT: [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8] OUTPUT: [[1,2],[3,10],[12,16]]
          */
-        System.out.println(D_MergeIntervals.insertInterval(intervals, new Interval(5, 9)));
+        p(D_MergeIntervals.insertInterval(intervals, new Interval(5, 9)));
 
         /* Intervals Intersection: Given two sorted interval lists which are disjoint return thr intersection of two lists
         Input: firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]] | Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
          */
         Interval[] input1 = new Interval[] { new Interval(1, 3), new Interval(5, 6), new Interval(7, 9) };
         Interval[] input2 = new Interval[] { new Interval(2, 3), new Interval(5, 7) };
-        System.out.println(Arrays.toString(D_MergeIntervals.intervalIntersection(input1, input2)));
+        p(Arrays.toString(D_MergeIntervals.intervalIntersection(input1, input2)));
 
         /*   Problem Challenge 1:  Meeting Root, Conflicting Appointments:  Given meeting intervals, find if person can attend all meetings [[0, 30],[5, 10],[15, 20]],     O: FALSE    */
         Interval[] meetingIntervals = { new Interval(1, 4), new Interval(2, 5), new Interval(7, 9) };
-        System.out.println(D_MergeIntervals.canAttendMeetings(meetingIntervals));
+        p(D_MergeIntervals.canAttendMeetings(meetingIntervals));
 
         /* Meeting Root II : Given intervals for meeting, find minimum no of conference required */
-        System.out.println(D_MergeIntervals.findMinimumMeetingRooms1(intervals));
-        System.out.println(D_MergeIntervals.findMinimumMeetingRooms2(input1));
-        System.out.println(D_MergeIntervals.findMinimumMeetingRooms3(input1));
-        System.out.println(D_MergeIntervals.findMinimumMeetingRooms4(input1));      // best explanation
+        p(D_MergeIntervals.findMinimumMeetingRooms1(intervals));
+        p(D_MergeIntervals.findMinimumMeetingRooms2(input1));
+        p(D_MergeIntervals.findMinimumMeetingRooms3(input1));
+        p(D_MergeIntervals.findMinimumMeetingRooms4(input1));      // best explanation
 
         /*  Problem Challenge 2: Find Max Bandwidth
         * For n tv channels, given show start time, end time & bandwidth needed for each channels, find the maximum bandwidth required at peak.
@@ -290,7 +299,7 @@ public class a_Main {
         Note: Min-size-of-show = 2 (min) |  Max-duration-for-show = 720 (min) same as 24hours | Max-bandwidth-per-show = 100 (mbps) | n<1000
         Some channels can decide not to broadcast any show for given time-slot, which mean there will be 0 bandwidth required for that channel for given time-slo*/
         List<Job> input = new ArrayList<>(Arrays.asList(new Job(1, 4, 3), new Job(2, 5, 4), new Job(7, 9, 6)));
-        System.out.println("Maximum Bandwidth load at any time: " + D_MergeIntervals.findMaxCPUOrBandwidthLoad(input));
+        p("Maximum Bandwidth load at any time: " + D_MergeIntervals.findMaxCPUOrBandwidthLoad(input));
 
         /*Problem Challenge 3: Employee Free Time : given intervals of all employee return common positive-length free time for all employee
         * Input: schedule = [[[1,2],[5,6]],[[1,3]],[[4,10]]]  | Output: [[3,4]] |
@@ -300,8 +309,8 @@ public class a_Main {
         List<List<Interval>> inputEmp = new ArrayList<>();
         inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(1, 3), new Interval(5, 6))));
         inputEmp.add(new ArrayList<>(Arrays.asList(new Interval(2, 3), new Interval(6, 8))));
-        System.out.println( D_MergeIntervals.findEmployeeFreeTime(inputEmp));  //using PQ
-        System.out.println( D_MergeIntervals.findEmployeeFreeTime2(inputEmp)); //using merge all intervals, and simply find not intersecting intervals.
+        p( D_MergeIntervals.findEmployeeFreeTime(inputEmp));  //using PQ
+        p( D_MergeIntervals.findEmployeeFreeTime2(inputEmp)); //using merge all intervals, and simply find not intersecting intervals.
 
 
 
@@ -321,16 +330,16 @@ public class a_Main {
 
         /* 2. Find the Missing Number (easy) | Array with distinct numbers from 0 to n | Return only number missing
         * Input: nums = [3,0,1] | Output: 2 | Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.*/
-        System.out.println(E_CyclicSort.missingNumber2(new int[] {3,0,1}));
-        System.out.println(E_CyclicSort.missingNumber3(new int[] {3,0,1}));
+        p(E_CyclicSort.missingNumber2(new int[] {3,0,1}));
+        p(E_CyclicSort.missingNumber3(new int[] {3,0,1}));
 
         /* 3. Find all Missing Numbers | Input: nums = [4,3,2,7,8,2,3,1] | Output: [5,6] */
-        System.out.println(E_CyclicSort.findDisappearedNumbers( new int[]{4,3,2,7,8,2,3,1}));
-        System.out.println(E_CyclicSort.findDisappearedNumbers2( new int[]{4,3,2,7,8,2,3,1}));
-        System.out.println(E_CyclicSort.findDisappearedNumbers3( new int[]{4,3,2,7,8,2,3,1}));
+        p(E_CyclicSort.findDisappearedNumbers( new int[]{4,3,2,7,8,2,3,1}));
+        p(E_CyclicSort.findDisappearedNumbers2( new int[]{4,3,2,7,8,2,3,1}));
+        p(E_CyclicSort.findDisappearedNumbers3( new int[]{4,3,2,7,8,2,3,1}));
 
         /* 4. Find the Duplicate Number | */
-        System.out.println(E_CyclicSort.findDuplicate(new int[]{1,3,4,2,2}));
+        p(E_CyclicSort.findDuplicate(new int[]{1,3,4,2,2}));
 
 
 
@@ -345,20 +354,20 @@ public class a_Main {
          * 5. Problem Challenge 2: LC 61
          */
         /* 1. Reverse a linked list*/
-        System.out.println(F_InPlaceReversalLinkedList.reverseList(null));
+        p(F_InPlaceReversalLinkedList.reverseList(null));
 
         /* Reverse Of linked list given two middle nodes index */
-        System.out.println(F_InPlaceReversalLinkedList.reverseBetweenTwoMiddleNodes(null, 2,4));
+        p(F_InPlaceReversalLinkedList.reverseBetweenTwoMiddleNodes(null, 2,4));
 
         /* 3. Reverse every K nodes in the list, and leave out rest.*/
-        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 2));
-        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 3));
+        p(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 2));
+        p(F_InPlaceReversalLinkedList.reverseEveryKNodes(null, 3));
 
         /* 4. Reverse alternate K nodes in a Singly Linked List */
-        System.out.println(F_InPlaceReversalLinkedList.reverseEveryKAlternateNodes(null, 3));
+        p(F_InPlaceReversalLinkedList.reverseEveryKAlternateNodes(null, 3));
 
         /* 5. Rotate List to right by k nodes */
-        System.out.println(F_InPlaceReversalLinkedList.rotateListToRightByKNodes(null, 3));
+        p(F_InPlaceReversalLinkedList.rotateListToRightByKNodes(null, 3));
 
 
 
@@ -377,31 +386,31 @@ public class a_Main {
          */
 
         /* 1. Binary Tree Level Order Traversal  */
-        System.out.println(G_TreeBreathFirstSearch.levelOrderTraversal(null));
+        p(G_TreeBreathFirstSearch.levelOrderTraversal(null));
 
         /* 2. Reverse Level Order Traversal */
-        System.out.println(G_TreeBreathFirstSearch.reversalLevelOrderTraversal(null));
+        p(G_TreeBreathFirstSearch.reversalLevelOrderTraversal(null));
 
         /* 3. Zigzag Traversal  */
-        System.out.println(G_TreeBreathFirstSearch.zigZagLevelOrderTraversal(null));
+        p(G_TreeBreathFirstSearch.zigZagLevelOrderTraversal(null));
 
         /* 4. Level Averages in a Binary Tree */
-        System.out.println(G_TreeBreathFirstSearch.levelOrderAverage(null));
+        p(G_TreeBreathFirstSearch.levelOrderAverage(null));
 
         /* 5. Minimum Depth of a Binary Tree */
-        System.out.println(G_TreeBreathFirstSearch.minDepthOfBinaryTree(null));
+        p(G_TreeBreathFirstSearch.minDepthOfBinaryTree(null));
 
         /* 6. Level Order Successor  */
-        System.out.println(G_TreeBreathFirstSearch.levelOrderSuccessor(null, 5));
+        p(G_TreeBreathFirstSearch.levelOrderSuccessor(null, 5));
 
         /* 7. Connect Level Order Siblings  */
-        System.out.println(G_TreeBreathFirstSearch.connectLevelOrderSiblings(null));
+        p(G_TreeBreathFirstSearch.connectLevelOrderSiblings(null));
 
         /* 8. Connect all siblings */
-        System.out.println(G_TreeBreathFirstSearch.connectAllSiblings(null));
+        p(G_TreeBreathFirstSearch.connectAllSiblings(null));
 
         /* 9. Binary Tree Right Side View */
-        System.out.println(G_TreeBreathFirstSearch.rightSideView(null));
+        p(G_TreeBreathFirstSearch.rightSideView(null));
 
 
 
@@ -418,32 +427,32 @@ public class a_Main {
          */
 
         /* 1. Binary Tree Path Sum | given target sum, return TRUE if there is path from ROOT to LEAF */
-        System.out.println(H_TreeDepthFirstSearch.pathSumRootToLeaf(null, 23));
+        p(H_TreeDepthFirstSearch.pathSumRootToLeaf(null, 23));
 
         /*2. All Paths for a Sum */
-        System.out.println(H_TreeDepthFirstSearch.allPathSum1(null, 23));
-        System.out.println(H_TreeDepthFirstSearch.rootToLeafPaths(null));
+        p(H_TreeDepthFirstSearch.allPathSum1(null, 23));
+        p(H_TreeDepthFirstSearch.rootToLeafPaths(null));
 
         /* 3. Sum of Path Numbers | nodes have all single digit number  | root to leaf represents final no. e.g 1->2_3 = 123*/
-        System.out.println(H_TreeDepthFirstSearch.rootToLeafSumOfPaths(null));
+        p(H_TreeDepthFirstSearch.rootToLeafSumOfPaths(null));
 
         /* 4. Path With Given Sequence |  given array of sequence check of path from root to leaf exactly exists */
-        System.out.println(H_TreeDepthFirstSearch.findPathWithGivenSequence(null, new int[] {0,1,0,1}));
+        p(H_TreeDepthFirstSearch.findPathWithGivenSequence(null, new int[] {0,1,0,1}));
 
         /* 5. Count Paths for a Sum */
-        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode(null, 23));
-        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode2(null, 23));
-        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
+        p(H_TreeDepthFirstSearch.pathSumFromAnyNode(null, 23));
+        p(H_TreeDepthFirstSearch.pathSumFromAnyNode2(null, 23));
+        p(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
 
         /* 6. Diameter of a binary Tree */
-        System.out.println(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
+        p(H_TreeDepthFirstSearch.pathSumFromAnyNode3(null, 23));
 
         /* 7. Tree Diameter */
-        System.out.println(H_TreeDepthFirstSearch.diameterOfBinaryTree(null));
+        p(H_TreeDepthFirstSearch.diameterOfBinaryTree(null));
 
         /* 8. Binary Tree Maximum Path Sum */
-        System.out.println(H_TreeDepthFirstSearch.maxPathSum2(null));
-        System.out.println(H_TreeDepthFirstSearch.maxPathSum(null));  //better
+        p(H_TreeDepthFirstSearch.maxPathSum2(null));
+        p(H_TreeDepthFirstSearch.maxPathSum(null));  //better
 
 
 
@@ -459,7 +468,7 @@ public class a_Main {
 
         /* 1. Find the median of a Number Stream */
         I_TwoHeaps.medianFinder2(); I_TwoHeaps.addNum2(5); I_TwoHeaps.addNum2(2); I_TwoHeaps.addNum2(3);
-        System.out.println(I_TwoHeaps.findMedian2());
+        p(I_TwoHeaps.findMedian2());
 
         
         //-----------------------------Subsets ----------------------------
@@ -476,62 +485,62 @@ public class a_Main {
          * 9. Problem Challenge 3: LC 96
 
          /* 1. Subset - return list of a power set. No duplicate sets. E.g.  1,2,3 -> ([], [1],[2],[3], [1,2],[1,3], [2,3], [1,2,3])  |    [2,1] not allowed */
-        System.out.println(J_SubSets.findSubsets(new int [] {1,2,3}));
-        System.out.println(J_SubSets.findSubsets2(new int [] {1,2,3}));
-        System.out.println(J_SubSets.findSubsets3(new int [] {5,2,1}));
+        p(J_SubSets.findSubsets(new int [] {1,2,3}));
+        p(J_SubSets.findSubsets2(new int [] {1,2,3}));
+        p(J_SubSets.findSubsets3(new int [] {5,2,1}));
 
         /* 2. Subsets With Duplicates - print combination but now numbers are repeating */
-        System.out.println(J_SubSets.subsetsWithDupDfs(new int [] {5,5,1}));      // using DFS
-        System.out.println(J_SubSets.subsetsWithDupBitMaks(new int [] {5,5,1}));      // using bitmask
+        p(J_SubSets.subsetsWithDupDfs(new int [] {5,5,1}));      // using DFS
+        p(J_SubSets.subsetsWithDupBitMaks(new int [] {5,5,1}));      // using bitmask
         //extra solutions
-        System.out.println(J_SubSets.subsetsWithDup2RecBranch(new int [] {5,5,1}));
-        System.out.println(J_SubSets.subsetsWithDupIterative(new int [] {5,5,1}));
+        p(J_SubSets.subsetsWithDup2RecBranch(new int [] {5,5,1}));
+        p(J_SubSets.subsetsWithDupIterative(new int [] {5,5,1}));
 
         /* 3. Permutations - order matters | Input: nums = [1,2,3] | Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] */
-        System.out.println(J_SubSets.findPermutationsDFS(new int [] {5,5,1}));      //with boolean used[]       FASTER
-        System.out.println(J_SubSets.findPermutationsDFS2(new int [] {5,5,1}));     //without boolean used[]   SLOWER uses contains.
+        p(J_SubSets.findPermutationsDFS(new int [] {5,5,1}));      //with boolean used[]       FASTER
+        p(J_SubSets.findPermutationsDFS2(new int [] {5,5,1}));     //without boolean used[]   SLOWER uses contains.
         //extra
-        System.out.println(J_SubSets.findPermutationsBFS(new int [] {5,5,1}));
+        p(J_SubSets.findPermutationsBFS(new int [] {5,5,1}));
 
         /* 4. String Permutations by changing case | Input: s = "a1b2" |  Output: ["a1b2","a1B2","A1b2","A1B2"]*/
-        System.out.println(J_SubSets.findLetterCaseStringPermutationsDFS("a1b2"));
-        System.out.println(J_SubSets.findLetterCaseStringPermutationsDFSFastest("a1b2"));                   //fastest.
+        p(J_SubSets.findLetterCaseStringPermutationsDFS("a1b2"));
+        p(J_SubSets.findLetterCaseStringPermutationsDFSFastest("a1b2"));                   //fastest.
 
         /* 5. Balanced Parentheses */
-        System.out.println(J_SubSets.generateValidParentheses1(5));   //fastest using String builder
-        System.out.println(J_SubSets.generateValidParentheses2(5)); // using String
+        p(J_SubSets.generateValidParentheses1(5));   //fastest using String builder
+        p(J_SubSets.generateValidParentheses2(5)); // using String
 
 
         //pending
         /*  6. Unique Generalized Abbreviations */
-        System.out.println(J_SubSets.generateGeneralizedAbbreviation("BAT"));
+        p(J_SubSets.generateGeneralizedAbbreviation("BAT"));
 
         /* 7. Problem Challenge 1 -  Evaluate expression */
-        System.out.println(J_SubSets.diffWaysToEvaluateExpression("2*3-4-5"));
+        p(J_SubSets.diffWaysToEvaluateExpression("2*3-4-5"));
 
         /*  8. Problem Challenge 2 - Unique Trees */
-        System.out.println(J_SubSets.findUniqueTrees(2));
+        p(J_SubSets.findUniqueTrees(2));
 
         /*  9. Problem Challenge 3 - Count Unique Trees */
-        System.out.println(J_SubSets.countTrees(2));
-        System.out.println(J_SubSets.numTrees(2));
+        p(J_SubSets.countTrees(2));
+        p(J_SubSets.numTrees(2));
 
 
         /* other */
         // 1. subsets
-        System.out.println(J_SubSets.subsets(new int [] {5,5,1}));
+        p(J_SubSets.subsets(new int [] {5,5,1}));
         // 2. subset II (contains duplicates)
-        System.out.println(J_SubSets.subsetsWithDup(new int [] {5,5,1}));
+        p(J_SubSets.subsetsWithDup(new int [] {5,5,1}));
         // 3. Permutation
-        System.out.println(J_SubSets.permute(new int [] {5,5,1}));
+        p(J_SubSets.permute(new int [] {5,5,1}));
         // 4. Permutation II (contains duplicates)
-        System.out.println(J_SubSets.permuteUnique(new int [] {5,5,1}));
+        p(J_SubSets.permuteUnique(new int [] {5,5,1}));
         // 5. Combination Sum
-        System.out.println(J_SubSets.combinationSum(new int [] {5,5,1}, 23));
+        p(J_SubSets.combinationSum(new int [] {5,5,1}, 23));
         // 6. Combination Sum II (can't reuse same element)
-        System.out.println(J_SubSets.combinationSum2(new int [] {5,5,1}, 23));
+        p(J_SubSets.combinationSum2(new int [] {5,5,1}, 23));
         // 7. Palindrome Partitioning
-        System.out.println(J_SubSets.partition("string"));
+        p(J_SubSets.partition("string"));
 
          //-----------------------------Modified Binary Search ----------------------------
 
@@ -551,37 +560,38 @@ public class a_Main {
          */
 
          /* 1. Order-agnostic Binary Search | given array not sure if its ascending or descending */
-        System.out.println(K_ModifiedBinarySearch.search(new int[] {1,2,3}, 3));
+        p(K_ModifiedBinarySearch.search(new int[] {1,2,3}, 3));
 
         /* 2. Ceiling of a Number | in sorted Array */
-        System.out.println(K_ModifiedBinarySearch.searchCeilingOfANumber(new int[] {1,2,3}, 3));
-        System.out.println(K_ModifiedBinarySearch.searchCeilingOfANumber2(new int[] {1,2,3}, 3));
+        p(K_ModifiedBinarySearch.searchCeilingOfANumber(new int[] {1,2,3}, 3));
+        p(K_ModifiedBinarySearch.searchCeilingOfANumber2(new int[] {1,2,3}, 3));
 
         /* 3. Next Letter */
-        System.out.println(K_ModifiedBinarySearch.searchNextLetter(new char[] {'a','c','d'}, 'l'));
+        p(K_ModifiedBinarySearch.searchNextLetter(new char[] {'a','c','d'}, 'l'));
 
         /* 4. Number Range */
-        System.out.println(Arrays.toString(K_ModifiedBinarySearch.searchRange1(new int[] {1,2,3,4,8,8,9}, 8)));
-        System.out.println(Arrays.toString(K_ModifiedBinarySearch.searchRange2(new int[] {1,2,3,4,8,8,9}, 8)));
+        p(Arrays.toString(K_ModifiedBinarySearch.searchRange1(new int[] {1,2,3,4,8,8,9}, 8)));
+        p(Arrays.toString(K_ModifiedBinarySearch.searchRange2(new int[] {1,2,3,4,8,8,9}, 8)));
+        p(Arrays.toString(K_ModifiedBinarySearch.searchRangeUsingBinarySearchLeftOrRightBias(new int[] {1,2,3,4,8,8,9}, 8)));
 
         /* 5. Search in a Sorted Infinite Array  */
-        System.out.println(K_ModifiedBinarySearch.searchInSortedInfiniteArray(null, 8));
+        p(K_ModifiedBinarySearch.searchInSortedInfiniteArray(null, 8));
 
         /* 6. Minimum Difference Element */
-        System.out.println(K_ModifiedBinarySearch.findClosestElements(new int[] {1,2,3,4,8,8,9}, 8, 3));
+        p(K_ModifiedBinarySearch.findClosestElements(new int[] {1,2,3,4,8,8,9}, 8, 3));
 
         /*  7. Bitonic Array Maximum */
-        System.out.println(K_ModifiedBinarySearch.findMaxInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }));
+        p(K_ModifiedBinarySearch.findMaxInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }));
 
         /* 8. Problem Challenge 1: Search Bitonic Array |  increasing abd then decreasing*/
-        System.out.println(K_ModifiedBinarySearch.searchInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+        p(K_ModifiedBinarySearch.searchInBitonicArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
 
         /* 9. Problem Challenge 2 | search in rotated array*/
-        System.out.println(K_ModifiedBinarySearch.searchInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
-        System.out.println(K_ModifiedBinarySearch.searchInRotatedArrayWithDuplicates(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+        p(K_ModifiedBinarySearch.searchInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
+        p(K_ModifiedBinarySearch.searchInRotatedArrayWithDuplicates(new int[] { 1, 3, 8, 12, 4, 2 }, 8));
 
         /* 10. Problem Challenge 3 */
-        System.out.println(K_ModifiedBinarySearch.findMinInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }));
+        p(K_ModifiedBinarySearch.findMinInRotatedArray(new int[] { 1, 3, 8, 12, 4, 2 }));
 
 
         //----------------------------- Bitwise XOR ----------------------------
@@ -594,14 +604,14 @@ public class a_Main {
          * 4. Problem Challenge 1: LC 832
          */
         /* 1. Single Number */
-        System.out.println(L_BitwiseXOR.findSingleNumber(new int[] { 1, 3, 1, 3, 4, 2, 2}));
+        p(L_BitwiseXOR.findSingleNumber(new int[] { 1, 3, 1, 3, 4, 2, 2}));
 
         /* 2. Two Single Numbers */
-        System.out.println(Arrays.toString(L_BitwiseXOR.findTwoNumberAppearingOnces(new int[] { 1, 3, 1, 3, 4, 2, 2})));
+        p(Arrays.toString(L_BitwiseXOR.findTwoNumberAppearingOnces(new int[] { 1, 3, 1, 3, 4, 2, 2})));
 
         /* 3. Complement of Base 10 Number  */
-        System.out.println(L_BitwiseXOR.findComplement(5));
-        System.out.println(L_BitwiseXOR.findComplement2(2));
+        p(L_BitwiseXOR.findComplement(5));
+        p(L_BitwiseXOR.findComplement2(2));
 
         /* 4. Problem Challenge 1*/
 
@@ -631,55 +641,56 @@ public class a_Main {
         /* 1. Top 'K' Numbers */
 
         /* 2. Kth Smallest Number */
-        System.out.println(M_TopKElements.findKthSmallestNumber(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
-        System.out.println(M_TopKElements.findKthLargest(new int[] { 1, 5, 12, 2, 11, 5 }, 3));     //O(n)
+        p(M_TopKElements.findKthSmallestNumber(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
+        p(M_TopKElements.findKthLargest(new int[] { 1, 5, 12, 2, 11, 5 }, 3));     //O(n)
 
         /* 3. K' Closest Points to the Origin */
-        System.out.println(M_TopKElements.findKClosestPoints(null, 3));     //O(n) log(k)
+        p(M_TopKElements.findKClosestPoints(null, 3));     //O(n) log(k)
 
         /* 4. Connect Ropes */
-        System.out.println(M_TopKElements.minimumCostToConnectRopes(new int[] { 1, 5, 12, 2, 11, 5 }));     //O(n) log(k)
+        p(M_TopKElements.minimumCostToConnectRopes(new int[] { 1, 5, 12, 2, 11, 5 }));     //O(n) log(k)
 
         /* 5. Top 'K' Frequent Numbers */
-        System.out.println(M_TopKElements.findTopKFrequentNumbers(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
+        p(M_TopKElements.findTopKFrequentNumbersHeap(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n) log(k)
+        p(M_TopKElements.findTopKFrequentNumbersBucket(new int[] { 1, 5, 12, 2, 11, 5 }, 3)); //O(n)
 
         /* 6. Frequency Sort */
-        System.out.println(M_TopKElements.sortCharacterByFrequency("tree"));
+        p(M_TopKElements.sortCharacterByFrequency("tree"));
 
         /* 7. Kth Largest Number in a Stream */
-        System.out.println(new M_TopKElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3));
-        System.out.println(M_TopKElements.add(3));
+        p(new M_TopKElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3));
+        p(M_TopKElements.add(3));
 
         /* 8. K' Closest Numbers */
-        System.out.println(M_TopKElements.findClosestElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+        p(M_TopKElements.findClosestElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
 
         /* 9. Maximum Distinct Elements */
-        System.out.println(M_TopKElements.maxDistinctNum(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+        p(M_TopKElements.maxDistinctNum(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
 
         /* 10. Sum of Elements | Sum of all elements between k1’th and k2’th smallest elements */
-        System.out.println(M_TopKElements.findSumOfElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
+        p(M_TopKElements.findSumOfElements(new int[] { 1, 5, 12, 2, 11, 5 }, 3, 5)); //O(n) log(k)
 
         /* 11. Rearrange String */
-        System.out.println(M_TopKElements.reorganizeString("tree"));
-        System.out.println(M_TopKElements.reorganizeString2("tree"));
-        System.out.println(M_TopKElements.reorganizeString3("tree"));
+        p(M_TopKElements.reorganizeString("tree"));
+        p(M_TopKElements.reorganizeString2("tree"));
+        p(M_TopKElements.reorganizeString3("tree"));
 
         /* 12. Problem Challenge 1: Reorganize String K distance apart */
-        System.out.println(M_TopKElements.reorganizeStringKDistanceApart("Programming", 3));
+        p(M_TopKElements.reorganizeStringKDistanceApart("Programming", 3));
 
         /* 13. Problem Challenge 2: Task Scheduler | Char c = task name, n period cool off needed between same task.
         * Find least no of unit time for CPU to finish time*/
-        System.out.println(M_TopKElements.scheduleTasksKDistanceApart(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
-        System.out.println(M_TopKElements.scheduleTasksKDistanceApart2(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
-        System.out.println(M_TopKElements.scheduleTasksKDistanceApart3(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));  // <-- slow but working | added comments.
+        p(M_TopKElements.scheduleTasksKDistanceApart(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
+        p(M_TopKElements.scheduleTasksKDistanceApart2(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));
+        p(M_TopKElements.scheduleTasksKDistanceApart3(new char[] { 'a', 'a', 'a', 'b', 'c', 'c' }, 2));  // <-- slow but working | added comments.
 
         /* 14. Problem Challenge 3: Frequency Stack | Map + PriorityQueue*/
-        System.out.println(M_TopKElements.initializeFreqStack());
-        System.out.println(M_TopKElements.push(2));
-        System.out.println(M_TopKElements.push(2));
-        System.out.println(M_TopKElements.push(2));
-        System.out.println(M_TopKElements.push(2));
-        System.out.println(M_TopKElements.pop());
+        p(M_TopKElements.initializeFreqStack());
+        p(M_TopKElements.push(2));
+        p(M_TopKElements.push(2));
+        p(M_TopKElements.push(2));
+        p(M_TopKElements.push(2));
+        p(M_TopKElements.pop());
 
 
         //----------------------------- K-way merge----------------------------
@@ -694,14 +705,14 @@ public class a_Main {
          */
 
         /*1. Merge K Sorted Lists */
-        System.out.println(N_KwayMerge.mergeKListsIntoOneInAscendingOrder(null));
+        p(N_KwayMerge.mergeKListsIntoOneInAscendingOrder(null));
 
         /* 2. Kth Smallest Number in M Sorted Lists  */
-        System.out.println(N_KwayMerge.findKthSmallest(null,3));
-        System.out.println(N_KwayMerge.findKthSmallest2(null,3));
+        p(N_KwayMerge.findKthSmallest(null,3));
+        p(N_KwayMerge.findKthSmallest2(null,3));
 
         /* 3. Kth Smallest Number in a Sorted Matrix */
-        System.out.println(N_KwayMerge.findKthSmallestInSortedMatrix(null,3));
+        p(N_KwayMerge.findKthSmallestInSortedMatrix(null,3));
 
         /* 4. Smallest Number Range  */
 
@@ -740,7 +751,19 @@ public class a_Main {
          * Problem Challenge 2: LC 494
          */
 
+        //--------------------------------MISC----------------------------------
+        /**
+         * 1. Add two numbers represented as linked list (Medium) : LC 2
+         */
+
+        //1. Add two numbers
+        p(R_Misc.addTwoNumbers(null,null));
+
+
+
+
     }
-
-
+    public static <N> void p(N type){
+        System.out.println(type);
+    }
 }

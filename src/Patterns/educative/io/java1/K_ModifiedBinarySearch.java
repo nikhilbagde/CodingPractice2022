@@ -4,6 +4,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class K_ModifiedBinarySearch {
+    static class ArrayReader {
+        int[] arr;
+
+        ArrayReader(int[] arr) {
+            this.arr = arr;
+        }
+
+        public int get(int index) {
+            if (index >= arr.length)
+                return Integer.MAX_VALUE;
+            return arr[index];
+        }
+    }
+    static class SearchInfiniteSortedArray {
+
+        public static int search(ArrayReader reader, int key) {
+            // find the proper bounds first
+            int start = 0, end = 1;
+            while (reader.get(end) < key) {
+                int newStart = end + 1;
+                end += (end - start + 1) * 2; // increase to double the bounds size
+                start = newStart;
+            }
+            return binarySearch(reader, key, start, end);
+        }
+
+        private static int binarySearch(ArrayReader reader, int key, int start, int end) {
+            while (start <= end) {
+                int mid = start + (end - start) / 2;
+                if (key < reader.get(mid)) {
+                    end = mid - 1;
+                } else if (key > reader.get(mid)) {
+                    start = mid + 1;
+                } else { // found the key
+                    return mid;
+                }
+            }
+
+            return -1;
+        }
+
+        public static void main(String[] args) {
+            ArrayReader reader = new ArrayReader(
+                    new int[]{4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30});
+            System.out.println(SearchInfiniteSortedArray.search(reader, 16));
+            System.out.println(SearchInfiniteSortedArray.search(reader, 11));
+            reader = new ArrayReader(new int[]{1, 3, 8, 10, 15});
+            System.out.println(SearchInfiniteSortedArray.search(reader, 15));
+            System.out.println(SearchInfiniteSortedArray.search(reader, 200));
+        }
+    }
 
     // 1. Binary Search
     public static int search(int[] arr, int key) {
@@ -113,6 +164,36 @@ public class K_ModifiedBinarySearch {
             }
         }
         return start;
+    }
+    public static int[] searchRangeUsingBinarySearchLeftOrRightBias(int[] a, int target) {
+        int left = findPositionOfNumber(a, target, true);
+        int right = findPositionOfNumber(a, target, false);
+        return new int[]{left,right};
+    }
+    public static int findPositionOfNumber(int[] a, int target, boolean leftBiased){        // O (log n)
+        int left = 0;
+        int right = a.length-1;
+        int index = -1;
+        while(left<=right){                 // why it is important to have equal to sign? when L=7 and R=7, it should still go inside the while loop, and update index to 7+7/2= 7 found. update from 8.
+                                                         // why it is important to have equal to sign? when L=9 and R=9, it should still go inside the while loop, and update index to 9+9/2= 9 found. update from 8.
+            int mid = left + (right-left)/2;        // to handle integer overflow
+            if(a[mid] < target){
+                left = mid +1;
+            } else if( a[mid] > target){
+                right = mid - 1;
+            } else if( a[mid] == target) {
+                //store the found location to index
+                index = mid;
+
+                //so current left and right pointers are in the range where we will find remaining index
+                if(leftBiased){                             // E.g. 5 6 7 7 7 7 7 8 8 8 9 9 10
+                    right = mid-1;                          //      0 1 2 3 4 5 6 7 8 9 1 2  3
+                }else {                                           // 0+13=13/2=6  -> L=6+1=7  R remains at 13  | L = 7, R =13
+                    left = mid +1;                          // 13+7/2= 10      ->  R=10-1=9 L remains at 7  | L= 7 , R = 9
+                }                                                   // 9+7/2 = 8          -> Found stored 8 to index.   | L= 7 , R = 9
+            }                                         //** L= 7 , R = 9    |   left biased, index = 8 | R = 8 (mid) -1 | L = 7 , R = 7 -> Mid found , overrider index from 8 to 7. -> R = mid-1= 6. | Loop end
+        }                                             //** L= 7 , R = 9    |    right biased, index = 8 |  L = 8 (mid) +1 | L= 9 , R =9 -> mid = 9+9/2= 9. Found, index = 8 override to 9 |  L=9+1=10 | Loop ends
+        return index;
     }
 
     public static int findEndPosition(int[] a, int target) {
@@ -369,55 +450,6 @@ public class K_ModifiedBinarySearch {
     }
 }
 
-class ArrayReader {
-    int[] arr;
 
-    ArrayReader(int[] arr) {
-        this.arr = arr;
-    }
 
-    public int get(int index) {
-        if (index >= arr.length)
-            return Integer.MAX_VALUE;
-        return arr[index];
-    }
-}
 
-class SearchInfiniteSortedArray {
-
-    public static int search(ArrayReader reader, int key) {
-        // find the proper bounds first
-        int start = 0, end = 1;
-        while (reader.get(end) < key) {
-            int newStart = end + 1;
-            end += (end - start + 1) * 2; // increase to double the bounds size
-            start = newStart;
-        }
-        return binarySearch(reader, key, start, end);
-    }
-
-    private static int binarySearch(ArrayReader reader, int key, int start, int end) {
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-            if (key < reader.get(mid)) {
-                end = mid - 1;
-            } else if (key > reader.get(mid)) {
-                start = mid + 1;
-            } else { // found the key
-                return mid;
-            }
-        }
-
-        return -1;
-    }
-
-    public static void main(String[] args) {
-        ArrayReader reader = new ArrayReader(
-                new int[]{4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30});
-        System.out.println(SearchInfiniteSortedArray.search(reader, 16));
-        System.out.println(SearchInfiniteSortedArray.search(reader, 11));
-        reader = new ArrayReader(new int[]{1, 3, 8, 10, 15});
-        System.out.println(SearchInfiniteSortedArray.search(reader, 15));
-        System.out.println(SearchInfiniteSortedArray.search(reader, 200));
-    }
-}

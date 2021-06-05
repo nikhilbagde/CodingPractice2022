@@ -3,23 +3,34 @@ package Patterns.educative.io.java1;
 import java.util.*;
 import java.util.stream.Collectors;
 
-class Point {
-    int x;
-    int y;
 
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int distFromOrigin() {
-        // ignoring sqrt
-        return (x * x) + (y * y);
-    }
-}
 
 public class M_TopKElements {
+    static class Element {
+        int num;
+        int freq;
+        int seq;
 
+        public Element(int num, int freq, int seq) {
+            this.num = num;
+            this.freq = freq;
+            this.seq = seq;
+        }
+    }
+    static class Point {
+        int x;
+        int y;
+
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int distFromOrigin() {
+            // ignoring sqrt
+            return (x * x) + (y * y);
+        }
+    }
     static Queue<Integer> queue = new PriorityQueue<>();
     static Queue<Integer> queue1 = new PriorityQueue<>();
     static int k1;
@@ -126,29 +137,59 @@ public class M_TopKElements {
         return res;
     }
 
-    public static List<Integer> findTopKFrequentNumbers(int[] nums, int k) {
+    public static List<Integer> findTopKFrequentNumbersHeap(int[] nums, int k) {
         List<Integer> topNumbers = new ArrayList<>(k);
         Map<Integer, Integer> map = new HashMap<>();
-
-        //Create a min map value heap. // NOTE queue Type <Map.Entry<Integer,Integer>>
-        Queue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
 
         // All all frequencies into the map
         for (int num : nums) {
             map.put(num, map.getOrDefault(num, 0) + 1);
-        }
 
-        //Add k elements in the queue and if more than k remove it and replace the top. NOTE: "map.entrySet()"
+        }
+        //Create a min map value heap. // NOTE minHeap Type <Map.Entry<Integer,Integer>>
+        Queue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
+
+        //Add k elements in the minHeap and if more than k remove it and replace the top. NOTE: "map.entrySet()"
         for (Map.Entry<Integer, Integer> curr : map.entrySet()) {        //O(n) + log(k) instead of O(n) log(n) if poll is not used in this iteration
-            queue.add(curr);
-            if (queue.size() > k) queue.poll();
+            minHeap.add(curr);
+            if (minHeap.size() > k) minHeap.poll();
         }
 
         //Remove all elements from PQ and add it to the result list.
-        while (queue.size() > 0) {
-            topNumbers.add(queue.poll().getKey());
+        while (minHeap.size() > 0) {
+            topNumbers.add(minHeap.poll().getKey());
         }
         return topNumbers;
+    }
+    public static List<Integer> findTopKFrequentNumbersBucket(int[] nums, int k) {          // O(n)
+        List<Integer> topNumbers = new ArrayList<>(k);
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // All all frequencies into the map
+        for (int num : nums) {                                            //O(n)
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        List<Integer>[] bucket = new ArrayList [nums.length+1];         // This is Array of lists.
+        int max = Integer.MAX_VALUE;        // max integer value is = 21 * 10 ^8 |  max k size should be equal to size of the int[]. And given that k <10^7.
+                                                                    // So we should be able to create a bucket with max of int. Which will hold max k 10 ^ 8
+        for(int num : map.keySet()){                                  //O(n)
+            int freq = map.get(num);
+            if(bucket[freq]==null){
+                bucket[freq] = new ArrayList<>();
+            }
+            bucket[freq].add(num);
+        }
+        for (int i = bucket.length-1; i >=0 ; i--) {                //O(k)
+            if(bucket[i]!=null){
+                for (int  num : bucket[i]) {
+                    topNumbers.add(num);
+                    if(topNumbers.size()==k) break;
+                }
+            }
+        }
+        return topNumbers;
+
     }
 
     public static String sortCharacterByFrequency(String str) {
@@ -541,15 +582,5 @@ public class M_TopKElements {
             System.out.print("[" + p.x + " , " + p.y + "] ");
     }
 }
-class Element {
-    int num;
-    int freq;
-    int seq;
 
-    public Element(int num, int freq, int seq) {
-        this.num = num;
-        this.freq = freq;
-        this.seq = seq;
-    }
-}
 

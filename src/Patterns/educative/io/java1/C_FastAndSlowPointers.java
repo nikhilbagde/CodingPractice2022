@@ -11,17 +11,15 @@ package Patterns.educative.io.java1;
  * Problem Challenge 2: LC 143
  * Problem Challenge 3: LC 457
  */
-
-class ListNode {
-    int value = 0;
-    ListNode next;
-
-    ListNode(int value) {
-        this.value = value;
-    }
-}
-
 public class C_FastAndSlowPointers {
+    static class ListNode {
+        int value = 0;
+        ListNode next;
+
+        ListNode(int value) {
+            this.value = value;
+        }
+    }
     public static boolean hasCycle(ListNode head) {
         //Error check
         if(head==null) return false;

@@ -111,7 +111,6 @@ public class B_TwoPointers {
 
     public static List<List<Integer>> tripletSumToZeroBook(int[] arr) {
         List<List<Integer>> triplets = new ArrayList<>();
-        // TODO: Write your code here
         Arrays.sort(arr);
         if (arr.length < 3) return triplets;
         for (int i = 0; i < arr.length-2; i++) {

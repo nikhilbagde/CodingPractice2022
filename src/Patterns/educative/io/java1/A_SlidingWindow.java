@@ -54,15 +54,15 @@ public class A_SlidingWindow {
         //Space complexity O(1)
         int windowSum = 0;
         int maxSum = 0;
-        int windowStart = 0;
+        int start = 0;
 
-        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-            windowSum += arr[windowEnd]; // add the next element
+        for (int end = 0; end < arr.length; end++) {
+            windowSum += arr[end]; // add the next element
             // slide the window, we don't need to slide if we've not hit the required window size of 'k'
-            if (windowEnd >= k - 1) {
+            if (end >= k - 1) {
                 maxSum = Math.max(maxSum, windowSum);
-                windowSum -= arr[windowStart]; // subtract the element going out
-                windowStart++; // slide the window ahead
+                windowSum -= arr[start]; // subtract the element going out
+                start++; // slide the window ahead
             }
         }
         return maxSum;
@@ -148,17 +148,17 @@ public class A_SlidingWindow {
             throw new IllegalArgumentException();
 
         int start = 0, longestSubStr = 0;
-        HashMap<Character, Integer> charFrequencyMap = new HashMap<>();
+        HashMap<Character, Integer> map = new HashMap<>();
         // in the following loop we'll try to extend the range [start, windowEnd]
         for (int end = 0; end < str.length(); end++) {
             char rightChar = str.charAt(end);
-            charFrequencyMap.put(rightChar, charFrequencyMap.getOrDefault(rightChar, 0) + 1);
+            map.put(rightChar, map.getOrDefault(rightChar, 0) + 1);
             // shrink the sliding window, until we are left with 'k' distinct characters in the frequency map
-            while (charFrequencyMap.size() > k) {
+            while (map.size() > k) {
                 char leftChar = str.charAt(start);
-                charFrequencyMap.put(leftChar, charFrequencyMap.get(leftChar) - 1);
-                if (charFrequencyMap.get(leftChar) == 0) {
-                    charFrequencyMap.remove(leftChar);
+                map.put(leftChar, map.get(leftChar) - 1);
+                if (map.get(leftChar) == 0) {
+                    map.remove(leftChar);
                 }
                 start++; // shrink the window
             }

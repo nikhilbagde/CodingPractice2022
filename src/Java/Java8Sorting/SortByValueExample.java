@@ -1,4 +1,4 @@
-package Java.Java8;
+package Java.Java8Sorting;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

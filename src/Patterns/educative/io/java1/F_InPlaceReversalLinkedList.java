@@ -1,31 +1,32 @@
 package Patterns.educative.io.java1;
 
-class ListNode1 {
-    int value = 0;
-    ListNode1 next;
 
-    ListNode1(int value) {
-        this.value = value;
-    }
-}
 public class F_InPlaceReversalLinkedList {
+    static class ListNode {
+        int value = 0;
+        ListNode next;
 
-    public  static ListNode1 reverseList(ListNode1 head) {
-        ListNode1 curr = head;
-        ListNode1 prev = null;
+        ListNode(int value) {
+            this.value = value;
+        }
+    }
+
+    public  static ListNode reverseList(ListNode head) {
+        ListNode curr = head;
+        ListNode prev = null;
         while(curr!=null){
-            ListNode1 next = curr.next;
+            ListNode next = curr.next;
             curr.next = prev;
             prev= curr;
             curr = next;
         }
         return prev;
     }
-    public static ListNode1 reverseBetweenTwoMiddleNodes(ListNode1 head, int p, int q) {
+    public static ListNode reverseBetweenTwoMiddleNodes(ListNode head, int p, int q) {
         if (p == q) return head;        //if both numbers are same then there is nothing to reverse.
 
-        ListNode1 headCopy = head;
-        ListNode1 prev = null, curr = head;
+        ListNode headCopy = head;
+        ListNode prev = null, curr = head;
 
         //iterate till first p location. keeping prev node
         int i = 1;
@@ -36,13 +37,13 @@ public class F_InPlaceReversalLinkedList {
         }
 
         //Store perv and curr pointers to start and end.
-        ListNode1 start = prev;
-        ListNode1 end = curr;
+        ListNode start = prev;
+        ListNode end = curr;
 
         //from given p location to q location, (q-p+1) times iterate over a loop and reverse all nodes.
         prev = null;
         for (i = 0; curr != null & i < q-p+1; i++) {
-            ListNode1 next = curr.next;
+            ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
@@ -71,15 +72,15 @@ initially : prev = 2 , curr = 3
                 Hence end.next = curr;
          */
     }
-    public static ListNode1 reverseEveryKNodes(ListNode1 head, int k) {
+    public static ListNode reverseEveryKNodes(ListNode head, int k) {
         if (head == null || k <= 1) return head;
-        ListNode1 prev = null, curr = head;
-        ListNode1 start = prev, end = curr;
+        ListNode prev = null, curr = head;
+        ListNode start = prev, end = curr;
         while (true) {
             start = prev;
             end = curr;
             for (int i = 0; i < k && curr != null; i++) {
-                ListNode1 temp = curr.next;
+                ListNode temp = curr.next;
                 curr.next = prev;
                 prev = curr;
                 curr = temp;
@@ -94,10 +95,10 @@ initially : prev = 2 , curr = 3
         return head;
     }
 
-    public static ListNode1 reverseEveryKAlternateNodes(ListNode1 head, int k) {
+    public static ListNode reverseEveryKAlternateNodes(ListNode head, int k) {
         if (head == null || k <= 1) return head;
-        ListNode1 prev = null, curr = head;
-        ListNode1 start = prev, end = curr;
+        ListNode prev = null, curr = head;
+        ListNode start = prev, end = curr;
         boolean reverse = true;
         while (true) {
             start = prev;
@@ -105,7 +106,7 @@ initially : prev = 2 , curr = 3
             if (reverse) {
                 reverse = false;
                 for (int i = 0; curr != null && i < k; i++) {
-                    ListNode1 temp = curr.next;
+                    ListNode temp = curr.next;
                     curr.next = prev;
                     prev = curr;
                     curr = temp;
@@ -117,7 +118,7 @@ initially : prev = 2 , curr = 3
                 if (curr == null) break;
             } else {
                 reverse = true;
-                ListNode1 temp = curr;
+                ListNode temp = curr;
                 for (int i = 0; curr != null && i < k; i++) {
                     prev = curr;
                     curr = curr.next;
@@ -131,9 +132,9 @@ initially : prev = 2 , curr = 3
         return head;
     }
 
-    public static ListNode1 rotateListToRightByKNodes(ListNode1 head, int rotations) {
+    public static ListNode rotateListToRightByKNodes(ListNode head, int rotations) {
         if (head == null || rotations == 0) return head;
-        ListNode1 prev = null, curr = head, start = head;
+        ListNode prev = null, curr = head, start = head;
         int len = 1;
         while (head.next != null) {
             head = head.next;
@@ -151,13 +152,13 @@ initially : prev = 2 , curr = 3
         return curr;
     }
     public static void main(String[] args) {
-        ListNode1 head = new ListNode1(2);
-        head.next = new ListNode1(4);
-        head.next.next = new ListNode1(6);
-        head.next.next.next = new ListNode1(8);
-        head.next.next.next.next = new ListNode1(10);
+        ListNode head = new ListNode(2);
+        head.next = new ListNode(4);
+        head.next.next = new ListNode(6);
+        head.next.next.next = new ListNode(8);
+        head.next.next.next.next = new ListNode(10);
 
-        ListNode1 result = F_InPlaceReversalLinkedList.reverseList(head);
+        ListNode result = F_InPlaceReversalLinkedList.reverseList(head);
         System.out.print("Nodes of the reversed LinkedList are: ");
         while (result != null) {
             System.out.print(result.value + " ");

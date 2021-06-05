@@ -19,7 +19,7 @@ public class N_KwayMerge {
         // use queue!empty logic and process each node, and set prev.next = curr prev= prev.next.
         Queue<ListNode> queue = new PriorityQueue<>((a, b)-> a.value-b.value);
         for (ListNode node: lists) {
-            if (node != null) queue.add(node);
+            if (node != null) queue.add(node);              // This will add only head nodes of all lists.
         }
         ListNode result = null;
         ListNode prev = null;
@@ -35,6 +35,21 @@ public class N_KwayMerge {
             if (curr.next != null) queue.add(curr.next);
         }
         return result;
+    }
+    public static ListNode mergeKListsIntoOneInAscendingOrder2(ListNode[] lists) {          // T: k log(k) S: O(1)********** b/c we are adding and removing from heap in while O(1)
+        Queue<ListNode> minHeap = new PriorityQueue<>((a, b)-> a.value-b.value);
+        for (ListNode node: lists) {        // O(k)
+            if (node != null) minHeap.add(node);              // This will add only head nodes of all lists.  total nodes inside minHeap = no of list. And not total nodes of all list, (b/c only head nodes)
+        }
+        ListNode dummy = new ListNode(-1), current = dummy;
+        while(!minHeap.isEmpty()){          // O(n) + O(log(k))  -> O(n) become any list size can be N inside of min heap.
+            current.next = minHeap.poll();   // O(log(k))  // initially current is dummy : start   dummy -> first smallest node ->
+            current = current.next;                      // current become last added node.
+            if(current.next!=null){                        // current.next meaning whatever node we last time added. we will first check if we have next node to that.
+                minHeap.offer(current.next);  // O(log(k))     // if yes, we going to add to the minheap, min heap which has max K nodes (#of list heads) it will shuffle only k nodes in binary tree
+            }                                                               // and at max we will always have k node in minHeap. Hence poll() and offer() both are log(k) and not log(n). Hence faster
+        }
+        return dummy.next;
     }
     public static int findKthSmallest(List<Integer[]> lists, int k) {
         Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);

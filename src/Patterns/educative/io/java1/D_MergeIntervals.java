@@ -67,6 +67,7 @@ public class D_MergeIntervals {
     public static Interval[] intervalIntersection(Interval[] arr1, Interval[] arr2) {
         List<Interval> intervalsIntersection = new ArrayList<>();
         int i = 0, j = 0;
+        // firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]
         while (i < arr1.length && j < arr2.length) {
             if ((arr1[i].start <= arr2[j].start && arr2[j].start <= arr1[i].end) ||             //arr2 [j].start  is between arr1[i].start and arr1[i].end
                     (arr2[j].start <= arr1[i].start && arr1[i].start <= arr2[j].end)) {         //arr1 [i].start  is between arr2[i].start and arr2[i].end
@@ -203,7 +204,7 @@ public class D_MergeIntervals {
          */
         Arrays.sort(intervals, (a,b) -> a.start-b.start);
 
-        PriorityQueue<Interval> pq = new PriorityQueue<>( (a,b) -> b.end-a.end);
+        PriorityQueue<Interval> pq = new PriorityQueue<>( (a,b) -> b.end-a.end);        // minHeap not mapHeap. a.end-b.end
         pq.offer(intervals[0]);
 
         //we are going to iterate over all intervals one by one starting from 2nd element (1st index)

@@ -303,7 +303,7 @@ public class J_SubSets {
         // that index is incremented in every recursive call, and for loop starts with that index till length, which acts as a base condition.
         if (nums.length == list.size()) {
             res.add(new ArrayList<>(list));
-            return;
+            return;             // DONT FORGET THIS.
         }
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) continue;  // here we use this boolean array, using same index we are working on.  if its already added then don't add it again.

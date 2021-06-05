@@ -29,7 +29,6 @@ public class H_TreeDepthFirstSearch {
         helper(root, targetSum, result, new ArrayList<>());
         return result;
     }
-
     public static void helper(TreeNode root, int targetSum, List<List<Integer>> result, List<Integer> currentList){         //make currentList of type Integer and not TreeNode
         if(root==null) return ;
 
@@ -40,10 +39,6 @@ public class H_TreeDepthFirstSearch {
             result.add(currentList);        //add return boolean, dont return directly   + REMEMBER add as a NEW LIST
             //return result;
         }
-
-        //else if(root.left == null && root.right ==null && root.val != targetSum){
-        // currentList.remove(currentList.size()-1);
-        // }
 
         helper(root.left, targetSum - root.val, result, new ArrayList<>(currentList)); // REMEMBER add as a NEW LIST
         helper(root.right, targetSum - root.val, result, new ArrayList<>(currentList)); //+ REMEMBER add as a NEW LIST
@@ -74,7 +69,7 @@ public class H_TreeDepthFirstSearch {
     }
 
     public static List<String> rootToLeafPaths(TreeNode root) {
-        List<String> answer = new ArrayList<String>();
+        List<String> answer = new ArrayList<>();
         if (root != null) dfs(root, "", answer);
         return answer;
     }
@@ -98,13 +93,13 @@ public class H_TreeDepthFirstSearch {
     public static  int rootToLeafSumOfPaths(TreeNode root) {
         return sumNodes(root, 0);
     }
-    private static int sumNodes(TreeNode root, int currentSum) {
+    private static int sumNodes(TreeNode root, int currentSum) {        //pre-Order
         if (root == null) return 0;
         currentSum = currentSum * 10 + root.val;
         if (root.left == null && root.right == null) return currentSum;
         int leftSum = sumNodes(root.left, currentSum);
         int rightSum = sumNodes(root.right, currentSum);
-        return leftSum + rightSum;
+        return leftSum + rightSum;  //send back sum up the stack.
     }
 
     public static boolean findPathWithGivenSequence(TreeNode1 root, int[] sequence) {
