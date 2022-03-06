@@ -8,8 +8,12 @@ public class Patterns {
         triangleAscending(4,0);
 
         int [] arr = {5,4,3,2,1};
-        bubbleSort(arr, arr.length, 0);
-        System.out.println(Arrays.toString(arr));
+        bubbleSort(arr, arr.length-1, 0);
+        System.out.println("\n Bubble Sort arr: " + Arrays.toString(arr));
+
+        int [] arr1 = {5,4,3,2,1};
+        selectionSort(arr1, arr1.length-1, 0,0);
+        System.out.println(" Selection Sort arr1 = " + Arrays.toString(arr1));
     }
 
     /**
@@ -60,9 +64,35 @@ public class Patterns {
                 arr[c] = arr[c+1];
                 arr[c+1] = temp;
             }
-            bubbleSort(arr, r, c+1);
+            bubbleSort(arr, r, c+1);        //inner for loop
         } else {
-            bubbleSort(arr, r - 1, 0);
+            bubbleSort(arr, r - 1, 0);     //outer for loop
+        }
+    }
+
+    /**
+     *
+     * @param arr
+     * @param row
+     * @param col
+     * @param maxIndex
+     */
+    public static void selectionSort(int[] arr, int row, int col, int maxIndex){
+        if(row==0) return;
+
+        if(col <=  row){
+            if(arr[col] > arr[maxIndex]){
+                maxIndex= col;
+            }
+            selectionSort(arr, row, col+1, maxIndex);
+        } else {
+            int lastElementIndex = row;
+
+            int temp = arr[lastElementIndex];
+            arr[lastElementIndex] = arr[maxIndex];
+            arr[maxIndex] = temp;
+
+            selectionSort(arr, row-1, 0, 0);
         }
     }
 }
