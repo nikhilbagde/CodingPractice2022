@@ -1,6 +1,8 @@
 package WarmUp.Recursion;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class Patterns {
@@ -49,9 +51,35 @@ public class Patterns {
         insertionSort(arr);
         System.out.println(" Insertion Sort arr = " + Arrays.toString(arr));
 
+        /* ******************************************STRING**************************************************/
+        String input = "baacasavacd";
+        System.out.print( " Without return value for recursion = " );
+        skipCharFromaString("", input);
+        String ans = skipCharFromAStringWithReturnValue(input);
+        System.out.println(" Skip given character from the String ans = " + ans);
+
+        input = "bacacapplescs";
+        System.out.print( " Without return value for recursion = " );
+        skipStringFromAString("", input);
+        ans = skipStringFromAStringWithReturnValue(input);
+        System.out.println(" Skip given String from the String ans = " + ans);
+
+        input = "abc";
+        System.out.println( " Without return value for recursion = " );
+        printAllSubsetsOfAString(input, "");
+        List<String> allSubSets =  new ArrayList<>();
+        subStringWithArgument(input, "", allSubSets);
+        System.out.println(" \n   allSubSets with Argument object= " + allSubSets);
+
+        allSubSets.clear();
+        allSubSets = subStringWithReturnValue(input,"");
+        System.out.println(" allSubSets with Return object = " + allSubSets);
+
+
 
 
      }
+
 
     /**
      * Print Like this:
@@ -292,9 +320,129 @@ public class Patterns {
             start++;
             end--;
         }
-        quickSort(arr, low, start);        //wrong I don't understand.
+        quickSort(arr, low, start);        //wrong I don' t understand.
         quickSort(arr, high, end);      //wrong
     }
 
+    /**
+     * Given a String babbaca  remove all 'a' characters and return remaining string
+     * @param preString
+     * @param postString
+     */
+    public static void skipCharFromaString(String preString, String postString){
+        if(postString.isEmpty()){
+            System.out.println(preString);          //Up up up stack and print at the end. Notihng to pass to previous stack
+            return;
+        }
+        /*if(postString.charAt(0)=='a'){
+            skipString(preString, postString.substring(1));     //dont add current character in preString
+        } else {
+            skipString(preString + postString.charAt(0), postString.substring(1)); // Add current character in preString
+        }*/
+        char currentChar = postString.charAt(0);
+        if(currentChar=='a'){
+            skipCharFromaString(preString, postString.substring(1));     //dont add current character in preString
+        } else {
+            skipCharFromaString(preString + currentChar, postString.substring(1)); // Add current character in preString
+        }
+    }
+
+    /**
+     * In this method we are using return type. So all recursive call will have return in front of them.
+     * Here we are build the value from first call stack.
+     * We are adding the current character when its not 'a'.
+     * Eventually when we have considered all characters from input string and when its blank we do't need to add
+     * any character to currently built string.
+     * At final stack of recursion it will just return "" blank to original call and its like appending nothing
+     *  t ch + ""
+     *  Stack will keep dropping to original stack and keep returning the string to mail
+     * @param decreasing
+     * @return
+     */
+    private static String skipCharFromAStringWithReturnValue(String decreasing) {
+        if(decreasing.isEmpty()) {
+            return "";
+        }
+        char currentChar = decreasing.charAt(0);
+        if(currentChar=='a'){
+            return skipCharFromAStringWithReturnValue(decreasing.substring(1));
+        }else {
+            return currentChar + skipCharFromAStringWithReturnValue(decreasing.substring(1));
+        }
+    }
+
+    /**
+     * Skip String "apple" from "bacacaappleas"
+     * @param accumulator
+     * @param input
+     */
+    private static void skipStringFromAString(String accumulator, String input) {
+        if(input.isEmpty()){
+            System.out.println(accumulator);
+            return;
+        }
+
+        if(input.startsWith("apple")){
+            skipCharFromaString(accumulator, input.substring("apple".length()));
+        } else {
+            skipStringFromAString(accumulator +  input.charAt(0), input.substring(1));
+        }
+    }
+
+    /**
+     * Skip String "apple" from "bacacaappleas" with return value
+     * @param input
+     */
+    private static String skipStringFromAStringWithReturnValue(String input) {
+        if(input.isEmpty()){
+            return "";
+        }
+
+        if(input.startsWith("apple")){
+            return skipStringFromAStringWithReturnValue( input.substring("apple".length()));
+        } else {
+            return input.charAt(0) + skipStringFromAStringWithReturnValue( input.substring(1));
+        }
+    }
+
+    private static void printAllSubsetsOfAString(String input, String accumulator){
+        if(input.isEmpty()) {
+            System.out.print("[" + accumulator + "],");
+            return;
+        }
+        char ch = input.charAt(0);
+        printAllSubsetsOfAString(input.substring(1), accumulator);  //not to include it
+        printAllSubsetsOfAString(input.substring(1), accumulator + ch);  //to include it
+    }
+
+    /**
+     * Top-down approach final value is added the end of the stack
+     * and nothing is passed to the calling method.
+     * @param input
+     * @param accumulator
+     * @param result
+     */
+    private static void subStringWithArgument(String input, String accumulator, List<String> result) {
+        if(input.isEmpty()){
+            result.add("["+accumulator+"] ");
+            return;
+        }
+        char ch = input.charAt(0);
+        subStringWithArgument(input.substring(1), accumulator+ch, result);
+        subStringWithArgument(input.substring(1), accumulator, result);
+    }
+
+    private static List<String> subStringWithReturnValue(String input, String accumulator) {
+        if(input.isEmpty()){
+            List<String> result = new ArrayList<>();
+            result.add("["+accumulator+"] ");
+            return result;
+        }
+        char ch = input.charAt(0);
+        List<String> finalList = new ArrayList<>();
+        finalList.addAll(subStringWithReturnValue(input.substring(1), accumulator+ch));
+        finalList.addAll(subStringWithReturnValue(input.substring(1), accumulator));
+        return finalList;
+    }
 
 }
