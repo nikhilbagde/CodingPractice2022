@@ -1,4 +1,4 @@
-# HackerRank2017
+# Coding Practice 2022
 
 I keep updated this repository with all recent programming problems I have solved.
 You can access this solution by just going to respective packages. It includes problems from,
