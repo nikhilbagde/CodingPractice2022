@@ -6,7 +6,7 @@ You can access this solution by just going to respective packages. It includes p
 2. Project Euler
 3. LeetCode
 4. CodeChef, CodeForces, CodeSprint (Contenst Package)
-5. GeeksForGeeks
+5. OTT.P7_GeeksForGeeks
 6. HackerEarth.
 7. Java Review
 8. CTCI

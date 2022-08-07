@@ -1,6 +1,6 @@
 package CompanyCompetetions.Amazon.Interview1;
 
-import GeeksForGeeks.DataStructure.Trees.TreeNode;
+import OTT.P7_GeeksForGeeks.DataStructure.Trees.TreeNode;
 
 /**
  * Created by Nikhil on 4/6/2017 8:28 PM.

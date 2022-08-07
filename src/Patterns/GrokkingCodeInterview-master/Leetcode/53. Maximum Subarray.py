@@ -31,7 +31,7 @@ def maxSubArray(nums):
 maxSubArray([-2,1,-3,4,-1,2,1,-5,4] )
 
 '''
-method 2: Kadane' Algorithm T:0(n) S:0(1)
+method 2: Kadane' OTT.P6_HackerRank T:0(n) S:0(1)
 
        0  1  2 3 4  5
        [-2, 1, -3, 4, -1, 2, 1, -5, 4]   sum   max_sum
